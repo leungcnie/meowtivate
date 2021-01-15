@@ -1,0 +1,25 @@
+.sunny {
+  background-color: #f7e5b7;
+}
+
+.rainy {
+  background-color: #6e7b8f;
+}
+
+.cloudy {
+  background-color: #d7e2ea;
+}
+
+.weather {
+  width: 300px;
+  height: 100px;
+}
+
+.weather-search-box {
+  display: flex;
+}
+
+.weather-search-box .weather-search-bar {
+  display: block;
+  width: 100%;
+}
