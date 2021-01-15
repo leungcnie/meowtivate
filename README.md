@@ -17,12 +17,14 @@ back-end start at
 2. `npm i`
 
 ## Front-end
+1. Create the .env by using .env.example as a reference: cp .env.example .env
 
-1. `npm i`
+2. Update the .env file with your correct local information
 
-2. storybook: `npm run storybook`
+3. `npm i`
 
-storybook start at
-`http://localhost:6006/`
+4. storybook: `npm run storybook`
+   storybook start at
+  `http://localhost:6006/`
 
 ##
