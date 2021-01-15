@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cd back-end && nodemon app.js",
+    "client": "cd front-end && npm start",
+    "start": "concurrently \"npm run dev\" \"npm run client\" "
   },
   "repository": {
     "type": "git",
@@ -16,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/agxcd/meowtivate/issues"
   },
-  "homepage": "https://github.com/agxcd/meowtivate#readme"
+  "homepage": "https://github.com/agxcd/meowtivate#readme",
+  "dependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.7"
+  }
 }
