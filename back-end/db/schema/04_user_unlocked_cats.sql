@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS user_unlocked_cats CASCADE;
+
+CREATE TABLE user_unlocked_cats (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  cat_id INTEGER REFERENCES cats(id) ON DELETE CASCADE,
+  date_unlocked DATE NOT NULL
+);

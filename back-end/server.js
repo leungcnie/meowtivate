@@ -8,7 +8,7 @@ const express    = require("express");
 const app        = express();
 // const bodyParser = require("body-parser");
 // const morgan     = require('morgan');
-// const cookieSession = require('cookie-session');
+const cookieSession = require('cookie-session');
 
 const db = require('./database');
 
@@ -26,9 +26,9 @@ const db = require('./database');
 //   outputStyle: 'expanded'
 // }));
 // app.use(express.static("public"));
-// app.use(cookieSession({
-//   keys: ['uPick']
-// }));
+app.use(cookieSession({
+  keys: ['meowtivate']
+}));
 
 // Separated Routes for each Resource
 const exampleRoutes = require("./routes/exampleRoutes");
