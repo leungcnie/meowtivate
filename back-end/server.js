@@ -34,7 +34,7 @@ app.use(
 
 // Separated Routes for each Resource
 const exampleRoutes = require("./routes/exampleRoutes");
-const collectionRoutes = require("./routes/catscollection");
+const collectionRoutes = require("./routes/catsCollection");
 
 // Mount all resource routes
 const exampleRouter = express.Router();
