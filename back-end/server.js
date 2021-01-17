@@ -1,16 +1,16 @@
 // load .env data into process.env
-require('dotenv').config();
+require("dotenv").config();
 
 // Web server config
-const PORT       = process.env.PORT || 5001;
-const ENV        = process.env.ENV || "development";
-const express    = require("express");
-const app        = express();
+const PORT = process.env.PORT || 5001;
+const ENV = process.env.ENV || "development";
+const express = require("express");
+const app = express();
 // const bodyParser = require("body-parser");
 // const morgan     = require('morgan');
-const cookieSession = require('cookie-session');
+const cookieSession = require("cookie-session");
 
-const db = require('./database');
+const db = require("./database");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -26,17 +26,23 @@ const db = require('./database');
 //   outputStyle: 'expanded'
 // }));
 // app.use(express.static("public"));
-app.use(cookieSession({
-  keys: ['meowtivate']
-}));
+app.use(
+  cookieSession({
+    keys: ["meowtivate"],
+  })
+);
 
 // Separated Routes for each Resource
 const exampleRoutes = require("./routes/exampleRoutes");
+const collectionRoutes = require("./routes/catscollection");
 
 // Mount all resource routes
 const exampleRouter = express.Router();
-exampleRoutes(exampleRouter, db)
+exampleRoutes(exampleRouter, db);
 app.use("/examples", exampleRouter);
+
+const collectionRouter = express.Router();
+app.use("/collections", collectionRoutes(collectionRouter, db));
 
 // Home page
 // Warning: avoid creating more routes in this file!
