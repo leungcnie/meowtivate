@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "./weather.css";
+import "./styles/weather.css";
 
 const api = {
   key: process.env.REACT_APP_WEATHER_API_KEY,

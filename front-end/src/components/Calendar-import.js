@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Calendar } from "react-modern-calendar-datepicker";
-import "./calendar.css";
+import "./styles/calendar.css";
 
 export const CalendarApp = () => {
   const defaultValue = {
