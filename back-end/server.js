@@ -10,6 +10,7 @@ const app = express();
 // const morgan     = require('morgan');
 const cookieSession = require("cookie-session");
 
+// Store database connection + db helper functions as 'db'
 const db = require("./database");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -33,13 +34,16 @@ app.use(
 );
 
 // Separated Routes for each Resource
+const indexRoutes = require("./routes/indexRoutes");
 const exampleRoutes = require("./routes/exampleRoutes");
 const collectionRoutes = require("./routes/catsCollection");
 
 // Mount all resource routes
+const indexRouter = express.Router();
+app.use("/", indexRoutes(indexRouter, db)); // login + logout routes included
+
 const exampleRouter = express.Router();
-exampleRoutes(exampleRouter, db);
-app.use("/examples", exampleRouter);
+app.use("/examples", exampleRoutes(exampleRouter, db));
 
 const collectionRouter = express.Router();
 app.use("/collections", collectionRoutes(collectionRouter, db));

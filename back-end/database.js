@@ -1,3 +1,8 @@
+/* 
+This file contains the db connection and db helper functions.
+All SQL queries should go in here.
+*/
+
 // PG database client/connection setup
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
