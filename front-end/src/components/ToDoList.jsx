@@ -7,7 +7,8 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
-import CommentIcon from '@material-ui/icons/Comment';
+import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
+import UnfoldMoreRoundedIcon from '@material-ui/icons/UnfoldMoreRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,11 +51,13 @@ export default function CheckboxList() {
                 inputProps={{ 'aria-labelledby': labelId }}
               />
             </ListItemIcon>
-            <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
-            
+            <ListItemText id={labelId} primary={`Line item ${value + 1}`} />  
             <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="comments">
-                <CommentIcon />
+              <IconButton edge="end" aria-label="drag">
+                <UnfoldMoreRoundedIcon/>
+              </IconButton>
+              <IconButton edge="end" aria-label="delete">
+                <DeleteRoundedIcon />
               </IconButton>
             </ListItemSecondaryAction>
           </ListItem>

@@ -1,33 +1,10 @@
 import React from "react";
-import Button from "./myButton";
-import ToDoList from "./ToDoList";
+import Grid from "./GridContainer"
 
 function App() {
-  const confirm = true;
 
   return (
-    <main>
-      <header>
-        <h1>LET'S GET LOTS DONE TODAY!</h1>
-      </header>
-      <section>
-        <article>
-          <label>
-            Habit Tracker
-          </label>
-          <ToDoList/> 
-        </article>
-        <article>
-          <label>
-            To-Do Today
-          </label>
-          <ToDoList/>
-        </article>
-      </section>
-    <footer>
-      <Button confirm= { confirm } />
-    </footer>
-  </main>
+    <Grid/>
   )
 }
 
