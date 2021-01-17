@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Masi",
+    "avatar": "http://www.hexatar.com/gallery/thumb/210117_084021_ffc4dcad82f_avatar.png",
+    "description": "This astonishing and incredibly rare creature is a type of cat",
+    "date": "3 days ago"
+  },
+  {
+    "id": 2,
+    "name": "Haruki",
+    "avatar": "http://www.hexatar.com/gallery/thumb/20151029_m5631acd00bba4.png",
+    "description": "He live in cold areas and are fairly rare.",
+    "date": "4 days ago"
+  },
+  {
+    "id": 3,
+    "name": "Katsuro",
+    "avatar": "http://www.hexatar.com/gallery/thumb/210117_082754_f895224df31_avatar.png",
+    "description": "This creature is calm, but he can get quite territorial.",
+    "date": "1 week ago"
+  }
+]
