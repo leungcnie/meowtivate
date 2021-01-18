@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cd back-end && nodemon app.js",
+    "dev": "cd back-end && nodemon server.js",
     "client": "cd front-end && npm start",
     "start": "concurrently \"npm run dev\" \"npm run client\" "
   },

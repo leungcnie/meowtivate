@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./styles/weather.css";
 
 const api = {
@@ -11,19 +11,30 @@ const api = {
 // weather?lat={lat}&lon={lon}&appid={API key}
 
 export const Weather = () => {
-  const [city, setCity] = useState("");
+  // const [city, setCity] = useState("");
   const [weather, setWeather] = useState("");
 
-  const search = (event) => {
-    if (event.key === "Enter") {
-      fetch(`${api.base}weather?q=${city}&units=metric&APPID=${api.key}`)
-        .then((res) => res.json())
-        .then((result) => {
-          setWeather(result);
-          console.log(result);
-        });
-    }
-  };
+  // const search = (event) => {
+  //   if (event.key === "Enter") {
+  //     fetch(`${api.base}weather?q=${city}&units=metric&APPID=${api.key}`)
+  //       .then((res) => res.json())
+  //       .then((result) => {
+  //         setWeather(result);
+  //         console.log(result);
+  //       });
+  //   }
+  // };
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      fetch(`${api.base}weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appid=${api.key}`)
+      .then((res) => res.json())
+      .then((result) => {
+        setWeather(result);
+        console.log(result);
+      });
+    });
+  }, [])
 
   return (
     <div
@@ -36,7 +47,7 @@ export const Weather = () => {
       }
     >
       <section className="weather">
-        <div className="weather-search-box">
+        {/* <div className="weather-search-box">
           <input
             type="text"
             className="city-search-bar"
@@ -45,7 +56,7 @@ export const Weather = () => {
             value={city}
             onKeyPress={search}
           />
-        </div>
+        </div> */}
         {typeof weather.main != "undefined" ? (
           <div>
             <div className="location-box">
