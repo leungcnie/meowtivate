@@ -1,4 +1,3 @@
-import Grid from "./GridContainer"
 import "./styles/App.css";
 // import { Header } from "./Header";
 import { Weather } from "./Weather";
@@ -16,8 +15,8 @@ function App() {
       {/* <Header /> */}
       <CalendarApp />
       <Weather />
-      <Grid/>
       <Gallery items={state.collections} />
     </div>
   );
 }
+export default App;
