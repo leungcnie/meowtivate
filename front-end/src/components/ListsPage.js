@@ -2,7 +2,6 @@ import React from "react";
 import ListsGrid from "./ListsContainer"
 
 function ListsPage() {
-
   return (
     <ListsGrid/>
   )
