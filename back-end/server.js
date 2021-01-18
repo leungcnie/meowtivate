@@ -4,6 +4,7 @@ require("dotenv").config();
 // Web server config
 const PORT = process.env.PORT || 5001;
 const ENV = process.env.ENV || "development";
+const cors = require('cors');
 const express = require("express");
 const app = express();
 // const bodyParser = require("body-parser");
@@ -27,6 +28,7 @@ const db = require("./database");
 //   outputStyle: 'expanded'
 // }));
 // app.use(express.static("public"));
+app.use(cors());
 app.use(
   cookieSession({
     keys: ["meowtivate"],
