@@ -39,7 +39,7 @@ app.use(
 const indexRoutes = require("./routes/indexRoutes");
 const exampleRoutes = require("./routes/exampleRoutes");
 const collectionRoutes = require("./routes/catsCollection");
-const taskRoutes = require("./routes/taskRoutes");
+const todoRoutes = require("./routes/todoRoutes");
 const habitRoutes = require("./routes/habitRoutes");
 
 // Mount all resource routes
@@ -52,9 +52,9 @@ app.use("/examples", exampleRoutes(exampleRouter, db));
 const collectionRouter = express.Router();
 app.use("/collections", collectionRoutes(collectionRouter, db));
 
-//task
-const taskRouter = express.Router();
-app.use("/tasks", taskRoutes(taskRouter, db));
+//todo
+const todoRouter = express.Router();
+app.use("/todos", todoRoutes(todoRouter, db));
 
 //habit
 const habitRouter = express.Router();

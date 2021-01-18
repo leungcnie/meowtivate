@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="App">
-      <ListsContainer tasks={state.tasks} habits={state.habits} />
+      <ListsContainer todos={state.todos} habits={state.habits} />
       <CalendarApp />
       <Weather />
       <GalleryContainer items={state.collections} />

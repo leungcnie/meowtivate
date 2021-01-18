@@ -1,3 +1,3 @@
 INSERT INTO categories (category_name)
-VALUES ('Task'),
+VALUES ('Todo'),
 ('Habit');

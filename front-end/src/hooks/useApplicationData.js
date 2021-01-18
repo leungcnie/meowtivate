@@ -4,14 +4,14 @@ import axios from "axios";
 export default function useApplicationDate() {
   const [state, setState] = useState({
     collections: [],
-    tasks: [],
+    todos: [],
     habits: [],
   });
 
   useEffect(() => {
     Promise.all([
       axios.get("/collections/1"),
-      axios.get("/tasks/1"),
+      axios.get("/todos/1"),
       axios.get("/habits/1"),
     ])
       .then((res) => {
@@ -19,7 +19,7 @@ export default function useApplicationDate() {
         setState((prev) => ({
           ...prev,
           collections: res[0].data,
-          tasks: res[1].data,
+          todos: res[1].data,
           habits: res[2].data,
         }));
       })

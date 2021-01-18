@@ -2,7 +2,7 @@ module.exports = (router, db) => {
   // Get collections with id
   router.get("/:id", (req, res) => {
     const user_id = req.params.id;
-    db.getTasks(user_id)
+    db.getTodos(user_id)
       .then((data) => {
         res.json(data);
         // console.log("cannot get the correct", data);
