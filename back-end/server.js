@@ -4,6 +4,7 @@ require("dotenv").config();
 // Web server config
 const PORT = process.env.PORT || 5001;
 const ENV = process.env.ENV || "development";
+const cors = require("cors");
 const express = require("express");
 const app = express();
 // const bodyParser = require("body-parser");
@@ -27,6 +28,7 @@ const db = require("./database");
 //   outputStyle: 'expanded'
 // }));
 // app.use(express.static("public"));
+app.use(cors());
 app.use(
   cookieSession({
     keys: ["meowtivate"],
@@ -37,6 +39,8 @@ app.use(
 const indexRoutes = require("./routes/indexRoutes");
 const exampleRoutes = require("./routes/exampleRoutes");
 const collectionRoutes = require("./routes/catsCollection");
+const taskRoutes = require("./routes/taskRoutes");
+const habitRoutes = require("./routes/habitRoutes");
 
 // Mount all resource routes
 const indexRouter = express.Router();
@@ -47,6 +51,14 @@ app.use("/examples", exampleRoutes(exampleRouter, db));
 
 const collectionRouter = express.Router();
 app.use("/collections", collectionRoutes(collectionRouter, db));
+
+//task
+const taskRouter = express.Router();
+app.use("/tasks", taskRoutes(taskRouter, db));
+
+//habit
+const habitRouter = express.Router();
+app.use("/habits", habitRoutes(habitRouter, db));
 
 // Home page
 // Warning: avoid creating more routes in this file!

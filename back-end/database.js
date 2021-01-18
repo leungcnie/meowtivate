@@ -36,3 +36,35 @@ WHERE users.id = $1`,
     .catch((err) => console.error("query getCatsCollections error", err.stack));
 };
 exports.getCatsCollections = getCatsCollections;
+
+//task
+
+const getTasks = (id) => {
+  return db
+    .query(
+      `SELECT actions.id, user_id, action_name, date_created, is_completed
+      FROM actions 
+      JOIN categories on category_id = categories.id
+      WHERE categories.id = 1 and user_id = $1`,
+      [id]
+    )
+    .then((res) => res.rows)
+    .catch((err) => console.error("query getTasks error", err.stack));
+};
+exports.getTasks = getTasks;
+
+//habit
+
+const getHabits = (id) => {
+  return db
+    .query(
+      `SELECT actions.id, user_id, action_name, date_created, is_completed
+      FROM actions 
+      JOIN categories on category_id = categories.id
+      WHERE categories.id = 2 and user_id = $1`,
+      [id]
+    )
+    .then((res) => res.rows)
+    .catch((err) => console.error("query getHabits error", err.stack));
+};
+exports.getHabits = getHabits;

@@ -2,7 +2,7 @@ module.exports = (router, db) => {
 
   // Login with user id
   router.get('/login/:id', (req, res) => {
-    req.session.email = req.params.id; // Set a cookie called "id"
+    req.session.id = req.params.id; // Set a cookie called "id"
     // res.redirect('/');
     res.send('Logged in! Check cookies in devtool Application tab');
   })
