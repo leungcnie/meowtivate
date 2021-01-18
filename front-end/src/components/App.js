@@ -2,8 +2,7 @@ import "./styles/App.css";
 import { Weather } from "./Weather";
 import { CalendarApp } from "./Calendar-import";
 import ListsContainer from "./ListsContainer";
-
-import { Gallery } from "./Gallery";
+import GalleryContainer from "./GalleryContainer";
 import useApplicationData from "../hooks/useApplicationData";
 
 function App() {
@@ -15,7 +14,7 @@ function App() {
       <ListsContainer todos={state.todos} habits={state.habits} />
       <CalendarApp />
       <Weather />
-      <Gallery items={state.collections} />
+      <GalleryContainer items={state.collections} />
     </div>
   );
 }

@@ -30,7 +30,7 @@ export default function ListContainer(props) {
       </Grid>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
-          <label>Habit Tracker</label>
+          <label>Daily Habits</label>
 
           <ActionList items={props.habits} />
         </Grid>

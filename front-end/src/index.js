@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./components/styles/index.css";
-import ListsPage from "./components/ListsPage";
 import App from "./components/App";
 import reportWebVitals from "./components/reportWebVitals";
 
