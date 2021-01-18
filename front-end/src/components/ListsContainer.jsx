@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from "./myButton";
 import ToDoList from "./ToDoList";
+import MenuListComposition from "./Menu";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,6 +25,7 @@ export default function FullWidthGrid() {
   return (
     <div className={classes.root}>
         <Grid item xs={12}>
+          <MenuListComposition/>
           <Paper className={classes.paper}>Meowtivate</Paper>
         </Grid>
       <Grid container spacing={3}>
@@ -40,7 +42,7 @@ export default function FullWidthGrid() {
           <ToDoList/>        
         </Grid>
         <Grid item xs={6} sm={3}>
-          <Button confirm= { confirm } />
+          <Button confirm = { confirm } />
         </Grid>
       </Grid>
     </div>

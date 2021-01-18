@@ -1,10 +1,10 @@
 import React from "react";
-import Grid from "./GridContainer"
+import ListsGrid from "./ListsContainer"
 
-function App() {
+function ListsPage() {
 
   return (
-    <Grid/>
+    <ListsGrid/>
   )
 }
 
@@ -30,4 +30,4 @@ function App() {
 //   );
 // }
 
-export default App;
+export default ListsPage;
