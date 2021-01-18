@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ToDoList(props) {
+export default function ActionList(props) {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([0]);
 

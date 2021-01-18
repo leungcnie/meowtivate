@@ -37,9 +37,9 @@ WHERE users.id = $1`,
 };
 exports.getCatsCollections = getCatsCollections;
 
-//task
+//todo
 
-const getTasks = (id) => {
+const getTodos = (id) => {
   return db
     .query(
       `SELECT actions.id, user_id, action_name, date_created, is_completed
@@ -49,9 +49,9 @@ const getTasks = (id) => {
       [id]
     )
     .then((res) => res.rows)
-    .catch((err) => console.error("query getTasks error", err.stack));
+    .catch((err) => console.error("query getTodos error", err.stack));
 };
-exports.getTasks = getTasks;
+exports.getTodos = getTodos;
 
 //habit
 
