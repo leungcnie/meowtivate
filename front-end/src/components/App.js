@@ -8,7 +8,7 @@ import useApplicationData from "../hooks/useApplicationData";
 
 function App() {
   const { state } = useApplicationData();
-  console.log("collections:", state.collections)
+  console.log("collections:", state.collections);
 
   return (
     <div className="App">

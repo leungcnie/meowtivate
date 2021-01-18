@@ -3,25 +3,30 @@ import axios from "axios";
 
 export default function useApplicationDate() {
   const [state, setState] = useState({
-    collections: []
+    collections: [],
+    tasks: [],
+    habits: [],
   });
 
   useEffect(() => {
-    
-    axios.get('/collections/1')
+    Promise.all([
+      axios.get("/collections/1"),
+      axios.get("/tasks/1"),
+      axios.get("/habits/1"),
+    ])
       .then((res) => {
-        console.log("res.data in cats collection:", res.data)
-        setState(prev => ({
+        console.log("res.data in cats collection:", res.data);
+        setState((prev) => ({
           ...prev,
-          collections: res.data
+          collections: res[0].data,
+          tasks: res[1].data,
+          habits: res[2].data,
         }));
       })
       .catch((err) => {
         console.log(err);
-      })
-
+      });
   }, []);
 
   return { state };
-
 }
