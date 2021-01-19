@@ -4,24 +4,17 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Checkbox from "@material-ui/core/Checkbox";
-<<<<<<< HEAD
-// import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-// import IconButton from "@material-ui/core/IconButton";
-// import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
-// import UnfoldMoreRoundedIcon from "@material-ui/icons/UnfoldMoreRounded";
-=======
 import IconButton from "@material-ui/core/IconButton";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import UnfoldMoreRoundedIcon from "@material-ui/icons/UnfoldMoreRounded";
 import AddItemForm from "./AddItemForm";
-
 import useVisualMode from "../hooks/useVisualMode";
 
 const SHOW = "SHOW";
 const EDIT = "EDIT";
 const SAVING = "SAVING";
->>>>>>> c0690fdc9a79c9cccf9b057ec2486e54ad9905a4
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,13 +59,9 @@ export default function ActionList(props) {
   // }
 
   return (
-<<<<<<< HEAD
-    <List className={classes.item}>
-=======
     <List className={classes.root}>
       <button onClick={() => transition(EDIT)}>Edit</button>
 
->>>>>>> c0690fdc9a79c9cccf9b057ec2486e54ad9905a4
       {props.items.map((value) => {
         const labelId = `checkbox-list-label-${value}`;
 
@@ -95,17 +84,6 @@ export default function ActionList(props) {
               />
             </ListItemIcon>
             <ListItemText id={labelId} primary={value.action_name} />
-<<<<<<< HEAD
-            {/* if === edit
-            <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="drag">
-                <UnfoldMoreRoundedIcon />
-              </IconButton>
-              <IconButton edge="end" aria-label="delete">
-                <DeleteRoundedIcon />
-              </IconButton>
-            </ListItemSecondaryAction> */}
-=======
             {mode === EDIT && (
               <ListItemSecondaryAction>
                 <IconButton edge="end" aria-label="drag">
@@ -116,7 +94,6 @@ export default function ActionList(props) {
                 </IconButton>
               </ListItemSecondaryAction>
             )}
->>>>>>> c0690fdc9a79c9cccf9b057ec2486e54ad9905a4
           </ListItem>
         );
       })}

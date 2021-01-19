@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ListContainer(props) {
   const classes = useStyles();
-  const confirm = true;
 
   return (
     <div className={classes.root}>
@@ -25,19 +24,11 @@ export default function ListContainer(props) {
       </Grid>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
-<<<<<<< HEAD
           <label className={classes.header}>Daily Habits</label>
           <ActionList items={props.habits} />
         </Grid>
         <Grid item xs={12} sm={6}>
           <label className={classes.header}>To-Do Today</label>
-=======
-          <label>Daily Habits</label>
-          <ActionList items={props.habits} />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <label>To-Do Today</label>
->>>>>>> c0690fdc9a79c9cccf9b057ec2486e54ad9905a4
           <ActionList items={props.todos} />
         </Grid>
         <Grid item xs={12}>
