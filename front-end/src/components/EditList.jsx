@@ -3,12 +3,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
-// import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-// import IconButton from "@material-ui/core/IconButton";
-// import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
-// import UnfoldMoreRoundedIcon from "@material-ui/icons/UnfoldMoreRounded";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
+import UnfoldMoreRoundedIcon from "@material-ui/icons/UnfoldMoreRounded";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,7 +58,6 @@ export default function ActionList(props) {
               />
             </ListItemIcon>
             <ListItemText id={labelId} primary={value.action_name} />
-            {/* if === edit
             <ListItemSecondaryAction>
               <IconButton edge="end" aria-label="drag">
                 <UnfoldMoreRoundedIcon />
@@ -66,7 +65,7 @@ export default function ActionList(props) {
               <IconButton edge="end" aria-label="delete">
                 <DeleteRoundedIcon />
               </IconButton>
-            </ListItemSecondaryAction> */}
+            </ListItemSecondaryAction>
           </ListItem>
         );
       })}
