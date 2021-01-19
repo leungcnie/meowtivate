@@ -8,6 +8,29 @@ export default function useApplicationDate() {
     habits: [],
   });
 
+  //
+
+  const login = () => {
+    const loginURL = `'/api/login/1'`;
+    return axios.get(loginURL).then(() => {
+      setState(() => ({ ...state }));
+    });
+  };
+
+  // const addlist = () => {
+  //   const loginURL = `/api/login/1`;
+  //   return axios.get(loginURL).then(() => {
+  //     setState(() => ({ ...state }));
+  //   });
+  // };
+
+  // const login = () => {
+  //   const loginURL = `/api/login/1`;
+  //   return axios.get(loginURL).then((res) => {
+  //     res.data;
+  //   });
+  // };
+
   useEffect(() => {
     Promise.all([
       axios.get("/api/collections/1"),
@@ -28,5 +51,5 @@ export default function useApplicationDate() {
       });
   }, []);
 
-  return { state };
+  return { state, login };
 }

@@ -3,7 +3,7 @@ App.js is responsible for containing all the routes and passing state as props
 */
 
 import "./styles/App.css";
-import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 // Hooks
 import useApplicationData from "../hooks/useApplicationData";
@@ -24,23 +24,23 @@ function App() {
       <Router>
         <Switch>
           {/* Define route paths and nest page components inside */}
-          <Route exact path="/">
-            <WelcomePage state={state}/>
+          <Route exact path="/" component={WelcomePage}>
+            <WelcomePage state={state} />
           </Route>
-          <Route exact path="/login">
-            <LoginPage state={state}/>
+          <Route exact path="/login" component={LoginPage}>
+            <LoginPage state={state} />
           </Route>
-          <Route exact path="/dashboard">
-            <DashboardPage state={state}/>
+          <Route exact path="/dashboard" component={DashboardPage}>
+            <DashboardPage state={state} />
           </Route>
-          <Route exact path="/lists">
-            <ListsPage state={state}/>
+          <Route exact path="/lists" component={ListsPage}>
+            <ListsPage state={state} />
           </Route>
-          <Route exact path="/cats">
-            <CatsPage state={state}/>
+          <Route exact path="/cats" component={CatsPage}>
+            <CatsPage state={state} />
           </Route>
-          <Route exact path="/account">
-            <AccountPage state={state}/>
+          <Route exact path="/account" component={AccountPage}>
+            <AccountPage state={state} />
           </Route>
         </Switch>
       </Router>
