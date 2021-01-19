@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import Button from "./SaveButton";
+import Button from "@material-ui/core/Button";
 import ActionList from "./ActionList";
 
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +33,7 @@ export default function ListContainer(props) {
           <ActionList items={props.todos} />
         </Grid>
         <Grid item xs={12}>
-          <Button confirm={confirm} />
+          <Button variant="contained" color="secondary">Save</Button>
         </Grid>
       </Grid>
     </div>
