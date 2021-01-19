@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
+  item: {
+    fontFamily: 'Varela Round',
+  }
 }));
 
 export default function ActionList(props) {
@@ -36,12 +39,13 @@ export default function ActionList(props) {
   };
 
   return (
-    <List className={classes.root}>
+    <List className={classes.item}>
       {props.items.map((value) => {
         const labelId = `checkbox-list-label-${value}`;
 
         return (
           <ListItem
+            className={classes.item}
             key={value}
             role={undefined}
             dense
