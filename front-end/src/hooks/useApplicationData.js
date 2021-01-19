@@ -10,9 +10,9 @@ export default function useApplicationDate() {
 
   useEffect(() => {
     Promise.all([
-      axios.get("/collections/1"),
-      axios.get("/todos/1"),
-      axios.get("/habits/1"),
+      axios.get("/api/collections/1"),
+      axios.get("/api/todos/1"),
+      axios.get("/api/habits/1"),
     ])
       .then((res) => {
         console.log("res.data in cats collection:", res.data);
