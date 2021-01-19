@@ -1,26 +1,53 @@
+/*
+App.js is responsible for containing all the routes and passing state as props
+*/
+
 import "./styles/App.css";
-import { Weather } from "./Weather";
-import { CalendarApp } from "./Calendar-import";
-import ListsContainer from "./ListsContainer";
-import GalleryContainer from "./GalleryContainer";
 import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 
 // Hooks
 import useApplicationData from "../hooks/useApplicationData";
 
-// Pages
-import DashboardPage from "../pages"
+// Pages imported from src/pages dir
+import WelcomePage from "../pages/WelcomePage";
+import LoginPage from "../pages/LoginPage";
+import DashboardPage from "../pages/DashboardPage";
+import ListsPage from "../pages/ListsPage";
+import CatsPage from "../pages/CatsPage";
+import AccountPage from "../pages/AccountPage";
 
 function App() {
   const { state } = useApplicationData();
-  console.log("collections:", state.collections);
 
   return (
     <div className="App">
-      <ListsContainer todos={state.todos} habits={state.habits} />
+      <Router>
+        <Switch>
+          {/* Define route paths and nest page components inside */}
+          <Route exact path="/">
+            <WelcomePage state={state}/>
+          </Route>
+          <Route exact path="/login">
+            <LoginPage state={state}/>
+          </Route>
+          <Route exact path="/dashboard">
+            <DashboardPage state={state}/>
+          </Route>
+          <Route exact path="/lists">
+            <ListsPage state={state}/>
+          </Route>
+          <Route exact path="/cats">
+            <CatsPage state={state}/>
+          </Route>
+          <Route exact path="/account">
+            <AccountPage state={state}/>
+          </Route>
+        </Switch>
+      </Router>
+      {/* <ListsContainer todos={state.todos} habits={state.habits} />
       <CalendarApp />
       <Weather />
-      <GalleryContainer items={state.collections} />
+      <GalleryContainer items={state.collections} /> */}
     </div>
   );
 }
