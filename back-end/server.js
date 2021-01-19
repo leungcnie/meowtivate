@@ -44,21 +44,21 @@ const habitRoutes = require("./routes/habitRoutes");
 
 // Mount all resource routes
 const indexRouter = express.Router();
-app.use("/", indexRoutes(indexRouter, db)); // login + logout routes included
+app.use("/api/", indexRoutes(indexRouter, db)); // login + logout routes included
 
 const exampleRouter = express.Router();
-app.use("/examples", exampleRoutes(exampleRouter, db));
+app.use("/api/examples", exampleRoutes(exampleRouter, db));
 
 const collectionRouter = express.Router();
-app.use("/collections", collectionRoutes(collectionRouter, db));
+app.use("/api/collections", collectionRoutes(collectionRouter, db));
 
 //todo
 const todoRouter = express.Router();
-app.use("/todos", todoRoutes(todoRouter, db));
+app.use("/api/todos", todoRoutes(todoRouter, db));
 
 //habit
 const habitRouter = express.Router();
-app.use("/habits", habitRoutes(habitRouter, db));
+app.use("/api/habits", habitRoutes(habitRouter, db));
 
 // Home page
 // Warning: avoid creating more routes in this file!
