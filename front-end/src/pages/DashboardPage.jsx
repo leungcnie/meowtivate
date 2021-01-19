@@ -1,17 +1,15 @@
 import { Weather } from "../components/Weather";
 import { CalendarApp } from "../components/Calendar-import";
-import ListsContainer from "../components/ListsContainer";
-import GalleryContainer from "../components/GalleryContainer";
+import NavBar from '../components/NavBar';
 
 export default function DashboardPage(props) {
   const { state } = props;
 
   return (
     <div className="Dashboard">
-      <ListsContainer todos={state.todos} habits={state.habits} />
+      <NavBar />
       <CalendarApp />
       <Weather />
-      <GalleryContainer items={state.collections} />
     </div>
   )
 }

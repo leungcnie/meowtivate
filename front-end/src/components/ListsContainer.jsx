@@ -3,9 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Button from "./SaveButton";
 import ActionList from "./ActionList";
-import MenuListComposition from "./Menu";
-import NavBar from "./NavBar";
-import CardHeader from '@material-ui/core/CardHeader';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,9 +21,6 @@ export default function ListContainer(props) {
 
   return (
     <div className={classes.root}>
-      <Grid item xs={12} >
-          <NavBar/>
-      </Grid>
       <Grid item xs={12}>
         <h2>LET'S GET LOTS DONE TODAY</h2>
       </Grid>
