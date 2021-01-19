@@ -28,30 +28,20 @@ export default function SimpleMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>
-          <Link to="/dashboard">
+        <MenuItem onClick={handleClose} component={Link} to="/dashboard">
             My DashBoard
-          </Link>
         </MenuItem>
-        <MenuItem onClick={handleClose} >
-          <Link to="/account">
+        <MenuItem onClick={handleClose} component={Link} to="/account">
             My Account
-          </Link>
         </MenuItem>
-        <MenuItem onClick={handleClose} >
-          <Link to="/cats">
+        <MenuItem onClick={handleClose} component={Link} to="/cats" >
             My Collection
-          </Link>
         </MenuItem>
-        <MenuItem onClick={handleClose} >
-          <Link to="/lists">
+        <MenuItem onClick={handleClose} component={Link} to="/lists">
             My Lists
-          </Link>
         </MenuItem>
-        <MenuItem onClick={handleClose} >
-          <Link to="/">
+        <MenuItem onClick={handleClose} component={Link} to="/">
             Logout
-          </Link>
         </MenuItem>
       </Menu>
     </div>

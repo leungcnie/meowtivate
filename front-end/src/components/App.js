@@ -3,6 +3,8 @@ App.js is responsible for containing all the routes and passing state as props
 */
 
 import "./styles/App.css";
+import '@fontsource/itim';
+import '@fontsource/varela-round';
 import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 
 // Hooks
@@ -44,10 +46,6 @@ function App() {
           </Route>
         </Switch>
       </Router>
-      {/* <ListsContainer todos={state.todos} habits={state.habits} />
-      <CalendarApp />
-      <Weather />
-      <GalleryContainer items={state.collections} /> */}
     </div>
   );
 }
