@@ -94,7 +94,7 @@ export default function ActionList(props) {
           </ListItem>
         );
       })}
-      {mode === EDIT && <AddItemForm />}
+      {mode === EDIT && <AddItemForm onSave={() => transition(EDIT)} />}
     </List>
   );
 }

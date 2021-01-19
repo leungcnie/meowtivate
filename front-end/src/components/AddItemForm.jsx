@@ -1,9 +1,9 @@
-function AddItemForm() {
+function AddItemForm(props) {
   return (
-    <form>
+    <div>
       <input />
-      <button type="submit">Add Item</button>
-    </form>
+      <button onClick={props.onSave}>Add Item</button>
+    </div>
   );
 }
 
