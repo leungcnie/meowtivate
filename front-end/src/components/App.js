@@ -3,7 +3,13 @@ import { Weather } from "./Weather";
 import { CalendarApp } from "./Calendar-import";
 import ListsContainer from "./ListsContainer";
 import GalleryContainer from "./GalleryContainer";
+import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+
+// Hooks
 import useApplicationData from "../hooks/useApplicationData";
+
+// Pages
+import DashboardPage from "../pages"
 
 function App() {
   const { state } = useApplicationData();
