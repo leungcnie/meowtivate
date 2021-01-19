@@ -1,9 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import Button from "./myButton";
+import Button from "./SaveButton";
 import ActionList from "./ActionList";
-import MenuListComposition from "./Menu";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,12 +22,9 @@ export default function ListContainer(props) {
   return (
     <div className={classes.root}>
       <Grid item xs={12}>
-        <MenuListComposition />
+        <h2>LET'S GET LOTS DONE TODAY</h2>
       </Grid>
-      <Grid item xs={12}>
-        <h1>LET'S GET LOTS DONE TODAY</h1>
-      </Grid>
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <label>Daily Habits</label>
 

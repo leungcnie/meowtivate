@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   // }
 });
 
-export default function Hook(props) {
+export default function SaveButton(props) {
   const classes = useStyles(props);
 
   return (
