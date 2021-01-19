@@ -15,6 +15,7 @@ import DashboardPage from "../pages/DashboardPage";
 import ListsPage from "../pages/ListsPage";
 import CatsPage from "../pages/CatsPage";
 import AccountPage from "../pages/AccountPage";
+import NotFoundPage from "./404";
 
 function App() {
   const { state } = useApplicationData();
@@ -42,6 +43,7 @@ function App() {
           <Route exact path="/account" component={AccountPage}>
             <AccountPage state={state} />
           </Route>
+          <Route exact path="*" component={NotFoundPage} />
         </Switch>
       </Router>
       {/* <ListsContainer todos={state.todos} habits={state.habits} />
