@@ -19,6 +19,49 @@ const getExampleWithID = (id) => {
 
 exports.getExampleWithID = getExampleWithID;
 
+// EXAMPLES insert QUERIES
+const getExample = (text) => {
+  return db
+    .query(
+      `INSERT INTO examples (text)
+    VALUES ($1)
+    RETURNING *;`,
+      [text]
+    )
+    .then((res) => {
+      console.log("whats res.rows[0]", res.rows);
+      return res.rows;
+    });
+};
+
+exports.getExample = getExample;
+
+//update example
+const updateExample = (id, text) => {
+  return db
+    .query(
+      `UPDATE examples
+  SET text = $2 
+  WHERE id = $1;`,
+      [id, text]
+    )
+    .then((res) => {
+      console.log("whats res.rows[0]", res.rows);
+      return res.rows;
+    });
+};
+exports.updateExample = updateExample;
+
+//delete example
+const deleteExample = (id) => {
+  return db.query(`DELETE FROM examples WHERE id = $1;`, [id]).then((res) => {
+    console.log("whats res.rows[0]", res.rows);
+    return res.rows;
+  });
+};
+
+exports.deleteExample = deleteExample;
+
 // USERS QUERIES
 
 //user collections
@@ -52,6 +95,25 @@ const getTodos = (id) => {
     .catch((err) => console.error("query getTodos error", err.stack));
 };
 exports.getTodos = getTodos;
+
+// create habit
+
+const createHabit = () => {
+  return db
+    .query(
+      `
+        INSERT INTO actions (user_id, category_id, action_name, date_created, is_completed) VALUES (1, 2, $1, CURRENT_DATE, $2)`,
+      [action_name, is_completed]
+    )
+    .then(() => {
+      setTimeout(() => {
+        response.status(204).json({});
+      }, 1000);
+    })
+    .catch((error) => console.log(error));
+};
+
+exports.createHabit = createHabit;
 
 //habit
 
