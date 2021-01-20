@@ -47,26 +47,23 @@ export default function ActionList(props) {
   };
 
   // Popup state
-  // const [open, setOpen] = useState(false);
-  // const [popupType, setPopupType] = useState(""); // "", "add", or "edit"
   const [popupState, setPopupState] = useState({
     open: false,
     type: "",
-    actionID: 0 // action_id for EDITING, otherwise 0 for ADDING
+    actionID: 0, // action_id for EDITING, otherwise 0 for ADDING
+    actionName: ""
   });
 
-  const handleClickOpen = (type, id) => {
-    // setOpen(true);
-    // setPopupType(type);
+  const handleClickOpen = (type, id, name) => {
     setPopupState((prev) => ({
       ...prev,
       open: true,
       type: type,
-      actionID: id
+      actionID: id,
+      actionName: name
     }))
   };
   const handleClose = () => {
-    // setOpen(false);
     setPopupState((prev) => ({
       ...prev,
       open: false
@@ -102,10 +99,10 @@ export default function ActionList(props) {
                   <UnfoldMoreRoundedIcon />
                 </IconButton>
                 <IconButton edge="end" aria-label="delete">
-                  <DeleteRoundedIcon onClick={() => handleClickOpen("Delete", value.id)}/>
+                  <DeleteRoundedIcon onClick={() => handleClickOpen("Delete", value.id, value.action_name)}/>
                 </IconButton>
                 <IconButton edge="end" aria-label="edit">
-                  <EditRoundedIcon onClick={() => handleClickOpen("Edit", value.id)}/>
+                  <EditRoundedIcon onClick={() => handleClickOpen("Edit", value.id, value.action_name)}/>
                 </IconButton>
               </ListItemSecondaryAction>
             )}
@@ -116,7 +113,7 @@ export default function ActionList(props) {
       {isEditable ? 
       (<>
       <IconButton>
-        <AddCircleIcon onClick={() => handleClickOpen("Add", 0)} />
+        <AddCircleIcon onClick={() => handleClickOpen("Add", 0, "")} />
       </IconButton>
       <IconButton onClick={modeToggle}>
         <SaveRoundedIcon/>
