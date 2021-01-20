@@ -24,7 +24,7 @@ export default function Popup(props) {
         Open form dialog
       </Button> */}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="form-dialog-title"></DialogTitle>
         <DialogContent>
           {/* <DialogContentText>
             To subscribe to this website, please enter your email address here. We will send updates
@@ -34,8 +34,8 @@ export default function Popup(props) {
             autoFocus
             margin="dense"
             id="name"
-            label="Email Address"
-            type="email"
+            label="What do you need to do?"
+            type="text"
             fullWidth
           />
         </DialogContent>
