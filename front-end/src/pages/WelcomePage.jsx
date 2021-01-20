@@ -52,8 +52,8 @@ export default function WelcomePage(props) {
           className={classes.button}
           variant="contained"
           color="secondary"
-          onClick={login}
-        >
+          component={Link}
+          to="/login">
           Login
         </Button>
       </div>
