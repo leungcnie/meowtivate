@@ -45,11 +45,6 @@ export default function ListContainer(props) {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12}>
-          <IconButton>
-            <SaveRoundedIcon/>
-          </IconButton>
-        </Grid>
       </Grid>
     </div>
   );

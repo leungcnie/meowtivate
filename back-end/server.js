@@ -7,7 +7,7 @@ const ENV = process.env.ENV || "development";
 const cors = require("cors");
 const express = require("express");
 const app = express();
-// const bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 // const morgan     = require('morgan');
 const cookieSession = require("cookie-session");
 
@@ -20,7 +20,7 @@ const db = require("./database");
 // app.use(morgan('dev'));
 
 // app.set("view engine", "ejs");
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 // app.use("/styles", sass({
 //   src: __dirname + "/styles",
 //   dest: __dirname + "/public/styles",
