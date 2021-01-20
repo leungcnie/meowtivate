@@ -11,7 +11,8 @@ import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import UnfoldMoreRoundedIcon from "@material-ui/icons/UnfoldMoreRounded";
 import SaveRoundedIcon from '@material-ui/icons/SaveRounded';
-import AddItemForm from "./AddItemForm";
+import Popup from "./Popup";
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,9 +48,20 @@ export default function ActionList(props) {
     setChecked(newChecked);
   };
 
+  // Popup
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <List className={classes.root}>
-      
+
       {props.items.map((value) => {
         const labelId = `checkbox-list-label-${value}`;
         return (
@@ -78,8 +90,8 @@ export default function ActionList(props) {
                 <IconButton edge="end" aria-label="delete">
                   <DeleteRoundedIcon />
                 </IconButton>
-                <IconButton edge="end" aria-label="delete">
-                  <EditRoundedIcon />
+                <IconButton edge="end" aria-label="edit">
+                  <EditRoundedIcon onClick={handleClickOpen}/>
                 </IconButton>
               </ListItemSecondaryAction>
             )}
@@ -89,7 +101,10 @@ export default function ActionList(props) {
 
       {isEditable ? 
       (<>
-      <AddItemForm />
+      {/* <AddItemForm /> */}
+      <IconButton>
+        <AddCircleIcon onClick={handleClickOpen} />
+      </IconButton>
       <IconButton onClick={modeToggle}>
         <SaveRoundedIcon/>
       </IconButton>
@@ -97,6 +112,8 @@ export default function ActionList(props) {
       (<IconButton onClick={modeToggle}>
             <EditRoundedIcon/>
       </IconButton>) }
+
+    <Popup handleClose={handleClose} open={open} />
 
     </List>
   );
