@@ -12,5 +12,18 @@ module.exports = (router, db) => {
       });
   });
 
+  // post new todo
+  router.post("/", (req, res) => {
+    const { action_name } = req.body;
+
+    db.createTodo(action_name)
+      .then((data) => {
+        res.send("Check the console for data!");
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
   return router;
 };
