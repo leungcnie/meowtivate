@@ -3,11 +3,15 @@ import { makeStyles } from "@material-ui/core/styles";
 import Menu from './Menu';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    fontSize: "2rem",
+  logo: {
+    fontFamily: "itim",
+    letterSpacing: "8px",
+    textAlign: "center",
+    fontSize: "3rem",
   },
-  menu: { 
-  },
+  menu: {
+    textAlign: "start",
+  }
 }));
 
 export default function SimpleMenu() {
@@ -15,8 +19,8 @@ export default function SimpleMenu() {
 
   return (
     <header className={classes.menu}>
-      <Menu/>
-      <h1>Meowtivate</h1>
+      <Menu />
+      <h1 className={classes.logo}>Meowtivate</h1>
     </header>
   )
 }
