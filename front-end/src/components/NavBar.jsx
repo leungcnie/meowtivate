@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menu: {
     textAlign: "start",
+    backgroundColor: "lightblue"
   }
 }));
 
