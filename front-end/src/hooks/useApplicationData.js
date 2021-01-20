@@ -8,28 +8,17 @@ export default function useApplicationDate() {
     habits: [],
   });
 
-  //
+  const addAction = (actionName) => {
+    
+  }
 
-  const login = () => {
-    const loginURL = `'/api/login/1'`;
-    return axios.get(loginURL).then(() => {
-      setState(() => ({ ...state }));
-    });
-  };
+  const deleteAction = (actionId) => {
 
-  // const addlist = () => {
-  //   const loginURL = `/api/login/1`;
-  //   return axios.get(loginURL).then(() => {
-  //     setState(() => ({ ...state }));
-  //   });
-  // };
+  }
+  
+  const editAction = (actionId) => {
 
-  // const login = () => {
-  //   const loginURL = `/api/login/1`;
-  //   return axios.get(loginURL).then((res) => {
-  //     res.data;
-  //   });
-  // };
+  }
 
   useEffect(() => {
     Promise.all([
@@ -51,5 +40,5 @@ export default function useApplicationDate() {
       });
   }, []);
 
-  return { state, login };
+  return { state };
 }
