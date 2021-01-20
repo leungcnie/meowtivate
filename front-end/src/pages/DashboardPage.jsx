@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Weather } from "../components/Weather";
 import { CalendarApp } from "../components/Calendar-import";
@@ -32,7 +31,7 @@ export default function DashboardPage(props) {
           </Grid>
           <Grid item>
             <Button component={Link} to="/cats">
-              My Cats
+              My Collection
             </Button>
           </Grid>
           <Grid item>
