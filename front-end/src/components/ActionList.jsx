@@ -25,11 +25,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ActionList(props) {
-
+  const { items, listType } = props;
   const classes = useStyles();
   const [checked, setChecked] = useState([0]);
   const [isEditable, setIsEditable] = useState(false);
 
+  // Toggle between VIEW and EDIT modes
   const modeToggle = () => setIsEditable(!isEditable);
 
   const handleToggle = (value) => () => {
@@ -45,25 +46,39 @@ export default function ActionList(props) {
     setChecked(newChecked);
   };
 
-  // Popup
-  const [open, setOpen] = React.useState(false);
+  // Popup state
+  // const [open, setOpen] = useState(false);
+  // const [popupType, setPopupType] = useState(""); // "", "add", or "edit"
+  const [popupState, setPopupState] = useState({
+    open: false,
+    type: ""
+  });
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleClickOpen = (type) => {
+    // setOpen(true);
+    // setPopupType(type);
+    setPopupState((prev) => ({
+      ...prev,
+      open: true,
+      type: type
+    }))
   };
-
   const handleClose = () => {
-    setOpen(false);
+    // setOpen(false);
+    setPopupState((prev) => ({
+      ...prev,
+      open: false
+    }))
   };
 
   return (
     <List className={classes.root}>
 
-      {props.items.map((value) => {
+      {items.map((value) => {
         const labelId = `checkbox-list-label-${value}`;
         return (
           <ListItem
-            key={value}
+            key={value.id}
             role={undefined}
             dense
             button
@@ -88,7 +103,7 @@ export default function ActionList(props) {
                   <DeleteRoundedIcon />
                 </IconButton>
                 <IconButton edge="end" aria-label="edit">
-                  <EditRoundedIcon onClick={handleClickOpen}/>
+                  <EditRoundedIcon onClick={() => handleClickOpen("Edit")}/>
                 </IconButton>
               </ListItemSecondaryAction>
             )}
@@ -98,9 +113,8 @@ export default function ActionList(props) {
 
       {isEditable ? 
       (<>
-      {/* <AddItemForm /> */}
       <IconButton>
-        <AddCircleIcon onClick={handleClickOpen} />
+        <AddCircleIcon onClick={() => handleClickOpen("Add")} />
       </IconButton>
       <IconButton onClick={modeToggle}>
         <SaveRoundedIcon/>
@@ -110,7 +124,12 @@ export default function ActionList(props) {
             <EditRoundedIcon/>
       </IconButton>) }
 
-    <Popup handleClose={handleClose} open={open} />
+    <Popup 
+      handleClose={handleClose} 
+      open={popupState.open} 
+      type={popupState.type} 
+      listType={listType}
+    />
 
     </List>
   );

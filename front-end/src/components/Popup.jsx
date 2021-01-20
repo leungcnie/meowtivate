@@ -5,18 +5,10 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+// import DialogContentText from '@material-ui/core/DialogContentText';
 
 export default function Popup(props) {
-  const { handleClose, open } = props;
-  // const [open, setOpen] = React.useState(false);
-
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
+  const { handleClose, open, type, listType } = props;
 
   return (
     <div>
@@ -24,11 +16,10 @@ export default function Popup(props) {
         Open form dialog
       </Button> */}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="form-dialog-title">{type} a {listType === 1? "to-do" : "habit"}</DialogTitle>
         <DialogContent>
           {/* <DialogContentText>
-            To subscribe to this website, please enter your email address here. We will send updates
-            occasionally.
+            {type}
           </DialogContentText> */}
           <TextField
             autoFocus

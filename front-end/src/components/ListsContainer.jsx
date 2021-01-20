@@ -33,7 +33,7 @@ export default function ListContainer(props) {
           <Card>
             <CardContent>
               <label className={classes.header}>Daily Habits</label>
-              <ActionList items={props.habits} />
+              <ActionList items={props.habits} listType={2}/>
             </CardContent>
           </Card>
         </Grid>
@@ -41,7 +41,7 @@ export default function ListContainer(props) {
           <Card>
             <CardContent>
               <label className={classes.header}>To-Do Today</label>
-              <ActionList items={props.todos} />
+              <ActionList items={props.todos} listType={1}/>
             </CardContent>
           </Card>
         </Grid>
