@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -10,12 +10,9 @@ import IconButton from "@material-ui/core/IconButton";
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import UnfoldMoreRoundedIcon from "@material-ui/icons/UnfoldMoreRounded";
-import AddItemForm from "./AddItemForm";
-import useVisualMode from "../hooks/useVisualMode";
-
-const SHOW = "SHOW";
-const EDIT = "EDIT";
-const SAVING = "SAVING";
+import SaveRoundedIcon from '@material-ui/icons/SaveRounded';
+import Popup from "./Popup";
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,8 +26,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ActionList(props) {
+
   const classes = useStyles();
-  const [checked, setChecked] = React.useState([0]);
+  const [checked, setChecked] = useState([0]);
+  const [isEditable, setIsEditable] = useState(false);
+
+  const modeToggle = () => setIsEditable(!isEditable);
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -45,22 +46,20 @@ export default function ActionList(props) {
     setChecked(newChecked);
   };
 
-  // mode changes
-  const { mode, transition, back } = useVisualMode(props.items ? SHOW : EDIT);
-  // function edit(name, interviewer) {
-  //   transition(SAVING);
-  //   const interview = {
-  //     student: name,
-  //     interviewer,
-  //   };
-  //   props
-  //     .editInterview(props.id, interview)
-  //     .then(() => transition(SHOW))
-  //     .catch((error) => transition(ERROR_SAVE, true));
-  // }
+  // Popup
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <List className={classes.root}>
+
       {props.items.map((value) => {
         const labelId = `checkbox-list-label-${value}`;
         return (
@@ -81,7 +80,7 @@ export default function ActionList(props) {
               />
             </ListItemIcon>
             <ListItemText id={labelId} primary={value.action_name} />
-            {mode === EDIT && (
+            {isEditable && (
               <ListItemSecondaryAction>
                 <IconButton edge="end" aria-label="drag">
                   <UnfoldMoreRoundedIcon />
@@ -89,15 +88,31 @@ export default function ActionList(props) {
                 <IconButton edge="end" aria-label="delete">
                   <DeleteRoundedIcon />
                 </IconButton>
+                <IconButton edge="end" aria-label="edit">
+                  <EditRoundedIcon onClick={handleClickOpen}/>
+                </IconButton>
               </ListItemSecondaryAction>
             )}
           </ListItem>
         );
       })}
-      <IconButton onClick={() => transition(EDIT)}>
-        <EditRoundedIcon/>
+
+      {isEditable ? 
+      (<>
+      {/* <AddItemForm /> */}
+      <IconButton>
+        <AddCircleIcon onClick={handleClickOpen} />
       </IconButton>
-      {mode === EDIT && <AddItemForm onSave={() => transition(EDIT)} />}
+      <IconButton onClick={modeToggle}>
+        <SaveRoundedIcon/>
+      </IconButton>
+      </>) :
+      (<IconButton onClick={modeToggle}>
+            <EditRoundedIcon/>
+      </IconButton>) }
+
+    <Popup handleClose={handleClose} open={open} />
+
     </List>
   );
 }
