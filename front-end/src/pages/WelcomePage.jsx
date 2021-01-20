@@ -1,14 +1,15 @@
 import NavBar from "../components/NavBar";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
-import { Redirect } from "react-router";
-// import useApplicationData from "../hooks/useApplicationData";
+import { useHistory } from "react-router-dom";
 
-export default function WelcomePage(props) {
+export default function WelcomePage() {
+  let history = useHistory();
+
   const login = () => {
     axios.get("/api/login/1").then((res) => {
       console.log(res);
-      res.redirect("/dashboard");
+      history.push("/dashboard");
     });
   };
 
