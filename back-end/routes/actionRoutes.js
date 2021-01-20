@@ -14,25 +14,15 @@ module.exports = (router, db) => {
   });
   // update todo & habit name
   router.put("/:id", (req, res) => {
-    const { id } = req.params;
-    const { action_name } = req.body;
+    const { id, action_name } = req.body;
     db.updateName(id, action_name).then((example) => {
       res.status(204).send("Successfully update name!");
     });
   });
 
-  // update todo & habit states
-  router.put("/:id", (req, res) => {
-    const { id } = req.params;
-    const { is_completed } = req.body;
-    db.updateState(id, is_completed).then((example) => {
-      res.status(204).send("Successfully updateState!");
-    });
-  });
-
   // deleteAction
   router.delete("/:id", (req, res) => {
-    const { id } = req.params;
+    const { id } = req.body;
     db.deleteAction(id).then(() => {
       setTimeout(() => {
         res.status(204).send("Successfully delete!");
