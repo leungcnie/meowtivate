@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ActionList(props) {
-  const { items, listType } = props;
+  const { items, category } = props;
   const classes = useStyles();
   const [checked, setChecked] = useState([0]);
   const [isEditable, setIsEditable] = useState(false);
@@ -51,16 +51,18 @@ export default function ActionList(props) {
   // const [popupType, setPopupType] = useState(""); // "", "add", or "edit"
   const [popupState, setPopupState] = useState({
     open: false,
-    type: ""
+    type: "",
+    actionID: 0 // action_id for EDITING, otherwise 0 for ADDING
   });
 
-  const handleClickOpen = (type) => {
+  const handleClickOpen = (type, id) => {
     // setOpen(true);
     // setPopupType(type);
     setPopupState((prev) => ({
       ...prev,
       open: true,
-      type: type
+      type: type,
+      actionID: id
     }))
   };
   const handleClose = () => {
@@ -100,10 +102,10 @@ export default function ActionList(props) {
                   <UnfoldMoreRoundedIcon />
                 </IconButton>
                 <IconButton edge="end" aria-label="delete">
-                  <DeleteRoundedIcon />
+                  <DeleteRoundedIcon onClick={() => handleClickOpen("Delete", value.id)}/>
                 </IconButton>
                 <IconButton edge="end" aria-label="edit">
-                  <EditRoundedIcon onClick={() => handleClickOpen("Edit")}/>
+                  <EditRoundedIcon onClick={() => handleClickOpen("Edit", value.id)}/>
                 </IconButton>
               </ListItemSecondaryAction>
             )}
@@ -114,7 +116,7 @@ export default function ActionList(props) {
       {isEditable ? 
       (<>
       <IconButton>
-        <AddCircleIcon onClick={() => handleClickOpen("Add")} />
+        <AddCircleIcon onClick={() => handleClickOpen("Add", 0)} />
       </IconButton>
       <IconButton onClick={modeToggle}>
         <SaveRoundedIcon/>
@@ -126,9 +128,8 @@ export default function ActionList(props) {
 
     <Popup 
       handleClose={handleClose} 
-      open={popupState.open} 
-      type={popupState.type} 
-      listType={listType}
+      popupState = {popupState}
+      category={category}
     />
 
     </List>

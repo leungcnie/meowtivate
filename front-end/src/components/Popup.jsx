@@ -5,22 +5,44 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-// import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogContentText from '@material-ui/core/DialogContentText';
 
 export default function Popup(props) {
-  const { handleClose, open, type, listType } = props;
+  const { handleClose, popupState, category } = props;
+  const { open, type, actionID } = popupState;
+  const listType = category === 1 ? "to-do" : "habit"
 
   return (
     <div>
-      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open form dialog
-      </Button> */}
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">{type} a {listType === 1? "to-do" : "habit"}</DialogTitle>
+      { type === "Delete" ? (
+              <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{type} {listType}?</DialogTitle>
+              <DialogContent>
+                <DialogContentText>
+                {actionID}
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} color="primary">
+                  Delete
+                </Button>
+                <Button onClick={handleClose} color="primary" autoFocus>
+                  Cancel
+                </Button>
+              </DialogActions>
+            </Dialog>
+      ) : (
+        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">{type} a {listType}</DialogTitle>
         <DialogContent>
-          {/* <DialogContentText>
-            {type}
-          </DialogContentText> */}
+          <DialogContentText>
+            {actionID}
+          </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
@@ -39,6 +61,7 @@ export default function Popup(props) {
           </Button>
         </DialogActions>
       </Dialog>
+      )}
     </div>
   );
 }
