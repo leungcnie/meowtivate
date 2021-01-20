@@ -1,28 +1,37 @@
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from 'react-router-dom';
-import Button from "@material-ui/core/Button"
-
+import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    fontFamily: 'Varela Round'
+    fontFamily: "Varela Round",
   },
   logo: {
     fontFamily: "itim",
-    letterSpacing: "8px"
+    letterSpacing: "8px",
   },
   header: {
-    fontFamily: 'Varela Round',
-    letterSpacing: "6px"
+    fontFamily: "Varela Round",
+    letterSpacing: "6px",
   },
   button: {
-    fontFamily: 'Varela Round',
-    textDecoration: 'none',
-  }
+    fontFamily: "Varela Round",
+    textDecoration: "none",
+  },
 }));
 
 export default function WelcomePage(props) {
-  const { state } = props;
+  let history = useHistory();
+
+  const login = () => {
+    axios.get("/api/login/1").then((res) => {
+      console.log(res);
+      history.push("/dashboard");
+    });
+  };
+  // const { state } = props;
   const classes = useStyles();
 
   return (
@@ -30,23 +39,24 @@ export default function WelcomePage(props) {
       <h2 className={classes.header}>Welcome to </h2>
       <h1 className={classes.logo}>Meowtivate!</h1>
       <div>
-        <Button 
-        className={classes.button} 
-        variant="contained" 
-        color="primary" 
-        component={Link} 
-        to='/dashboard'>
+        <Button
+          className={classes.button}
+          variant="contained"
+          color="primary"
+          component={Link}
+          to="/dashboard"
+        >
           Sign Up
         </Button>
-      <Button 
-      className={classes.button} 
-      variant="contained" 
-      color="secondary" 
-      component={Link} 
-      to='/lists'>
+        <Button
+          className={classes.button}
+          variant="contained"
+          color="secondary"
+          onClick={login}
+        >
           Login
-      </Button>
+        </Button>
       </div>
     </div>
-  )
-};
+  );
+}
