@@ -3,12 +3,12 @@ import NavBar from '../components/NavBar';
 import IconButton from "@material-ui/core/IconButton";
 import SaveRoundedIcon from '@material-ui/icons/SaveRounded';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    minWidth: 275,
   },
   header: {
     fontFamily: 'Varela Round',
@@ -21,14 +21,18 @@ export default function AccountPage(props) {
   const classes = useStyles();
 
   return (
-    <div className="Account">
+    <div className={classes.root}>
       <NavBar/>
       <header>
         <h2 className={classes.header}>my Account</h2>
       </header>
-      <h5>Username: Meow</h5>
-      <h5>Email: Meow@hotmail.com</h5>
-      <h5>Password: ********* </h5>
+      <Card>
+        <CardContent>
+        <h4>USERNAME: Meow</h4>
+        <h4>EMAIL: Meow@hotmail.com</h4>
+        <h4>PASSWORD: ********* </h4>
+        </CardContent>
+      </Card>
       <IconButton>
         <EditRoundedIcon/>
       </IconButton>
