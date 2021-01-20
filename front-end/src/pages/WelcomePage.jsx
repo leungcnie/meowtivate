@@ -31,20 +31,20 @@ export default function WelcomePage(props) {
       <h1 className={classes.logo}>Meowtivate!</h1>
       <div>
         <Button 
-        className={classes.button} 
-        variant="contained" 
-        color="primary" 
-        component={Link} 
-        to='/dashboard'>
+          className={classes.button} 
+          variant="contained" 
+          color="primary" 
+          component={Link} 
+          to='/dashboard'>
           Sign Up
         </Button>
       <Button 
-      className={classes.button} 
-      variant="contained" 
-      color="secondary" 
-      component={Link} 
-      to='/lists'>
-          Login
+        className={classes.button} 
+        variant="contained" 
+        color="secondary" 
+        component={Link} 
+        to='/lists'>
+        Login
       </Button>
       </div>
     </div>

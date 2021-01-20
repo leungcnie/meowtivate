@@ -23,7 +23,7 @@ export default function CatsPage(props) {
     <div className="Cats">
       <NavBar/>
       <header>
-        <h2 className={classes.header}>my Account</h2>
+        <h2 className={classes.header}>my Collection</h2>
       </header>
       <GalleryContainer items={state.collections}/>
     </div>

@@ -26,9 +26,9 @@ export default function AccountPage(props) {
       <header>
         <h2 className={classes.header}>my Account</h2>
       </header>
-      <h6>Username:</h6>
-      <h6>Email:</h6>
-      <h6>Password:</h6>
+      <h5>Username: Meow</h5>
+      <h5>Email: Meow@hotmail.com</h5>
+      <h5>Password: ********* </h5>
       <IconButton>
         <EditRoundedIcon/>
       </IconButton>
