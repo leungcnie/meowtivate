@@ -16,7 +16,6 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: "lightyellow",
     paddingLeft: "10vw",
     paddingRight: "10vw",
   },
