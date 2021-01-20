@@ -4,21 +4,25 @@ import Grid from "@material-ui/core/Grid";
 import ActionList from "./ActionList";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import CatPlant from './CatPlant'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     minWidth: 275,
+    paddingLeft: '5vw',
+    paddingRight: '5vw',
   },
   header: {
     fontFamily: 'Varela Round',
     letterSpacing: "8px"
   },
+
 }));
 
 export default function ListContainer(props) {
   const classes = useStyles();
-
+  
   return (
     <div className={classes.root}>
       <h2 className={classes.header}>LET'S GET LOTS DONE TODAY</h2>
@@ -42,7 +46,8 @@ export default function ListContainer(props) {
         <Grid item xs={4}>
           <Card>
             <CardContent>
-              <h3> hello </h3>
+              <h3>Today's Progress</h3>
+              <CatPlant/>
             </CardContent>
           </Card>
         </Grid>
