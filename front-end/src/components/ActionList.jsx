@@ -19,9 +19,7 @@ const SAVING = "SAVING";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "lightyellow",
     paddingLeft: "10vw",
     paddingRight: "10vw",
   },
