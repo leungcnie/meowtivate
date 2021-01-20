@@ -1,17 +1,25 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
 import ActionList from "./ActionList";
+import IconButton from "@material-ui/core/IconButton";
+import SaveRoundedIcon from '@material-ui/icons/SaveRounded';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    minWidth: 275,
+    textAlign: 'center'
   },
   header: {
     fontFamily: 'Varela Round',
     letterSpacing: "8px"
   },
+  centred: {
+    textAlign: 'center',
+  }
 }));
 
 export default function ListContainer(props) {
@@ -19,20 +27,28 @@ export default function ListContainer(props) {
 
   return (
     <div className={classes.root}>
-      <Grid item xs={12}>
-        <h3 className={classes.header}>LET'S GET LOTS DONE TODAY</h3>
-      </Grid>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <label className={classes.header}>Daily Habits</label>
-          <ActionList items={props.habits} />
+      <h2 className={classes.header}>LET'S GET LOTS DONE TODAY</h2>
+      <Grid container spacing={3}>
+        <Grid item xs={6}>
+          <Card>
+            <CardContent>
+              <label className={classes.header}>Daily Habits</label>
+              <ActionList items={props.habits} />
+            </CardContent>
+          </Card>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <label className={classes.header}>To-Do Today</label>
-          <ActionList items={props.todos} />
+        <Grid item xs={6}>
+          <Card>
+            <CardContent>
+              <label className={classes.header}>To-Do Today</label>
+              <ActionList items={props.todos} />
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item xs={12}>
-          <Button variant="contained" color="secondary">Save</Button>
+          <IconButton>
+            <SaveRoundedIcon/>
+          </IconButton>
         </Grid>
       </Grid>
     </div>

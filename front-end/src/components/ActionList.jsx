@@ -7,6 +7,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
+import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import UnfoldMoreRoundedIcon from "@material-ui/icons/UnfoldMoreRounded";
 import AddItemForm from "./AddItemForm";
@@ -21,10 +22,12 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
+    paddingLeft: "10vw",
+    paddingRight: "10vw",
   },
   item: {
     fontFamily: 'Varela Round',
-  }
+  },
 }));
 
 export default function ActionList(props) {
@@ -60,14 +63,10 @@ export default function ActionList(props) {
 
   return (
     <List className={classes.root}>
-      <button onClick={() => transition(EDIT)}>Edit</button>
-
       {props.items.map((value) => {
         const labelId = `checkbox-list-label-${value}`;
-
         return (
           <ListItem
-            className={classes.item}
             key={value}
             role={undefined}
             dense
@@ -97,6 +96,9 @@ export default function ActionList(props) {
           </ListItem>
         );
       })}
+      <IconButton onClick={() => transition(EDIT)}>
+        <EditRoundedIcon/>
+      </IconButton>
       {mode === EDIT && <AddItemForm onSave={() => transition(EDIT)} />}
     </List>
   );
