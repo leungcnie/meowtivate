@@ -99,7 +99,7 @@ export default function ActionList(props) {
       <IconButton onClick={() => transition(EDIT)}>
         <EditRoundedIcon/>
       </IconButton>
-      {mode === EDIT && <AddItemForm />}
+      {mode === EDIT && <AddItemForm onSave={() => transition(EDIT)} />}
     </List>
   );
 }
