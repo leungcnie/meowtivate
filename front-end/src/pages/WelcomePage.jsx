@@ -44,7 +44,7 @@ export default function WelcomePage(props) {
           variant="contained"
           color="primary"
           component={Link}
-          to="/dashboard"
+          to="/register"
         >
           Sign Up
         </Button>
@@ -53,7 +53,8 @@ export default function WelcomePage(props) {
           variant="contained"
           color="secondary"
           component={Link}
-          to="/login">
+          to="/login"
+        >
           Login
         </Button>
       </div>

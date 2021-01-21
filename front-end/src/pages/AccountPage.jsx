@@ -1,8 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
-import NavBar from '../components/NavBar';
+import NavBar from "../components/NavBar";
 import IconButton from "@material-ui/core/IconButton";
-import SaveRoundedIcon from '@material-ui/icons/SaveRounded';
-import EditRoundedIcon from '@material-ui/icons/EditRounded';
+import SaveRoundedIcon from "@material-ui/icons/SaveRounded";
+import EditRoundedIcon from "@material-ui/icons/EditRounded";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,30 +11,33 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   header: {
-    fontFamily: 'Varela Round',
-    letterSpacing: "6px"
+    fontFamily: "Varela Round",
+    letterSpacing: "6px",
   },
 }));
 
 export default function AccountPage(props) {
-  const { state } = props;
+  const user = props.state.account[0];
+  console.log("AccountPage", user);
+  const { username, email } = user;
+
   const classes = useStyles();
 
   return (
     <div className="Account">
-      <NavBar/>
+      <NavBar />
       <header>
         <h2 className={classes.header}>my Account</h2>
       </header>
-      <h5>Username: Meow</h5>
-      <h5>Email: Meow@hotmail.com</h5>
+      <h5>Username: {username}</h5>
+      <h5>Email: {email}</h5>
       <h5>Password: ********* </h5>
       <IconButton>
-        <EditRoundedIcon/>
+        <EditRoundedIcon />
       </IconButton>
       <IconButton>
-        <SaveRoundedIcon/>
+        <SaveRoundedIcon />
       </IconButton>
     </div>
-  )
-};
+  );
+}
