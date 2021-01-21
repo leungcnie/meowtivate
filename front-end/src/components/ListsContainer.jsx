@@ -3,23 +3,24 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import ActionList from "./ActionList";
 import IconButton from "@material-ui/core/IconButton";
-import SaveRoundedIcon from '@material-ui/icons/SaveRounded';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import SaveRoundedIcon from "@material-ui/icons/SaveRounded";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Progress from "./Progress";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     minWidth: 275,
-    textAlign: 'center'
+    textAlign: "center",
   },
   header: {
-    fontFamily: 'Varela Round',
-    letterSpacing: "8px"
+    fontFamily: "Varela Round",
+    letterSpacing: "8px",
   },
   centred: {
-    textAlign: 'center',
-  }
+    textAlign: "center",
+  },
 }));
 
 export default function ListContainer(props) {
@@ -33,7 +34,7 @@ export default function ListContainer(props) {
           <Card>
             <CardContent>
               <label className={classes.header}>Daily Habits</label>
-              <ActionList items={props.habits} category={2}/>
+              <ActionList items={props.habits} category={2} />
             </CardContent>
           </Card>
         </Grid>
@@ -41,11 +42,12 @@ export default function ListContainer(props) {
           <Card>
             <CardContent>
               <label className={classes.header}>To-Do Today</label>
-              <ActionList items={props.todos} category={1}/>
+              <ActionList items={props.todos} category={1} />
             </CardContent>
           </Card>
         </Grid>
       </Grid>
+      <Progress items={props.actions} />
     </div>
   );
 }

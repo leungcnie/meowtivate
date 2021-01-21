@@ -1,0 +1,21 @@
+.progress {
+  position: relative;
+  width: 60%;
+  height: 15px;
+  margin: 0 0 20px;
+  background: rgb(155, 155, 155);
+  border-radius: 3px;
+}
+
+.completed {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  transition: width 500ms;
+  background: green;
+}
+/* .progressbar .completed {
+  background: green;
+} */

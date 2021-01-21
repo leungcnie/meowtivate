@@ -26,10 +26,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ActionList(props) {
-  const {deleteAction} = useApplicationData();
+  const { deleteAction } = useApplicationData();
   const { items, category } = props;
   const classes = useStyles();
-  
+
   // Toggle between VIEW and EDIT modes
   const [isEditable, setIsEditable] = useState(false);
   const modeToggle = () => setIsEditable(!isEditable);
@@ -41,7 +41,8 @@ export default function ActionList(props) {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
-    if (currentIndex === -1) { // check if value is in checked
+    if (currentIndex === -1) {
+      // check if value is in checked
       newChecked.push(value);
     } else {
       newChecked.splice(currentIndex, 1); // remove from checked
@@ -61,7 +62,7 @@ export default function ActionList(props) {
     open: false,
     type: "",
     actionID: 0, // action_id for EDITING, otherwise 0 for ADDING
-    actionName: ""
+    actionName: "",
   });
 
   const handleClickOpen = (type, id, name) => {
@@ -70,28 +71,27 @@ export default function ActionList(props) {
       open: true,
       type: type,
       actionID: id,
-      actionName: name
-    }))
+      actionName: name,
+    }));
   };
 
   const popupDelete = (actionID) => {
     deleteAction(actionID);
     setPopupState((prev) => ({
       ...prev,
-      open: false
-    }))
+      open: false,
+    }));
   };
 
   const cancel = () => {
     setPopupState((prev) => ({
       ...prev,
-      open: false
-    }))
+      open: false,
+    }));
   };
 
   return (
     <List className={classes.root}>
-
       {items.map((obj) => {
         const labelId = `checkbox-list-label-${obj.id}`;
         return (
@@ -118,10 +118,18 @@ export default function ActionList(props) {
                   <UnfoldMoreRoundedIcon />
                 </IconButton>
                 <IconButton edge="end" aria-label="delete">
-                  <DeleteRoundedIcon onClick={() => handleClickOpen("Delete", obj.id, obj.action_name)}/>
+                  <DeleteRoundedIcon
+                    onClick={() =>
+                      handleClickOpen("Delete", obj.id, obj.action_name)
+                    }
+                  />
                 </IconButton>
                 <IconButton edge="end" aria-label="edit">
-                  <EditRoundedIcon onClick={() => handleClickOpen("Edit", obj.id, obj.action_name)}/>
+                  <EditRoundedIcon
+                    onClick={() =>
+                      handleClickOpen("Edit", obj.id, obj.action_name)
+                    }
+                  />
                 </IconButton>
               </ListItemSecondaryAction>
             )}
@@ -129,26 +137,27 @@ export default function ActionList(props) {
         );
       })}
 
-      {isEditable ? 
-      (<>
-      <IconButton>
-        <AddCircleIcon onClick={() => handleClickOpen("Add", 0, "")} />
-      </IconButton>
-      <IconButton onClick={modeToggle}>
-        <SaveRoundedIcon/>
-      </IconButton>
-      </>) :
-      (<IconButton onClick={modeToggle}>
-            <EditRoundedIcon/>
-      </IconButton>) }
+      {isEditable ? (
+        <>
+          <IconButton>
+            <AddCircleIcon onClick={() => handleClickOpen("Add", 0, "")} />
+          </IconButton>
+          <IconButton onClick={modeToggle}>
+            <SaveRoundedIcon />
+          </IconButton>
+        </>
+      ) : (
+        <IconButton onClick={modeToggle}>
+          <EditRoundedIcon />
+        </IconButton>
+      )}
 
-    <Popup 
-      cancel = {cancel}
-      popupDelete = {popupDelete}
-      popupState = {popupState}
-      category = {category}
-    />
-
+      <Popup
+        cancel={cancel}
+        popupDelete={popupDelete}
+        popupState={popupState}
+        category={category}
+      />
     </List>
   );
 }

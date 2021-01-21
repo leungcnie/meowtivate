@@ -6,6 +6,7 @@ export default function useApplicationDate() {
     collections: [],
     todos: [],
     habits: [],
+    actions: [],
   });
 
   // const removeFromHabits = (id) => {
@@ -18,38 +19,32 @@ export default function useApplicationDate() {
   //   const habits = [...state.habits].slice()
   // }
 
-
-  const addAction = (actionName) => {
-
-  }
+  const addAction = (actionName) => {};
 
   const deleteAction = (actionId) => {
     // Delete habit/todo with actionId in the current state
 
+    return axios.delete(`/api/actions/${actionId}`).then(() => {
+      setState({
+        ...state,
+      });
+    });
+  };
 
-    return axios.delete(`/api/actions/${actionId}`)
-      .then(() => {
-        setState({
-          ...state
-        })
-      })
-  }
-  
-  const editAction = (actionId) => {
-
-  }
+  const editAction = (actionId) => {};
 
   const listFunctions = {
     addAction,
     deleteAction,
-    editAction
-  }
+    editAction,
+  };
 
   useEffect(() => {
     Promise.all([
       axios.get("/api/collections/1"),
       axios.get("/api/todos/1"),
       axios.get("/api/habits/1"),
+      axios.get("/api/actions/1"),
     ])
       .then((res) => {
         console.log("res.data in cats collection:", res.data);
@@ -58,6 +53,7 @@ export default function useApplicationDate() {
           collections: res[0].data,
           todos: res[1].data,
           habits: res[2].data,
+          actions: res[3].data,
         }));
       })
       .catch((err) => {
