@@ -92,6 +92,7 @@ export default function ActionList(props) {
                 inputProps={{ "aria-labelledby": labelId }}
               />
             </ListItemIcon>
+            <p>{value.id}</p>
             <ListItemText id={value.id} primary={value.action_name} />
             {isEditable && (
               <ListItemSecondaryAction>
