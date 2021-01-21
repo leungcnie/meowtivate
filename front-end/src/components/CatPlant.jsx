@@ -31,35 +31,31 @@ const useStyles = makeStyles(theme => ({
 
   "@keyframes myEffect": {
     '0%': {
+      transform: 'translateY(30%)',
+      opacity:0,
+    },
+    '16%': {
+      transform: 'translateY(0%)',
+      opacity: 0.75,
+    },
+    '28%': {
+      transform: 'translateY(2%)',
+      opacity: 1,
+    },
+    '44%': {
+      transform: 'translateY(3%)'
+    },
+    '59%': {
       transform: 'translateY(0%)'
     },
-
-    '16%': {
-      transform: 'translateY(-132%)'
+    '73%': {
+      transform: 'translateY(0%)'
     },
-
-    '28%': {
-      transform: 'translateY(-86%)'
-    },
-
-    '44%': {
-      transform: 'translateY(-104%)'
-    },
-
-    '58%': {
-      transform: 'translateY(-98%)'
-    },
-
-    '72%': {
-      transform: 'translateY(-100%)'
-    },
-
     '88%': {
-      transform: 'translateY(-97%)'
+      transform: 'translateY(0%)'
     },
-
     '100%': {
-      transform: 'translateY(-100%)'
+      transform: 'translateY(0%)'
     }, 
   }
 }));
@@ -74,9 +70,8 @@ export default function CatPlant(props) {
         <div
           className={clsx(
             {[classes.animatedItem]: start}
-          )}
-        >
-          <img className={classes.ten_plant} src="https://meowtivate.s3-us-west-2.amazonaws.com/10plant-crop+(1).png" alt="plant"/>
+          )}>
+          <img className={classes.ten_plant} src="https://meowtivate.s3-us-west-2.amazonaws.com/10plant-crop.png" alt="plant"/>
           {/* <img className={classes.plant} src="https://meowtivate.s3-us-west-2.amazonaws.com/90plant-crop.png" alt="plant"/> */}
         </div>
         <div>
