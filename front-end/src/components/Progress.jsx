@@ -9,23 +9,33 @@ function Progress(props) {
 
   // const completedPercentage = completedAmount / totalAmount;
 
-  const { todos, habits } = props;
+  const { todos, habits, lists } = props;
   const totalAmount = todos.length + habits.length;
-  const completed = habits.filter((item) => (item.is_completed = true));
+
+  // const habitCompleted = habits.filter((item) => item.is_completed === true);
+  // const todoCompleted = todos.filter((item) => item.is_completed === true);
+  const completed = lists.filter((item) => item.is_completed === true);
+
   const completedAmount = completed.length;
 
-  const completedPercentage = completedAmount / totalAmount;
+  // const habitsPercentage = habitCompleted.length / totalAmount;
+  // const todosPercentage = todoCompleted.length / totalAmount;
+  const completedPrecentage = completedAmount / totalAmount;
 
-  console.log("props.todos in progress", props.todos);
-  console.log("props.habits in progress", props.habits);
+  // console.log("props.todos in progress", props.todos);
+  // console.log("props.habits in progress", props.habits);
 
   // const listsCount = props.lists;
 
   return (
     <div className="progress">
+      {/* <div
+        className="habits-completed"
+        style={{ width: `${habitsPercentage * 100}%` }}
+      ></div> */}
       <div
-        className="completed"
-        style={{ width: `${completedPercentage * 100}%` }}
+        className="todos-completed"
+        style={{ width: `${completedPrecentage * 100}%` }}
       ></div>
       Hello {completedAmount} / {totalAmount}
     </div>

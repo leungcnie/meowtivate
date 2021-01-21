@@ -9,7 +9,7 @@ export default function useApplicationDate() {
     lists: [],
   });
 
-  console.log("useApplicationDate correct is_completed state", state.actions);
+  console.log("useApplicationDate correct is_completed state", state.lists);
 
   // const removeFromHabits = (id) => {
   //   const target = state.habits.filter((obj) => {
