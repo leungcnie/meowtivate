@@ -8,7 +8,7 @@ export default function ListsPage(props) {
     <div className="List">
       <NavBar />
       <ListsContainer
-        actions={state.actions}
+        lists={state.lists}
         todos={state.todos}
         habits={state.habits}
       />

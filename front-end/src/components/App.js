@@ -4,9 +4,9 @@ App.js is responsible for containing all the routes and passing state as props
 
 import "./styles/App.css";
 
-import '@fontsource/itim';
-import '@fontsource/varela-round';
-import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+import "@fontsource/itim";
+import "@fontsource/varela-round";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 // Hooks
 import useApplicationData from "../hooks/useApplicationData";
@@ -22,6 +22,8 @@ import NotFoundPage from "./404";
 
 function App() {
   const { state } = useApplicationData();
+
+  console.log("app.js is_completed", state.todos);
 
   return (
     <div className="App">
