@@ -6,10 +6,11 @@ export default function useApplicationDate() {
     collections: [],
     todos: [],
     habits: [],
-    lists: [],
+    actions: [],
+    account: [],
   });
 
-  console.log("useApplicationDate correct is_completed state", state.lists);
+  // console.log("useApplicationDate correct is_completed state", state.account);
 
   // const removeFromHabits = (id) => {
   //   const target = state.habits.filter((obj) => {
@@ -47,6 +48,7 @@ export default function useApplicationDate() {
       axios.get("/api/todos/1"),
       axios.get("/api/habits/1"),
       axios.get("/api/actions/1"),
+      axios.get("/api/accounts/login/1"),
     ])
       .then((res) => {
         console.log("res.data in cats collection:", res.data);
@@ -55,7 +57,8 @@ export default function useApplicationDate() {
           collections: res[0].data,
           todos: res[1].data,
           habits: res[2].data,
-          lists: res[3].data,
+          actions: res[3].data,
+          account: res[4].data,
         }));
       })
       .catch((err) => {

@@ -2,19 +2,19 @@ import React from "react";
 import "./progress.css";
 
 function Progress(props) {
-  // const { lists } = props;
-  // const totalAmount = lists.length;
-  // const completed = lists.filter((item) => (item.is_completed = true));
+  // const { actions } = props;
+  // const totalAmount = actions.length;
+  // const completed = actions.filter((item) => (item.is_completed = true));
   // const completedAmount = completed.length;
 
   // const completedPercentage = completedAmount / totalAmount;
 
-  const { todos, habits, lists } = props;
+  const { todos, habits, actions } = props;
   const totalAmount = todos.length + habits.length;
 
   // const habitCompleted = habits.filter((item) => item.is_completed === true);
   // const todoCompleted = todos.filter((item) => item.is_completed === true);
-  const completed = lists.filter((item) => item.is_completed === true);
+  const completed = actions.filter((item) => item.is_completed === true);
 
   const completedAmount = completed.length;
 
@@ -25,7 +25,7 @@ function Progress(props) {
   // console.log("props.todos in progress", props.todos);
   // console.log("props.habits in progress", props.habits);
 
-  // const listsCount = props.lists;
+  // const actionsCount = props.actions;
 
   return (
     <div className="progress">
