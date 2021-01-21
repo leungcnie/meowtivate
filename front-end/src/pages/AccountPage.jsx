@@ -1,8 +1,11 @@
+import React, { useState, useEffect } from "react";
+
 import { makeStyles } from "@material-ui/core/styles";
 import NavBar from "../components/NavBar";
 import IconButton from "@material-ui/core/IconButton";
 import SaveRoundedIcon from "@material-ui/icons/SaveRounded";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,6 +26,10 @@ export default function AccountPage(props) {
 
   const classes = useStyles();
 
+  // Toggle between VIEW and EDIT modes
+  const [isEditable, setIsEditable] = useState(false);
+  const modeToggle = () => setIsEditable(!isEditable);
+
   return (
     <div className="Account">
       <NavBar />
@@ -32,12 +39,37 @@ export default function AccountPage(props) {
       <h5>Username: {username}</h5>
       <h5>Email: {email}</h5>
       <h5>Password: ********* </h5>
-      <IconButton>
+      <IconButton onClick={modeToggle}>
         <EditRoundedIcon />
       </IconButton>
-      <IconButton>
-        <SaveRoundedIcon />
-      </IconButton>
+      {isEditable && (
+        <div>
+          Hello
+          <form className={classes.root} noValidate autoComplete="off">
+            <div>
+              <TextField
+                id="outlined-basic"
+                label="Username"
+                variant="outlined"
+              />
+            </div>
+            <div>
+              <TextField id="outlined-basic" label="Email" variant="outlined" />
+            </div>
+
+            <div>
+              <TextField
+                id="outlined-basic"
+                label="Password"
+                variant="outlined"
+              />
+            </div>
+            <IconButton>
+              <SaveRoundedIcon onClick={modeToggle} />
+            </IconButton>
+          </form>
+        </div>
+      )}
     </div>
   );
 }
