@@ -26,7 +26,7 @@ export default function ListContainer(props) {
   return (
     <div className={classes.root}>
       <h2 className={classes.header}>LET'S GET LOTS DONE TODAY</h2>
-      <Grid container spacing={3}>
+      <Grid container spacing={4}>
         <Grid item xs={4}>
           <Card>
             <CardContent>
