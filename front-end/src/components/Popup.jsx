@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
 export default function Popup(props) {
-  const { popupDelete, cancel, popupState, category } = props;
+  const { confirmDelete, confirmAdd, cancel, popupState, category } = props;
   const { open, type, actionID, actionName } = popupState;
   const listType = category === 1 ? "to-do" : "habit";
 
@@ -38,7 +38,7 @@ export default function Popup(props) {
                 </DialogContentText> */}
               </DialogContent>
               <DialogActions>
-                <Button onClick={() => popupDelete(actionID)} color="primary">
+                <Button onClick={() => confirmDelete(actionID)} color="primary">
                   Confirm
                 </Button>
                 <Button onClick={cancel} color="primary" autoFocus>
@@ -69,7 +69,7 @@ export default function Popup(props) {
           <Button onClick={cancel} color="primary">
             Cancel
           </Button>
-          <Button onClick={cancel} color="primary">
+          <Button onClick={() => confirmAdd(name, category)} color="primary">
             Save
           </Button>
         </DialogActions>

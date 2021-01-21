@@ -9,12 +9,12 @@ function Progress(props) {
 
   // const completedPercentage = completedAmount / totalAmount;
 
-  const { todos, habits, lists } = props;
+  const { todos, habits, actions } = props;
   const totalAmount = todos.length + habits.length;
 
   // const habitCompleted = habits.filter((item) => item.is_completed === true);
   // const todoCompleted = todos.filter((item) => item.is_completed === true);
-  const completed = lists.filter((item) => item.is_completed === true);
+  const completed = actions.filter((item) => item.is_completed === true);
 
   const completedAmount = completed.length;
 

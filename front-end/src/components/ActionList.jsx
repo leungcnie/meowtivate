@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ActionList(props) {
-  const { deleteAction } = useApplicationData();
+  const { deleteAction, addAction } = useApplicationData();
   const { items, category } = props;
   const classes = useStyles();
 
@@ -41,8 +41,7 @@ export default function ActionList(props) {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
-    if (currentIndex === -1) {
-      // check if value is in checked
+    if (currentIndex === -1) { // check if value is in checked
       newChecked.push(value);
     } else {
       newChecked.splice(currentIndex, 1); // remove from checked
@@ -51,7 +50,6 @@ export default function ActionList(props) {
     setChecked(newChecked);
   };
 
-  console.log("checked", checked);
   // Logging value of checked whenever it's updated
   // useEffect(() => {
   //   console.log("what's checked:", checked);
@@ -65,6 +63,7 @@ export default function ActionList(props) {
     actionName: "",
   });
 
+  // Popup functions
   const handleClickOpen = (type, id, name) => {
     setPopupState((prev) => ({
       ...prev,
@@ -75,7 +74,14 @@ export default function ActionList(props) {
     }));
   };
 
-  const popupDelete = (actionID) => {
+  const cancel = () => {
+    setPopupState((prev) => ({
+      ...prev,
+      open: false,
+    }));
+  };
+
+  const confirmDelete = (actionID) => {
     deleteAction(actionID);
     setPopupState((prev) => ({
       ...prev,
@@ -83,7 +89,8 @@ export default function ActionList(props) {
     }));
   };
 
-  const cancel = () => {
+  const confirmAdd = (name, actionID) => {
+    addAction(name, actionID);
     setPopupState((prev) => ({
       ...prev,
       open: false,
@@ -154,7 +161,8 @@ export default function ActionList(props) {
 
       <Popup
         cancel={cancel}
-        popupDelete={popupDelete}
+        confirmDelete={confirmDelete}
+        confirmAdd={confirmAdd}
         popupState={popupState}
         category={category}
       />
