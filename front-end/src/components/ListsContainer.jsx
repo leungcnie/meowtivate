@@ -9,7 +9,8 @@ import CatPlant from './CatPlant'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    minWidth: 275,
+    minWidth: 200,
+    minHeight: 300,
     paddingLeft: '5vw',
     paddingRight: '5vw',
   },
@@ -17,6 +18,14 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Varela Round',
     letterSpacing: "8px"
   },
+  plantbox: {
+    position:'relative',
+    alignText: 'center',
+    margins: 'auto',
+    top: '0px',
+    left: '0px',
+    zIndex: 1,
+  }
 
 }));
 
@@ -44,10 +53,14 @@ export default function ListContainer(props) {
           </Card>
         </Grid>
         <Grid item xs={4}>
-          <Card>
+          <Card className={classes.root}>
             <CardContent>
-              <h3>Today's Progress</h3>
-              <CatPlant/>
+              {/* <div>
+                <h3>Today's Progress</h3>
+              </div> */}
+              <div className={classes.plantbox}> 
+                <CatPlant />
+              </div>
             </CardContent>
           </Card>
         </Grid>
