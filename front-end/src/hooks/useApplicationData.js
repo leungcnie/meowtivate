@@ -9,11 +9,35 @@ export default function useApplicationDate() {
     actions: [],
   });
 
+  // const removeFromHabits = (id) => {
+  //   const target = state.habits.filter((obj) => {
+  //     obj.id === id
+  //   })[0];
+
+  //   const targetIndex = habits.indexOf(target);
+
+  //   const habits = [...state.habits].slice()
+  // }
+
   const addAction = (actionName) => {};
 
-  const deleteAction = (actionId) => {};
+  const deleteAction = (actionId) => {
+    // Delete habit/todo with actionId in the current state
+
+    return axios.delete(`/api/actions/${actionId}`).then(() => {
+      setState({
+        ...state,
+      });
+    });
+  };
 
   const editAction = (actionId) => {};
+
+  const listFunctions = {
+    addAction,
+    deleteAction,
+    editAction,
+  };
 
   useEffect(() => {
     Promise.all([
@@ -37,5 +61,5 @@ export default function useApplicationDate() {
       });
   }, []);
 
-  return { state };
+  return { state, deleteAction };
 }

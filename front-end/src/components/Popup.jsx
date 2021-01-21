@@ -8,27 +8,26 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
 export default function Popup(props) {
-  const { handleClose, popupState, category } = props;
+  const { popupDelete, cancel, popupState, category } = props;
   const { open, type, actionID, actionName } = popupState;
   const listType = category === 1 ? "to-do" : "habit";
 
   // Making form a controlled component
-  console.log("listType", listType);
-  console.log("actionName", actionName);
   const [name, setName] = useState(actionName);
-  console.log("name", name);
 
   // Prevent stale props by re-rendering when actionName changes in parent
   useEffect(() => {
     setName(actionName)
   }, [actionName])
 
+  console.log("actionName", actionName);
+
   return (
     <div>
       { type === "Delete" ? (
               <Dialog
               open={open}
-              onClose={handleClose}
+              onClose={cancel}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
             >
@@ -39,16 +38,16 @@ export default function Popup(props) {
                 </DialogContentText> */}
               </DialogContent>
               <DialogActions>
-                <Button onClick={handleClose} color="primary">
-                  Delete
+                <Button onClick={() => popupDelete(actionID)} color="primary">
+                  Confirm
                 </Button>
-                <Button onClick={handleClose} color="primary" autoFocus>
+                <Button onClick={cancel} color="primary" autoFocus>
                   Cancel
                 </Button>
               </DialogActions>
             </Dialog>
       ) : (
-        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <Dialog open={open} onClose={cancel} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">{type} a {listType}</DialogTitle>
         <DialogContent>
           {/* <DialogContentText>
@@ -67,10 +66,10 @@ export default function Popup(props) {
           </form>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={cancel} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={cancel} color="primary">
             Save
           </Button>
         </DialogActions>
