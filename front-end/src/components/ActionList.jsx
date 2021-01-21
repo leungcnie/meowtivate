@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -27,24 +27,31 @@ const useStyles = makeStyles((theme) => ({
 export default function ActionList(props) {
   const { items, category } = props;
   const classes = useStyles();
-  const [checked, setChecked] = useState([0]);
-  const [isEditable, setIsEditable] = useState(false);
-
+  
   // Toggle between VIEW and EDIT modes
+  const [isEditable, setIsEditable] = useState(false);
   const modeToggle = () => setIsEditable(!isEditable);
 
+  // Toggle checkbox
+  // checked is an array of numbers that represent checked actionIDs
+  const [checked, setChecked] = useState([]);
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
-    if (currentIndex === -1) {
+    if (currentIndex === -1) { // check if value is in checked
       newChecked.push(value);
     } else {
-      newChecked.splice(currentIndex, 1);
+      newChecked.splice(currentIndex, 1); // remove from checked
     }
 
     setChecked(newChecked);
   };
+
+  // Logging value of checked whenever it's updated
+  useEffect(() => {
+    console.log("what's checked:", checked);
+  }, [checked])
 
   // Popup state
   const [popupState, setPopupState] = useState({
@@ -73,36 +80,36 @@ export default function ActionList(props) {
   return (
     <List className={classes.root}>
 
-      {items.map((value) => {
-        const labelId = `checkbox-list-label-${value}`;
+      {items.map((obj) => {
+        const labelId = `checkbox-list-label-${obj.id}`;
         return (
           <ListItem
-            key={value.id}
+            key={obj.id}
             role={undefined}
             dense
             button
-            onClick={handleToggle(value)}
+            onClick={handleToggle(obj.id)}
           >
             <ListItemIcon>
               <Checkbox
                 edge="start"
-                checked={checked.indexOf(value) !== -1}
+                checked={checked.indexOf(obj.id) !== -1}
                 tabIndex={-1}
                 disableRipple
                 inputProps={{ "aria-labelledby": labelId }}
               />
             </ListItemIcon>
-            <ListItemText id={value.id} primary={value.action_name} />
+            <ListItemText id={labelId} primary={obj.action_name} />
             {isEditable && (
               <ListItemSecondaryAction>
                 <IconButton edge="end" aria-label="drag">
                   <UnfoldMoreRoundedIcon />
                 </IconButton>
                 <IconButton edge="end" aria-label="delete">
-                  <DeleteRoundedIcon onClick={() => handleClickOpen("Delete", value.id, value.action_name)}/>
+                  <DeleteRoundedIcon onClick={() => handleClickOpen("Delete", obj.id, obj.action_name)}/>
                 </IconButton>
                 <IconButton edge="end" aria-label="edit">
-                  <EditRoundedIcon onClick={() => handleClickOpen("Edit", value.id, value.action_name)}/>
+                  <EditRoundedIcon onClick={() => handleClickOpen("Edit", obj.id, obj.action_name)}/>
                 </IconButton>
               </ListItemSecondaryAction>
             )}
@@ -128,7 +135,7 @@ export default function ActionList(props) {
       popupState = {popupState}
       category={category}
     />
-    
+
     </List>
   );
 }

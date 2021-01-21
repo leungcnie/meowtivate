@@ -13,10 +13,7 @@ export default function Popup(props) {
   const listType = category === 1 ? "to-do" : "habit";
 
   // Making form a controlled component
-  console.log("listType", listType);
-  console.log("actionName", actionName);
   const [name, setName] = useState(actionName);
-  console.log("name", name);
 
   // Prevent stale props by re-rendering when actionName changes in parent
   useEffect(() => {
@@ -40,7 +37,7 @@ export default function Popup(props) {
               </DialogContent>
               <DialogActions>
                 <Button onClick={handleClose} color="primary">
-                  Delete
+                  Confirm
                 </Button>
                 <Button onClick={handleClose} color="primary" autoFocus>
                   Cancel
