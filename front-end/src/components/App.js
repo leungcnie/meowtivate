@@ -24,7 +24,7 @@ import NotFoundPage from "./404";
 function App() {
   const { state } = useApplicationData();
 
-  console.log("app.js is_completed", state.todos);
+  console.log("app.js is_completed", state.account);
 
   return (
     <div className="App">
