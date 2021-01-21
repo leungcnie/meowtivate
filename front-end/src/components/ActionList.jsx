@@ -13,6 +13,7 @@ import UnfoldMoreRoundedIcon from "@material-ui/icons/UnfoldMoreRounded";
 import SaveRoundedIcon from "@material-ui/icons/SaveRounded";
 import Popup from "./Popup";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
+import useApplicationData from "../hooks/useApplicationData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ActionList(props) {
+  const {deleteAction} = useApplicationData();
   const { items, category } = props;
   const classes = useStyles();
   
@@ -48,10 +50,11 @@ export default function ActionList(props) {
     setChecked(newChecked);
   };
 
+  console.log("checked", checked);
   // Logging value of checked whenever it's updated
-  useEffect(() => {
-    console.log("what's checked:", checked);
-  }, [checked])
+  // useEffect(() => {
+  //   console.log("what's checked:", checked);
+  // }, [checked])
 
   // Popup state
   const [popupState, setPopupState] = useState({
@@ -70,7 +73,16 @@ export default function ActionList(props) {
       actionName: name
     }))
   };
-  const handleClose = () => {
+
+  const popupDelete = (actionID) => {
+    deleteAction(actionID);
+    setPopupState((prev) => ({
+      ...prev,
+      open: false
+    }))
+  };
+
+  const cancel = () => {
     setPopupState((prev) => ({
       ...prev,
       open: false
@@ -131,9 +143,10 @@ export default function ActionList(props) {
       </IconButton>) }
 
     <Popup 
-      handleClose={handleClose} 
+      cancel = {cancel}
+      popupDelete = {popupDelete}
       popupState = {popupState}
-      category={category}
+      category = {category}
     />
 
     </List>
