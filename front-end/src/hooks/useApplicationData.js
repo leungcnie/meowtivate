@@ -6,25 +6,21 @@ export default function useApplicationDate() {
     collections: [],
     todos: [],
     habits: [],
+    actions: [],
   });
 
-  const addAction = (actionName) => {
-    
-  }
+  const addAction = (actionName) => {};
 
-  const deleteAction = (actionId) => {
+  const deleteAction = (actionId) => {};
 
-  }
-  
-  const editAction = (actionId) => {
-
-  }
+  const editAction = (actionId) => {};
 
   useEffect(() => {
     Promise.all([
       axios.get("/api/collections/1"),
       axios.get("/api/todos/1"),
       axios.get("/api/habits/1"),
+      axios.get("/api/actions/1"),
     ])
       .then((res) => {
         console.log("res.data in cats collection:", res.data);
@@ -33,6 +29,7 @@ export default function useApplicationDate() {
           collections: res[0].data,
           todos: res[1].data,
           habits: res[2].data,
+          actions: res[3].data,
         }));
       })
       .catch((err) => {
