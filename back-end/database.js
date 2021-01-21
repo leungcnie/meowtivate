@@ -86,12 +86,13 @@ const createTodo = (action_name) => {
   return db
     .query(
       `INSERT INTO actions (user_id,category_id,action_name,date_created,is_completed)
-      VALUES (1, 1, $1, CURRENT_DATE, false);`,
+      VALUES (1, 1, $1, CURRENT_DATE, false)
+      RETURNING *;`,
       [action_name]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows);
-      return res.rows;
+      console.log("createTodo", res.rows[0]);
+      return res.rows[0];
     })
     .catch((error) => console.log(error));
 };
@@ -119,11 +120,12 @@ const createHabit = (action_name) => {
   return db
     .query(
       `INSERT INTO actions (user_id,category_id,action_name,date_created,is_completed)
-      VALUES (1, 2, $1, CURRENT_DATE, false);`,
+      VALUES (1, 2, $1, CURRENT_DATE, false)
+      RETURNING *;`,
       [action_name]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows[0]);
+      console.log("createHabit", res.rows[0]);
       return res.rows[0];
     })
     .catch((error) => console.log(error));

@@ -18,7 +18,7 @@ module.exports = (router, db) => {
 
     db.createHabit(action_name)
       .then((data) => {
-        res.send("Check the console for data!");
+        res.send(data);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
