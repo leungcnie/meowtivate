@@ -183,9 +183,9 @@ exports.updateState = updateState;
 
 //delete habit/todo
 const deleteAction = (id) => {
-  return db.query(`DELETE FROM actions WHERE id = $1;`, [id]).then((res) => {
-    console.log("whats res.rows[0]", res.rows);
-    return res.rows;
+  return db.query(`DELETE FROM actions WHERE id = $1 RETURNING *;`, [id]).then((res) => {
+    console.log("whats res.rows[0]", res.rows[0]);
+    return res.rows[0];
   });
 };
 

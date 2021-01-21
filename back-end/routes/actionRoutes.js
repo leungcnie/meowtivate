@@ -22,7 +22,7 @@ module.exports = (router, db) => {
 
   // deleteAction
   router.delete("/:id", (req, res) => {
-    const { id } = req.body;
+    const { id } = req.params;
     db.deleteAction(id).then(() => {
       setTimeout(() => {
         res.status(204).send("Successfully delete!");
