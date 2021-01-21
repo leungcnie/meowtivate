@@ -47,7 +47,7 @@ export default function ListContainer(props) {
           </Card>
         </Grid>
       </Grid>
-      <Progress items={props.actions} />
+      <Progress todos={props.todos} habits={props.habits} />
     </div>
   );
 }

@@ -6,8 +6,10 @@ export default function useApplicationDate() {
     collections: [],
     todos: [],
     habits: [],
-    actions: [],
+    lists: [],
   });
+
+  console.log("useApplicationDate correct is_completed state", state.actions);
 
   // const removeFromHabits = (id) => {
   //   const target = state.habits.filter((obj) => {
@@ -53,7 +55,7 @@ export default function useApplicationDate() {
           collections: res[0].data,
           todos: res[1].data,
           habits: res[2].data,
-          actions: res[3].data,
+          lists: res[3].data,
         }));
       })
       .catch((err) => {
