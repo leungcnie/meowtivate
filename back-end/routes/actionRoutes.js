@@ -14,8 +14,8 @@ module.exports = (router, db) => {
   });
   // update todo & habit name
   router.put("/:id", (req, res) => {
-    const { id, action_name } = req.body;
-    db.updateName(id, action_name).then((example) => {
+    const { id, action_name, is_completed } = req.body;
+    db.updateName(id, action_name, is_completed).then((example) => {
       res.status(204).send("Successfully update name!");
     });
   });

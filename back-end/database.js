@@ -149,13 +149,13 @@ exports.getHabits = getHabits;
 
 //updateName habit | todo
 
-const updateName = (id, action_name) => {
+const updateName = (id, action_name, is_completed) => {
   return db
     .query(
       `UPDATE actions
-      SET action_name = $2
+      SET action_name = $2, is_completed = $3
       WHERE id = $1;`,
-      [id, action_name]
+      [id, action_name, is_completed]
     )
     .then((res) => {
       console.log("whats res.rows[0]", res.rows);
