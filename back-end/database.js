@@ -80,7 +80,7 @@ WHERE users.id = $1`,
 };
 exports.getCatsCollections = getCatsCollections;
 
-// --------- todo -------
+/*--------- todo -----------*/
 //create todo
 const createTodo = (action_name) => {
   return db
@@ -183,10 +183,12 @@ exports.updateState = updateState;
 
 //delete habit/todo
 const deleteAction = (id) => {
-  return db.query(`DELETE FROM actions WHERE id = $1 RETURNING *;`, [id]).then((res) => {
-    console.log("whats res.rows[0]", res.rows[0]);
-    return res.rows[0];
-  });
+  return db
+    .query(`DELETE FROM actions WHERE id = $1 RETURNING *;`, [id])
+    .then((res) => {
+      console.log("whats res.rows[0]", res.rows[0]);
+      return res.rows[0];
+    });
 };
 
 exports.deleteAction = deleteAction;
@@ -208,3 +210,66 @@ const getActions = (id) => {
 };
 
 exports.getActions = getActions;
+
+/*--------- get user by username accounts -----------*/
+const getUser = (username) => {
+  return db
+    .query(
+      `SELECT *
+      FROM users 
+      WHERE users.username = $1
+      ;`,
+      [username]
+    )
+    .then((res) => res.rows)
+    .catch((err) => console.error("query getUser error", err.stack));
+};
+exports.getUser = getUser;
+
+/*--------- get user by id accounts -----------*/
+const getUserId = (id) => {
+  return db
+    .query(
+      `SELECT *
+      FROM users 
+      WHERE users.id = $1
+      ;`,
+      [id]
+    )
+    .then((res) => res.rows)
+    .catch((err) => console.error("query getUserId error", err.stack));
+};
+exports.getUserId = getUserId;
+
+/*--------- register user accounts -----------*/
+const registerUser = (username, email, name, password) => {
+  return db
+    .query(
+      `INSERT INTO users (username, email, name, password)
+      VALUES (
+        $1, $2, $3, $4)
+      ;`,
+      [username, email, name, password]
+    )
+    .then((res) => res.rows)
+    .catch((err) => console.error("query registerUser error", err.stack));
+};
+exports.registerUser = registerUser;
+
+/*--------- update accounts -----------*/
+const updateAccount = (id, email, username, password) => {
+  return db
+    .query(
+      `UPDATE users
+      SET email = $2, username = $3, password = $4
+      WHERE id = $1
+      ;`,
+      [id, email, username, password]
+    )
+    .then((res) => {
+      console.log("whats res.rows[0]", res.rows);
+      return res.rows;
+    });
+};
+
+exports.updateAccount = updateAccount;

@@ -42,6 +42,7 @@ const collectionRoutes = require("./routes/catsCollection");
 const todoRoutes = require("./routes/todoRoutes");
 const habitRoutes = require("./routes/habitRoutes");
 const actionRoutes = require("./routes/actionRoutes");
+const accountRoutes = require("./routes/accountRoutes");
 
 // Mount all resource routes
 const indexRouter = express.Router();
@@ -64,6 +65,10 @@ app.use("/api/habits", habitRoutes(habitRouter, db));
 //action
 const actionRouter = express.Router();
 app.use("/api/actions", actionRoutes(actionRouter, db));
+
+//user Account
+const accountRouter = express.Router();
+app.use("/api/accounts", accountRoutes(accountRouter, db));
 
 // Home page
 // Warning: avoid creating more routes in this file!
