@@ -18,6 +18,13 @@ const useStyles = makeStyles(theme => ({
     left: '0px',
     zIndex: 1,
   },
+  ten_plant: {
+    width: '10vw',
+    position:'relative',
+    top: '75px',
+    left: '0px',
+    zIndex: 1,
+  },
   animatedItem: {
     animation: `$myEffect 3000ms ${theme.transitions.easing.easeInOut}`,
   },
@@ -69,14 +76,15 @@ export default function CatPlant(props) {
             {[classes.animatedItem]: start}
           )}
         >
-          <img className={classes.plant} src="https://meowtivate.s3-us-west-2.amazonaws.com/90plant-crop.png" alt="plant"/>
+          <img className={classes.ten_plant} src="https://meowtivate.s3-us-west-2.amazonaws.com/10plant-crop+(1).png" alt="plant"/>
+          {/* <img className={classes.plant} src="https://meowtivate.s3-us-west-2.amazonaws.com/90plant-crop.png" alt="plant"/> */}
         </div>
         <div>
           <img className={classes.pot} src="https://meowtivate.s3-us-west-2.amazonaws.com/pot.png" alt="pot"/>
         </div>
           <Button onClick={() => setStart(true)}>start</Button>
       </article>
-      {/* {start && <Button onClick={() => setStart(true)}>enter</Button>} */}
+      {start && <Button onClick={() => setStart(false)}>reset</Button>}
     </>
   );
 }
