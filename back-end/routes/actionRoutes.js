@@ -18,7 +18,7 @@ module.exports = (router, db) => {
     const { id, action_name, is_completed } = req.body;
     db.updateAction(id, action_name, is_completed)
       .then((updatedAction) => {
-        res.status(200).send("Successfully update name!");
+        res.status(200).send("Successfully update action!");
       })
       .catch(err => {
         res.status(500).json({ error: err.message });
