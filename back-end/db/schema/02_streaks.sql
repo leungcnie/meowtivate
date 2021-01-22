@@ -3,6 +3,6 @@ DROP TABLE IF EXISTS streaks CASCADE;
 CREATE TABLE streaks (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  start_date DATE,
-  end_date DATE
+  streak INTEGER DEFAULT 0,
+  current_streak INTEGER DEFAULT 0
 );
