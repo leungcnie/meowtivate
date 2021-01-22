@@ -336,19 +336,19 @@ const postLogData = (user_id, is_completed, date_created) => {
 exports.postLogData = postLogData;
 
 // /*--------- update data log -----------*/
-// const updateLogData = (id, is_completed, date_created) => {
-//   return db
-//     .query(
-//       `UPDATE logDatas
-//       SET is_completed = $2
-//       WHERE user_id = $1 AND date_created = $3
-//         `,
-//       [id, is_completed, date_created]
-//     )
-//     .then((res) => res.rows)
-//     .catch((err) => console.error("query getAllCats error", err.stack));
-// };
-// exports.updateLogData = updateLogData;
+const updateLogData = (id, is_completed, date_created) => {
+  return db
+    .query(
+      `UPDATE logDatas
+      SET is_completed = $2 
+      WHERE id = $1 AND date_created = $3; 
+        `,
+      [id, is_completed, date_created]
+    )
+    .then((res) => res.rows)
+    .catch((err) => console.error("query getAllCats error", err.stack));
+};
+exports.updateLogData = updateLogData;
 
 /*--------- update streak -----------*/
 const updateStreak = (id, streak, current_streak) => {

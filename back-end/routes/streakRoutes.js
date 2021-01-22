@@ -39,12 +39,12 @@ module.exports = (router, db) => {
   });
 
   // /*--------- update data log -----------*/
-  // router.put("/logdata/:id", (req, res) => {
-  //   const { id } = req.params;
-  //   const { date_created, is_completed } = req.body;
-  //   db.postLogData(id, is_completed)
+  // router.put("/logdata", (req, res) => {
+  //   // const { id } = req.params;
+  //   const { id, is_completed, date_created } = req.body;
+  //   db.postLogData(id, is_completed, date_created)
   //     .then(() => {
-  //       res.status(200).send("Successfully update streak, current_streak");
+  //       res.status(200).send("Successfully update log");
   //     })
   //     .catch((err) => {
   //       res.status(500).json({ error: err.message });
