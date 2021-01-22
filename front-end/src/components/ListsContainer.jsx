@@ -55,9 +55,7 @@ export default function ListContainer(props) {
   const totalAmount = actions.length;
 
   const completedAmount = completed.length;
-  const completedPrecentage = completedAmount / totalAmount;
-
-  console.log("progress", completedPrecentage);
+  const completedPercentage = completedAmount / totalAmount;
 
   const getStreaks = (obj) => {
     if (obj.streak > obj.current_streak) {
@@ -68,9 +66,19 @@ export default function ListContainer(props) {
   const currentStreaks = getStreaks(streaks[0]);
   console.log("progress", currentStreaks);
 
+  console.log("completedPercentage", completedPercentage);
+
+  // if (completedPercentage === 1 ) {
+  //  let updatelog = (logDatas.is_completed = true)
+  //   currentStreaks += 1
+  //
+  // }
+
+  // console.log("progress", completedPercentage);
+
   return (
     <>
-      <UnlockBadge />
+      {completedPercentage === "1" && <UnlockBadge />}
       <div className={classes.root}>
         <h2 className={classes.header}>LET'S GET LOTS DONE TODAY</h2>
         <Grid container spacing={4}>
@@ -103,9 +111,11 @@ export default function ListContainer(props) {
           <Grid item xs={4}>
             <Card className={classes.root}>
               <CardContent>
-                {/* <div>
-                <h3>Today's Progress</h3>
-              </div> */}
+                <div>
+                  <h3>
+                    Today's Progress {completedAmount} / {totalAmount}
+                  </h3>
+                </div>
                 <div className={classes.plantbox}>
                   <CatPlant />
                 </div>
@@ -114,7 +124,7 @@ export default function ListContainer(props) {
           </Grid>
         </Grid>
         <Progress
-          completedPrecentage={completedPrecentage}
+          completedPercentage={completedPercentage}
           completedAmount={completedAmount}
           totalAmount={totalAmount}
           currentStreaks={currentStreaks}

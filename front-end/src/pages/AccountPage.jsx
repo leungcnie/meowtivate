@@ -37,11 +37,13 @@ export default function AccountPage(props) {
         <h2 className={classes.header}>my Account</h2>
       </header>
       <Card>
-        <CardContent>
-          <h5>Username: Pawthos</h5>
-          <h5>Email: pawthos@gmail.com</h5>
-          <h5>Password: ********* </h5>
-        </CardContent>
+        {props && (
+          <CardContent>
+            <h5>Username: Pawthos</h5>
+            <h5>Email: pawthos@gmail.com</h5>
+            <h5>Password: ********* </h5>{" "}
+          </CardContent>
+        )}
       </Card>
       <IconButton onClick={modeToggle}>
         <EditRoundedIcon />

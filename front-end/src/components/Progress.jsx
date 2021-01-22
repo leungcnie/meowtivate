@@ -5,7 +5,7 @@ function Progress(props) {
   // console.log("currentStreaks", props);
 
   const {
-    completedPrecentage,
+    completedPercentage,
     completedAmount,
     totalAmount,
     currentStreaks,
@@ -15,7 +15,7 @@ function Progress(props) {
     <div className="progress">
       <div
         className="todos-completed"
-        style={{ width: `${completedPrecentage * 100}%` }}
+        style={{ width: `${completedPercentage * 100}%` }}
       ></div>
       <p>
         Completed {completedAmount} / {totalAmount}
