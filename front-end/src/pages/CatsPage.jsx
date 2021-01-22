@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import GalleryContainer from '../components/GalleryContainer';
-import NavBar from '../components/NavBar';
+import GalleryContainer from "../components/GalleryContainer";
+import NavBar from "../components/NavBar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   header: {
-    fontFamily: 'Varela Round',
-    letterSpacing: "6px"
+    fontFamily: "Varela Round",
+    letterSpacing: "6px",
   },
 }));
 
@@ -21,11 +21,11 @@ export default function CatsPage(props) {
 
   return (
     <div className="Cats">
-      <NavBar/>
+      <NavBar />
       <header>
         <h2 className={classes.header}>my Collection</h2>
       </header>
-      <GalleryContainer items={state.collections}/>
+      <GalleryContainer items={state.unlocked} />
     </div>
-  )
-};
+  );
+}

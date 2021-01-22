@@ -19,7 +19,6 @@ const getExampleWithID = (id) => {
 
 exports.getExampleWithID = getExampleWithID;
 
-// EXAMPLES insert QUERIES
 const getExample = (text) => {
   return db
     .query(
@@ -29,8 +28,8 @@ const getExample = (text) => {
       [text]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows);
-      return res.rows;
+      console.log("whats res.rows[0]", res.rows[0]);
+      return res.rows[0];
     });
 };
 
@@ -99,12 +98,13 @@ const createTodo = (action_name) => {
   return db
     .query(
       `INSERT INTO actions (user_id,category_id,action_name,date_created,is_completed)
-      VALUES (1, 1, $1, CURRENT_DATE, false);`,
+      VALUES (1, 1, $1, CURRENT_DATE, false)
+      RETURNING *;`,
       [action_name]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows);
-      return res.rows;
+      console.log("createTodo", res.rows[0]);
+      return res.rows[0];
     })
     .catch((error) => console.log(error));
 };
@@ -132,11 +132,12 @@ const createHabit = (action_name) => {
   return db
     .query(
       `INSERT INTO actions (user_id,category_id,action_name,date_created,is_completed)
-      VALUES (1, 2, $1, CURRENT_DATE, false);`,
+      VALUES (1, 2, $1, CURRENT_DATE, false)
+      RETURNING *;`,
       [action_name]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows[0]);
+      console.log("createHabit", res.rows[0]);
       return res.rows[0];
     })
     .catch((error) => console.log(error));
@@ -160,39 +161,41 @@ const getHabits = (id) => {
 };
 exports.getHabits = getHabits;
 
-//updateName habit | todo
+//updateAction habit | todo
 
-const updateName = (id, action_name, is_completed) => {
+const updateAction = (id, action_name, is_completed) => {
   return db
     .query(
       `UPDATE actions
       SET action_name = $2, is_completed = $3
-      WHERE id = $1;`,
+      WHERE id = $1
+      RETURNING *;`,
       [id, action_name, is_completed]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows);
-      return res.rows;
+      console.log("updateAction res.rows[0]", res.rows[0]);
+      return res.rows[0];
     });
 };
-exports.updateName = updateName;
+exports.updateAction = updateAction;
 
 //update is_completed
-const updateState = (id, is_completed) => {
+const updateCompletion = (id, is_completed) => {
   return db
     .query(
       `UPDATE actions
       SET is_completed = $2
-      WHERE id = $1;`,
+      WHERE id = $1
+      RETURNING *;`,
       [id, is_completed]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows);
-      return res.rows;
+      console.log("updateCompletion res.rows[0]", res.rows[0]);
+      return res.rows[0];
     });
 };
 
-exports.updateState = updateState;
+exports.updateCompletion = updateCompletion;
 
 //delete habit/todo
 const deleteAction = (id) => {
