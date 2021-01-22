@@ -18,7 +18,7 @@ module.exports = (router, db) => {
 
     db.createHabit(action_name)
       .then((data) => {
-        res.send("Check the console for data!");
+        res.send(data);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -26,12 +26,12 @@ module.exports = (router, db) => {
   });
 
   // update todo & habit states
-  router.put("/:id", (req, res) => {
-    const { id, is_completed } = req.body;
-    db.updateState(id, is_completed).then((example) => {
-      res.status(204).send("Successfully updateState!");
-    });
-  });
+  // router.put("/:id", (req, res) => {
+  //   const { id, is_completed } = req.body;
+  //   db.updateState(id, is_completed).then((example) => {
+  //     res.status(204).send("Successfully updateState!");
+  //   });
+  // });
 
   return router;
 };

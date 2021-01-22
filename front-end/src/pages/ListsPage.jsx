@@ -3,7 +3,7 @@ import ListsContainer from "../components/ListsContainer";
 import NavBar from "../components/NavBar";
 
 export default function ListsPage(props) {
-  const { state } = props;
+  const { state, actionFunctions } = props;
   return (
     <div className="List">
       <NavBar />
@@ -11,6 +11,7 @@ export default function ListsPage(props) {
         actions={state.actions}
         todos={state.todos}
         habits={state.habits}
+        actionFunctions={actionFunctions}
       />
     </div>
   );

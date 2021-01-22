@@ -22,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ActionList(props) {
-  const { deleteAction } = useApplicationData();
-  const { items, category } = props;
+  const { items, category, actionFunctions } = props;
+  const { deleteAction, addAction, editActionName } = actionFunctions; // State changing funcs from useApplicationData
   const classes = useStyles();
 
   // Toggle between VIEW and EDIT modes
@@ -37,8 +37,7 @@ export default function ActionList(props) {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
-    if (currentIndex === -1) {
-      // check if value is in checked
+    if (currentIndex === -1) { // check if value is in checked
       newChecked.push(value);
     } else {
       newChecked.splice(currentIndex, 1); // remove from checked
@@ -47,7 +46,6 @@ export default function ActionList(props) {
     setChecked(newChecked);
   };
 
-  console.log("checked", checked);
   // Logging value of checked whenever it's updated
   // useEffect(() => {
   //   console.log("what's checked:", checked);
@@ -61,6 +59,7 @@ export default function ActionList(props) {
     actionName: "",
   });
 
+  // Popup functions
   const handleClickOpen = (type, id, name) => {
     setPopupState((prev) => ({
       ...prev,
@@ -71,7 +70,14 @@ export default function ActionList(props) {
     }));
   };
 
-  const popupDelete = (actionID) => {
+  const cancel = () => {
+    setPopupState((prev) => ({
+      ...prev,
+      open: false,
+    }));
+  };
+
+  const confirmDelete = (actionID) => {
     deleteAction(actionID);
     setPopupState((prev) => ({
       ...prev,
@@ -79,12 +85,21 @@ export default function ActionList(props) {
     }));
   };
 
-  const cancel = () => {
+  const confirmAdd = (name, categoryID) => {
+    addAction(name, categoryID);
     setPopupState((prev) => ({
       ...prev,
       open: false,
     }));
   };
+
+  const confirmEdit = (actionID, name) => {
+    editActionName(actionID, name);
+    setPopupState((prev) => ({
+      ...prev,
+      open: false,
+    }));
+  }
 
   return (
     <List className={classes.root}>
@@ -150,7 +165,9 @@ export default function ActionList(props) {
 
       <Popup
         cancel={cancel}
-        popupDelete={popupDelete}
+        confirmDelete={confirmDelete}
+        confirmAdd={confirmAdd}
+        confirmEdit={confirmEdit}
         popupState={popupState}
         category={category}
       />
