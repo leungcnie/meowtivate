@@ -321,16 +321,49 @@ const getLogData = (id) => {
 };
 exports.getLogData = getLogData;
 
-/*--------- Get data log -----------*/
-const postLogData = (is_completed) => {
+/*--------- Post data log -----------*/
+const postLogData = (user_id, is_completed) => {
   return db
     .query(
       `INSERT INTO logDatas (user_id, date_created, is_completed)
-      VALUES (1, CURRENT_DATE  , $1),
+      VALUES ($1, CURRENT_DATE , $2),
         `,
-      [id]
+      [user_id, is_completed]
     )
     .then((res) => res.rows)
     .catch((err) => console.error("query getAllCats error", err.stack));
 };
 exports.postLogData = postLogData;
+
+// /*--------- update data log -----------*/
+// const updateLogData = (id, is_completed) => {
+//   return db
+//     .query(
+//       `UPDATE logDatas
+//       SET is_completed = $2
+//       WHERE user_id = $1
+//         `,
+//       [id, is_completed]
+//     )
+//     .then((res) => res.rows)
+//     .catch((err) => console.error("query getAllCats error", err.stack));
+// };
+// exports.updateLogData = updateLogData;
+
+/*--------- update streak -----------*/
+const updateStreak = (id, streak, current_streak) => {
+  return db
+    .query(
+      `UPDATE streaks
+      SET streak = $2, current_streak = $3
+      WHERE user_id = $1
+      ;`,
+      [id, streak, current_streak]
+    )
+    .then((res) => {
+      console.log("whats res.rows[0]", res.rows);
+      return res.rows;
+    });
+};
+
+exports.updateStreak = updateStreak;
