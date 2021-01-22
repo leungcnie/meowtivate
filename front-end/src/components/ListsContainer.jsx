@@ -9,8 +9,8 @@ import CatPlant from './CatPlant'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    minWidth: 200,
-    minHeight: 300,
+    minWidth: '10vw',
+    minHeight: '25vh',
     paddingLeft: '5vw',
     paddingRight: '5vw',
   },
@@ -25,6 +25,10 @@ const useStyles = makeStyles((theme) => ({
     top: '0px',
     left: '0px',
     zIndex: 1,
+  },
+  lists: {
+    minWidth: '10vw',
+    minHeight: '25vh',
   }
 
 }));
@@ -37,7 +41,7 @@ export default function ListContainer(props) {
       <h2 className={classes.header}>LET'S GET LOTS DONE TODAY</h2>
       <Grid container spacing={4}>
         <Grid item xs={4}>
-          <Card>
+          <Card className={classes.lists}>
             <CardContent>
               <h3>Daily Habits</h3>
               <ActionList items={props.habits} />
@@ -45,7 +49,7 @@ export default function ListContainer(props) {
           </Card>
         </Grid>
         <Grid item xs={4}>
-          <Card>
+          <Card className={classes.lists}>
             <CardContent>
               <h3>To-Do Today</h3>
               <ActionList items={props.todos} />

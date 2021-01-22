@@ -6,27 +6,28 @@ import clsx from "clsx";
 const useStyles = makeStyles(theme => ({
   pot: {
     width: '10vw',
-    position:'relative',
-    top: '0px',
-    left: '0px',
+    position:'absolute',
+    bottom: '0px',
+    left: 'calc(50% - 5vw)',
     zIndex: 2,
   },
   plant: {
     width: '10vw',
     position:'relative',
-    top: '50px',
-    left: '0px',
     zIndex: 1,
   },
   ten_plant: {
     width: '10vw',
     position:'relative',
-    top: '75px',
-    left: '0px',
     zIndex: 1,
+  },
+  plantContainer: {
+  position: 'relative',
+
   },
   animatedItem: {
     animation: `$myEffect 3000ms ${theme.transitions.easing.easeInOut}`,
+    opacity:1,
   },
 
   "@keyframes myEffect": {
@@ -67,14 +68,43 @@ export default function CatPlant(props) {
   return (
     <>
       <article>
-        <div
-          className={clsx(
+        <div className={classes.plantContainer}>
+          {/* <img className={clsx(classes.plant,
             {[classes.animatedItem]: start}
-          )}>
-          <img className={classes.ten_plant} src="https://meowtivate.s3-us-west-2.amazonaws.com/10plant-crop.png" alt="plant"/>
-          {/* <img className={classes.plant} src="https://meowtivate.s3-us-west-2.amazonaws.com/90plant-crop.png" alt="plant"/> */}
-        </div>
-        <div>
+          )} src="https://meowtivate.s3-us-west-2.amazonaws.com/10plant.png" alt="plant"/> */}
+
+          <img className={clsx(classes.plant,
+            {[classes.animatedItem]: start}
+          )} src="https://meowtivate.s3-us-west-2.amazonaws.com/20plant.png" alt="plant"/>
+
+          {/* <img className={clsx(classes.plant,
+            {[classes.animatedItem]: start}
+          )} src="https://meowtivate.s3-us-west-2.amazonaws.com/30plant.png" alt="plant"/>
+
+          <img className={clsx(classes.plant,
+            {[classes.animatedItem]: start}
+          )} src="https://meowtivate.s3-us-west-2.amazonaws.com/40plant.png" alt="plant"/>
+
+          <img className={clsx(classes.plant,
+            {[classes.animatedItem]: start}
+          )} src="https://meowtivate.s3-us-west-2.amazonaws.com/50plant.png" alt="plant"/>
+
+          <img className={clsx(classes.plant,
+            {[classes.animatedItem]: start}
+          )} src="https://meowtivate.s3-us-west-2.amazonaws.com/60plant.png" alt="plant"/>
+
+          <img className={clsx(classes.plant,
+            {[classes.animatedItem]: start}
+          )} src="https://meowtivate.s3-us-west-2.amazonaws.com/70plant.png" alt="plant"/> */}
+
+          {/* <img className={clsx(classes.plant,
+            {[classes.animatedItem]: start}
+          )} src="https://meowtivate.s3-us-west-2.amazonaws.com/80plant.png" alt="plant"/> */}
+
+          {/* <img className={clsx(classes.plant,
+            {[classes.animatedItem]: start}
+          )} src="https://meowtivate.s3-us-west-2.amazonaws.com/90plant.png" alt="plant"/> */}
+
           <img className={classes.pot} src="https://meowtivate.s3-us-west-2.amazonaws.com/pot.png" alt="pot"/>
         </div>
           <Button onClick={() => setStart(true)}>start</Button>
