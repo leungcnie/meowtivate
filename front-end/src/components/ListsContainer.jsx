@@ -82,9 +82,9 @@ export default function ListContainer(props) {
           </Grid>
         </Grid>
         <Progress
-          actions={props.actions}
-          streaks={props.streaks}
-          logDatas={props.logDatas}
+        // actions={props.actions}
+        // streaks={props.streaks}
+        // logDatas={props.logDatas}
         />
       </div>
     </>
