@@ -38,21 +38,19 @@ export default function ActionList(props) {
   // Toggle checkbox
   // checked is an array of numbers that represent checked actionIDs
   const [checked, setChecked] = useState(initChecked);
-  const handleToggle = (value) => () => {
+  
+  const handleToggle = (value, evt) => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
-    let is_completed = false;
 
     if (currentIndex === -1) { // if value isn't in checked, add it
       newChecked.push(value);
-      is_completed = true;
     } else {
       newChecked.splice(currentIndex, 1); // else remove from checked
-      is_completed = false;
     }
 
     setChecked(newChecked);
-    editCompletedState(value, is_completed); // Update state
+    editCompletedState(value, evt.target.checked); // Update state
   };
 
   // Popup state
@@ -107,7 +105,9 @@ export default function ActionList(props) {
 
   return (
     <List className={classes.root}>
-      {items.map((obj) => {
+      {items.sort(function(a, b) {
+  return a.id - b.id;
+}).map((obj) => {
         const labelId = `checkbox-list-label-${obj.id}`;
         return (
           <ListItem
@@ -115,12 +115,12 @@ export default function ActionList(props) {
             role={undefined}
             dense
             button
-            onClick={handleToggle(obj.id)}
+            onClick={(evt) => handleToggle(obj.id, evt)}
           >
             <ListItemIcon>
               <Checkbox
                 edge="start"
-                checked={checked.indexOf(obj.id) !== -1}
+                checked={obj.is_completed}
                 tabIndex={-1}
                 disableRipple
                 inputProps={{ "aria-labelledby": labelId }}

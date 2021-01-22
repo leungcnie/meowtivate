@@ -1,17 +1,28 @@
-.sunny {
-  background-color: 'transparent';
+.Clear {
+  display: none;
+  background-color: transparent;
+  height: 10rem;
+  margin: auto;
 }
 
-.rainy {
-  background-color: 'transparent';
+/* class name may have to change if 'Raining' does not match the word on display */
+.Raining {
+  display: none;
+  background-color: transparent;
+  height: 10rem;
+  margin: auto;
 }
 
-.cloudy {
-  background-color: 'transparent';
+.Clouds {
+  display: none;
+  background-color: transparent;
+  height: 10rem;
+  margin: auto;
 }
 
 .weather {
-  height: 100px;
+  font-family: 'Varela Round' ;
+  display: block;
 }
 
 .weather-search-box {

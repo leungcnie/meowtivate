@@ -40,15 +40,13 @@ export default function UnlockBadge(props) {
     <div className={classes.display}>
       <img
         className={classes.root}
-        src="https://meowtivate.s3-us-west-2.amazonaws.com/unlock_badge.png"
+        src="https://meowtivate.s3-us-west-2.amazonaws.com/unlock_badge.]"
         alt="unlock_badge"
       />
       {/* replace cat src with the props.image_url */}
-      <img
-        className={classes.cat}
-        src="https://meowtivate.s3-us-west-2.amazonaws.com/01cat.png"
-      />
-      {/* <img className={classes.cat} src='https://meowtivate.s3-us-west-2.amazonaws.com/02cat.png'/> */}
+      {/* <img className={classes.cat} src={}/> */}
+      {/* <img className={classes.cat} src='https://meowtivate.s3-us-west-2.amazonaws.com/01cat.]'/> */}
+      {/* <img className={classes.cat} src='https://meowtivate.s3-us-west-2.amazonaws.com/02cat.]'/> */}
       <h2 className={classes.text}> CONGRATULATIONS!</h2>
     </div>
   );
