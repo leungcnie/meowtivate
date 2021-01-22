@@ -13,7 +13,6 @@ export default function useApplicationDate() {
     todos: [],
     habits: [],
     actions: [],
-    account: [],
     allCats: [],
     logDatas: [],
     streaks: [],
@@ -144,7 +143,6 @@ export default function useApplicationDate() {
       axios.get("/api/todos/1"),
       axios.get("/api/habits/1"),
       axios.get("/api/actions/1"),
-      axios.get("/api/accounts/1"),
       axios.get("/api/collections"),
       axios.get("/api/streaks/logdata/1"),
       axios.get("/api/streaks/1"),
@@ -157,10 +155,9 @@ export default function useApplicationDate() {
           todos: res[1].data,
           habits: res[2].data,
           actions: res[3].data,
-          account: res[4].data,
-          allCats: res[5].data,
-          logDatas: res[6].data,
-          streaks: res[7].data,
+          allCats: res[4].data,
+          logDatas: res[5].data,
+          streaks: res[6].data,
         }));
       })
       .catch((err) => {

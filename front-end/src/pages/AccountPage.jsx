@@ -20,9 +20,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AccountPage(props) {
-  const user = props.state.account[0];
-  console.log("AccountPage", user);
-  const { username, email } = user;
+  // const user = props.state.account[0];
+  // console.log("AccountPage", user);
+  // const { username, email } = user;
 
   const classes = useStyles();
 
