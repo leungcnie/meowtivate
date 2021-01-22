@@ -1,6 +1,11 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { removeFromActions, addToActions, getActionProperty, modifyActionWith } from '../helpers/stateHelpers';
+import {
+  removeFromActions,
+  addToActions,
+  getActionProperty,
+  modifyActionWith,
+} from "../helpers/stateHelpers";
 
 export default function useApplicationDate() {
   const [state, setState] = useState({
@@ -12,30 +17,34 @@ export default function useApplicationDate() {
     allCats: [],
   });
 
-  console.log("useApplicationDate correct is_completed state", state);
+  useEffect(() => {
+    console.log("Current state:", state)
+  }, [state])
+
+  // console.log("useApplicationDate correct is_completed state", state);
 
   const addAction = (action_name, categoryID) => {
     console.log("action_name in useApp", action_name);
 
-    if (categoryID === 1) { // TODOS
-      return axios.post('/api/todos/', { action_name })
-        .then((res) => {
-          const actions = addToActions(res.data, state); // res.data contains the action obj
-          const todos = actions.filter(obj => obj.category_id === 1);
+    if (categoryID === 1) {
+      // TODOS
+      return axios.post("/api/todos/", { action_name }).then(res => {
+        const actions = addToActions(res.data, state); // res.data contains the action obj
+        const todos = actions.filter(obj => obj.category_id === 1);
 
-          console.log("updatedActions", actions);
-          // console.log("updatedHabits", habits);
-          console.log("updatedTodos", todos);
+        console.log("updatedActions", actions);
+        // console.log("updatedHabits", habits);
+        console.log("updatedTodos", todos);
 
-          setState({
-            ...state,
-            actions,
-            todos
-          })
-        })
-    } else if (categoryID === 2) { // HABITS
-      return axios.post('/api/habits/', { action_name })
-      .then((res) => {
+        setState({
+          ...state,
+          actions,
+          todos,
+        });
+      });
+    } else if (categoryID === 2) {
+      // HABITS
+      return axios.post("/api/habits/", { action_name }).then(res => {
         const actions = addToActions(res.data, state);
         const habits = actions.filter(obj => obj.category_id === 2);
 
@@ -46,13 +55,13 @@ export default function useApplicationDate() {
         setState({
           ...state,
           actions,
-          habits
-        })
-      })    
+          habits,
+        });
+      });
     }
   };
 
-  const deleteAction = (actionID) => {
+  const deleteAction = actionID => {
     // Get updated actions
     const actions = removeFromActions(actionID, state);
     const habits = actions.filter(obj => obj.category_id === 2);
@@ -64,7 +73,7 @@ export default function useApplicationDate() {
         ...state,
         todos,
         habits,
-        actions
+        actions,
       });
     });
   };
@@ -83,18 +92,19 @@ export default function useApplicationDate() {
     console.log("updatedTodos", todos);
 
     // Update action_name of action in db and update state
-    return axios.put(`/api/actions/${id}`, {id, action_name, is_completed})
+    return axios
+      .put(`/api/actions/${id}`, { id, action_name, is_completed })
       .then(() => {
         setState({
           ...state,
           actions,
           habits,
-          todos
-        })
+          todos,
+        });
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
-      })
+      });
   };
 
   // Update state when checkboxes are clicked
@@ -112,21 +122,23 @@ export default function useApplicationDate() {
     console.log("updatedTodos", todos);
 
     // Update is_completed of action in db and update state
-    return axios.put(`/api/actions/${id}`, {id, action_name, is_completed})
+    return axios
+      .put(`/api/actions/${id}`, { id, action_name, is_completed })
       .then(() => {
         setState({
           ...state,
           actions,
           habits,
-          todos
-        })
-      })
-  }
+          todos,
+        });
+      });
+  };
 
   const actionFunctions = {
     addAction,
     deleteAction,
     editActionName,
+    editCompletedState
   };
 
   useEffect(() => {
@@ -138,9 +150,10 @@ export default function useApplicationDate() {
       axios.get("/api/accounts/1"),
       axios.get("/api/collections"),
     ])
-      .then((res) => {
-        console.log("res.data in cats collection:", res.data);
-        setState((prev) => ({
+      .then(res => {
+        // console.log("res.data in useAppDate promise.all:", res.data);
+
+        setState(prev => ({
           ...prev,
           unlocked: res[0].data,
           todos: res[1].data,
@@ -150,7 +163,7 @@ export default function useApplicationDate() {
           allCats: res[5].data,
         }));
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }, []);

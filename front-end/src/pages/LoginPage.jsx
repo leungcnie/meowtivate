@@ -34,10 +34,10 @@ export default function LoginPage(props) {
       <h2 className={classes.header}>Login</h2>
     <form className={classes.root} noValidate autoComplete="off">
       <div>
-        <TextField id="outlined-basic" label="Username" variant="outlined" />
+        <TextField id="outlined-basic" label="Username" variant="outlined" value="Pawthos" />
       </div>
       <div>
-      <TextField id="outlined-basic" label="Password" variant="outlined" />
+      <TextField id="outlined-basic" label="Password" variant="outlined" value="****"/>
       </div>
       <Button 
         variant="contained" 
