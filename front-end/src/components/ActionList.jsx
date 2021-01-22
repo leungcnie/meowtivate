@@ -26,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ActionList(props) {
-  const { deleteAction, addAction } = useApplicationData();
-  const { items, category } = props;
+  const { items, category, actionFunctions } = props;
+  const { deleteAction, addAction, editActionName } = actionFunctions; // State changing funcs from useApplicationData
   const classes = useStyles();
 
   // Toggle between VIEW and EDIT modes
@@ -89,13 +89,21 @@ export default function ActionList(props) {
     }));
   };
 
-  const confirmAdd = (name, actionID) => {
-    addAction(name, actionID);
+  const confirmAdd = (name, categoryID) => {
+    addAction(name, categoryID);
     setPopupState((prev) => ({
       ...prev,
       open: false,
     }));
   };
+
+  const confirmEdit = (actionID, name) => {
+    editActionName(actionID, name);
+    setPopupState((prev) => ({
+      ...prev,
+      open: false,
+    }));
+  }
 
   return (
     <List className={classes.root}>
@@ -163,6 +171,7 @@ export default function ActionList(props) {
         cancel={cancel}
         confirmDelete={confirmDelete}
         confirmAdd={confirmAdd}
+        confirmEdit={confirmEdit}
         popupState={popupState}
         category={category}
       />

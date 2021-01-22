@@ -8,7 +8,13 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
 export default function Popup(props) {
-  const { confirmDelete, confirmAdd, cancel, popupState, category } = props;
+  const { 
+    confirmDelete, 
+    confirmAdd, 
+    confirmEdit, 
+    cancel, 
+    popupState, 
+    category } = props;
   const { open, type, actionID, actionName } = popupState;
   const listType = category === 1 ? "to-do" : "habit";
 
@@ -24,29 +30,61 @@ export default function Popup(props) {
 
   return (
     <div>
-      { type === "Delete" ? (
-              <Dialog
-              open={open}
-              onClose={cancel}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle id="alert-dialog-title">{type} {listType}?</DialogTitle>
-              <DialogContent>
-                {/* <DialogContentText>
-                {actionID}
-                </DialogContentText> */}
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={() => confirmDelete(actionID)} color="primary">
-                  Confirm
-                </Button>
-                <Button onClick={cancel} color="primary" autoFocus>
-                  Cancel
-                </Button>
-              </DialogActions>
-            </Dialog>
-      ) : (
+      { type === "Delete" && (
+        <Dialog
+        open={open}
+        onClose={cancel}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{type} {listType}?</DialogTitle>
+        <DialogContent>
+          {/* <DialogContentText>
+          {actionID}
+          </DialogContentText> */}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => confirmDelete(actionID)} color="primary">
+            Confirm
+          </Button>
+          <Button onClick={cancel} color="primary" autoFocus>
+            Cancel
+          </Button>
+        </DialogActions>
+      </Dialog>
+      )}
+
+      { type === "Edit" && (
+        <Dialog open={open} onClose={cancel} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">{type} a {listType}</DialogTitle>
+        <DialogContent>
+          {/* <DialogContentText>
+            {actionID}
+          </DialogContentText> */}
+          <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              type="text"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              fullWidth
+            />
+          </form>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={cancel} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={() => confirmEdit(actionID, name)} color="primary">
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+      )}
+
+      { type === "Add" && (
         <Dialog open={open} onClose={cancel} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">{type} a {listType}</DialogTitle>
         <DialogContent>

@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ListContainer(props) {
+  const { actionFunctions } = props;
   const classes = useStyles();
 
   return (
@@ -34,7 +35,7 @@ export default function ListContainer(props) {
           <Card>
             <CardContent>
               <label className={classes.header}>Daily Habits</label>
-              <ActionList items={props.habits} category={2} />
+              <ActionList items={props.habits} category={2} actionFunctions={actionFunctions} />
             </CardContent>
           </Card>
         </Grid>
@@ -42,7 +43,7 @@ export default function ListContainer(props) {
           <Card>
             <CardContent>
               <label className={classes.header}>To-Do Today</label>
-              <ActionList items={props.todos} category={1} />
+              <ActionList items={props.todos} category={1} actionFunctions={actionFunctions} />
             </CardContent>
           </Card>
         </Grid>

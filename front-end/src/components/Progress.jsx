@@ -37,7 +37,7 @@ function Progress(props) {
         className="todos-completed"
         style={{ width: `${completedPrecentage * 100}%` }}
       ></div>
-      Hello {completedAmount} / {totalAmount}
+      Completed {completedAmount} / {totalAmount}
     </div>
   );
 }

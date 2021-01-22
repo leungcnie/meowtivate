@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useState } from "react";
 import axios from "axios";
-import { removeFromActions, addToActions } from '../helpers/stateHelpers';
+import { removeFromActions, addToActions, getActionProperty, modifyActionWith } from '../helpers/stateHelpers';
 
 export default function useApplicationDate() {
   const [state, setState] = useState({
@@ -10,11 +10,10 @@ export default function useApplicationDate() {
     actions: [],
   });
 
-  // console.log("useApplicationDate correct is_completed state", state.actions);
-
   const addAction = (action_name, categoryID) => {
     console.log("action_name in useApp", action_name);
-    if (categoryID === 1) {
+
+    if (categoryID === 1) { // TODOS
       return axios.post('/api/todos/', { action_name })
         .then((res) => {
           const actions = addToActions(res.data, state); // res.data contains the action obj
@@ -30,7 +29,7 @@ export default function useApplicationDate() {
             todos
           })
         })
-    } else if (categoryID === 2) {
+    } else if (categoryID === 2) { // HABITS
       return axios.post('/api/habits/', { action_name })
       .then((res) => {
         const actions = addToActions(res.data, state);
@@ -59,19 +58,71 @@ export default function useApplicationDate() {
     return axios.delete(`/api/actions/${actionID}`).then(() => {
       setState({
         ...state,
-        todos: todos,
-        habits: habits,
-        actions: actions
+        todos,
+        habits,
+        actions
       });
     });
   };
 
-  const editAction = (actionID) => {};
+  const editActionName = (id, action_name) => {
+    // Get the action's current is_completed bool
+    const is_completed = getActionProperty(id, "is_completed", state);
 
-  const listFunctions = {
+    // Pass to modifyActionWith function
+    const actions = modifyActionWith(action_name, "action_name", id, state);
+    const habits = actions.filter(obj => obj.category_id === 2);
+    const todos = actions.filter(obj => obj.category_id === 1);
+
+    console.log("updatedActions", actions);
+    console.log("updatedHabits", habits);
+    console.log("updatedTodos", todos);
+
+    // Update action_name of action in db and update state
+    return axios.put(`/api/actions/${id}`, {id, action_name, is_completed})
+      .then(() => {
+        setState({
+          ...state,
+          actions,
+          habits,
+          todos
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  };
+
+  // Update state when checkboxes are clicked
+  const editCompletedState = (id, is_completed) => {
+    // Get the action's current action_name
+    const action_name = getActionProperty(id, "action_name", state);
+
+    // Pass to modifyActionWith function
+    const actions = modifyActionWith(is_completed, "is_completed", id, state);
+    const habits = actions.filter(obj => obj.category_id === 2);
+    const todos = actions.filter(obj => obj.category_id === 1);
+
+    console.log("updatedActions", actions);
+    console.log("updatedHabits", habits);
+    console.log("updatedTodos", todos);
+
+    // Update is_completed of action in db and update state
+    return axios.put(`/api/actions/${id}`, {id, action_name, is_completed})
+      .then(() => {
+        setState({
+          ...state,
+          actions,
+          habits,
+          todos
+        })
+      })
+  }
+
+  const actionFunctions = {
     addAction,
     deleteAction,
-    editAction,
+    editActionName,
   };
 
   useEffect(() => {
@@ -96,5 +147,5 @@ export default function useApplicationDate() {
       });
   }, []);
 
-  return { state, deleteAction, addAction };
+  return { state, actionFunctions };
 }
