@@ -71,7 +71,7 @@ const getCatsCollections = (id) => {
       `SELECT cats.id, cat_name, image_url, description, date_unlocked
         FROM cats 
         JOIN user_unlocked_cats on cat_id = cats.id
-        WHERE users.id = $1`,
+        WHERE user_id = $1`,
       [id]
     )
     .then((res) => res.rows)

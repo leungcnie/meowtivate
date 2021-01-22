@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default function useApplicationDate() {
   const [state, setState] = useState({
-    collections: [],
+    unlocked: [],
     todos: [],
     habits: [],
     actions: [],
@@ -11,7 +11,7 @@ export default function useApplicationDate() {
     allCats: [],
   });
 
-  // console.log("useApplicationDate correct is_completed state", state.account);
+  console.log("useApplicationDate correct is_completed state", state);
 
   // const removeFromHabits = (id) => {
   //   const target = state.habits.filter((obj) => {
@@ -56,7 +56,7 @@ export default function useApplicationDate() {
         console.log("res.data in cats collection:", res.data);
         setState((prev) => ({
           ...prev,
-          collections: res[0].data,
+          unlocked: res[0].data,
           todos: res[1].data,
           habits: res[2].data,
           actions: res[3].data,
