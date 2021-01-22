@@ -26,6 +26,16 @@ export default function Popup(props) {
     setName(actionName)
   }, [actionName])
 
+  const clearAndCancel = () => {
+    setName("");
+    cancel();
+  }
+
+  const clearAndConfirmAdd = () => {
+    setName("");
+    confirmAdd(name, category);
+  }
+
   console.log("actionName", actionName);
 
   return (
@@ -104,10 +114,10 @@ export default function Popup(props) {
           </form>
         </DialogContent>
         <DialogActions>
-          <Button onClick={cancel} color="primary">
+          <Button onClick={clearAndCancel} color="primary">
             Cancel
           </Button>
-          <Button onClick={() => confirmAdd(name, category)} color="primary">
+          <Button onClick={clearAndConfirmAdd} color="primary">
             Save
           </Button>
         </DialogActions>
