@@ -44,6 +44,7 @@ const todoRoutes = require("./routes/todoRoutes");
 const habitRoutes = require("./routes/habitRoutes");
 const actionRoutes = require("./routes/actionRoutes");
 const accountRoutes = require("./routes/accountRoutes");
+const streakRoutes = require("./routes/streakRoutes");
 
 // Mount all resource routes
 const indexRouter = express.Router();
@@ -70,6 +71,10 @@ app.use("/api/actions", actionRoutes(actionRouter, db));
 //user Account
 const accountRouter = express.Router();
 app.use("/api/accounts", accountRoutes(accountRouter, db));
+
+//Streak and data log
+const streakRouter = express.Router();
+app.use("/api/streaks", streakRoutes(streakRouter, db));
 
 // Home page
 // Warning: avoid creating more routes in this file!

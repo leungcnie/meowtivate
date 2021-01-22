@@ -289,3 +289,48 @@ const updateAccount = (id, email, username, password) => {
 };
 
 exports.updateAccount = updateAccount;
+
+/*--------- Streaks -----------*/
+const getStreaks = (id) => {
+  return db
+    .query(
+      ` SELECT user_id, streak, current_streak
+        FROM streaks
+        WHERE user_id = $1;
+        `,
+      [id]
+    )
+    .then((res) => res.rows)
+    .catch((err) => console.error("query getAllCats error", err.stack));
+};
+exports.getStreaks = getStreaks;
+
+/*--------- Get data log -----------*/
+const getLogData = (id) => {
+  return db
+    .query(
+      `
+        SELECT *
+        FROM logDatas
+        WHERE user_id = $1;
+        `,
+      [id]
+    )
+    .then((res) => res.rows)
+    .catch((err) => console.error("query getAllCats error", err.stack));
+};
+exports.getLogData = getLogData;
+
+/*--------- Get data log -----------*/
+const postLogData = (is_completed) => {
+  return db
+    .query(
+      `INSERT INTO logDatas (user_id, date_created, is_completed)
+      VALUES (1, CURRENT_DATE  , $1),
+        `,
+      [id]
+    )
+    .then((res) => res.rows)
+    .catch((err) => console.error("query getAllCats error", err.stack));
+};
+exports.postLogData = postLogData;
