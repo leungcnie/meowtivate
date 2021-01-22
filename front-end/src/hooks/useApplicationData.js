@@ -4,14 +4,15 @@ import { removeFromActions, addToActions, getActionProperty, modifyActionWith } 
 
 export default function useApplicationDate() {
   const [state, setState] = useState({
-    collections: [],
+    unlocked: [],
     todos: [],
     habits: [],
     actions: [],
     account: [],
+    allCats: [],
   });
 
-  // console.log("useApplicationDate correct is_completed state", state.account);
+  console.log("useApplicationDate correct is_completed state", state);
 
   const addAction = (action_name, categoryID) => {
     console.log("action_name in useApp", action_name);
@@ -134,17 +135,19 @@ export default function useApplicationDate() {
       axios.get("/api/todos/1"),
       axios.get("/api/habits/1"),
       axios.get("/api/actions/1"),
-      axios.get("/api/accounts/login/1"),
+      axios.get("/api/accounts/1"),
+      axios.get("/api/collections"),
     ])
       .then((res) => {
         console.log("res.data in cats collection:", res.data);
         setState((prev) => ({
           ...prev,
-          collections: res[0].data,
+          unlocked: res[0].data,
           todos: res[1].data,
           habits: res[2].data,
           actions: res[3].data,
           account: res[4].data,
+          allCats: res[5].data,
         }));
       })
       .catch((err) => {

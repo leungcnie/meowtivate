@@ -13,7 +13,7 @@ module.exports = (router, db) => {
   });
 
   /*--------- get user accounts -----------*/
-  router.get("/login/:id", (req, res) => {
+  router.get("/:id", (req, res) => {
     const { id } = req.params;
 
     db.getUserId(id)

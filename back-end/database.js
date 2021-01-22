@@ -68,10 +68,9 @@ const getCatsCollections = (id) => {
   return db
     .query(
       `SELECT cats.id, cat_name, image_url, description, date_unlocked
-      FROM cats 
-      JOIN user_unlocked_cats on cat_id = cats.id
-      JOIN users on users.id = user_id
-      WHERE users.id = $1`,
+        FROM cats 
+        JOIN user_unlocked_cats on cat_id = cats.id
+        WHERE user_id = $1`,
       [id]
     )
     .then((res) => res.rows)
@@ -79,7 +78,21 @@ const getCatsCollections = (id) => {
 };
 exports.getCatsCollections = getCatsCollections;
 
-// --------- TODO -------
+/*--------- todo -----------*/
+const getAllCats = () => {
+  return db
+    .query(
+      `SELECT cats.id, cat_name, image_url, description
+        FROM cats 
+        `,
+      []
+    )
+    .then((res) => res.rows)
+    .catch((err) => console.error("query getAllCats error", err.stack));
+};
+exports.getAllCats = getAllCats;
+
+/*--------- todo -----------*/
 //create todo
 const createTodo = (action_name) => {
   return db
