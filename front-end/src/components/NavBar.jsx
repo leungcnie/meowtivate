@@ -8,6 +8,8 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "8px",
     textAlign: "center",
     fontSize: "3rem",
+    paddingBottom: '3vh',
+    marginTop: '0px',
   },
   menu: {
     textAlign: "start",
