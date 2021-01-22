@@ -36,15 +36,15 @@ const useStyles = makeStyles(theme => ({
       opacity:0,
     },
     '16%': {
-      transform: 'translateY(0%)',
+      transform: 'translateY(-3%)',
       opacity: 0.75,
     },
     '28%': {
-      transform: 'translateY(2%)',
+      transform: 'translateY(5%)',
       opacity: 1,
     },
     '44%': {
-      transform: 'translateY(3%)'
+      transform: 'translateY(-2%)'
     },
     '59%': {
       transform: 'translateY(0%)'
