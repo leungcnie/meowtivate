@@ -11,6 +11,8 @@ export default function ListsPage(props) {
         actions={state.actions}
         todos={state.todos}
         habits={state.habits}
+        streaks={state.streaks}
+        logDatas={state.logDatas}
         actionFunctions={actionFunctions}
       />
     </div>

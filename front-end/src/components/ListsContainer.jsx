@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import ActionList from "./ActionList";
-import CatPlant from './CatPlant'
+import CatPlant from "./CatPlant";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Progress from "./Progress";
@@ -10,34 +10,33 @@ import Progress from "./Progress";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    minWidth: '10vw',
-    minHeight: '25vh',
-    paddingLeft: '5vw',
-    paddingRight: '5vw',
+    minWidth: "10vw",
+    minHeight: "25vh",
+    paddingLeft: "5vw",
+    paddingRight: "5vw",
   },
   header: {
     fontFamily: "Varela Round",
     letterSpacing: "8px",
   },
   plantbox: {
-    position:'relative',
-    alignText: 'center',
-    margins: 'auto',
-    top: '0px',
-    left: '0px',
+    position: "relative",
+    alignText: "center",
+    margins: "auto",
+    top: "0px",
+    left: "0px",
     zIndex: 1,
   },
   lists: {
-    minWidth: '10vw',
-    minHeight: '25vh',
-  }
-
+    minWidth: "10vw",
+    minHeight: "25vh",
+  },
 }));
 
 export default function ListContainer(props) {
   const { actionFunctions } = props;
   const classes = useStyles();
-  
+
   return (
     <div className={classes.root}>
       <h2 className={classes.header}>LET'S GET LOTS DONE TODAY</h2>
@@ -46,7 +45,11 @@ export default function ListContainer(props) {
           <Card className={classes.lists}>
             <CardContent>
               <h3>Daily Habits</h3>
-              <ActionList items={props.habits} category={2} actionFunctions={actionFunctions} />
+              <ActionList
+                items={props.habits}
+                category={2}
+                actionFunctions={actionFunctions}
+              />
             </CardContent>
           </Card>
         </Grid>
@@ -54,7 +57,11 @@ export default function ListContainer(props) {
           <Card className={classes.lists}>
             <CardContent>
               <h3>To-Do Today</h3>
-              <ActionList items={props.todos} category={1} actionFunctions={actionFunctions} />
+              <ActionList
+                items={props.todos}
+                category={1}
+                actionFunctions={actionFunctions}
+              />
             </CardContent>
           </Card>
         </Grid>
@@ -64,7 +71,7 @@ export default function ListContainer(props) {
               {/* <div>
                 <h3>Today's Progress</h3>
               </div> */}
-              <div className={classes.plantbox}> 
+              <div className={classes.plantbox}>
                 <CatPlant />
               </div>
             </CardContent>
@@ -72,9 +79,9 @@ export default function ListContainer(props) {
         </Grid>
       </Grid>
       <Progress
-        todos={props.todos}
-        habits={props.habits}
         actions={props.actions}
+        streaks={props.streaks}
+        logDatas={props.logDatas}
       />
     </div>
   );
