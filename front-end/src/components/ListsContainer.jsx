@@ -6,6 +6,7 @@ import CatPlant from "./CatPlant";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Progress from "./Progress";
+import UnlockBadge from "./UnlockBadge";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +39,8 @@ export default function ListContainer(props) {
   const classes = useStyles();
 
   return (
+    <>
+    <UnlockBadge/>
     <div className={classes.root}>
       <h2 className={classes.header}>LET'S GET LOTS DONE TODAY</h2>
       <Grid container spacing={4}>
@@ -84,5 +87,6 @@ export default function ListContainer(props) {
         logDatas={props.logDatas}
       />
     </div>
+    </>
   );
 }
