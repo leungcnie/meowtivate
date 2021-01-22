@@ -26,11 +26,7 @@ export default function DashboardPage(props) {
       <NavBar />
       <Grid container spacing={3} className={classes.root}>
         <Grid item xs={4}>
-          <Card>
-            <CardContent>
-              <CalendarApp />
-            </CardContent>
-          </Card>
+          <CalendarApp />
         </Grid>
         <Grid item xs={4}>
           <Card>
@@ -55,7 +51,7 @@ export default function DashboardPage(props) {
         </Grid>
         <Grid item xs={4}>
           <Card>
-            <CardContent className={classes.root}>
+            <CardContent>
               <Weather />
             </CardContent>
           </Card>
