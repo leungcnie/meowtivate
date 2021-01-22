@@ -13,7 +13,6 @@ import UnfoldMoreRoundedIcon from "@material-ui/icons/UnfoldMoreRounded";
 import SaveRoundedIcon from "@material-ui/icons/SaveRounded";
 import Popup from "./Popup";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import useApplicationData from "../hooks/useApplicationData";
 
 const useStyles = makeStyles((theme) => ({
   item: {
@@ -22,9 +21,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ActionList(props) {
-  const { items, category, actionFunctions } = props;
-  const { deleteAction, addAction, editActionName } = actionFunctions; // State changing funcs from useApplicationData
+  const { items, category, actionFunctions, initChecked } = props;
+  const { 
+    deleteAction, 
+    addAction, 
+    editActionName, 
+    editCompletedState } = actionFunctions; // State changing funcs from useApplicationData
   const classes = useStyles();
+
+  console.log("checked in ActionList", initChecked);
 
   // Toggle between VIEW and EDIT modes
   const [isEditable, setIsEditable] = useState(false);
@@ -32,24 +37,23 @@ export default function ActionList(props) {
 
   // Toggle checkbox
   // checked is an array of numbers that represent checked actionIDs
-  const [checked, setChecked] = useState([]);
+  const [checked, setChecked] = useState(initChecked);
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
+    let is_completed = false;
 
-    if (currentIndex === -1) { // check if value is in checked
+    if (currentIndex === -1) { // if value isn't in checked, add it
       newChecked.push(value);
+      is_completed = true;
     } else {
-      newChecked.splice(currentIndex, 1); // remove from checked
+      newChecked.splice(currentIndex, 1); // else remove from checked
+      is_completed = false;
     }
 
     setChecked(newChecked);
+    editCompletedState(value, is_completed); // Update state
   };
-
-  // Logging value of checked whenever it's updated
-  // useEffect(() => {
-  //   console.log("what's checked:", checked);
-  // }, [checked])
 
   // Popup state
   const [popupState, setPopupState] = useState({
