@@ -3,15 +3,15 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import NavBar from "../components/NavBar";
 import IconButton from "@material-ui/core/IconButton";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import SaveRoundedIcon from "@material-ui/icons/SaveRounded";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    minWidth: 275,
   },
   header: {
     fontFamily: "Varela Round",
@@ -31,14 +31,18 @@ export default function AccountPage(props) {
   const modeToggle = () => setIsEditable(!isEditable);
 
   return (
-    <div className="Account">
-      <NavBar />
+    <div className={classes.root}>
+      <NavBar/>
       <header>
         <h2 className={classes.header}>my Account</h2>
       </header>
-      <h5>Username: {username}</h5>
-      <h5>Email: {email}</h5>
-      <h5>Password: ********* </h5>
+      <Card>
+        <CardContent>
+          <h5>Username: {username}</h5>
+          <h5>Email: {email}</h5>
+          <h5>Password: ********* </h5>
+        </CardContent>
+      </Card>
       <IconButton onClick={modeToggle}>
         <EditRoundedIcon />
       </IconButton>

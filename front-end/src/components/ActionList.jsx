@@ -16,10 +16,6 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import useApplicationData from "../hooks/useApplicationData";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    paddingLeft: "10vw",
-    paddingRight: "10vw",
-  },
   item: {
     fontFamily: "Varela Round",
   },
