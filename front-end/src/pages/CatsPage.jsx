@@ -26,6 +26,10 @@ export default function CatsPage(props) {
         <h2 className={classes.header}>my Collection</h2>
       </header>
       <GalleryContainer items={state.unlocked} />
+      <header>
+        <h2 className={classes.header}>All cats Collection</h2>
+      </header>
+      <GalleryContainer items={state.allCats} />
     </div>
   );
 }
