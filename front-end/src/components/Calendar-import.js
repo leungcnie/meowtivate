@@ -24,12 +24,12 @@ export const CalendarApp = (props) => {
   // const month = 1;
   // const day = 4;
 
-  const parseIntArray = dayDates.map((item) => parseInt(item));
+  const parseIntDayArray = dayDates.map((item) => parseInt(item));
 
-  console.log("parseIntArray", parseIntArray);
+  console.log("parseIntDayArray", parseIntDayArray);
 
   const map = Array.prototype.map;
-  const customDaysClassName = map.call(parseIntArray, (eachLetter) => {
+  const customDaysClassName = map.call(parseIntDayArray, (eachLetter) => {
     return `{ year: 2021, month: 1, day: ${eachLetter}, className: "purpleDay"},`;
   });
 
@@ -40,6 +40,8 @@ export const CalendarApp = (props) => {
   //   { year: 2021, month: 1, day: 4, className: "purpleDay" },
   // ]
 
+  // [{ customDaysClassName }]
+
   console.log("dates", date);
   return (
     <>
@@ -47,9 +49,12 @@ export const CalendarApp = (props) => {
         value={selectedDay}
         onChange={setSelectedDay}
         shouldHighlightWeekends
-        customDaysClassName={[{ customDaysClassName }]}
+        customDaysClassName={[
+          //here we add some CSS classes
+          { year: 2021, month: 1, day: 4, className: "purpleDay" },
+          { year: 2021, month: 1, day: 5, className: "purpleDay" },
+        ]}
       />
-      <p>{parseIntArray}</p>
       <p>{customDaysClassName}</p>
     </>
   );
