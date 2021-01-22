@@ -6,6 +6,7 @@ import CatPlant from './CatPlant'
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Progress from "./Progress";
+import calculateChecked from "../helpers/calculateChecked";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,8 +36,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ListContainer(props) {
-  const { actionFunctions } = props;
+  const { state, actionFunctions } = props;
+  const { actions, todos, habits } = state;
   const classes = useStyles();
+
+  console.log("habits in ListsContainer", habits);
+
+  const completed = actions.filter(obj => obj.is_completed === true);
+  const checkedHabits = completed.filter(obj => obj.category_id === 2);
+  const checkedTodos = completed.filter(obj => obj.category_id === 1);
+  const habitIDs = calculateChecked(checkedHabits);
+  const todoIDs = calculateChecked(checkedTodos);
+
+  console.log("completed", completed)
+  console.log("checkedHabits", checkedHabits);
+  console.log("checkedTodos", checkedTodos);
   
   return (
     <div className={classes.root}>
@@ -46,7 +60,11 @@ export default function ListContainer(props) {
           <Card className={classes.lists}>
             <CardContent>
               <h3>Daily Habits</h3>
-              <ActionList items={props.habits} category={2} actionFunctions={actionFunctions} />
+              <ActionList 
+                items={habits} 
+                category={2} 
+                actionFunctions={actionFunctions}
+                initChecked={habitIDs} />
             </CardContent>
           </Card>
         </Grid>
@@ -54,7 +72,11 @@ export default function ListContainer(props) {
           <Card className={classes.lists}>
             <CardContent>
               <h3>To-Do Today</h3>
-              <ActionList items={props.todos} category={1} actionFunctions={actionFunctions} />
+              <ActionList 
+                items={todos} 
+                category={1} 
+                actionFunctions={actionFunctions}
+                initChecked={todoIDs} />
             </CardContent>
           </Card>
         </Grid>
@@ -72,9 +94,9 @@ export default function ListContainer(props) {
         </Grid>
       </Grid>
       <Progress
-        todos={props.todos}
-        habits={props.habits}
-        actions={props.actions}
+        todos={todos}
+        habits={habits}
+        actions={actions}
       />
     </div>
   );
