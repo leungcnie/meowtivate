@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ListContainer(props) {
   const { state, actionFunctions } = props;
-  const { actions, todos, habits } = state;
+  const { actions, todos, habits, streaks, logDatas } = state;
   const classes = useStyles();
 
   console.log("habits in ListsContainer", habits);
@@ -51,6 +51,22 @@ export default function ListContainer(props) {
   console.log("completed", completed);
   console.log("checkedHabits", checkedHabits);
   console.log("checkedTodos", checkedTodos);
+
+  const totalAmount = actions.length;
+
+  const completedAmount = completed.length;
+  const completedPrecentage = completedAmount / totalAmount;
+
+  console.log("progress", completedPrecentage);
+
+  const getStreaks = (obj) => {
+    if (obj.streak > obj.current_streak) {
+      return obj.streak;
+    }
+    return obj.current_streak;
+  };
+  const currentStreaks = getStreaks(streaks[0]);
+  console.log("progress", currentStreaks);
 
   return (
     <>
@@ -98,9 +114,10 @@ export default function ListContainer(props) {
           </Grid>
         </Grid>
         <Progress
-          actions={props.actions}
-          streaks={props.streaks}
-          logDatas={props.logDatas}
+          completedPrecentage={completedPrecentage}
+          completedAmount={completedAmount}
+          totalAmount={totalAmount}
+          currentStreaks={currentStreaks}
         />
       </div>
     </>

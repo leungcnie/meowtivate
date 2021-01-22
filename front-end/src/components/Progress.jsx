@@ -2,25 +2,14 @@ import React from "react";
 import "./progress.css";
 
 function Progress(props) {
-  const { actions, streaks, logDatas } = props;
-  const totalAmount = actions.length;
+  // console.log("currentStreaks", props);
 
-  const completed = actions.filter((item) => item.is_completed === true);
-
-  const completedAmount = completed.length;
-  const completedPrecentage = completedAmount / totalAmount;
-
-  // console.log("progress", streaks);
-
-  const getStreaks = (obj) => {
-    if (obj.streak > obj.current_streak) {
-      return obj.streak;
-    }
-    return obj.current_streak;
-  };
-  const currentStreaks = getStreaks(streaks[0]);
-
-  // console.log("currentStreaks", currentStreaks);
+  const {
+    completedPrecentage,
+    completedAmount,
+    totalAmount,
+    currentStreaks,
+  } = props;
 
   return (
     <div className="progress">
@@ -28,7 +17,9 @@ function Progress(props) {
         className="todos-completed"
         style={{ width: `${completedPrecentage * 100}%` }}
       ></div>
-      Completed {completedAmount} / {totalAmount}
+      <p>
+        Completed {completedAmount} / {totalAmount}
+      </p>
       <p>Here is your current streak: {currentStreaks}</p>
     </div>
   );
