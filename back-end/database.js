@@ -322,13 +322,13 @@ const getLogData = (id) => {
 exports.getLogData = getLogData;
 
 /*--------- Post data log -----------*/
-const postLogData = (user_id, is_completed) => {
+const postLogData = (user_id, is_completed, date_created) => {
   return db
     .query(
       `INSERT INTO logDatas (user_id, date_created, is_completed)
-      VALUES ($1, CURRENT_DATE , $2),
+      VALUES ($1, $3, $2);
         `,
-      [user_id, is_completed]
+      [user_id, is_completed, date_created]
     )
     .then((res) => res.rows)
     .catch((err) => console.error("query getAllCats error", err.stack));
@@ -336,14 +336,14 @@ const postLogData = (user_id, is_completed) => {
 exports.postLogData = postLogData;
 
 // /*--------- update data log -----------*/
-// const updateLogData = (id, is_completed) => {
+// const updateLogData = (id, is_completed, date_created) => {
 //   return db
 //     .query(
 //       `UPDATE logDatas
 //       SET is_completed = $2
-//       WHERE user_id = $1
+//       WHERE user_id = $1 AND date_created = $3
 //         `,
-//       [id, is_completed]
+//       [id, is_completed, date_created]
 //     )
 //     .then((res) => res.rows)
 //     .catch((err) => console.error("query getAllCats error", err.stack));

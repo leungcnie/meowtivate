@@ -26,11 +26,12 @@ module.exports = (router, db) => {
   });
   /*--------- Post data log -----------*/
 
-  router.post("/logdata/:id", (req, res) => {
-    const { id } = req.params;
-    db.postLogData(id)
+  router.post("/logdata", (req, res) => {
+    const { user_id, is_completed, date_created } = req.body;
+
+    db.postLogData(user_id, is_completed, date_created)
       .then((data) => {
-        res.send(data);
+        res.status(200).send("Successfully post new complete");
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -40,7 +41,7 @@ module.exports = (router, db) => {
   // /*--------- update data log -----------*/
   // router.put("/logdata/:id", (req, res) => {
   //   const { id } = req.params;
-  //   const { is_completed } = req.body;
+  //   const { date_created, is_completed } = req.body;
   //   db.postLogData(id, is_completed)
   //     .then(() => {
   //       res.status(200).send("Successfully update streak, current_streak");
