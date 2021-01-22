@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import {
   removeFromActions,
@@ -18,7 +18,11 @@ export default function useApplicationDate() {
     streaks: [],
   });
 
-  console.log("useApplicationDate correct is_completed state", state);
+  useEffect(() => {
+    console.log("Current state:", state);
+  }, [state]);
+
+  // console.log("useApplicationDate correct is_completed state", state);
 
   const addAction = (action_name, categoryID) => {
     console.log("action_name in useApp", action_name);
@@ -135,6 +139,7 @@ export default function useApplicationDate() {
     addAction,
     deleteAction,
     editActionName,
+    editCompletedState,
   };
 
   useEffect(() => {
@@ -148,7 +153,8 @@ export default function useApplicationDate() {
       axios.get("/api/streaks/1"),
     ])
       .then((res) => {
-        console.log("res.data in cats collection:", res.data);
+        // console.log("res.data in useAppDate promise.all:", res.data);
+
         setState((prev) => ({
           ...prev,
           unlocked: res[0].data,
