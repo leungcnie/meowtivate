@@ -6,36 +6,49 @@ export default function useApplicationDate() {
     collections: [],
     todos: [],
     habits: [],
+    actions: [],
+    account: [],
   });
 
-  //
+  // console.log("useApplicationDate correct is_completed state", state.account);
 
-  const login = () => {
-    const loginURL = `'/api/login/1'`;
-    return axios.get(loginURL).then(() => {
-      setState(() => ({ ...state }));
+  // const removeFromHabits = (id) => {
+  //   const target = state.habits.filter((obj) => {
+  //     obj.id === id
+  //   })[0];
+
+  //   const targetIndex = habits.indexOf(target);
+
+  //   const habits = [...state.habits].slice()
+  // }
+
+  const addAction = (actionName) => {};
+
+  const deleteAction = (actionId) => {
+    // Delete habit/todo with actionId in the current state
+
+    return axios.delete(`/api/actions/${actionId}`).then(() => {
+      setState({
+        ...state,
+      });
     });
   };
 
-  // const addlist = () => {
-  //   const loginURL = `/api/login/1`;
-  //   return axios.get(loginURL).then(() => {
-  //     setState(() => ({ ...state }));
-  //   });
-  // };
+  const editAction = (actionId) => {};
 
-  // const login = () => {
-  //   const loginURL = `/api/login/1`;
-  //   return axios.get(loginURL).then((res) => {
-  //     res.data;
-  //   });
-  // };
+  const listFunctions = {
+    addAction,
+    deleteAction,
+    editAction,
+  };
 
   useEffect(() => {
     Promise.all([
       axios.get("/api/collections/1"),
       axios.get("/api/todos/1"),
       axios.get("/api/habits/1"),
+      axios.get("/api/actions/1"),
+      axios.get("/api/accounts/login/1"),
     ])
       .then((res) => {
         console.log("res.data in cats collection:", res.data);
@@ -44,6 +57,8 @@ export default function useApplicationDate() {
           collections: res[0].data,
           todos: res[1].data,
           habits: res[2].data,
+          actions: res[3].data,
+          account: res[4].data,
         }));
       })
       .catch((err) => {
@@ -51,5 +66,5 @@ export default function useApplicationDate() {
       });
   }, []);
 
-  return { state, login };
+  return { state, deleteAction };
 }

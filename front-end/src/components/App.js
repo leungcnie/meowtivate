@@ -4,9 +4,9 @@ App.js is responsible for containing all the routes and passing state as props
 
 import "./styles/App.css";
 
-import '@fontsource/itim';
-import '@fontsource/varela-round';
-import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+import "@fontsource/itim";
+import "@fontsource/varela-round";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 // Hooks
 import useApplicationData from "../hooks/useApplicationData";
@@ -14,6 +14,7 @@ import useApplicationData from "../hooks/useApplicationData";
 // Pages imported from src/pages dir
 import WelcomePage from "../pages/WelcomePage";
 import LoginPage from "../pages/LoginPage";
+import RegisterPage from "../pages/RegisterPage";
 import DashboardPage from "../pages/DashboardPage";
 import ListsPage from "../pages/ListsPage";
 import CatsPage from "../pages/CatsPage";
@@ -22,6 +23,8 @@ import NotFoundPage from "./404";
 
 function App() {
   const { state } = useApplicationData();
+
+  console.log("app.js is_completed", state.account);
 
   return (
     <div className="App">
@@ -33,6 +36,9 @@ function App() {
           </Route>
           <Route exact path="/login" component={LoginPage}>
             <LoginPage state={state} />
+          </Route>
+          <Route exact path="/register" component={RegisterPage}>
+            <RegisterPage state={state} />
           </Route>
           <Route exact path="/dashboard" component={DashboardPage}>
             <DashboardPage state={state} />

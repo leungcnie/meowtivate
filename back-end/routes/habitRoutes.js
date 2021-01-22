@@ -13,53 +13,25 @@ module.exports = (router, db) => {
       });
   });
 
-  router.post("/:id", (req, res) => {
-    const { action_name, is_completed } = req.body;
+  router.post("/", (req, res) => {
+    const { action_name } = req.body;
 
-    db.createHabit(action_name, is_completed)
+    db.createHabit(action_name)
       .then((data) => {
-        res.json(data);
-        // console.log(request.body.habits);
-        // console.log("cannot get the correct", data);
+        res.send("Check the console for data!");
       })
-      .catch((error) => console.log(error));
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
   });
 
-  // router.put("/:id", (request, response) => {
-  //   const { student, interviewer } = request.body.interview;
-
-  //   db.query(
-  //     `
-  //     INSERT INTO actions (student, interviewer_id, appointment_id) VALUES ($1::text, $2::integer, $3::integer)
-  //     ON CONFLICT (appointment_id) DO
-  //     UPDATE SET student = $1::text, interviewer_id = $2::integer
-  //   `,
-  //     [student, interviewer, Number(request.params.id)]
-  //   )
-  //     .then(() => {
-  //       setTimeout(() => {
-  //         response.status(204).json({});
-  //         updateAppointment(Number(request.params.id), request.body.interview);
-  //       }, 1000);
-  //     })
-  //     .catch((error) => console.log(error));
-  // });
-
-  // router.delete("/appointments/:id", (request, response) => {
-  //   if (process.env.TEST_ERROR) {
-  //     setTimeout(() => response.status(500).json({}), 1000);
-  //     return;
-  //   }
-
-  //   db.query(`DELETE FROM interviews WHERE appointment_id = $1::integer`, [
-  //     request.params.id,
-  //   ]).then(() => {
-  //     setTimeout(() => {
-  //       response.status(204).json({});
-  //       updateAppointment(Number(request.params.id), null);
-  //     }, 1000);
-  //   });
-  // });
+  // update todo & habit states
+  router.put("/:id", (req, res) => {
+    const { id, is_completed } = req.body;
+    db.updateState(id, is_completed).then((example) => {
+      res.status(204).send("Successfully updateState!");
+    });
+  });
 
   return router;
 };

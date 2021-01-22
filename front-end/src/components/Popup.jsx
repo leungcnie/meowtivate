@@ -1,53 +1,80 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContentText from '@material-ui/core/DialogContentText';
 
 export default function Popup(props) {
-  const { handleClose, open } = props;
-  // const [open, setOpen] = React.useState(false);
+  const { popupDelete, cancel, popupState, category } = props;
+  const { open, type, actionID, actionName } = popupState;
+  const listType = category === 1 ? "to-do" : "habit";
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
+  // Making form a controlled component
+  const [name, setName] = useState(actionName);
 
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
+  // Prevent stale props by re-rendering when actionName changes in parent
+  useEffect(() => {
+    setName(actionName)
+  }, [actionName])
+
+  console.log("actionName", actionName);
 
   return (
     <div>
-      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open form dialog
-      </Button> */}
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title"></DialogTitle>
+      { type === "Delete" ? (
+              <Dialog
+              open={open}
+              onClose={cancel}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{type} {listType}?</DialogTitle>
+              <DialogContent>
+                {/* <DialogContentText>
+                {actionID}
+                </DialogContentText> */}
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={() => popupDelete(actionID)} color="primary">
+                  Confirm
+                </Button>
+                <Button onClick={cancel} color="primary" autoFocus>
+                  Cancel
+                </Button>
+              </DialogActions>
+            </Dialog>
+      ) : (
+        <Dialog open={open} onClose={cancel} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">{type} a {listType}</DialogTitle>
         <DialogContent>
           {/* <DialogContentText>
-            To subscribe to this website, please enter your email address here. We will send updates
-            occasionally.
+            {actionID}
           </DialogContentText> */}
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="What do you need to do?"
-            type="text"
-            fullWidth
-          />
+          <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              type="text"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              fullWidth
+            />
+          </form>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={cancel} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={cancel} color="primary">
             Save
           </Button>
         </DialogActions>
       </Dialog>
+      )}
     </div>
   );
 }

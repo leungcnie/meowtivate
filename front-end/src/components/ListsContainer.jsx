@@ -2,9 +2,10 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import ActionList from "./ActionList";
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import CatPlant from './CatPlant'
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Progress from "./Progress";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,8 +16,8 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: '5vw',
   },
   header: {
-    fontFamily: 'Varela Round',
-    letterSpacing: "8px"
+    fontFamily: "Varela Round",
+    letterSpacing: "8px",
   },
   plantbox: {
     position:'relative',
@@ -44,7 +45,7 @@ export default function ListContainer(props) {
           <Card className={classes.lists}>
             <CardContent>
               <h3>Daily Habits</h3>
-              <ActionList items={props.habits} />
+              <ActionList items={props.habits} category={2} />
             </CardContent>
           </Card>
         </Grid>
@@ -52,7 +53,7 @@ export default function ListContainer(props) {
           <Card className={classes.lists}>
             <CardContent>
               <h3>To-Do Today</h3>
-              <ActionList items={props.todos} />
+              <ActionList items={props.todos} category={1} />
             </CardContent>
           </Card>
         </Grid>
@@ -69,6 +70,11 @@ export default function ListContainer(props) {
           </Card>
         </Grid>
       </Grid>
+      <Progress
+        todos={props.todos}
+        habits={props.habits}
+        actions={props.actions}
+      />
     </div>
   );
 }
