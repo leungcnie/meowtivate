@@ -27,21 +27,21 @@ const useStyles = makeStyles(theme => ({
   },
   animatedItem: {
     animation: `$myEffect 3000ms ${theme.transitions.easing.easeInOut}`,
-    opacity:1,
+
   },
 
   "@keyframes myEffect": {
     '0%': {
       transform: 'translateY(30%)',
-      opacity:0,
+
     },
     '16%': {
       transform: 'translateY(-3%)',
-      opacity: 0.75,
+
     },
     '28%': {
       transform: 'translateY(5%)',
-      opacity: 1,
+
     },
     '44%': {
       transform: 'translateY(-2%)'
