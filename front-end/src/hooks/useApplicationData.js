@@ -48,7 +48,7 @@ export default function useApplicationDate() {
       axios.get("/api/todos/1"),
       axios.get("/api/habits/1"),
       axios.get("/api/actions/1"),
-      axios.get("/api/accounts/login/1"),
+      axios.get("/api/accounts/1"),
     ])
       .then((res) => {
         console.log("res.data in cats collection:", res.data);
