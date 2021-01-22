@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 class Progress extends Component {
   render() {
-    const { actions, streaks, logDatas } = this.props;
+    const { actions, streaks, logDatas } = this.props.progress;
     console.log("actions", actions);
 
     const totalAmount = actions.length;
@@ -41,9 +41,7 @@ class Progress extends Component {
 
 const calStateToProps = (state) => {
   return {
-    actions: state.actions,
-    streaks: state.streaks,
-    logDatas: state.logDatas,
+    progress: state.progress,
   };
 };
 
