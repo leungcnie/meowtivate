@@ -19,7 +19,6 @@ const getExampleWithID = (id) => {
 
 exports.getExampleWithID = getExampleWithID;
 
-// EXAMPLES insert QUERIES
 const getExample = (text) => {
   return db
     .query(
@@ -29,8 +28,8 @@ const getExample = (text) => {
       [text]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows);
-      return res.rows;
+      console.log("whats res.rows[0]", res.rows[0]);
+      return res.rows[0];
     });
 };
 
@@ -69,10 +68,10 @@ const getCatsCollections = (id) => {
   return db
     .query(
       `SELECT cats.id, cat_name, image_url, description, date_unlocked
-FROM cats 
-JOIN user_unlocked_cats on cat_id = cats.id
-JOIN users on users.id = user_id
-WHERE users.id = $1`,
+      FROM cats 
+      JOIN user_unlocked_cats on cat_id = cats.id
+      JOIN users on users.id = user_id
+      WHERE users.id = $1`,
       [id]
     )
     .then((res) => res.rows)
@@ -80,7 +79,7 @@ WHERE users.id = $1`,
 };
 exports.getCatsCollections = getCatsCollections;
 
-// --------- todo -------
+// --------- TODO -------
 //create todo
 const createTodo = (action_name) => {
   return db
@@ -149,39 +148,41 @@ const getHabits = (id) => {
 };
 exports.getHabits = getHabits;
 
-//updateName habit | todo
+//updateAction habit | todo
 
-const updateName = (id, action_name, is_completed) => {
+const updateAction = (id, action_name, is_completed) => {
   return db
     .query(
       `UPDATE actions
       SET action_name = $2, is_completed = $3
-      WHERE id = $1;`,
+      WHERE id = $1
+      RETURNING *;`,
       [id, action_name, is_completed]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows);
-      return res.rows;
+      console.log("updateAction res.rows[0]", res.rows[0]);
+      return res.rows[0];
     });
 };
-exports.updateName = updateName;
+exports.updateAction = updateAction;
 
 //update is_completed
-const updateState = (id, is_completed) => {
+const updateCompletion = (id, is_completed) => {
   return db
     .query(
       `UPDATE actions
       SET is_completed = $2
-      WHERE id = $1;`,
+      WHERE id = $1
+      RETURNING *;`,
       [id, is_completed]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows);
-      return res.rows;
+      console.log("updateCompletion res.rows[0]", res.rows[0]);
+      return res.rows[0];
     });
 };
 
-exports.updateState = updateState;
+exports.updateCompletion = updateCompletion;
 
 //delete habit/todo
 const deleteAction = (id) => {

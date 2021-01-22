@@ -26,12 +26,12 @@ module.exports = (router, db) => {
   });
 
   // update todo & habit states
-  router.put("/:id", (req, res) => {
-    const { id, is_completed } = req.body;
-    db.updateState(id, is_completed).then((example) => {
-      res.status(204).send("Successfully updateState!");
-    });
-  });
+  // router.put("/:id", (req, res) => {
+  //   const { id, is_completed } = req.body;
+  //   db.updateState(id, is_completed).then((example) => {
+  //     res.status(204).send("Successfully updateState!");
+  //   });
+  // });
 
   return router;
 };
