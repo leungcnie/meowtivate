@@ -6,9 +6,14 @@ import { CalendarApp } from "../components/Calendar-import";
 import NavBar from '../components/NavBar';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    paddingLeft: '5vw',
+    paddingRight: '5vw',
+    margin: 'auto',
   },
 }));
 
@@ -17,31 +22,43 @@ export default function DashboardPage(props) {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div>
       <NavBar />
-      <Grid container spacing={3}>
+      <Grid container spacing={3} className={classes.root}>
         <Grid item xs={4}>
-          <CalendarApp />
+          <Card>
+            <CardContent>
+              <CalendarApp />
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item xs={4}>
-          <Grid item>
-            <Button component={Link} to="/lists">
-              My Lists
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button component={Link} to="/cats">
-              My Collection
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button component={Link} to="/account">
-              My Account
-            </Button>
-          </Grid>
+          <Card>
+            <CardContent>
+              <Grid item>
+                <Button component={Link} to="/lists">
+                  My Lists
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button component={Link} to="/cats">
+                  My Collection
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button component={Link} to="/account">
+                  My Account
+                </Button>
+              </Grid>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item xs={4}>
-        <Weather />
+          <Card>
+            <CardContent className={classes.root}>
+              <Weather />
+            </CardContent>
+          </Card>
         </Grid>
       </Grid>
     </div>

@@ -1,13 +1,13 @@
 .sunny {
-  background-color: #f7e5b7;
+  background-color: 'transparent';
 }
 
 .rainy {
-  background-color: #6e7b8f;
+  background-color: 'transparent';
 }
 
 .cloudy {
-  background-color: #d7e2ea;
+  background-color: 'transparent';
 }
 
 .weather {
