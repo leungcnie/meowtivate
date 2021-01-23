@@ -124,7 +124,7 @@ export default function ListContainer(props) {
                   </h3>
                 </div>
                 <div className={classes.plantbox}>
-                  <CatPlant />
+                  <CatPlant state={state} />
                 </div>
               </CardContent>
             </Card>
