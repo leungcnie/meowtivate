@@ -36,12 +36,10 @@ export default function GalleryItem(props) {
             <p>{props.description}</p>
           </main>
           <footer className="meow-item-footer">
-            {props.date.substring(0, 10)}
+            {/* {props.date.substring(0, 10)} */}
           </footer>
         </CardContent>
       </Card>
-      {/* <article className="meow-item">
-      </article> */}
     </Grid>
   );
 }
