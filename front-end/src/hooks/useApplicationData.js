@@ -5,6 +5,7 @@ import {
   addToActions,
   getActionProperty,
   modifyActionWith,
+  getNewUnlockedCat,
 } from "../helpers/stateHelpers";
 
 export default function useApplicationDate() {
@@ -16,13 +17,15 @@ export default function useApplicationDate() {
     account: [],
     allCats: [],
   });
-
+  
+  // Log current state for debugging
   useEffect(() => {
     console.log("Current state:", state)
   }, [state])
 
-  // console.log("useApplicationDate correct is_completed state", state);
-
+  //--------------------
+  // ACTION FUNCTIONS //
+  //--------------------
   const addAction = (action_name, categoryID) => {
     console.log("action_name in useApp", action_name);
 
@@ -134,12 +137,36 @@ export default function useApplicationDate() {
       });
   };
 
+  // Store all action-altering functions in obj to easily pass down as props
   const actionFunctions = {
     addAction,
     deleteAction,
     editActionName,
     editCompletedState
   };
+
+  //---------------------------
+  // UNLOCKED CATS FUNCTIONS //
+  //---------------------------
+
+  const addUnlocked = (cat_id, user_id) => {
+    return axios
+      .post('/api/collections/unlocked', {cat_id, user_id})
+      .then((res) => {
+        // Get newly unlocked cat and add to 'unlocked'
+        const unlocked = getNewUnlockedCat(cat_id, res.data, state);
+
+        setState({
+          ...state,
+          unlocked
+        });
+      });
+  };
+
+  // Store all cat functions
+  const catFunctions = {
+    addUnlocked,
+  }
 
   useEffect(() => {
     Promise.all([
@@ -168,5 +195,5 @@ export default function useApplicationDate() {
       });
   }, []);
 
-  return { state, actionFunctions };
+  return { state, actionFunctions, catFunctions };
 }
