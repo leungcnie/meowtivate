@@ -45,25 +45,6 @@ export default function ListContainer(props) {
   console.log("streaks in ListsContainer", streaks);
   console.log("streaks in logDatas", logDatas);
 
-  const streakUpdate = (completedPercentage, streaks) => {
-    const currentDate = new Date();
-    if (completedPercentage >= 1) {
-      postLogData(1, currentDate, true);
-      streaks[0].current_streak += 1;
-      if (streaks[0].current_streak > streaks[0].streak) {
-        streaks[0].streak = streaks[0].current_streak;
-      }
-    }
-    const currentTime = new Date().getTime();
-    if (2211363933078 < currentTime) {
-      streaks[0].current_streak = 0;
-      streaks[0].streak = 0;
-    }
-    updateStreak(1, streaks[0].streak, streaks[0].current_streak);
-  };
-
-  console.log("habits in ListsContainer", habits);
-
   const completed = actions.filter((obj) => obj.is_completed === true);
   const checkedHabits = completed.filter((obj) => obj.category_id === 2);
   const checkedTodos = completed.filter((obj) => obj.category_id === 1);
@@ -124,7 +105,7 @@ export default function ListContainer(props) {
                   </h3>
                 </div>
                 <div className={classes.plantbox}>
-                  <CatPlant state={state} />
+                  {/* <CatPlant state={state} /> */}
                 </div>
               </CardContent>
             </Card>
