@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 
   },
   animatedItem: {
-    animation: `$myEffect 3000ms ${theme.transitions.easing.easeInOut}`,
+    animation: `$myEffect 1500ms ${theme.transitions.easing.easeInOut}`,
 
   },
 
@@ -75,7 +75,7 @@ export default function CatPlant(props) {
   
   useEffect(() => {
     setStart(true);
-    timer = setTimeout(() => setStart(false), 3000);
+    timer = setTimeout(() => setStart(false), 1500);
   }, [actions])
 
   useEffect(() => {
