@@ -135,25 +135,6 @@ export default function useApplicationDate() {
       });
   };
 
-  // const streakUpdate = (completedPercentage, streaks) => {
-  //   const currentDate = new Date();
-  //   if (completedPercentage >= 1) {
-  //     postLogData(1, currentDate, true);
-  //     streaks[0].current_streak += 1;
-  //     if (streaks[0].current_streak > streaks[0].streak) {
-  //       streaks[0].streak = streaks[0].current_streak;
-  //     }
-  //   }
-  //   const currentTime = new Date().getTime();
-  //   if (2211363933078 < currentTime) {
-  //     streaks[0].current_streak = 0;
-  //     streaks[0].streak = 0;
-  //   }
-  //   updateStreak(1, streaks[0].streak, streaks[0].current_streak);
-  // };
-
-  // console.log("habits in ListsContainer", habits);
-
   //post a completed into logdate
   const postLogData = (id, date_created, is_completed) => {
     const { streaks, logDatas } = state;
