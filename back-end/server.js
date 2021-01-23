@@ -46,6 +46,13 @@ const actionRoutes = require("./routes/actionRoutes");
 const accountRoutes = require("./routes/accountRoutes");
 const streakRoutes = require("./routes/streakRoutes");
 
+// Twilio
+const pino = require("express-pino-logger")();
+const client = require("twilio")(
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
+);
+
 // Mount all resource routes
 const indexRouter = express.Router();
 app.use("/api/", indexRoutes(indexRouter, db)); // login + logout routes included

@@ -20,6 +20,7 @@ import ListsPage from "../pages/ListsPage";
 import CatsPage from "../pages/CatsPage";
 import AccountPage from "../pages/AccountPage";
 import NotFoundPage from "./404";
+import SMSForm from "./SMSForm";
 
 function App() {
   const { state, actionFunctions } = useApplicationData();
@@ -55,6 +56,11 @@ function App() {
           <Route exact path="*" component={NotFoundPage} />
         </Switch>
       </Router>
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+
+        <SMSForm />
+      </header>
     </div>
   );
 }
