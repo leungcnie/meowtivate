@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
+import getCurrentDate from '../helpers/getCurrentDate';
 
 const useStyles = makeStyles((theme) => ({
   // display: {
@@ -49,11 +50,12 @@ export default function UnlockBadge(props) {
   const percentage = Math.floor(initial / 10) * 10;
 
   // Get current date
-  let today = new Date();
-  const dd = String(today.getDate()).padStart(2, '0');
-  const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0
-  const yyyy = today.getFullYear();
-  today = `${yyyy}-${mm}-${dd}`;
+  // let today = new Date();
+  // const dd = String(today.getDate()).padStart(2, '0');
+  // const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0
+  // const yyyy = today.getFullYear();
+  // today = `${yyyy}-${mm}-${dd}`;
+  const today = getCurrentDate();
 
   // console.log("date (unlocked)", today)
   // console.log("unlocked", unlocked);
