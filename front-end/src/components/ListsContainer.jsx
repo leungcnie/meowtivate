@@ -22,16 +22,16 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "8px",
   },
   plantbox: {
-    position:'relative',
-    alignText: 'center',
-    margins: 'auto',
-    top: '0px',
-    left: '0px',
+    position:'static',
     zIndex: 1,
+    minWidth: '10vw',
+    minHeight: '40vh',
+    paddingLeft: '5vw',
+    paddingRight: '5vw',
   },
   lists: {
     minWidth: '10vw',
-    minHeight: '25vh',
+    minHeight: '50vh',
   }
 
 }));
@@ -84,23 +84,23 @@ export default function ListContainer(props) {
           </Card>
         </Grid>
         <Grid item xs={4}>
-          <Card className={classes.root}>
+          <Card>
             <CardContent>
               {/* <div>
-                <h3>Today's Progress</h3>
               </div> */}
-              <div className={classes.plantbox}> 
+              <div className={classes.plantbox}>
+                <h3>Today's Progress</h3>
                 <CatPlant actions={actions} />
               </div>
             </CardContent>
           </Card>
         </Grid>
-      </Grid>
       <Progress
         todos={todos}
         habits={habits}
         actions={actions}
-      />
+        />
+        </Grid>
     </div>
     </>
   );
