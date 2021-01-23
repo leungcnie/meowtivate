@@ -56,13 +56,16 @@ export default function ListContainer(props) {
   console.log("checkedTodos", checkedTodos);
 
   const totalAmount = actions.length;
-
   const completedAmount = completed.length;
   const completedPercentage = completedAmount / totalAmount;
 
   console.log("completedPercentage", completedPercentage);
 
-  // onChange={() => streakUpdate(completedPercentage, streaks)}
+  // const handleStreak = (userId, completed) => {
+  //   updateStreak = (userId, completed);
+  //   const date_created = Date();
+  //   postLogData = (userId, date_created);
+  // };
 
   return (
     <>
@@ -108,7 +111,11 @@ export default function ListContainer(props) {
               </CardContent>
             </Card>
           </Grid>
-          <Progress todos={todos} habits={habits} actions={actions} />
+          <Progress
+            completedPercentage={completedPercentage}
+            completedAmount={completedAmount}
+            totalAmount={totalAmount}
+          />
         </Grid>
       </div>
     </>

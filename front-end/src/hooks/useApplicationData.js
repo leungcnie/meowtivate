@@ -138,7 +138,7 @@ export default function useApplicationDate() {
   };
 
   //post a completed into logdate
-  const postLogData = (id, date_created) => {
+  const postLogData = (id, date_created, completed) => {
     return axios
       .post(`/api/streaks/logdata/${id}`, { date_created })
       .then((res) => {
