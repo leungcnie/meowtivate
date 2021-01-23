@@ -22,16 +22,16 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "8px",
   },
   plantbox: {
-    position: "relative",
-    alignText: "center",
-    margins: "auto",
-    top: "0px",
-    left: "0px",
+    position: "static",
     zIndex: 1,
+    minWidth: "10vw",
+    minHeight: "40vh",
+    paddingLeft: "5vw",
+    paddingRight: "5vw",
   },
   lists: {
     minWidth: "10vw",
-    minHeight: "25vh",
+    minHeight: "50vh",
   },
 }));
 
@@ -66,7 +66,7 @@ export default function ListContainer(props) {
 
   return (
     <>
-      {completedPercentage === "1" && <UnlockBadge />}
+      <UnlockBadge state={state} />
       <div className={classes.root}>
         <h2 className={classes.header}>LET'S GET LOTS DONE TODAY</h2>
         <Grid container spacing={4}>
@@ -97,26 +97,19 @@ export default function ListContainer(props) {
             </Card>
           </Grid>
           <Grid item xs={4}>
-            <Card className={classes.root}>
+            <Card>
               <CardContent>
-                <div>
-                  <h3>
-                    Today's Progress {completedAmount} / {totalAmount}
-                  </h3>
-                </div>
+                {/* <div>
+              </div> */}
                 <div className={classes.plantbox}>
-                  {/* <CatPlant state={state} /> */}
+                  <h3>Today's Progress</h3>
+                  <CatPlant actions={actions} />
                 </div>
               </CardContent>
             </Card>
           </Grid>
+          <Progress todos={todos} habits={habits} actions={actions} />
         </Grid>
-        <Progress
-          completedPercentage={completedPercentage}
-          completedAmount={completedAmount}
-          totalAmount={totalAmount}
-          // currentStreaks={currentStreaks}
-        />
       </div>
     </>
   );
