@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import clsx from "clsx";
+import UnlockBadge from './UnlockBadge';
 
 const useStyles = makeStyles(theme => ({
   pot: {
@@ -12,6 +13,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: 2,
   },
   plant: {
+    opacity: 0,
     width: '10vw',
     position:'relative',
     zIndex: 1,
@@ -63,10 +65,40 @@ const useStyles = makeStyles(theme => ({
 
 export default function CatPlant(props) {
   const classes = useStyles();
+  const { actions } = props;
   const [start, setStart] = React.useState(false);
+  let timer;
+
+  // Calculate percentage
+  const totalAmount = actions.length;
+  const totalCompleted = actions.filter(obj => obj.is_completed === true).length;
+  const initial = ( totalCompleted / totalAmount ) * 100;
+  const num = Math.floor(initial / 10) * 10;
+
+  const [percentage, setPercentage] = useState(initial);
+
+  // useEffect(() => {
+  //   const totalAmount = actions.length;
+  //   const totalCompleted = actions.filter(obj => obj.is_completed === true).length;
+  //   const initial = ( totalCompleted / totalAmount ) * 100;
+  //   const num = Math.floor(initial / 10) * 10;
+  //   setPercentage(num);
+  // }, [actions])
+  
+  console.log("num", num)
+
+  useEffect(() => {
+    setStart(true);
+    timer = setTimeout(() => setStart(false), 3500);
+  }, [actions])
+
+  useEffect(() => {
+    return () => clearInterval(timer);
+  }, [start])
 
   return (
     <>
+      {/* <UnlockBadge percentage={num}/> */}
       <article>
         <div className={classes.plantContainer}>
           {/* <img className={clsx(classes.plant,
@@ -75,7 +107,7 @@ export default function CatPlant(props) {
 
           <img className={clsx(classes.plant,
             {[classes.animatedItem]: start}
-          )} src="https://meowtivate.s3-us-west-2.amazonaws.com/20plant.png" alt="plant"/>
+          )} src={`https://meowtivate.s3-us-west-2.amazonaws.com/${num}plant.png`} alt="plant" style={{opacity: 1}}/>
 
           {/* <img className={clsx(classes.plant,
             {[classes.animatedItem]: start}
@@ -107,9 +139,7 @@ export default function CatPlant(props) {
 
           <img className={classes.pot} src="https://meowtivate.s3-us-west-2.amazonaws.com/pot.png" alt="pot"/>
         </div>
-          <Button onClick={() => setStart(true)}>start</Button>
       </article>
-      {start && <Button onClick={() => setStart(false)}>reset</Button>}
     </>
   );
 }

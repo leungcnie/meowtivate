@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ListContainer(props) {
   const { state, actionFunctions } = props;
-  const { actions, todos, habits, streaks, logDatas } = state;
+  const { actions, todos, habits, unlocked, streaks, logDatas } = state;
   const classes = useStyles();
 
   const { postLogData, updateStreak } = actionFunctions;
