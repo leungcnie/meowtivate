@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import clsx from "clsx";
-import UnlockBadge from './UnlockBadge';
 
 const useStyles = makeStyles(theme => ({
   pot: {
@@ -76,17 +74,7 @@ export default function CatPlant(props) {
   const num = Math.floor(initial / 10) * 10;
 
   const [percentage, setPercentage] = useState(initial);
-
-  // useEffect(() => {
-  //   const totalAmount = actions.length;
-  //   const totalCompleted = actions.filter(obj => obj.is_completed === true).length;
-  //   const initial = ( totalCompleted / totalAmount ) * 100;
-  //   const num = Math.floor(initial / 10) * 10;
-  //   setPercentage(num);
-  // }, [actions])
   
-  console.log("num", num)
-
   useEffect(() => {
     setStart(true);
     timer = setTimeout(() => setStart(false), 3500);
@@ -98,45 +86,11 @@ export default function CatPlant(props) {
 
   return (
     <>
-      {/* <UnlockBadge percentage={num}/> */}
       <article>
         <div className={classes.plantContainer}>
-          {/* <img className={clsx(classes.plant,
-            {[classes.animatedItem]: start}
-          )} src="https://meowtivate.s3-us-west-2.amazonaws.com/10plant.png" alt="plant"/> */}
-
           <img className={clsx(classes.plant,
             {[classes.animatedItem]: start}
           )} src={`https://meowtivate.s3-us-west-2.amazonaws.com/${num}plant.png`} alt="plant" style={{opacity: 1}}/>
-
-          {/* <img className={clsx(classes.plant,
-            {[classes.animatedItem]: start}
-          )} src="https://meowtivate.s3-us-west-2.amazonaws.com/30plant.png" alt="plant"/>
-
-          <img className={clsx(classes.plant,
-            {[classes.animatedItem]: start}
-          )} src="https://meowtivate.s3-us-west-2.amazonaws.com/40plant.png" alt="plant"/>
-
-          <img className={clsx(classes.plant,
-            {[classes.animatedItem]: start}
-          )} src="https://meowtivate.s3-us-west-2.amazonaws.com/50plant.png" alt="plant"/>
-
-          <img className={clsx(classes.plant,
-            {[classes.animatedItem]: start}
-          )} src="https://meowtivate.s3-us-west-2.amazonaws.com/60plant.png" alt="plant"/>
-
-          <img className={clsx(classes.plant,
-            {[classes.animatedItem]: start}
-          )} src="https://meowtivate.s3-us-west-2.amazonaws.com/70plant.png" alt="plant"/> */}
-
-          {/* <img className={clsx(classes.plant,
-            {[classes.animatedItem]: start}
-          )} src="https://meowtivate.s3-us-west-2.amazonaws.com/80plant.png" alt="plant"/> */}
-
-          {/* <img className={clsx(classes.plant,
-            {[classes.animatedItem]: start}
-          )} src="https://meowtivate.s3-us-west-2.amazonaws.com/90plant.png" alt="plant"/> */}
-
           <img className={classes.pot} src="https://meowtivate.s3-us-west-2.amazonaws.com/pot.png" alt="pot"/>
         </div>
       </article>
