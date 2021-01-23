@@ -29,6 +29,7 @@ export default function GalleryItem(props) {
               className={classes.root}
               src={props.avatar}
               alt={props.name}
+              style={props.style}
             />
             <h2 className="meow-item-header-name">{props.name}</h2>
           </header>
@@ -36,12 +37,10 @@ export default function GalleryItem(props) {
             <p>{props.description}</p>
           </main>
           <footer className="meow-item-footer">
-            {props.date.substring(0, 10)}
+            {/* {props.date.substring(0, 10)} */}
           </footer>
         </CardContent>
       </Card>
-      {/* <article className="meow-item">
-      </article> */}
     </Grid>
   );
 }

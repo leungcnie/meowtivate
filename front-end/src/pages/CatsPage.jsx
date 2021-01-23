@@ -13,19 +13,53 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Varela Round",
     letterSpacing: "6px",
   },
+  locked: {
+    filter: 'brightness(0)',
+  }
 }));
+
+function isLocked (allCats, unlockedCats) {
+  const lockedCats = [];
+  
+  for (let cat of allCats) {
+    // console.log('cat', String(cat.id))
+    // console.log('unloked keys', Object.keys(unlockedCats))
+      if (!Object.keys(unlockedCats).includes(String(cat.id - 1))) {
+        lockedCats.push(cat);
+      }
+  }
+  return lockedCats;
+}
+
 
 export default function CatsPage(props) {
   const { state } = props;
   const classes = useStyles();
+  console.log('UNLOCKED', state.unlocked);
+  console.log('ALLCATS', state.allCats);
+  const allCatsArray = state.allCats;
+  const unlockedCatsArray = state.unlocked;
+  const lockedCatsArray = isLocked(allCatsArray, unlockedCatsArray);
 
   return (
+    <>
     <div className="Cats">
       <NavBar />
       <header>
         <h2 className={classes.header}>my Collection</h2>
       </header>
-      <GalleryContainer items={state.unlocked} />
+      <section> 
+        <GalleryContainer items={state.unlocked} style={{filter: 'brightness(1)'}}/>
+        <GalleryContainer items={lockedCatsArray} style={{filter: 'brightness(0)'}}/>
+      </section>
     </div>
+    {/* <div className="Cats">
+      <NavBar />
+      <header>
+        <h2 className={classes.header}>my Collection</h2>
+      </header>
+      <GalleryContainer items={state.unlocked} />
+    </div> */}
+    </>
   );
 }
