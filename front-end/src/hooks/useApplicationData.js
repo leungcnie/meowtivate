@@ -5,6 +5,8 @@ import {
   addToActions,
   getActionProperty,
   modifyActionWith,
+  modifyStreakActionWith,
+  addToLogDatas,
 } from "../helpers/stateHelpers";
 
 export default function useApplicationDate() {
@@ -136,29 +138,36 @@ export default function useApplicationDate() {
   };
 
   //post a completed into logdate
-  const postLogData = (id, date_created, is_completed) => {
-    const { streaks, logDatas } = state;
+  const postLogData = (id, date_created) => {
     return axios
-      .post(`/api/streaks/logdata/${id}`, { date_created, is_completed })
+      .post(`/api/streaks/logdata/${id}`, { date_created })
       .then((res) => {
+        const logDatas = addToLogDatas(res.data, state);
         setState({
           ...state,
-          streaks,
           logDatas,
         });
       });
   };
 
   // update the streak
-  const updateStreak = (id, steak, current_streak) => {
-    const { streaks, logDatas } = state;
+  const updateStreak = (id, completed) => {
+    const streaks = modifyStreakActionWith(
+      completed,
+      "curren_streak",
+      "streak",
+      id,
+      state
+    );
+    const updatedStreak = streaks[0].streak;
+    const updatedCurrent = streaks[0].current_streak;
+
     return axios
-      .put(`/api/streaks/${id}`, { id, steak, current_streak })
+      .put(`/api/streaks/${id}`, { id, updatedStreak, updatedCurrent })
       .then((res) => {
         setState({
           ...state,
           streaks,
-          logDatas,
         });
       });
   };

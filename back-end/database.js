@@ -294,7 +294,7 @@ exports.updateAccount = updateAccount;
 const getStreaks = (id) => {
   return db
     .query(
-      ` SELECT user_id, streak, current_streak
+      ` SELECT *
         FROM streaks
         WHERE user_id = $1;
         `,
@@ -322,13 +322,13 @@ const getLogData = (id) => {
 exports.getLogData = getLogData;
 
 /*--------- Post data log -----------*/
-const postLogData = (user_id, is_completed, date_created) => {
+const postLogData = (user_id, date_created) => {
   return db
     .query(
       `INSERT INTO logDatas (user_id, date_created, is_completed)
-      VALUES ($1, $3, $2);
+      VALUES ($1, $2, true);
         `,
-      [user_id, is_completed, date_created]
+      [user_id, date_created]
     )
     .then((res) => res.rows)
     .catch((err) => console.error("query getAllCats error", err.stack));

@@ -23,7 +23,6 @@ export function addToActions(action, state) {
 export function addToLogDatas(action, state) {
   const updatedLogDatas = [...state.logDatas];
   updatedLogDatas.push(action);
-
   return updatedLogDatas;
 }
 
@@ -47,24 +46,36 @@ export function modifyActionWith(val, key, id, state) {
 }
 
 // Modify action in state.streaks with new property
-export function modifyStreakActionWith(val, key1, key2, id, state) {
+export function modifyStreakActionWith(completed, key1, key2, id, state) {
   // Make a copy of the state.streaks
-  const updatedActions = [...state.streak];
+  const updatedActions = [...state.streaks];
 
   // Find specific action obj and its index, and make copy of target
-  const target = updatedActions.filter((obj) => obj.id === id)[0];
+  const target = updatedActions.filter((obj) => obj.user_id === id)[0];
   const targetIndex = updatedActions.indexOf(target);
-  const newAction = { ...target };
 
+  const newAction = { ...target };
+  const val = newAction[key1];
+
+  // check if all is  completed
+  // if true current_streaks ++
+  if (completed === 1) {
+    val++;
+  }
   // Update new action with new property val
   // compare two keys for update
   // need to ask which one is the one that return
   // this is the one that update both streak and current_streak
   newAction[key1] = val;
-  if ((val = 0 || newAction[key2] < val)) {
+  console.log("newAction[key1]", newAction[key1]);
+  console.log("newAction[key2]", newAction[key2]);
+  console.log("val", val);
+  if (val === 0 || newAction[key2] < val) {
     newAction[key2] = val;
+    console.log("val1", val);
   }
 
+  console.log("newAction[key1]", newAction[key2]);
   // this is the one that update only current_streak
 
   // if (newAction[key2] < val) {

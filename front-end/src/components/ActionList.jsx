@@ -27,6 +27,8 @@ export default function ActionList(props) {
     addAction,
     editActionName,
     editCompletedState,
+    postLogData,
+    updateStreak,
   } = actionFunctions; // State changing funcs from useApplicationData
   const classes = useStyles();
 
@@ -103,6 +105,15 @@ export default function ActionList(props) {
       ...prev,
       open: false,
     }));
+  };
+
+  const handleStreak = (userId, completed) => {
+    updateStreak = (userId, completed);
+  };
+
+  const updateLog = (userId) => {
+    const date_created = Date();
+    postLogData = (userId, date_created);
   };
 
   return (

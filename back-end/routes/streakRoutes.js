@@ -28,9 +28,9 @@ module.exports = (router, db) => {
 
   router.post("/logdata/:id", (req, res) => {
     const user_id = req.params.id;
-    const { is_completed, date_created } = req.body;
+    const { date_created } = req.body;
 
-    db.postLogData(user_id, is_completed, date_created)
+    db.postLogData(user_id, date_created)
       .then((data) => {
         res.status(200).send("Successfully post new complete");
       })
