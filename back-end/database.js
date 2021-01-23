@@ -289,3 +289,18 @@ const updateAccount = (id, email, username, password) => {
 };
 
 exports.updateAccount = updateAccount;
+
+/* ----------- UNLOCKED CATS ------------ */
+const addUnlockedCat = (cat_id, user_id) => {
+  return db
+    .query(
+      `INSERT INTO user_unlocked_cats (cat_id, user_id, date_unlocked)
+      VALUES ($1, $2, CURRENT_DATE)
+      RETURNING *;`,
+      [cat_id, user_id]
+    )
+    .then(res => res.rows[0])
+    .catch((err) => console.error("query addUnlockedCat error", err.stack));
+}
+
+exports.addUnlockedCat = addUnlockedCat;

@@ -23,5 +23,19 @@ module.exports = (router, db) => {
         res.status(500).json({ error: err.message });
       });
   });
+
+  // Create new unlocked cat
+  router.post("/unlocked", (req, res) => {
+    const { cat_id, user_id } = req.body;
+    db.addUnlockedCat(cat_id, user_id)
+      .then((data) => {
+        // Send the date
+        console.log("add new unlock date?", data.date_unlocked);
+        res.status(200).json(data.date_unlocked);
+      })
+      .catch(err => {
+        res.status(500).json({ error: err.message });
+      });
+  })
   return router;
 };

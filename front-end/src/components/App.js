@@ -22,7 +22,7 @@ import AccountPage from "../pages/AccountPage";
 import NotFoundPage from "./404";
 
 function App() {
-  const { state, actionFunctions } = useApplicationData();
+  const { state, actionFunctions, catFunctions } = useApplicationData();
 
   console.log("app.js is_completed", state.account);
 
@@ -44,7 +44,10 @@ function App() {
             <DashboardPage state={state} />
           </Route>
           <Route exact path="/lists" component={ListsPage}>
-            <ListsPage state={state} actionFunctions={actionFunctions}/>
+            <ListsPage 
+              state={state} 
+              actionFunctions={actionFunctions}
+              catFunctions={catFunctions} />
           </Route>
           <Route exact path="/cats" component={CatsPage}>
             <CatsPage state={state} />
