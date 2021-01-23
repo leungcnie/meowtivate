@@ -61,8 +61,6 @@ function App() {
         </Switch>
       </Router>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-
         <SMSForm />
       </header>
     </div>
