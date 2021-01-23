@@ -26,8 +26,9 @@ module.exports = (router, db) => {
   });
   /*--------- Post data log -----------*/
 
-  router.post("/logdata", (req, res) => {
-    const { user_id, is_completed, date_created } = req.body;
+  router.post("/logdata/:id", (req, res) => {
+    const user_id = req.params.id;
+    const { is_completed, date_created } = req.body;
 
     db.postLogData(user_id, is_completed, date_created)
       .then((data) => {

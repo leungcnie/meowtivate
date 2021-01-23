@@ -40,6 +40,35 @@ export default function ListContainer(props) {
   const { actions, todos, habits, streaks, logDatas } = state;
   const classes = useStyles();
 
+  const { postLogData, updateStreak } = actionFunctions;
+  console.log("actionFunctions in ListsContainer", actionFunctions);
+  console.log("streaks in ListsContainer", streaks);
+  console.log("streaks in logDatas", logDatas);
+
+  // postLogData,
+  // updateStreak,
+  // onchange
+  // const
+
+  // updateStreak = (id, steak, current_streak)
+  // postLogData = (id, date_created, is_completed)
+
+  const updatePostLogData = (completedPercentage, is_completed) => {
+    if (completedPercentage >= 1) {
+      postLogData(1, new Date(), is_completed);
+    }
+  };
+
+  const streakUpdate = (completedPercentage, streaks) => {
+    if (
+      (completedPercentage >= 1) &
+      (streaks.streak >= streaks.current_streak)
+    ) {
+      streaks.current_streak += 1;
+      updateStreak(1, streaks.streak, streaks.current_streak);
+    }
+  };
+
   console.log("habits in ListsContainer", habits);
 
   const completed = actions.filter((obj) => obj.is_completed === true);
@@ -56,15 +85,9 @@ export default function ListContainer(props) {
 
   const completedAmount = completed.length;
   const completedPercentage = completedAmount / totalAmount;
+  // const currentStreaks = streaks[0].current_streak;
 
-  const getStreaks = (obj) => {
-    if (obj.streak > obj.current_streak) {
-      return obj.streak;
-    }
-    return obj.current_streak;
-  };
-  const currentStreaks = getStreaks(streaks[0]);
-  console.log("progress", currentStreaks);
+  // console.log("progress", currentStreaks);
 
   console.log("completedPercentage", completedPercentage);
 
@@ -127,7 +150,7 @@ export default function ListContainer(props) {
           completedPercentage={completedPercentage}
           completedAmount={completedAmount}
           totalAmount={totalAmount}
-          currentStreaks={currentStreaks}
+          // currentStreaks={currentStreaks}
         />
       </div>
     </>

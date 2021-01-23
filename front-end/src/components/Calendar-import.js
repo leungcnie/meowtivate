@@ -11,7 +11,7 @@ export const CalendarApp = (props) => {
     day: 1,
   };
   const [selectedDay, setSelectedDay] = useState(defaultValue);
-  console.log("calender", props.items);
+  // console.log("calender", props.items);
 
   // const logDatas = { props };
   // console.log("logDatas", logDatas);
@@ -31,7 +31,6 @@ export const CalendarApp = (props) => {
     className: "purpleDay",
   }));
 
-  console.log("dates", date);
   return (
     <>
       <Calendar

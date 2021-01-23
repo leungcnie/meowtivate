@@ -135,11 +135,41 @@ export default function useApplicationDate() {
       });
   };
 
+  //post a completed into logdate
+  const postLogData = (id, date_created, is_completed) => {
+    const { streaks, logDatas } = state;
+    return axios
+      .post(`/api/streaks/logdata/${id}`, { date_created, is_completed })
+      .then((res) => {
+        setState({
+          ...state,
+          streaks,
+          logDatas,
+        });
+      });
+  };
+
+  // update the streak
+  const updateStreak = (id, steak, current_streak) => {
+    const { streaks, logDatas } = state;
+    return axios
+      .put(`/api/streaks/${id}`, { id, steak, current_streak })
+      .then((res) => {
+        setState({
+          ...state,
+          streaks,
+          logDatas,
+        });
+      });
+  };
+
   const actionFunctions = {
     addAction,
     deleteAction,
     editActionName,
     editCompletedState,
+    postLogData,
+    updateStreak,
   };
 
   useEffect(() => {
