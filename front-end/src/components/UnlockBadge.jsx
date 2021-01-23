@@ -38,6 +38,7 @@ export default function UnlockBadge(props) {
   const classes = useStyles();
   const { state } = props;
   const { actions, unlocked } = state;
+  let badgeStyle = {display: "none"};
 
   // Calculate percentage of actions done
   const totalAmount = actions.length;
@@ -54,17 +55,25 @@ export default function UnlockBadge(props) {
 
   console.log("date", today)
 
-  let badgeStyle = {display: "none"};
-
   // Check if there's already an unlock for today
-  const checkTodaysUnlock = (date) => {
-    
+  const isTodayUnlocked = (date) => {
+    // Get the array of unlocked cats dates
+    const currentUnlocked = unlocked.map(obj => obj.date_unlocked.slice(0, 10));
+    if (currentUnlocked.includes(date)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  // const decideDisplay = (percentage) => {
-  //   // If 100% complete and an unlock for today doesn't exist, unlock a cat
-  //   if (percentage === 100 && )
-  // }
+  // Decide whether to display badge 
+  const decideDisplay = (percentage) => {
+    const todayUnlockExists = isTodayUnlocked(today);
+    // If 100% complete and an unlock for today doesn't exist, unlock a cat
+    if (percentage === 100 && !todayUnlockExists) {
+      // Get locked cats IDs, randomly choose one
+    }
+  }
 
   return (
     <div className={classes.display} style={badgeStyle}>
