@@ -55,7 +55,7 @@ export function modifyStreakActionWith(completed, key1, key2, id, state) {
   const targetIndex = updatedActions.indexOf(target);
 
   const newAction = { ...target };
-  const val = newAction[key1];
+  let val = newAction[key1];
 
   // check if all is  completed
   // if true current_streaks ++
@@ -75,7 +75,7 @@ export function modifyStreakActionWith(completed, key1, key2, id, state) {
     console.log("val1", val);
   }
 
-  console.log("newAction[key1]", newAction[key2]);
+  // console.log("newAction[key1]", newAction[key2]);
   // this is the one that update only current_streak
 
   // if (newAction[key2] < val) {
