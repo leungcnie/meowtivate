@@ -45,28 +45,21 @@ export default function ListContainer(props) {
   console.log("streaks in ListsContainer", streaks);
   console.log("streaks in logDatas", logDatas);
 
-  // postLogData,
-  // updateStreak,
-  // onchange
-  // const
-
-  // updateStreak = (id, steak, current_streak)
-  // postLogData = (id, date_created, is_completed)
-
-  const updatePostLogData = (completedPercentage, is_completed) => {
-    if (completedPercentage >= 1) {
-      postLogData(1, new Date(), is_completed);
-    }
-  };
-
   const streakUpdate = (completedPercentage, streaks) => {
-    if (
-      (completedPercentage >= 1) &
-      (streaks.streak >= streaks.current_streak)
-    ) {
-      streaks.current_streak += 1;
-      updateStreak(1, streaks.streak, streaks.current_streak);
+    const currentDate = new Date();
+    if (completedPercentage >= 1) {
+      postLogData(1, currentDate, true);
+      streaks[0].current_streak += 1;
+      if (streaks[0].current_streak > streaks[0].streak) {
+        streaks[0].streak = streaks[0].current_streak;
+      }
     }
+    const currentTime = new Date().getTime();
+    if (2211363933078 < currentTime) {
+      streaks[0].current_streak = 0;
+      streaks[0].streak = 0;
+    }
+    updateStreak(1, streaks[0].streak, streaks[0].current_streak);
   };
 
   console.log("habits in ListsContainer", habits);
@@ -85,19 +78,10 @@ export default function ListContainer(props) {
 
   const completedAmount = completed.length;
   const completedPercentage = completedAmount / totalAmount;
-  // const currentStreaks = streaks[0].current_streak;
-
-  // console.log("progress", currentStreaks);
 
   console.log("completedPercentage", completedPercentage);
 
-  // if (completedPercentage === 1 ) {
-  //  let updatelog = (logDatas.is_completed = true)
-  //   currentStreaks += 1
-  //
-  // }
-
-  // console.log("progress", completedPercentage);
+  // onChange={() => streakUpdate(completedPercentage, streaks)}
 
   return (
     <>
