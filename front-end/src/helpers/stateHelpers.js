@@ -96,3 +96,15 @@ export function getActionProperty(id, key, state) {
 
   return property;
 }
+
+export function getNewUnlockedCat(cat_id, date, state) {
+  // Get cat from 'allCats' state
+  const newCat = [...state.allCats].filter((cat) => cat.id === cat_id)[0];
+  console.log("newCat", newCat);
+  // Cat is missing date, so add
+  newCat.date_unlocked = date;
+  const updatedUnlocked = [...state.unlocked];
+  updatedUnlocked.push(newCat);
+
+  return updatedUnlocked;
+}

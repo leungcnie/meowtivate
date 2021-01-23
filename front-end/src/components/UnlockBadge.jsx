@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  display: {
-    display: "block",
-  },
+  // display: {
+  //   display: 'block',
+  // },
   root: {
     flexGrow: 1,
     maxHeight: "20rem",
@@ -35,9 +35,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UnlockBadge(props) {
   const classes = useStyles();
-  const { state } = props;
-  const { actions, unlocked } = state;
-  let badgeStyle = { display: "none" };
+  const { state, catFunctions } = props;
+  const { actions, unlocked, allCats } = state;
+  const { addUnlocked } = catFunctions;
+  const [display, setDisplay] = useState({ display: "none" });
+  const [catID, setCatID] = useState("01");
 
   // Calculate percentage of actions done
   const totalAmount = actions.length;
@@ -49,36 +51,67 @@ export default function UnlockBadge(props) {
   // Get current date
   let today = new Date();
   const dd = String(today.getDate()).padStart(2, "0");
-  const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0
   const yyyy = today.getFullYear();
   today = `${yyyy}-${mm}-${dd}`;
 
-  console.log("date", today);
+  // console.log("date (unlocked)", today)
+  // console.log("unlocked", unlocked);
 
-  // Check if there's already an unlock for today
-  const isTodayUnlocked = (date) => {
-    // Get the array of unlocked cats dates
-    const currentUnlocked = unlocked.map((obj) =>
-      obj.date_unlocked.slice(0, 10)
-    );
-    if (currentUnlocked.includes(date)) {
-      return true;
-    } else {
-      return false;
-    }
-  };
+  const currentUnlocked = unlocked.map((obj) => obj.date_unlocked.slice(0, 10));
+  const todayUnlockExists = currentUnlocked.includes(today);
 
-  // Decide whether to display badge
+  //Decide whether to display badge
   const decideDisplay = (percentage) => {
-    const todayUnlockExists = isTodayUnlocked(today);
+    console.log("does unlock exist today?", todayUnlockExists);
+
     // If 100% complete and an unlock for today doesn't exist, unlock a cat
     if (percentage === 100 && !todayUnlockExists) {
-      // Get locked cats IDs, randomly choose one
+      // Get locked cats IDs array
+      const unlockedCatsIDs = unlocked.map((obj) => obj.id);
+      const lockedCats = allCats.filter(
+        (obj) => !unlockedCatsIDs.includes(obj.id)
+      );
+      const lockedCatsIDs = lockedCats.map((obj) => obj.id);
+
+      // Randomly choose one from a range
+      const randomCatID =
+        lockedCatsIDs[Math.floor(Math.random() * lockedCatsIDs.length)];
+
+      // If cat_id is single digit, convert to string with 0 in front
+      if (randomCatID <= 9) {
+        setCatID(`0${randomCatID.toString()}`);
+      } else {
+        setCatID(randomCatID.toString());
+      }
+
+      setDisplay({ display: "block" });
+
+      // console.log("catID", catID);
+      // console.log("display", display);
     }
   };
 
+  // Run function to decide display
+  useEffect(() => {
+    // console.log("CURRENT PERCENTAGE IN USEEFFECT", percentage);
+    if (percentage < 100) {
+      setDisplay({ display: "none" });
+    }
+    decideDisplay(percentage);
+  }, [actions]);
+
+  useEffect(() => {
+    // Call function to send POST req + change 'unlocked' state
+    // Takes in a cat_id and user_id
+    // console.log("display in useEffect", display);
+    if (display.display === "block") {
+      addUnlocked(Number(catID), 1);
+    }
+  }, [display]);
+
   return (
-    <div className={classes.display} style={badgeStyle}>
+    <div className={classes.display} style={display}>
       <img
         className={classes.root}
         src="https://meowtivate.s3-us-west-2.amazonaws.com/unlock_badge.png"
@@ -86,7 +119,7 @@ export default function UnlockBadge(props) {
       />
       <img
         className={classes.cat}
-        src="https://meowtivate.s3-us-west-2.amazonaws.com/01cat.png"
+        src={`https://meowtivate.s3-us-west-2.amazonaws.com/${catID}cat.png`}
       />
       {/* <img className={classes.cat} src='https://meowtivate.s3-us-west-2.amazonaws.com/02cat.]'/> */}
       <h2 className={classes.text}> CONGRATULATIONS!</h2>

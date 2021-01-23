@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ListContainer(props) {
-  const { state, actionFunctions } = props;
+  const { state, actionFunctions, catFunctions } = props;
   const { actions, todos, habits, unlocked, streaks, logDatas } = state;
   const classes = useStyles();
 
@@ -51,10 +51,9 @@ export default function ListContainer(props) {
   const habitIDs = calculateChecked(checkedHabits);
   const todoIDs = calculateChecked(checkedTodos);
 
-  console.log("completed", completed);
-  console.log("checkedHabits", checkedHabits);
-  console.log("checkedTodos", checkedTodos);
-
+  // console.log("completed", completed)
+  // console.log("checkedHabits", checkedHabits);
+  // console.log("checkedTodos", checkedTodos);
   const totalAmount = actions.length;
   const completedAmount = completed.length;
   const completedPercentage = completedAmount / totalAmount;
@@ -69,7 +68,7 @@ export default function ListContainer(props) {
 
   return (
     <>
-      <UnlockBadge state={state} />
+      <UnlockBadge state={state} catFunctions={catFunctions} />
       <div className={classes.root}>
         <h2 className={classes.header}>LET'S GET LOTS DONE TODAY</h2>
         <Grid container spacing={4}>

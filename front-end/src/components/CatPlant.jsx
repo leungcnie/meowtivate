@@ -75,7 +75,7 @@ export default function CatPlant(props) {
   
   useEffect(() => {
     setStart(true);
-    timer = setTimeout(() => setStart(false), 3500);
+    timer = setTimeout(() => setStart(false), 3000);
   }, [actions])
 
   useEffect(() => {
