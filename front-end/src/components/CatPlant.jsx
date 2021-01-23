@@ -4,20 +4,16 @@ import clsx from "clsx";
 
 const useStyles = makeStyles(theme => ({
   pot: {
-    width: '10vw',
+    display: 'block',
+    width: '12vw',
     position:'absolute',
     bottom: '0px',
-    left: 'calc(50% - 5vw)',
+    left: 'calc(50% - 6vw)',
     zIndex: 2,
   },
   plant: {
     opacity: 0,
-    width: '10vw',
-    position:'relative',
-    zIndex: 1,
-  },
-  ten_plant: {
-    width: '10vw',
+    width: '13vw',
     position:'relative',
     zIndex: 1,
   },
@@ -33,10 +29,12 @@ const useStyles = makeStyles(theme => ({
   "@keyframes myEffect": {
     '0%': {
       transform: 'translateY(30%)',
+      opacity: 0,
 
     },
     '16%': {
       transform: 'translateY(-3%)',
+      opacity: 1,
 
     },
     '28%': {
@@ -73,7 +71,7 @@ export default function CatPlant(props) {
   const initial = ( totalCompleted / totalAmount ) * 100;
   const num = Math.floor(initial / 10) * 10;
 
-  const [percentage, setPercentage] = useState(initial);
+  // const [percentage, setPercentage] = useState(initial);
   
   useEffect(() => {
     setStart(true);
@@ -85,15 +83,11 @@ export default function CatPlant(props) {
   }, [start])
 
   return (
-    <>
-      <article>
-        <div className={classes.plantContainer}>
-          <img className={clsx(classes.plant,
-            {[classes.animatedItem]: start}
-          )} src={`https://meowtivate.s3-us-west-2.amazonaws.com/${num}plant.png`} alt="plant" style={{opacity: 1}}/>
-          <img className={classes.pot} src="https://meowtivate.s3-us-west-2.amazonaws.com/pot.png" alt="pot"/>
-        </div>
-      </article>
-    </>
-  );
+      <div className={classes.plantContainer}>
+        <img className={clsx(classes.plant,
+          {[classes.animatedItem]: start}
+        )} src={`https://meowtivate.s3-us-west-2.amazonaws.com/plants/${num}plant.png`} alt="plant" style={{opacity: 1}}/>
+        <img className={classes.pot} src="https://meowtivate.s3-us-west-2.amazonaws.com/pot.png" alt="pot"/>
+      </div>
+);
 }
