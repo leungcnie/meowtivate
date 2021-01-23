@@ -25,6 +25,7 @@ export default function GalleryContainer(props) {
             avatar={items.image_url}
             description={items.description}
             date={items.date_unlocked}
+            style={props.style}
             />
           );
         })}

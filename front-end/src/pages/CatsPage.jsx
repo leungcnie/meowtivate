@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Varela Round",
     letterSpacing: "6px",
   },
+  locked: {
+    filter: 'brightness(0)',
+  }
 }));
 
 function isLocked (allCats, unlockedCats) {
@@ -36,20 +39,19 @@ export default function CatsPage(props) {
   console.log('ALLCATS', state.allCats);
   const allCatsArray = state.allCats;
   const unlockedCatsArray = state.unlocked;
+  const lockedCatsArray = isLocked(allCatsArray, unlockedCatsArray);
 
   return (
     <>
-    {console.log('LOCKED', isLocked(allCatsArray, unlockedCatsArray))}
     <div className="Cats">
       <NavBar />
       <header>
         <h2 className={classes.header}>my Collection</h2>
       </header>
-      <GalleryContainer items={state.unlocked} />
-      <header>
-        <h2 className={classes.header}>All cats Collection</h2>
-      </header>
-      <GalleryContainer items={state.allCats} />
+      <section> 
+        <GalleryContainer items={state.unlocked} style={{filter: 'brightness(1)'}}/>
+        <GalleryContainer items={lockedCatsArray} style={{filter: 'brightness(0)'}}/>
+      </section>
     </div>
     {/* <div className="Cats">
       <NavBar />

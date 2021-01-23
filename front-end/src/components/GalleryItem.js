@@ -29,6 +29,7 @@ export default function GalleryItem(props) {
               className={classes.root}
               src={props.avatar}
               alt={props.name}
+              style={props.style}
             />
             <h2 className="meow-item-header-name">{props.name}</h2>
           </header>
