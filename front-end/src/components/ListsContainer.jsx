@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ListContainer(props) {
   const { state, actionFunctions } = props;
-  const { actions, todos, habits } = state;
+  const { actions, todos, habits, unlocked } = state;
   const classes = useStyles();
 
   console.log("habits in ListsContainer", habits);
@@ -55,7 +55,7 @@ export default function ListContainer(props) {
   
   return (
     <>
-    <UnlockBadge/>
+    <UnlockBadge state={state}/>
     <div className={classes.root}>
       <h2 className={classes.header}>LET'S GET LOTS DONE TODAY</h2>
       <Grid container spacing={4}>
@@ -90,7 +90,7 @@ export default function ListContainer(props) {
                 <h3>Today's Progress</h3>
               </div> */}
               <div className={classes.plantbox}> 
-                <CatPlant />
+                <CatPlant actions={actions} />
               </div>
             </CardContent>
           </Card>
