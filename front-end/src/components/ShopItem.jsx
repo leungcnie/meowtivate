@@ -37,6 +37,7 @@ export default function ShopItem(props) {
             <p>{props.description}</p>
           </main>
           <footer className="meow-item-footer">
+            <p>{props.price} Meowcoins</p>
           </footer>
         </CardContent>
       </Card>
