@@ -18,10 +18,11 @@ class SMSForm extends Component {
       },
       submitting: false,
       error: false,
+      currentTime: "",
+      alarmTime: "",
     };
-    this.onSubmit = this.onSubmit.bind(this);
-
-    this.onSubmit = this.onSubmit.bind(this);
+    // this.onSubmit = this.onSubmit.bind(this);
+    this.setAlarmTime = this.setAlarmTime.bind(this);
   }
 
   componentDidMount() {
@@ -34,62 +35,65 @@ class SMSForm extends Component {
         message: { ...this.state.message, body: undoneList },
       });
     });
+    this.clock = setInterval(() => this.setCurrentTime(), 1000);
+    this.interval = setInterval(() => this.checkAlarmClock(), 1000);
   }
 
-  // input field takes countdown
-  // onchange when the text is meet
+  componentWillUnmount() {
+    clearInterval(this.clock);
+    clearInterval(this.interval);
+  }
 
-  // a function compare and counting down the time
+  setCurrentTime() {
+    this.setState({
+      currentTime: new Date().toLocaleTimeString("en-US", { hour12: false }),
+    });
+  }
 
-  // combine with useEffect to check on time
-  // when it meets the condition
-  // fire the function
-
-  // taking care of the sideEffect -> clear function
-
-  // function get timer input
-  // onHandleTimer(event) {
-  //   this.setState({
-  //     timer: event.target.value
-  //   });
-  // }
-
-  //  // Run function to decide display
-  //  useEffect(() => {
-  //   // console.log("CURRENT PERCENTAGE IN USEEFFECT", percentage);
-  //   if (percentage < 100) {
-  //     setDisplay({ display: "none" });
-  //   }
-  //   decideDisplay(percentage);
-  // }, [actions]);
-
-  onSubmit(event) {
+  setAlarmTime(event) {
     event.preventDefault();
-    this.setState({ submitting: true });
-    fetch("/api/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(this.state.message),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          this.setState({
-            error: false,
-            submitting: false,
-            message: {
-              body: "",
-            },
+    const inputAlarmTimeModified = event.target.value + ":00";
+    this.setState({
+      alarmTime: inputAlarmTimeModified,
+    });
+  }
+
+  checkAlarmClock() {
+    if (this.state.alarmTime == "undefined" || !this.state.alarmTime) {
+      this.alarmMessage = "Please set your reminder alarm.";
+    } else {
+      this.alarmMessage = "Your alarm is set for " + this.state.alarmTime + ".";
+      if (this.state.currentTime === this.state.alarmTime) {
+        alert("You still have unfinished task" + this.state.message.body);
+        this.setState({ submitting: true });
+        fetch("/api/messages", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(this.state.message),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              this.setState({
+                error: false,
+                submitting: false,
+                message: {
+                  body: "",
+                },
+              });
+            } else {
+              this.setState({
+                error: true,
+                submitting: false,
+              });
+            }
           });
-        } else {
-          this.setState({
-            error: true,
-            submitting: false,
-          });
-        }
-      });
+      } else {
+        console.log("Still have some time");
+      }
+    }
   }
 
   render() {
@@ -116,17 +120,22 @@ class SMSForm extends Component {
       >
         <p name="body" id="body" value={undoneList}></p>
         <div>
-          <label htmlFor="timer">Set Reminder time:</label>
+          {/* <label htmlFor="timer">Set Reminder time:</label>
           <input
             name="timer"
             id="timer"
             value={this.state.timer}
             onChange={this.onHandleChange}
-          />
+          /> */}
+          <h2>It is {this.state.currentTime}.</h2>
+          <h2>{this.alarmMessage}</h2>
+          <form>
+            <input type="time" onChange={this.setAlarmTime}></input>
+          </form>
         </div>
-        <button type="submit" disabled={this.state.submitting}>
+        {/* <button type="submit" disabled={this.state.submitting}>
           Send message
-        </button>
+        </button> */}
       </form>
     );
   }
