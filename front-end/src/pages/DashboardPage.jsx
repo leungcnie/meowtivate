@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import CatPlant from '../components/CatPlant';
 // import getCurrentDate from "../helpers/getCurrentDate";
 
 const useStyles = makeStyles((theme) => ({
@@ -16,10 +17,15 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: '5vw',
     margin: 'auto',
   },
+  margin: {
+    marginTop: '2vh'
+  }
 }));
 
 export default function DashboardPage(props) {
   const { state, streak, day, setDay } = props;
+  const { actions } = state;
+
   // const { unlocked } = state;
   const classes = useStyles();
 
@@ -61,11 +67,15 @@ export default function DashboardPage(props) {
           </Card>
 
 
-        <Card>
-          STREAK {streak} DAYS
+        <Card className={classes.margin}>
+          <CardContent>
+            STREAK {streak} DAYS
+          </CardContent>
         </Card>
-        <Card>
-          {streak * 100} MEOWCOINS
+        <Card className={classes.margin}>
+          <CardContent>
+            {streak * 100} MEOWCOINS
+          </CardContent>
         </Card>
 
         <Button variant="contained" onClick={changeDay}>
@@ -75,11 +85,20 @@ export default function DashboardPage(props) {
 
         </Grid>
         <Grid item xs={4}>
-          <Card>
-            <CardContent>
-              <Weather />
-            </CardContent>
-          </Card>
+          <Grid>
+            <Card>
+              <CardContent>
+                <Weather />
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid className={classes.margin}>
+            <Card>
+              <CardContent>
+                <CatPlant actions={actions}/>
+              </CardContent>
+            </Card>
+          </Grid>
         </Grid>
       </Grid>
     </div>
