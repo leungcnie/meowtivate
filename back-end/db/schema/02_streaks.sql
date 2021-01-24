@@ -4,5 +4,6 @@ CREATE TABLE streaks (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   streak INTEGER DEFAULT 0,
-  current_streak INTEGER DEFAULT 0
+  current_streak INTEGER DEFAULT 0,
+  date_update DATE NOT NULL
 );

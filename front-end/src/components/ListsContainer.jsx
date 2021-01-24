@@ -58,22 +58,40 @@ export default function ListContainer(props) {
 
   console.log("completedPercentage", completedPercentage);
 
-  useEffect(() => {
-    if (completedPercentage >= 1) {
-      updateStreak(1);
-    }
-  }, [actions]);
+  let today = new Date();
+  const dd = String(today.getDate()).padStart(2, "0");
+  const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0
+  const yyyy = today.getFullYear();
+  today = `${yyyy}-${mm}-${dd}`;
 
-  console.log("Does the streaks changes?", streaks);
+  // useEffect(() => {
+  //   const todayStreakExists = streaks.includes(today);
+  //   if (completedPercentage >= 1 && !todayStreakExists) {
+  //     updateStreak(1);
+  //   }
 
-  const currentUser = user.accounts[0].username;
-  // console.log("user", currentUser);
+  //   const todayLogExists = logDatas.includes(today);
+  //   if (completedPercentage >= 1 && !todayLogExists) {
+  //     postLogData(1, today);
+  //   }
+  // }, [actions]);
+
+  // console.log("Does the streaks changes?", streaks);
+  // const todayStreakExists = streaks.includes(today);
+
+  // console.log("Does toady", todayStreakExists);
+
+  // const currentUser = user.accounts[0].username;
+  // // console.log("user", currentUser);
+  // const current_streak = streaks[0].current_streak;
+  // console.log("curren_streak", current_streak);
 
   return (
     <>
       <UnlockBadge state={state} catFunctions={catFunctions} />
       <div className={classes.root}>
-        <h2>Hello {currentUser}</h2>
+        {/* <h2>Hello {currentUser}</h2>
+        <h1>{current_streak}</h1> */}
         <h2 className={classes.header}>LET'S GET LOTS DONE TODAY</h2>
         <Grid container spacing={4}>
           <Grid item xs={4}>

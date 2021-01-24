@@ -355,7 +355,7 @@ const updateStreak = (id, streak, current_streak) => {
   return db
     .query(
       `UPDATE streaks
-      SET streak = $2, current_streak = $3
+      SET streak = $2, current_streak = $3, date_update = CURRENT_DATE
       WHERE user_id = $1
       ;`,
       [id, streak, current_streak]
