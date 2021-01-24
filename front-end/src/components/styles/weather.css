@@ -6,7 +6,7 @@
 }
 
 /* class name may have to change if 'Raining' does not match the word on display */
-.Raining {
+.Rain {
   display: none;
   background-color: transparent;
   height: 10rem;

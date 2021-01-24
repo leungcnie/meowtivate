@@ -68,7 +68,7 @@ export const Weather = () => {
             <div><img 
             className={weather.weather[0].main} 
             style={{display: 'block'}} 
-            src={`https://meowtivate.s3-us-west-2.amazonaws.com/${weather.weather[0].main}.png`} 
+            src={`https://meowtivate.s3-us-west-2.amazonaws.com/weather/${weather.weather[0].main}.png`} 
             alt="weather-image"/>
             </div>
           </div>
