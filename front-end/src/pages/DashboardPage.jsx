@@ -40,7 +40,7 @@ export default function DashboardPage(props) {
     <div>
       <header>
       <NavBar />
-      <h1>Welcome {props.state.account[0].name}</h1>
+      <h1>Welcome {props.state.account[0].name}!</h1>
       </header>
       <Grid container spacing={3} className={classes.root}>
         <Grid item xs={4}>
