@@ -23,6 +23,11 @@ import AccountPage from "../pages/AccountPage";
 import NotFoundPage from "./404";
 import SMSForm from "./SMSForm";
 
+// react-notification
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import { store } from "react-notifications-component";
+
 function App() {
   const { state, actionFunctions, catFunctions } = useApplicationData();
   // const { user } = useAuth();
@@ -47,6 +52,8 @@ function App() {
             <SMSForm />
           </Route>
           <Route exact path="/lists" component={ListsPage}>
+            <ReactNotification />
+
             <ListsPage
               state={state}
               actionFunctions={actionFunctions}

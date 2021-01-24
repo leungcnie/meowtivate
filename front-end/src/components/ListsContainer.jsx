@@ -56,8 +56,6 @@ export default function ListContainer(props) {
   const completedPercentage = completedAmount / totalAmount;
   const undoneAmount = totalAmount - completedAmount;
 
-  console.log("completedPercentage", completedPercentage);
-
   let today = new Date();
   const dd = String(today.getDate()).padStart(2, "0");
   const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0
@@ -67,19 +65,25 @@ export default function ListContainer(props) {
   console.log("rightnow", today);
 
   // useEffect(() => {
-  //   const currentStreaksE = streaks.map((obj) => obj.date_update.slice(0, 10));
-  //   const todayStreakExists = currentStreaksE.includes(today);
-  //   const currentLog = logDatas.map((obj) => obj.date_created.slice(0, 10));
-  //   const todayLogExists = currentLog.includes(today);
+  //   if (streaks) {
+  //     return () => {
+  //       const currentStreaksE = streaks.map((obj) =>
+  //         obj.date_update.slice(0, 10)
+  //       );
+  //       const todayStreakExists = currentStreaksE.includes(today);
+  //       const currentLog = logDatas.map((obj) => obj.date_created.slice(0, 10));
+  //       const todayLogExists = currentLog.includes(today);
 
-  //   if (completedPercentage >= 1 && !todayStreakExists) {
-  //     let val = streaks[0].current_streak + 1;
-  //     updateStreak(1, val);
+  //       if (completedPercentage >= 1 && !todayStreakExists) {
+  //         let val = streaks[0].current_streak + 1;
+  //         updateStreak(1, val);
+  //       }
+  //       if (completedPercentage >= 1 && !todayLogExists) {
+  //         postLogData(1, today);
+  //       }
+  //     };
   //   }
-  //   if (completedPercentage >= 1 && !todayLogExists) {
-  //     postLogData(1, today);
-  //   }
-  // }, [actions]);
+  // }, [streaks, logDatas]);
 
   // console.log("Does the streaks changes?", streaks);
   // console.log("Does the logDatas changes?", logDatas);
@@ -95,7 +99,6 @@ export default function ListContainer(props) {
   // };
   // const currentUser = user.accounts[0].username;
   // // console.log("user", currentUser);
-  // let val = streaks[0].current_streak;
   return (
     <>
       <UnlockBadge state={state} catFunctions={catFunctions} />
