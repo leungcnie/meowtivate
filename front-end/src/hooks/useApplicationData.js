@@ -19,6 +19,9 @@ export default function useApplicationDate() {
     shopInventory: [],
     userInventory: [],
   });
+
+  // User/day picker state
+  const [day, setDay] = useState(1);
   
   // Log current state for debugging
   useEffect(() => {
@@ -172,14 +175,20 @@ export default function useApplicationDate() {
 
   useEffect(() => {
     Promise.all([
-      axios.get("/api/collections/1"),
-      axios.get("/api/todos/1"),
-      axios.get("/api/habits/1"),
-      axios.get("/api/actions/1"),
-      axios.get("/api/accounts/1"),
-      axios.get("/api/collections"),
-      axios.get("/api/shop/1"),
-      axios.get("/api/inventory/1"),
+      axios.get(`/api/collections/${day}`),
+      axios.get(`/api/todos/${day}`),
+      axios.get(`/api/habits/${day}`),
+      axios.get(`/api/actions/${day}`),
+      axios.get(`/api/accounts/${day}`),
+      axios.get(`/api/collections`),
+      axios.get(`/api/shop/${day}`),
+      axios.get(`/api/inventory/${day}`),
+      // axios.get("/api/collections/1"),
+      // axios.get("/api/todos/1"),
+      // axios.get("/api/habits/1"),
+      // axios.get("/api/actions/1"),
+      // axios.get("/api/accounts/1"),
+      // axios.get("/api/collections"),
     ])
       .then(res => {
         // console.log("shop", res[6].data);
@@ -199,7 +208,7 @@ export default function useApplicationDate() {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [day]);
 
-  return { state, actionFunctions, catFunctions };
+  return { state, actionFunctions, catFunctions, setDay, day };
 }
