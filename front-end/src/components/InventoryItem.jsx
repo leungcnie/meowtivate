@@ -34,10 +34,11 @@ export default function InventoryItem(props) {
             <h2 className="meow-item-header-name">{props.name}</h2>
           </header>
           <main className="meow-item-description">
-            {/* <p>{props.description}</p> */}
+            <p>{props.description}</p>
           </main>
           <footer className="meow-item-footer">
             {/* {props.date.substring(0, 10)} */}
+            {props.isDefault && <p>⭐ SELECTED</p>}
           </footer>
         </CardContent>
       </Card>

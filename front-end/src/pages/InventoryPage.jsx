@@ -32,6 +32,8 @@ export default function InventoryPage(props) {
               key={items.id}
               name={items.pot_name}
               image={items.image_url}
+              description={items.description}
+              isDefault={items.is_default}
               // style={props.style}
               />
             );
