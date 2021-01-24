@@ -64,34 +64,42 @@ export default function ListContainer(props) {
   const yyyy = today.getFullYear();
   today = `${yyyy}-${mm}-${dd}`;
 
-  // useEffect(() => {
-  //   const todayStreakExists = streaks.includes(today);
-  //   if (completedPercentage >= 1 && !todayStreakExists) {
-  //     updateStreak(1);
-  //   }
+  console.log("rightnow", today);
 
-  //   const todayLogExists = logDatas.includes(today);
+  // useEffect(() => {
+  //   const currentStreaksE = streaks.map((obj) => obj.date_update.slice(0, 10));
+  //   const todayStreakExists = currentStreaksE.includes(today);
+  //   const currentLog = logDatas.map((obj) => obj.date_created.slice(0, 10));
+  //   const todayLogExists = currentLog.includes(today);
+
+  //   if (completedPercentage >= 1 && !todayStreakExists) {
+  //     let val = streaks[0].current_streak + 1;
+  //     updateStreak(1, val);
+  //   }
   //   if (completedPercentage >= 1 && !todayLogExists) {
   //     postLogData(1, today);
   //   }
   // }, [actions]);
 
   // console.log("Does the streaks changes?", streaks);
-  // const todayStreakExists = streaks.includes(today);
+  // console.log("Does the logDatas changes?", logDatas);
 
   // console.log("Does toady", todayStreakExists);
-
+  // const getStreak = (streaks) => {
+  //   if (!streaks) {
+  //     return streaks[0].current_streak;
+  //   }
+  //   const current_streak = getStreak(streaks);
+  //   console.log("curren_streak", current_streak);
+  //   return "updating streak";
+  // };
   // const currentUser = user.accounts[0].username;
   // // console.log("user", currentUser);
-  // const current_streak = streaks[0].current_streak;
-  // console.log("curren_streak", current_streak);
-
+  // let val = streaks[0].current_streak;
   return (
     <>
       <UnlockBadge state={state} catFunctions={catFunctions} />
       <div className={classes.root}>
-        {/* <h2>Hello {currentUser}</h2>
-        <h1>{current_streak}</h1> */}
         <h2 className={classes.header}>LET'S GET LOTS DONE TODAY</h2>
         <Grid container spacing={4}>
           <Grid item xs={4}>

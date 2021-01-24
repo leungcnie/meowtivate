@@ -154,8 +154,9 @@ export default function useApplicationDate() {
   };
 
   // update the streak
-  const updateStreak = (id) => {
+  const updateStreak = (id, val) => {
     const streaks = modifyStreakActionWith(
+      val,
       "current_streak",
       "streak",
       id,
