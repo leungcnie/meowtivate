@@ -181,7 +181,7 @@ export default function useApplicationDate() {
       axios.get(`/api/actions/${day}`),
       axios.get(`/api/accounts/${day}`),
       axios.get(`/api/collections`),
-      axios.get(`/api/shop/${day}`),
+      axios.get(`/api/shop/`),
       axios.get(`/api/inventory/${day}`),
       // axios.get("/api/collections/1"),
       // axios.get("/api/todos/1"),

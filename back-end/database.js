@@ -306,31 +306,48 @@ const addUnlockedCat = (cat_id, user_id) => {
 exports.addUnlockedCat = addUnlockedCat;
 
 /* ----------- SHOP INVENTORY ------------ */
-const getUserInventory = () => {
+const getUserInventory = (user_id) => {
   return db
   .query(
-    `SELECT * FROM pots WHERE is_purchased = true`
+    `SELECT * FROM user_unlocked_pots
+    FULL OUTER JOIN pots on pots.id = pot_id
+    WHERE user_id = $1;`,
+    [user_id]
   )
   .then(res => res.rows)
   .catch((err) => console.error("query getUserInventory error", err.stack));
 }
 exports.getUserInventory = getUserInventory;
 
-const getShopItems = () => {
+const getAllPots = () => {
   return db
   .query(
-    `SELECT * FROM pots WHERE is_purchased = false`
+    `SELECT * FROM pots;`
   )
   .then(res => res.rows)
-  .catch((err) => console.error("query getShopItems error", err.stack));
+  .catch((err) => console.error("query getAllPots error", err.stack));
 }
-exports.getShopItems = getShopItems;
+exports.getAllPots = getAllPots;
+
+const getAvailablePots = (user_id) => {
+  return db
+    .query(
+      `select user_id, pot_name, description, price
+      from user_unlocked_pots
+      full outer join pots on pots.id = pot_id
+      where user_id is null;`,
+      [user_id]
+    )
+    .then(res => res.rows)
+    .catch((err) => console.error("query getAvailablePots error", err.stack));
+}
+exports.getAvailablePots = getAvailablePots;
 
 /* ----------- USER INVENTORY ------------ */
 const getDefaultPot = () => {
   return db
   .query(
-    `SELECT * FROM user_unlocked_pots WHERE default_pot = true`
+    `SELECT * FROM user_unlocked_pots WHERE is_default = true`
   )
   .then(res => res.rows[0])
   .catch((err) => console.error("query getDefaultPot error", err.stack));
