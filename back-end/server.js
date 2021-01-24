@@ -10,6 +10,11 @@ const app = express();
 const bodyParser = require("body-parser");
 // const morgan     = require('morgan');
 const cookieSession = require("cookie-session");
+const pino = require("express-pino-logger")();
+const client = require("twilio")(
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
+);
 
 // Store database connection + db helper functions as 'db'
 const db = require("./database");
@@ -35,6 +40,8 @@ app.use(
     keys: ["meowtivate"],
   })
 );
+
+app.use(pino);
 
 // Separated Routes for each Resource
 const indexRoutes = require("./routes/indexRoutes");
@@ -108,7 +115,6 @@ app.post("/api/messages", (req, res) => {
       res.send(JSON.stringify({ success: false }));
     });
 });
-app.post("/api/greeting", (req, res) => {});
 
 app.listen(PORT, () => {
   console.log(

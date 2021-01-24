@@ -24,5 +24,8 @@
     "pg": "^8.5.1",
     "pg-native": "^3.0.0",
     "web-push": "^3.4.4"
+  },
+  "devDependencies": {
+    "twilio": "^3.55.0"
   }
 }
