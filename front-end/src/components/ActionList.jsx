@@ -13,22 +13,23 @@ import UnfoldMoreRoundedIcon from "@material-ui/icons/UnfoldMoreRounded";
 import SaveRoundedIcon from "@material-ui/icons/SaveRounded";
 import Popup from "./Popup";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import useApplicationData from "../hooks/useApplicationData";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    paddingLeft: "10vw",
-    paddingRight: "10vw",
-  },
   item: {
     fontFamily: "Varela Round",
   },
 }));
 
 export default function ActionList(props) {
-  const { deleteAction } = useApplicationData();
-  const { items, category } = props;
+  const { items, category, actionFunctions, initChecked } = props;
+  const { 
+    deleteAction, 
+    addAction, 
+    editActionName, 
+    editCompletedState } = actionFunctions; // State changing funcs from useApplicationData
   const classes = useStyles();
+
+  console.log("checked in ActionList", initChecked);
 
   // Toggle between VIEW and EDIT modes
   const [isEditable, setIsEditable] = useState(false);
@@ -36,26 +37,21 @@ export default function ActionList(props) {
 
   // Toggle checkbox
   // checked is an array of numbers that represent checked actionIDs
-  const [checked, setChecked] = useState([]);
-  const handleToggle = (value) => () => {
+  const [checked, setChecked] = useState(initChecked);
+  
+  const handleToggle = (value, evt) => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
-    if (currentIndex === -1) {
-      // check if value is in checked
+    if (currentIndex === -1) { // if value isn't in checked, add it
       newChecked.push(value);
     } else {
-      newChecked.splice(currentIndex, 1); // remove from checked
+      newChecked.splice(currentIndex, 1); // else remove from checked
     }
 
     setChecked(newChecked);
+    editCompletedState(value, evt.target.checked); // Update state
   };
-
-  console.log("checked", checked);
-  // Logging value of checked whenever it's updated
-  // useEffect(() => {
-  //   console.log("what's checked:", checked);
-  // }, [checked])
 
   // Popup state
   const [popupState, setPopupState] = useState({
@@ -65,6 +61,7 @@ export default function ActionList(props) {
     actionName: "",
   });
 
+  // Popup functions
   const handleClickOpen = (type, id, name) => {
     setPopupState((prev) => ({
       ...prev,
@@ -75,14 +72,6 @@ export default function ActionList(props) {
     }));
   };
 
-  const popupDelete = (actionID) => {
-    deleteAction(actionID);
-    setPopupState((prev) => ({
-      ...prev,
-      open: false,
-    }));
-  };
-
   const cancel = () => {
     setPopupState((prev) => ({
       ...prev,
@@ -90,9 +79,35 @@ export default function ActionList(props) {
     }));
   };
 
+  const confirmDelete = (actionID) => {
+    deleteAction(actionID);
+    setPopupState((prev) => ({
+      ...prev,
+      open: false,
+    }));
+  };
+
+  const confirmAdd = (name, categoryID) => {
+    addAction(name, categoryID);
+    setPopupState((prev) => ({
+      ...prev,
+      open: false,
+    }));
+  };
+
+  const confirmEdit = (actionID, name) => {
+    editActionName(actionID, name);
+    setPopupState((prev) => ({
+      ...prev,
+      open: false,
+    }));
+  }
+
   return (
     <List className={classes.root}>
-      {items.map((obj) => {
+      {items.sort(function(a, b) {
+  return a.id - b.id;
+}).map((obj) => {
         const labelId = `checkbox-list-label-${obj.id}`;
         return (
           <ListItem
@@ -100,12 +115,12 @@ export default function ActionList(props) {
             role={undefined}
             dense
             button
-            onClick={handleToggle(obj.id)}
+            onClick={(evt) => handleToggle(obj.id, evt)}
           >
             <ListItemIcon>
               <Checkbox
                 edge="start"
-                checked={checked.indexOf(obj.id) !== -1}
+                checked={obj.is_completed}
                 tabIndex={-1}
                 disableRipple
                 inputProps={{ "aria-labelledby": labelId }}
@@ -154,7 +169,9 @@ export default function ActionList(props) {
 
       <Popup
         cancel={cancel}
-        popupDelete={popupDelete}
+        confirmDelete={confirmDelete}
+        confirmAdd={confirmAdd}
+        confirmEdit={confirmEdit}
         popupState={popupState}
         category={category}
       />

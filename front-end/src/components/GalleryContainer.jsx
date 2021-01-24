@@ -6,11 +6,8 @@ import GalleryItem from './GalleryItem';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
+    paddingLeft: '5vw',
+    paddingRight: '5vw',
   },
 }));
 
@@ -28,6 +25,7 @@ export default function GalleryContainer(props) {
             avatar={items.image_url}
             description={items.description}
             date={items.date_unlocked}
+            style={props.style}
             />
           );
         })}

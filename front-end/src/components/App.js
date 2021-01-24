@@ -1,12 +1,13 @@
 /*
 App.js is responsible for containing all the routes and passing state as props
 */
+import React, { useEffect, useState } from 'react';
 
 import "./styles/App.css";
-
 import "@fontsource/itim";
 import "@fontsource/varela-round";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import getCurrentDate from "../helpers/getCurrentDate";
 
 // Hooks
 import useApplicationData from "../hooks/useApplicationData";
@@ -19,12 +20,42 @@ import DashboardPage from "../pages/DashboardPage";
 import ListsPage from "../pages/ListsPage";
 import CatsPage from "../pages/CatsPage";
 import AccountPage from "../pages/AccountPage";
+import InventoryPage from "../pages/InventoryPage";
+import ShopPage from "../pages/ShopPage";
+
 import NotFoundPage from "./404";
 
 function App() {
-  const { state } = useApplicationData();
+  const { 
+    state, 
+    actionFunctions, 
+    catFunctions,
+    day,
+    setDay } = useApplicationData();
+  const { unlocked, account } = state;
+  const id = day ? day : 0;
+  // const id = 1;
 
-  console.log("app.js is_completed", state.account);
+  const [streak, setStreak] = useState(3); // Hardcode initial streak value
+
+  // Add 1 to current streak if a cat was unlocked today
+  useEffect(() => {
+    const today = getCurrentDate();
+    // Get array of unlocked dates in "yyyy-mm-dd"
+    const currentUnlocked = unlocked.map(obj => obj.date_unlocked.slice(0, 10));
+    if (currentUnlocked.includes(today)) {
+      setStreak(prev => prev + 1);
+    }
+  }, [unlocked])
+
+  // Change streak depending on user
+  useEffect(() => {
+    if (id === 2) {
+      setStreak(4);
+    } else if (id === 3) {
+      setStreak(0);
+    }
+  }, [state])
 
   return (
     <div className="App">
@@ -41,16 +72,29 @@ function App() {
             <RegisterPage state={state} />
           </Route>
           <Route exact path="/dashboard" component={DashboardPage}>
-            <DashboardPage state={state} />
+            <DashboardPage 
+              state={state}
+              streak={streak}
+              day={day}
+              setDay={setDay} />
           </Route>
           <Route exact path="/lists" component={ListsPage}>
-            <ListsPage state={state} />
+            <ListsPage 
+              state={state} 
+              actionFunctions={actionFunctions}
+              catFunctions={catFunctions} />
           </Route>
           <Route exact path="/cats" component={CatsPage}>
             <CatsPage state={state} />
           </Route>
           <Route exact path="/account" component={AccountPage}>
             <AccountPage state={state} />
+          </Route>
+          <Route exact path="/inventory" component={InventoryPage}>
+            <InventoryPage state={state} />
+          </Route>
+          <Route exact path="/shop" component={ShopPage}>
+            <ShopPage state={state} />
           </Route>
           <Route exact path="*" component={NotFoundPage} />
         </Switch>

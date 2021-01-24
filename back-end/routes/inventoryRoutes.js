@@ -1,20 +1,8 @@
 module.exports = (router, db) => {
-  // Get collections with id
-  router.get("/", (req, res) => {
-    db.getAllCats([])
-      .then((data) => {
-        res.json(data);
-        // console.log("cannot get the correct", data);
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
-  });
 
-  // Get collections with id
   router.get("/:id", (req, res) => {
     const user_id = req.params.id;
-    db.getCatsCollections(user_id)
+    db.getUserInventory(user_id)
       .then((data) => {
         res.json(data);
         // console.log("cannot get the correct", data);
@@ -24,18 +12,29 @@ module.exports = (router, db) => {
       });
   });
 
-  // Create new unlocked cat
-  router.post("/unlocked", (req, res) => {
-    const { cat_id, user_id } = req.body;
-    db.addUnlockedCat(cat_id, user_id)
+  router.get("/:id", (req, res) => {
+    const user_id = req.params.id;
+    db.getDefaultPot(user_id)
       .then((data) => {
-        // Send the date
-        console.log("add new unlock date?", data.date_unlocked);
-        res.status(200).json(data.date_unlocked);
+        res.json(data);
+        // console.log("cannot get the correct", data);
       })
-      .catch(err => {
+      .catch((err) => {
         res.status(500).json({ error: err.message });
       });
-  })
+  });
+
+  router.post("/bought", (req, res) => {
+    const { user_id, pot_id } = req.body;
+    // console.log("req.body in POST /todos", req.body);
+
+    db.changeDefaultPot(user_id, pot_id)
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
   return router;
 };

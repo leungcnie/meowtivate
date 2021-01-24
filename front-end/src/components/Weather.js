@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, className } from "react";
 import "./styles/weather.css";
 
 const api = {
@@ -35,13 +35,12 @@ export const Weather = () => {
       });
     });
   }, [])
-
   return (
     <div
       className={
         typeof weather.main != "undefined"
           ? weather.weather[0].main.includes("Cloud")
-            ? "weather cloudy"
+            ? "weather Clouds"
             : "weather"
           : "weather"
       }
@@ -66,6 +65,12 @@ export const Weather = () => {
             </div>
             <div className="temp">{Math.round(weather.main.temp)}&deg;c</div>
             <div className="weather">{weather.weather[0].main}</div>
+            <div><img 
+            className={weather.weather[0].main} 
+            style={{display: 'block'}} 
+            src={`https://meowtivate.s3-us-west-2.amazonaws.com/${weather.weather[0].main}.png`} 
+            alt="weather-image"/>
+            </div>
           </div>
         ) : (
           ""

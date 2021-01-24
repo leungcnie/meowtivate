@@ -12,12 +12,11 @@ const useStyles = makeStyles((theme) => ({
   card: {
     minHeight: '22rem',
     minWidth: '12rem',
-    backgroundColor: 'darkkhaki',
   }
 }));
 
 
-export default function GalleryItem(props) {
+export default function ShopItem(props) {
   const classes = useStyles();
 
   return (
@@ -27,8 +26,9 @@ export default function GalleryItem(props) {
           <header className="meow-item-header">
             <img
               className={classes.root}
-              src={props.avatar}
+              src={props.image}
               alt={props.name}
+              price={props.price}
               style={props.style}
             />
             <h2 className="meow-item-header-name">{props.name}</h2>
@@ -37,7 +37,7 @@ export default function GalleryItem(props) {
             <p>{props.description}</p>
           </main>
           <footer className="meow-item-footer">
-            {/* {props.date.substring(0, 10)} */}
+            <p>{props.price} Meowcoins</p>
           </footer>
         </CardContent>
       </Card>

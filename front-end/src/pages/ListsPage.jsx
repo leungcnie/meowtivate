@@ -3,14 +3,14 @@ import ListsContainer from "../components/ListsContainer";
 import NavBar from "../components/NavBar";
 
 export default function ListsPage(props) {
-  const { state } = props;
+  const { state, actionFunctions, catFunctions } = props;
   return (
     <div className="List">
       <NavBar />
       <ListsContainer
-        actions={state.actions}
-        todos={state.todos}
-        habits={state.habits}
+        state={state}
+        actionFunctions={actionFunctions}
+        catFunctions={catFunctions}
       />
     </div>
   );
