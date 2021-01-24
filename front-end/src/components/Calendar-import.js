@@ -8,11 +8,11 @@ import getCurrentDate from "../helpers/getCurrentDate";
 export const CalendarApp = (props) => {
 
   // Show different streak length depending on user id
-  const { state } = props;
+  const { state, day } = props;
   console.log("state in calendar", state);
   const { account, unlocked } = state;
   // console.log("account", account)
-  const id = account[0]? account[0].id : 0;
+  const id = day? day : 0;
   // const id = 4;
 
   const streak1 = {
@@ -76,6 +76,8 @@ export const CalendarApp = (props) => {
     const currentUnlocked = unlocked.map(obj => obj.date_unlocked.slice(0, 10));
     const todayUnlockExists = currentUnlocked.includes(today);
     
+    console.log("calendar id", id === 1)
+    console.log("calendar todayUnlockExists", todayUnlockExists)
     if (id === 1 && todayUnlockExists) {
       setSelectedDayRange(streak1Add);
     }

@@ -19,16 +19,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function DashboardPage(props) {
-  const { state, streak } = props;
+  const { state, streak, day, setDay } = props;
   // const { unlocked } = state;
   const classes = useStyles();
 
+  // Go to next day
+  const changeDay = () => {
+    if (day >= 1 && day < 3) {
+      setDay(prev => prev + 1)
+    }
+  }
+ 
   return (
     <div>
       <NavBar />
       <Grid container spacing={3} className={classes.root}>
         <Grid item xs={4}>
-          <CalendarApp state={state}/>
+          <CalendarApp 
+            state={state}
+            day={day} />
         </Grid>
         <Grid item xs={4}>
           <Card>
@@ -58,6 +67,10 @@ export default function DashboardPage(props) {
         <Card>
           {streak * 100} MEOWCOINS
         </Card>
+
+        <Button variant="contained" onClick={changeDay}>
+          NEXT DAY
+        </Button>
 
 
         </Grid>

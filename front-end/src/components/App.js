@@ -23,8 +23,15 @@ import AccountPage from "../pages/AccountPage";
 import NotFoundPage from "./404";
 
 function App() {
-  const { state, actionFunctions, catFunctions } = useApplicationData();
-  const { unlocked } = state;
+  const { 
+    state, 
+    actionFunctions, 
+    catFunctions,
+    day,
+    setDay } = useApplicationData();
+  const { unlocked, account } = state;
+  const id = day ? day : 0;
+  // const id = 1;
 
   const [streak, setStreak] = useState(3); // Hardcode initial streak value
 
@@ -37,6 +44,15 @@ function App() {
       setStreak(prev => prev + 1);
     }
   }, [unlocked])
+
+  // Change streak depending on user
+  useEffect(() => {
+    if (id === 2) {
+      setStreak(4);
+    } else if (id === 3) {
+      setStreak(0);
+    }
+  }, [state])
 
   return (
     <div className="App">
@@ -55,7 +71,9 @@ function App() {
           <Route exact path="/dashboard" component={DashboardPage}>
             <DashboardPage 
               state={state}
-              streak={streak} />
+              streak={streak}
+              day={day}
+              setDay={setDay} />
           </Route>
           <Route exact path="/lists" component={ListsPage}>
             <ListsPage 
