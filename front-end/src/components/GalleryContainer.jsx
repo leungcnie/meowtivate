@@ -24,7 +24,8 @@ export default function GalleryContainer(props) {
               name={items.cat_name}
               avatar={items.image_url}
               description={items.description}
-              // date={items.date_unlocked}
+              date={items.date_unlocked}
+              style={props.style}
             />
           );
         })}

@@ -44,14 +44,8 @@ const todoRoutes = require("./routes/todoRoutes");
 const habitRoutes = require("./routes/habitRoutes");
 const actionRoutes = require("./routes/actionRoutes");
 const accountRoutes = require("./routes/accountRoutes");
-const streakRoutes = require("./routes/streakRoutes");
-
-// Twilio
-const pino = require("express-pino-logger")();
-const client = require("twilio")(
-  process.env.TWILIO_ACCOUNT_SID,
-  process.env.TWILIO_AUTH_TOKEN
-);
+const shopRoutes = require("./routes/shopRoutes");
+const inventoryRoutes = require("./routes/inventoryRoutes");
 
 // Mount all resource routes
 const indexRouter = express.Router();
@@ -80,8 +74,15 @@ const accountRouter = express.Router();
 app.use("/api/accounts", accountRoutes(accountRouter, db));
 
 //Streak and data log
-const streakRouter = express.Router();
-app.use("/api/streaks", streakRoutes(streakRouter, db));
+// const streakRouter = express.Router();
+// app.use("/api/streaks", streakRoutes(streakRouter, db));
+// shop inventory
+const shopRouter = express.Router();
+app.use("/api/shop", shopRoutes(shopRouter, db));
+
+// user inventory
+const inventoryRouter = express.Router();
+app.use("/api/inventory", inventoryRoutes(inventoryRouter, db));
 
 // Home page
 // Warning: avoid creating more routes in this file!

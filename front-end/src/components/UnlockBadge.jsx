@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import getCurrentDate from "../helpers/getCurrentDate";
 
 const useStyles = makeStyles((theme) => ({
   // display: {
@@ -41,6 +43,9 @@ export default function UnlockBadge(props) {
   const [display, setDisplay] = useState({ display: "none" });
   const [catID, setCatID] = useState("01");
 
+  //click away hook
+  const [open, setOpen] = React.useState(false);
+
   // Calculate percentage of actions done
   const totalAmount = actions.length;
   const totalCompleted = actions.filter((obj) => obj.is_completed === true)
@@ -49,11 +54,17 @@ export default function UnlockBadge(props) {
   const percentage = Math.floor(initial / 10) * 10;
 
   // Get current date
-  let today = new Date();
-  const dd = String(today.getDate()).padStart(2, "0");
-  const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0
-  const yyyy = today.getFullYear();
-  today = `${yyyy}-${mm}-${dd}`;
+  // let today = new Date();
+  // const dd = String(today.getDate()).padStart(2, "0");
+  // const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0
+  // const yyyy = today.getFullYear();
+  // today = `${yyyy}-${mm}-${dd}`;
+  // let today = new Date();
+  // const dd = String(today.getDate()).padStart(2, '0');
+  // const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0
+  // const yyyy = today.getFullYear();
+  // today = `${yyyy}-${mm}-${dd}`;
+  const today = getCurrentDate();
 
   // console.log("date (unlocked)", today)
   // console.log("unlocked", unlocked);
@@ -86,6 +97,7 @@ export default function UnlockBadge(props) {
       }
 
       setDisplay({ display: "block" });
+      setOpen(true);
 
       // console.log("catID", catID);
       // console.log("display", display);
@@ -110,19 +122,28 @@ export default function UnlockBadge(props) {
     }
   }, [display]);
 
+  const handleClickAway = () => {
+    setOpen(false);
+  };
+
   return (
-    <div className={classes.display} style={display}>
-      <img
-        className={classes.root}
-        src="https://meowtivate.s3-us-west-2.amazonaws.com/unlock_badge.png"
-        alt="unlock_badge"
-      />
-      <img
-        className={classes.cat}
-        src={`https://meowtivate.s3-us-west-2.amazonaws.com/${catID}cat.png`}
-      />
-      {/* <img className={classes.cat} src='https://meowtivate.s3-us-west-2.amazonaws.com/02cat.]'/> */}
-      <h2 className={classes.text}> CONGRATULATIONS!</h2>
-    </div>
+    <ClickAwayListener onClickAway={handleClickAway}>
+      <div className={classes.display} style={display}>
+        {open ? (
+          <>
+            <img
+              className={classes.root}
+              src="https://meowtivate.s3-us-west-2.amazonaws.com/unlock_badge.png"
+              alt="unlock_badge"
+            />
+            <img
+              className={classes.cat}
+              src={`https://meowtivate.s3-us-west-2.amazonaws.com/${catID}cat.png`}
+            />
+            <h2 className={classes.text}> CONGRATULATIONS!</h2>
+          </>
+        ) : null}
+      </div>
+    </ClickAwayListener>
   );
 }

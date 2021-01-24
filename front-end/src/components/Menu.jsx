@@ -40,6 +40,12 @@ export default function SimpleMenu() {
         <MenuItem onClick={handleClose} component={Link} to="/lists">
             My Lists
         </MenuItem>
+        <MenuItem onClick={handleClose} component={Link} to="/inventory">
+            My Inventory
+        </MenuItem>
+        <MenuItem onClick={handleClose} component={Link} to="/shop">
+            Shop
+        </MenuItem>
         <MenuItem onClick={handleClose} component={Link} to="/">
             Logout
         </MenuItem>

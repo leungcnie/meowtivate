@@ -17,10 +17,16 @@ export default function useApplicationDate() {
     habits: [],
     actions: [],
     allCats: [],
-    logDatas: [],
-    streaks: [],
+    // logDatas: [],
+    // streaks: [],
+
+    shopInventory: [],
+    userInventory: [],
   });
 
+  // User/day picker state
+  const [day, setDay] = useState(1);
+  console.log("app, appliction", day);
   // Log current state for debugging
   useEffect(() => {
     console.log("Current state:", state);
@@ -209,16 +215,33 @@ export default function useApplicationDate() {
 
   useEffect(() => {
     Promise.all([
-      axios.get("/api/collections/1"),
-      axios.get("/api/todos/1"),
-      axios.get("/api/habits/1"),
-      axios.get("/api/actions/1"),
-      axios.get("/api/collections"),
-      axios.get("/api/streaks/logdata/1"),
-      axios.get("/api/streaks/1"),
+      //   axios.get("/api/collections/1"),
+      //   axios.get("/api/todos/1"),
+      //   axios.get("/api/habits/1"),
+      //   axios.get("/api/actions/1"),
+      //   axios.get("/api/collections"),
+      //   axios.get("/api/streaks/logdata/1"),
+      //   axios.get("/api/streaks/1"),
+      // ])
+      //   .then((res) => {
+      // console.log("res.data in useAppDate promise.all:", res.data);
+      axios.get(`/api/collections/${day}`),
+      axios.get(`/api/todos/${day}`),
+      axios.get(`/api/habits/${day}`),
+      axios.get(`/api/actions/${day}`),
+      axios.get(`/api/accounts/${day}`),
+      axios.get(`/api/collections`),
+      axios.get(`/api/shop/${day}`),
+      axios.get(`/api/inventory/${day}`),
+      // axios.get("/api/collections/1"),
+      // axios.get("/api/todos/1"),
+      // axios.get("/api/habits/1"),
+      // axios.get("/api/actions/1"),
+      // axios.get("/api/accounts/1"),
+      // axios.get("/api/collections"),
     ])
       .then((res) => {
-        // console.log("res.data in useAppDate promise.all:", res.data);
+        // console.log("shop", res[6].data);
 
         setState((prev) => ({
           ...prev,
@@ -226,15 +249,19 @@ export default function useApplicationDate() {
           todos: res[1].data,
           habits: res[2].data,
           actions: res[3].data,
-          allCats: res[4].data,
-          logDatas: res[5].data,
-          streaks: res[6].data,
+          // allCats: res[4].data,
+          // logDatas: res[5].data,
+          // streaks: res[6].data,
+          account: res[4].data,
+          allCats: res[5].data,
+          shopInventory: res[6].data,
+          userInventory: res[7].data,
         }));
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [day]);
 
-  return { state, actionFunctions, catFunctions };
+  return { state, actionFunctions, catFunctions, setDay, day };
 }

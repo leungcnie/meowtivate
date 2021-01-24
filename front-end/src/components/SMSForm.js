@@ -23,12 +23,11 @@ class SMSForm extends Component {
     // this.onSubmit = this.onSubmit.bind(this);
     this.setAlarmTime = this.setAlarmTime.bind(this);
   }
-
   componentDidMount() {
-    axios.get("/api/actions/1").then((res) => {
+    axios.get(`/api/actions/1`).then((res) => {
       console.log(res.data);
       const tasks = [...res.data];
-      const undone = tasks.filter((item) => item.is_completed === false);
+      const undone = tasks.filter((item) => item.is_completed !== true);
       const undoneList = undone.map((item) => item.action_name);
       this.setState({
         message: { ...this.state.message, body: undoneList },
@@ -97,9 +96,9 @@ class SMSForm extends Component {
 
   render() {
     const { tasks } = this.state;
-    const undone = tasks.filter((item) => item.is_completed === false);
+    const undone = tasks.filter((item) => item.is_completed !== true);
     // console.log("undone", undone);
-    console.log("this.setState", this.state);
+    // console.log("this.setState", this.state);
 
     const undoneList = undone.length ? (
       undone.map((item) => {
@@ -117,7 +116,6 @@ class SMSForm extends Component {
         onSubmit={this.onSubmit}
         className={this.state.error ? "error sms-form" : "sms-form"}
       >
-        <p name="body" id="body" value={undoneList}></p>
         <div>
           <h2>It is {this.state.currentTime}.</h2>
           <h2>{this.alarmMessage}</h2>

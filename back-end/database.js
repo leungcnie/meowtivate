@@ -381,3 +381,29 @@ const addUnlockedCat = (cat_id, user_id) => {
 };
 
 exports.addUnlockedCat = addUnlockedCat;
+
+/* ----------- SHOP INVENTORY ------------ */
+const getUserInventory = () => {
+  return db
+    .query(`SELECT * FROM pots WHERE is_purchased = true`)
+    .then((res) => res.rows)
+    .catch((err) => console.error("query getUserInventory error", err.stack));
+};
+exports.getUserInventory = getUserInventory;
+
+const getShopItems = () => {
+  return db
+    .query(`SELECT * FROM pots WHERE is_purchased = false`)
+    .then((res) => res.rows)
+    .catch((err) => console.error("query getShopItems error", err.stack));
+};
+exports.getShopItems = getShopItems;
+
+/* ----------- USER INVENTORY ------------ */
+const getDefaultPot = () => {
+  return db
+    .query(`SELECT * FROM user_unlocked_pots WHERE default_pot = true`)
+    .then((res) => res.rows[0])
+    .catch((err) => console.error("query getDefaultPot error", err.stack));
+};
+exports.getDefaultPot = getDefaultPot;

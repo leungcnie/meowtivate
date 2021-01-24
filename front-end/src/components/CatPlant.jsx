@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 
   },
   animatedItem: {
-    animation: `$myEffect 3000ms ${theme.transitions.easing.easeInOut}`,
+    animation: `$myEffect 1500ms ${theme.transitions.easing.easeInOut}`,
 
   },
 
@@ -75,7 +75,7 @@ export default function CatPlant(props) {
   
   useEffect(() => {
     setStart(true);
-    timer = setTimeout(() => setStart(false), 3000);
+    timer = setTimeout(() => setStart(false), 1500);
   }, [actions])
 
   useEffect(() => {
@@ -87,7 +87,7 @@ export default function CatPlant(props) {
         <img className={clsx(classes.plant,
           {[classes.animatedItem]: start}
         )} src={`https://meowtivate.s3-us-west-2.amazonaws.com/plants/${num}plant.png`} alt="plant" style={{opacity: 1}}/>
-        <img className={classes.pot} src="https://meowtivate.s3-us-west-2.amazonaws.com/pot.png" alt="pot"/>
+        <img className={classes.pot} src="https://meowtivate.s3-us-west-2.amazonaws.com/pots/01pot.png" alt="pot"/>
       </div>
 );
 }
