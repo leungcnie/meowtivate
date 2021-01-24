@@ -26,15 +26,15 @@ export default function ShopItem(props) {
           <header className="meow-item-header">
             <img
               className={classes.root}
-              // add proper props
               src={props.image}
               alt={props.name}
+              price={props.price}
               style={props.style}
             />
             <h2 className="meow-item-header-name">{props.name}</h2>
           </header>
           <main className="meow-item-description">
-            {/* <p>{props.description}</p> */}
+            <p>{props.description}</p>
           </main>
           <footer className="meow-item-footer">
             {/* {props.date.substring(0, 10)} */}

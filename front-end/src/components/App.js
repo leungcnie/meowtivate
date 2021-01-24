@@ -20,7 +20,7 @@ import ListsPage from "../pages/ListsPage";
 import CatsPage from "../pages/CatsPage";
 import AccountPage from "../pages/AccountPage";
 import InventoryPage from "../pages/InventoryPage";
-import ShopPage from "../pages/InventoryPage";
+import ShopPage from "../pages/ShopPage";
 
 import NotFoundPage from "./404";
 

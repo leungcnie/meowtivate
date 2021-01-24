@@ -16,6 +16,8 @@ export default function useApplicationDate() {
     actions: [],
     account: [],
     allCats: [],
+    shopInventory: [],
+    userInventory: [],
   });
   
   // Log current state for debugging
@@ -176,9 +178,11 @@ export default function useApplicationDate() {
       axios.get("/api/actions/1"),
       axios.get("/api/accounts/1"),
       axios.get("/api/collections"),
+      axios.get("/api/shop/1"),
+      axios.get("/api/inventory/1"),
     ])
       .then(res => {
-        // console.log("res.data in useAppDate promise.all:", res.data);
+        console.log("shop", res[6].data);
 
         setState(prev => ({
           ...prev,
@@ -188,6 +192,8 @@ export default function useApplicationDate() {
           actions: res[3].data,
           account: res[4].data,
           allCats: res[5].data,
+          shopInventory: res[6].data,
+          userInventory: res[7].data,
         }));
       })
       .catch(err => {

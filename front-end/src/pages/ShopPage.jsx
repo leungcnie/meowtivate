@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import NavBar from '../components/NavBar';
 import ShopItem from '../components/ShopItem';
 
 const useStyles = makeStyles((theme) => ({
@@ -13,7 +14,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ShopPage(props) {
   const classes = useStyles();
-
+  const { state } = props;
+  const shopInventory = state.shopInventory;
+  console.log('shopInven', shopInventory)
   return (
     <>
       <header>
@@ -22,15 +25,15 @@ export default function ShopPage(props) {
       </header>
       <body className={classes.root}>
         <Grid container spacing={3}>
-          {props.items.map((items) => {
+          {shopInventory.map((items) => {
             return (
               <ShopItem 
               key={items.id}
-              name={items.cat_name}
-              avatar={items.image_url}
+              name={items.pot_name}
+              image={items.image_url}
               description={items.description}
-              date={items.date_unlocked}
-              style={props.style}
+              price={items.price}
+              // style={props.style}
               />
             );
           })}

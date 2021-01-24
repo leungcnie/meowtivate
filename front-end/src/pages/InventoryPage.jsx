@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function InventoryPage(props) {
   const classes = useStyles();
+  const { state } = props;
 
   return (
     <>
@@ -23,7 +24,7 @@ export default function InventoryPage(props) {
       </header>
       <body className={classes.root}>
         <Grid container spacing={3}>
-          {props.items.map((items) => {
+          {/* {props.items.map((items) => {
             return (
               <InventoryItem 
               key={items.id}
@@ -34,7 +35,7 @@ export default function InventoryPage(props) {
               style={props.style}
               />
             );
-          })}
+          })} */}
         </Grid>
       </body>
     </>

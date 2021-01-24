@@ -25,17 +25,17 @@ export default function InventoryItem(props) {
       <Card className={classes.card}>
         <CardContent>
           <header className="meow-item-header">
-            <img
+            {/* <img
               className={classes.root}
               //needs to change according to inventory schema
               src={props.image}
               alt={props.name}
               style={props.style}
             />
-            <h2 className="meow-item-header-name">{props.name}</h2>
+            <h2 className="meow-item-header-name">{props.name}</h2> */}
           </header>
           <main className="meow-item-description">
-            <p>{props.description}</p>
+            {/* <p>{props.description}</p> */}
           </main>
           <footer className="meow-item-footer">
             {/* {props.date.substring(0, 10)} */}
