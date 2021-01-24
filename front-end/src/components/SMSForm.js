@@ -88,7 +88,7 @@ class SMSForm extends Component {
               });
             }
           });
-        alert("You still have unfinished task" + this.state.message.body);
+        alert("You still have unfinished task: " + this.state.message.body);
       } else {
         console.log("Still have some time");
       }
