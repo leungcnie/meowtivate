@@ -28,9 +28,15 @@ class SMSForm extends Component {
       console.log(res.data);
       const tasks = [...res.data];
       const undone = tasks.filter((item) => item.is_completed !== true);
-      const undoneList = undone.map((item) => item.action_name);
+      const undoneList = undone.map((item) => "\n 🐈 " + item.action_name);
+      const msg =
+        "_________________" +
+        "\n ⏰  Reminder from Meowtivate. 🐈  \nHere are your " +
+        undoneList.length +
+        " unfinished tasks for today: " +
+        undoneList;
       this.setState({
-        message: { ...this.state.message, body: undoneList },
+        message: { ...this.state.message, body: msg },
       });
     });
     this.clock = setInterval(() => this.setCurrentTime(), 1000);
@@ -87,7 +93,7 @@ class SMSForm extends Component {
               });
             }
           });
-        alert("You still have unfinished task: " + this.state.message.body);
+        alert(this.state.message.body);
       } else {
         console.log("Still have some time");
       }
@@ -97,9 +103,9 @@ class SMSForm extends Component {
   render() {
     const { tasks } = this.state;
     const undone = tasks.filter((item) => item.is_completed !== true);
-    // console.log("undone", undone);
-    // console.log("this.setState", this.state);
-
+    // // console.log("undone", undone);
+    // console.log("this.setState", this.state.message);
+    // console.log(JSON.stringify(this.state.message));
     const undoneList = undone.length ? (
       undone.map((item) => {
         return (
