@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function InventoryPage(props) {
   const classes = useStyles();
+  const { state } = props;
+  const userInventory = state.userInventory;
+  console.log('userinven', userInventory)
 
   return (
     <>
@@ -23,15 +26,13 @@ export default function InventoryPage(props) {
       </header>
       <body className={classes.root}>
         <Grid container spacing={3}>
-          {props.items.map((items) => {
+          {userInventory.map((items) => {
             return (
               <InventoryItem 
               key={items.id}
-              name={items.cat_name}
-              avatar={items.image_url}
-              description={items.description}
-              date={items.date_unlocked}
-              style={props.style}
+              name={items.pot_name}
+              image={items.image_url}
+              // style={props.style}
               />
             );
           })}

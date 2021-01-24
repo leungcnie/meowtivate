@@ -16,6 +16,8 @@ export default function useApplicationDate() {
     actions: [],
     account: [],
     allCats: [],
+    shopInventory: [],
+    userInventory: [],
   });
 
   // User/day picker state
@@ -179,6 +181,8 @@ export default function useApplicationDate() {
       axios.get(`/api/actions/${day}`),
       axios.get(`/api/accounts/${day}`),
       axios.get(`/api/collections`),
+      axios.get(`/api/shop/${day}`),
+      axios.get(`/api/inventory/${day}`),
       // axios.get("/api/collections/1"),
       // axios.get("/api/todos/1"),
       // axios.get("/api/habits/1"),
@@ -187,7 +191,7 @@ export default function useApplicationDate() {
       // axios.get("/api/collections"),
     ])
       .then(res => {
-        // console.log("res.data in useAppDate promise.all:", res.data);
+        // console.log("shop", res[6].data);
 
         setState(prev => ({
           ...prev,
@@ -197,6 +201,8 @@ export default function useApplicationDate() {
           actions: res[3].data,
           account: res[4].data,
           allCats: res[5].data,
+          shopInventory: res[6].data,
+          userInventory: res[7].data,
         }));
       })
       .catch(err => {

@@ -20,6 +20,9 @@ import DashboardPage from "../pages/DashboardPage";
 import ListsPage from "../pages/ListsPage";
 import CatsPage from "../pages/CatsPage";
 import AccountPage from "../pages/AccountPage";
+import InventoryPage from "../pages/InventoryPage";
+import ShopPage from "../pages/ShopPage";
+
 import NotFoundPage from "./404";
 
 function App() {
@@ -86,6 +89,12 @@ function App() {
           </Route>
           <Route exact path="/account" component={AccountPage}>
             <AccountPage state={state} />
+          </Route>
+          <Route exact path="/inventory" component={InventoryPage}>
+            <InventoryPage state={state} />
+          </Route>
+          <Route exact path="/shop" component={ShopPage}>
+            <ShopPage state={state} />
           </Route>
           <Route exact path="*" component={NotFoundPage} />
         </Switch>
