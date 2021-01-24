@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "./SMSForm.css";
+
 class SMSForm extends Component {
   constructor(props) {
+    console.log("props", props);
     super(props);
     this.state = {
       message: {
@@ -39,7 +41,6 @@ class SMSForm extends Component {
             error: false,
             submitting: false,
             message: {
-              to: "",
               body: "",
             },
           });
@@ -58,16 +59,6 @@ class SMSForm extends Component {
         onSubmit={this.onSubmit}
         className={this.state.error ? "error sms-form" : "sms-form"}
       >
-        <div>
-          <label htmlFor="to">To:</label>
-          <input
-            type="tel"
-            name="to"
-            id="to"
-            value={this.state.message.to}
-            onChange={this.onHandleChange}
-          />
-        </div>
         <div>
           <label htmlFor="body">Body:</label>
           <textarea

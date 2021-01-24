@@ -46,7 +46,7 @@ export function modifyActionWith(val, key, id, state) {
 }
 
 // Modify action in state.streaks with new property
-export function modifyStreakActionWith(completed, key1, key2, id, state) {
+export function modifyStreakActionWith(key1, key2, id, state) {
   // Make a copy of the state.streaks
   const updatedActions = [...state.streaks];
 
@@ -57,25 +57,22 @@ export function modifyStreakActionWith(completed, key1, key2, id, state) {
   const newAction = { ...target };
   let val = newAction[key1];
 
-  // check if all is  completed
-  // if true current_streaks ++
-  if (completed === 1) {
-    val++;
-  }
   // Update new action with new property val
   // compare two keys for update
   // need to ask which one is the one that return
   // this is the one that update both streak and current_streak
-  newAction[key1] = val;
-  console.log("newAction[key1]", newAction[key1]);
   console.log("newAction[key2]", newAction[key2]);
   console.log("val", val);
   if (val === 0 || newAction[key2] < val) {
     newAction[key2] = val;
     console.log("val1", val);
+  } else {
+    val++;
+    newAction[key1] = val;
+    newAction[key2] = val;
   }
 
-  // console.log("newAction[key1]", newAction[key2]);
+  console.log("newAction[key1]", newAction[key2]);
   // this is the one that update only current_streak
 
   // if (newAction[key2] < val) {

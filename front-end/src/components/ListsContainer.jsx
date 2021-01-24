@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import ActionList from "./ActionList";
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ListContainer(props) {
-  const { state, actionFunctions, catFunctions } = props;
+  const { state, actionFunctions, catFunctions, user } = props;
   const { actions, todos, habits, unlocked, streaks, logDatas } = state;
   const classes = useStyles();
 
@@ -51,25 +51,27 @@ export default function ListContainer(props) {
   const habitIDs = calculateChecked(checkedHabits);
   const todoIDs = calculateChecked(checkedTodos);
 
-  // console.log("completed", completed)
-  // console.log("checkedHabits", checkedHabits);
-  // console.log("checkedTodos", checkedTodos);
   const totalAmount = actions.length;
   const completedAmount = completed.length;
   const completedPercentage = completedAmount / totalAmount;
+  const undoneAmount = totalAmount - completedAmount;
 
   console.log("completedPercentage", completedPercentage);
 
-  // const handleStreak = (userId, completed) => {
-  //   updateStreak = (userId, completed);
-  //   const date_created = Date();
-  //   postLogData = (userId, date_created);
-  // };
+  useEffect(() => {
+    if (completedPercentage >= 100) {
+      updateStreak(1);
+    }
+  }, [actions]);
+
+  const currentUser = user.accounts[0].username;
+  // console.log("user", currentUser);
 
   return (
     <>
       <UnlockBadge state={state} catFunctions={catFunctions} />
       <div className={classes.root}>
+        <h2>Hello {currentUser}</h2>
         <h2 className={classes.header}>LET'S GET LOTS DONE TODAY</h2>
         <Grid container spacing={4}>
           <Grid item xs={4}>

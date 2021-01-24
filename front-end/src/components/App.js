@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 // Hooks
 import useApplicationData from "../hooks/useApplicationData";
+import useAuth from "../hooks/useAuth";
 
 // Pages imported from src/pages dir
 import WelcomePage from "../pages/WelcomePage";
@@ -24,7 +25,7 @@ import SMSForm from "./SMSForm";
 
 function App() {
   const { state, actionFunctions, catFunctions } = useApplicationData();
-
+  const { user } = useAuth();
   console.log("app.js is_completed");
 
   return (
@@ -42,13 +43,14 @@ function App() {
             <RegisterPage state={state} />
           </Route>
           <Route exact path="/dashboard" component={DashboardPage}>
-            <DashboardPage state={state} />
+            <DashboardPage state={state} user={user} />
           </Route>
           <Route exact path="/lists" component={ListsPage}>
             <ListsPage
               state={state}
               actionFunctions={actionFunctions}
               catFunctions={catFunctions}
+              user={user}
             />
           </Route>
           <Route exact path="/cats" component={CatsPage}>

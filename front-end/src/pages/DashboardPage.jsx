@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function DashboardPage(props) {
-  const { state } = props;
+  const { state, user } = props;
   const classes = useStyles();
   // console.log("dashboard", state.logDatas);
 

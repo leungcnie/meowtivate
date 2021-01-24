@@ -96,7 +96,7 @@ app.post("/api/messages", (req, res) => {
   client.messages
     .create({
       from: process.env.TWILIO_PHONE_NUMBER,
-      to: req.body.to,
+      to: process.env.TWILIO_MY_PHONE_NUMBER,
       body: req.body.body,
     })
     .then(() => {
