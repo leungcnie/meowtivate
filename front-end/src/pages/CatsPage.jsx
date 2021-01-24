@@ -31,18 +31,16 @@ function isLocked (allCats, unlockedCats) {
   return lockedCats;
 }
 
-
 export default function CatsPage(props) {
   const { state } = props;
   const classes = useStyles();
-  console.log('UNLOCKED', state.unlocked);
-  console.log('ALLCATS', state.allCats);
+  // console.log('UNLOCKED', state.unlocked);
+  // console.log('ALLCATS', state.allCats);
   const allCatsArray = state.allCats;
   const unlockedCatsArray = state.unlocked;
   const lockedCatsArray = isLocked(allCatsArray, unlockedCatsArray);
 
   return (
-    <>
     <div className="Cats">
       <NavBar />
       <header>
@@ -53,13 +51,5 @@ export default function CatsPage(props) {
         <GalleryContainer items={lockedCatsArray} style={{filter: 'brightness(0)'}}/>
       </section>
     </div>
-    {/* <div className="Cats">
-      <NavBar />
-      <header>
-        <h2 className={classes.header}>my Collection</h2>
-      </header>
-      <GalleryContainer items={state.unlocked} />
-    </div> */}
-    </>
   );
 }
