@@ -304,3 +304,24 @@ const addUnlockedCat = (cat_id, user_id) => {
 }
 
 exports.addUnlockedCat = addUnlockedCat;
+
+/* ----------- SHOP INVENTORY ------------ */
+const getUserInventory = () => {
+  return db
+  .query(
+    ``
+  )
+  .then(res => res.rows)
+  .catch((err) => console.error("query getUserInventory error", err.stack));
+}
+exports.getUserInventory = getUserInventory;
+
+const getShopItems = () => {
+  return db
+  .query(
+    ``
+  )
+  .then(res => res.rows)
+  .catch((err) => console.error("query getShopItems error", err.stack));
+}
+exports.getShopItems = getShopItems;
