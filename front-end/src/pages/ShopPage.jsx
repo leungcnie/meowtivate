@@ -16,7 +16,8 @@ export default function ShopPage(props) {
   const classes = useStyles();
   const { state } = props;
   const shopInventory = state.shopInventory;
-  console.log('shopInven', shopInventory)
+  // console.log('shopInven', shopInventory)
+  
   return (
     <>
       <header>

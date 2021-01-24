@@ -182,7 +182,7 @@ export default function useApplicationDate() {
       axios.get("/api/inventory/1"),
     ])
       .then(res => {
-        console.log("shop", res[6].data);
+        // console.log("shop", res[6].data);
 
         setState(prev => ({
           ...prev,

@@ -37,7 +37,6 @@ export default function ShopItem(props) {
             <p>{props.description}</p>
           </main>
           <footer className="meow-item-footer">
-            {/* {props.date.substring(0, 10)} */}
           </footer>
         </CardContent>
       </Card>
