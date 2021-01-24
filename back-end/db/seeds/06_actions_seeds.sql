@@ -7,9 +7,9 @@ VALUES (1, 1, 'Buy groceries', CURRENT_DATE, true),
 
 INSERT INTO actions (user_id, category_id, action_name, date_created, is_completed)
 VALUES (2, 2, 'Drink a liter of water', CURRENT_DATE, false),
-(2, 2, '15 mins of exercise', CURRENT_DATE, true);
+(2, 2, '15 mins of exercise', CURRENT_DATE, false);
 
 INSERT INTO actions (user_id, category_id, action_name, date_created, is_completed)
 VALUES (3, 2, 'Drink a liter of water', CURRENT_DATE, false),
 (3, 2, '15 mins of exercise', CURRENT_DATE, true),
-(2, 1, 'Run a marathon', CURRENT_DATE, false);
+(3, 1, 'Run a marathon', CURRENT_DATE, true);
