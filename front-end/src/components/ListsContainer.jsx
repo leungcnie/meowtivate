@@ -59,10 +59,12 @@ export default function ListContainer(props) {
   console.log("completedPercentage", completedPercentage);
 
   useEffect(() => {
-    if (completedPercentage >= 100) {
+    if (completedPercentage >= 1) {
       updateStreak(1);
     }
   }, [actions]);
+
+  console.log("Does the streaks changes?", streaks);
 
   const currentUser = user.accounts[0].username;
   // console.log("user", currentUser);
