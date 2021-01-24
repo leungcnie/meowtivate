@@ -2,7 +2,6 @@ import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
 
 import "./SMSForm.css";
-import { ContactSupportOutlined } from "@material-ui/icons";
 
 class SMSForm extends Component {
   constructor(props) {
@@ -120,22 +119,12 @@ class SMSForm extends Component {
       >
         <p name="body" id="body" value={undoneList}></p>
         <div>
-          {/* <label htmlFor="timer">Set Reminder time:</label>
-          <input
-            name="timer"
-            id="timer"
-            value={this.state.timer}
-            onChange={this.onHandleChange}
-          /> */}
           <h2>It is {this.state.currentTime}.</h2>
           <h2>{this.alarmMessage}</h2>
           <form>
             <input type="time" onChange={this.setAlarmTime}></input>
           </form>
         </div>
-        {/* <button type="submit" disabled={this.state.submitting}>
-          Send message
-        </button> */}
       </form>
     );
   }
