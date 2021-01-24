@@ -10,6 +10,11 @@ const app = express();
 const bodyParser = require("body-parser");
 // const morgan     = require('morgan');
 const cookieSession = require("cookie-session");
+const pino = require("express-pino-logger")();
+const client = require("twilio")(
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
+);
 
 // Store database connection + db helper functions as 'db'
 const db = require("./database");
@@ -35,6 +40,8 @@ app.use(
     keys: ["meowtivate"],
   })
 );
+
+app.use(pino);
 
 // Separated Routes for each Resource
 const indexRoutes = require("./routes/indexRoutes");
@@ -73,6 +80,9 @@ app.use("/api/actions", actionRoutes(actionRouter, db));
 const accountRouter = express.Router();
 app.use("/api/accounts", accountRoutes(accountRouter, db));
 
+//Streak and data log
+// const streakRouter = express.Router();
+// app.use("/api/streaks", streakRoutes(streakRouter, db));
 // shop inventory
 const shopRouter = express.Router();
 app.use("/api/shop", shopRoutes(shopRouter, db));
@@ -87,6 +97,24 @@ app.use("/api/inventory", inventoryRoutes(inventoryRouter, db));
 // app.get("/", (req, res) => {
 //   res.render("index");
 // });
+
+// Trilio
+app.post("/api/messages", (req, res) => {
+  res.header("Content-Type", "application/json");
+  client.messages
+    .create({
+      from: process.env.TWILIO_PHONE_NUMBER,
+      to: process.env.TWILIO_MY_PHONE_NUMBER,
+      body: req.body.body,
+    })
+    .then(() => {
+      res.send(JSON.stringify({ success: true }));
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(JSON.stringify({ success: false }));
+    });
+});
 
 app.listen(PORT, () => {
   console.log(

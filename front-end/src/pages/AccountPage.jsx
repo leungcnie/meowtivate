@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import NavBar from "../components/NavBar";
 import IconButton from "@material-ui/core/IconButton";
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 import SaveRoundedIcon from "@material-ui/icons/SaveRounded";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import TextField from "@material-ui/core/TextField";
@@ -20,9 +20,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AccountPage(props) {
-  const user = props.state.account[0];
-  console.log("AccountPage", user);
-  const { username, email } = user;
+  // const user = props.state.account[0];
+  // console.log("AccountPage", user);
+  // const { username, email } = user;
 
   const classes = useStyles();
 
@@ -32,16 +32,18 @@ export default function AccountPage(props) {
 
   return (
     <div className={classes.root}>
-      <NavBar/>
+      <NavBar />
       <header>
         <h2 className={classes.header}>my Account</h2>
       </header>
       <Card>
-        <CardContent>
-          <h5>Username: {username}</h5>
-          <h5>Email: {email}</h5>
-          <h5>Password: ********* </h5>
-        </CardContent>
+        {props && (
+          <CardContent>
+            <h5>Username: Pawthos</h5>
+            <h5>Email: pawthos@gmail.com</h5>
+            <h5>Password: ********* </h5>{" "}
+          </CardContent>
+        )}
       </Card>
       <IconButton onClick={modeToggle}>
         <EditRoundedIcon />
