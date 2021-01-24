@@ -44,6 +44,7 @@ function App() {
           </Route>
           <Route exact path="/dashboard" component={DashboardPage}>
             <DashboardPage state={state} user={user} />
+            <SMSForm />
           </Route>
           <Route exact path="/lists" component={ListsPage}>
             <ListsPage
@@ -62,9 +63,6 @@ function App() {
           <Route exact path="*" component={NotFoundPage} />
         </Switch>
       </Router>
-      <header className="App-header">
-        <SMSForm />
-      </header>
     </div>
   );
 }

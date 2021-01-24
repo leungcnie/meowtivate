@@ -1,11 +1,16 @@
 import React, { Component } from "react";
+import axios from "axios";
+
 import "./SMSForm.css";
+import { ContactSupportOutlined } from "@material-ui/icons";
 
 class SMSForm extends Component {
   constructor(props) {
     console.log("props", props);
     super(props);
+
     this.state = {
+      tasks: [],
       message: {
         to: "",
         body: "",
@@ -13,14 +18,18 @@ class SMSForm extends Component {
       submitting: false,
       error: false,
     };
-    this.onHandleChange = this.onHandleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onHandleChange(event) {
-    const name = event.target.getAttribute("name");
-    this.setState({
-      message: { ...this.state.message, [name]: event.target.value },
+  componentDidMount() {
+    axios.get("/api/actions/1").then((res) => {
+      console.log(res.data);
+      const tasks = [...res.data];
+      const undone = tasks.filter((item) => item.is_completed === false);
+      const undoneList = undone.map((item) => item.action_name);
+      this.setState({
+        message: { ...this.state.message, body: undoneList },
+      });
     });
   }
 
@@ -54,12 +63,28 @@ class SMSForm extends Component {
   }
 
   render() {
+    const { tasks } = this.state;
+    const undone = tasks.filter((item) => item.is_completed === false);
+    console.log("this.setState", this.state);
+
+    const undoneList = undone.length ? (
+      undone.map((item) => {
+        return (
+          <div>
+            <li key={item.id}>{item.action_name}</li>
+          </div>
+        );
+      })
+    ) : (
+      <div>All done for today</div>
+    );
     return (
       <form
         onSubmit={this.onSubmit}
         className={this.state.error ? "error sms-form" : "sms-form"}
       >
-        <div>
+        <p name="body" id="body" value={undoneList}></p>
+        {/* <div>
           <label htmlFor="body">Body:</label>
           <textarea
             name="body"
@@ -67,7 +92,7 @@ class SMSForm extends Component {
             value={this.state.message.body}
             onChange={this.onHandleChange}
           />
-        </div>
+        </div> */}
         <button type="submit" disabled={this.state.submitting}>
           Send message
         </button>
