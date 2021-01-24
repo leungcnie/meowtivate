@@ -2,6 +2,7 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -39,6 +40,11 @@ export default function ShopItem(props) {
           <footer className="meow-item-footer">
             <p>{props.price} Meowcoins</p>
           </footer>
+          <Button 
+            variant="contained" 
+            color="secondary">
+            BUY
+          </Button>
         </CardContent>
       </Card>
     </Grid>

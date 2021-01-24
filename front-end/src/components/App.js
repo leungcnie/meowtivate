@@ -37,6 +37,8 @@ function App() {
   // const id = 1;
 
   const [streak, setStreak] = useState(3); // Hardcode initial streak value
+  const [coins, setCoins] = useState(streak * 100);
+
 
   // Add 1 to current streak if a cat was unlocked today
   useEffect(() => {
@@ -76,7 +78,10 @@ function App() {
               state={state}
               streak={streak}
               day={day}
-              setDay={setDay} />
+              setDay={setDay}
+              id={id}
+              coins={coins}
+              setCoins={setCoins} />
           </Route>
           <Route exact path="/lists" component={ListsPage}>
             <ListsPage 
@@ -94,7 +99,10 @@ function App() {
             <InventoryPage state={state} />
           </Route>
           <Route exact path="/shop" component={ShopPage}>
-            <ShopPage state={state} />
+            <ShopPage 
+              state={state}
+              coins={coins}
+              setCoins={setCoins} />
           </Route>
           <Route exact path="*" component={NotFoundPage} />
         </Switch>

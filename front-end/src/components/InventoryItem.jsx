@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   card: {
     minHeight: '22rem',
     minWidth: '12rem',
-    backgroundColor: 'darkkhaki',
+    // backgroundColor: 'darkkhaki',
   }
 }));
 

@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ShopPage(props) {
   const classes = useStyles();
-  const { state } = props;
+  const { state, coins, setCoins } = props;
   const shopInventory = state.shopInventory;
   // console.log('shopInven', shopInventory)
   

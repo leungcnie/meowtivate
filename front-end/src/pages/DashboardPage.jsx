@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-// import getCurrentDate from "../helpers/getCurrentDate";
+import getCurrentDate from "../helpers/getCurrentDate";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,9 +19,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function DashboardPage(props) {
-  const { state, streak, day, setDay } = props;
-  // const { unlocked } = state;
+  const { 
+    state, 
+    streak, 
+    day, 
+    setDay, 
+    id,
+    coins,
+    setCoins } = props;
+  const { unlocked } = state;
   const classes = useStyles();
+  // const [coins, setCoins] = useState(streak * 100);
 
   // Go to next day
   const changeDay = () => {
@@ -29,6 +37,27 @@ export default function DashboardPage(props) {
       setDay(prev => prev + 1)
     }
   }
+
+  useEffect(() => {
+    setCoins(streak * 100);
+  }, [streak])
+
+  useEffect(() => {
+    if (id === 2) {
+      setCoins(0);
+    }
+  }, [id])
+
+  // useEffect(() => {
+  //   const today = getCurrentDate();
+  //   // Get array of unlocked dates in "yyyy-mm-dd"
+  //   const currentUnlocked = unlocked.map(obj => obj.date_unlocked.slice(0, 10));
+  //   if (currentUnlocked.includes(today)) {
+  //     setCoins(prev => prev + 100);
+  //   } else {
+  //     setCoins(streak * 100)
+  //   }
+  // }, [streak])
  
   return (
     <div>
@@ -65,7 +94,7 @@ export default function DashboardPage(props) {
           STREAK {streak} DAYS
         </Card>
         <Card>
-          {streak * 100} MEOWCOINS
+          {coins} MEOWCOINS
         </Card>
 
         <Button variant="contained" onClick={changeDay}>
