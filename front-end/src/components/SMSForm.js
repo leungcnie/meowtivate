@@ -63,7 +63,6 @@ class SMSForm extends Component {
     } else {
       this.alarmMessage = "Your alarm is set for " + this.state.alarmTime + ".";
       if (this.state.currentTime === this.state.alarmTime) {
-        alert("You still have unfinished task" + this.state.message.body);
         this.setState({ submitting: true });
         fetch("/api/messages", {
           method: "POST",
@@ -89,6 +88,7 @@ class SMSForm extends Component {
               });
             }
           });
+        alert("You still have unfinished task" + this.state.message.body);
       } else {
         console.log("Still have some time");
       }
