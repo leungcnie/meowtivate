@@ -14,9 +14,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ShopPage(props) {
   const classes = useStyles();
-  const { state } = props;
-  const shopInventory = state.shopInventory;
-  // console.log('shopInven', shopInventory)
+  const { state, coins, setCoins, addPot } = props;
+  const { shop, inventory } = state;
+  // console.log('shopInven', shop)
   
   return (
     <>
@@ -24,16 +24,22 @@ export default function ShopPage(props) {
         <NavBar/>
         <h1>Welcome to the Shop!</h1>
       </header>
+      <p>{coins} MEOWCOINS</p>
       <body className={classes.root}>
         <Grid container spacing={3}>
-          {shopInventory.map((items) => {
+          {shop.map((item) => {
             return (
               <ShopItem 
-              key={items.id}
-              name={items.pot_name}
-              image={items.image_url}
-              description={items.description}
-              price={items.price}
+              key={item.id}
+              id={item.id}
+              name={item.pot_name}
+              image={item.image_url}
+              description={item.description}
+              price={item.price}
+              addPot={addPot}
+              coins={coins}
+              setCoins={setCoins}
+              inventory={inventory}
               // style={props.style}
               />
             );

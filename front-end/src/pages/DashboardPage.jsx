@@ -9,6 +9,9 @@ import CatPlant from '../components/CatPlant';
 
 // import getCurrentDate from "../helpers/getCurrentDate";
 import SMSForm from "../components/SMSForm";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import getCurrentDate from "../helpers/getCurrentDate";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -98,13 +101,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function DashboardPage(props) {
-  // const { state, user } = props;
-  const { state, streak, day, setDay } = props;
-  const { actions } = state;
-
-  // const { unlocked } = state;
+  const { 
+    state, 
+    streak, 
+    day, 
+    setDay, 
+    id,
+    coins,
+    setCoins } = props;
+  const { unlocked, actions } = state;
   const classes = useStyles();
-  // console.log("dashboard", state.logDatas);
+  // const [coins, setCoins] = useState(streak * 100);
 
   // Go to next day
   const changeDay = () => {
@@ -113,6 +120,23 @@ export default function DashboardPage(props) {
     }
   }
 
+  useEffect(() => {
+    if (id === 2) {
+      setCoins(0);
+    }
+  }, [id])
+
+  // useEffect(() => {
+  //   const today = getCurrentDate();
+  //   // Get array of unlocked dates in "yyyy-mm-dd"
+  //   const currentUnlocked = unlocked.map(obj => obj.date_unlocked.slice(0, 10));
+  //   if (currentUnlocked.includes(today)) {
+  //     setCoins(prev => prev + 100);
+  //   } else {
+  //     setCoins(streak * 100)
+  //   }
+  // }, [streak])
+ 
   return (
     <div>
       <header>
@@ -158,7 +182,7 @@ export default function DashboardPage(props) {
           </Card>
         <Card className={classes.margin}>
           <CardContent className={classes.coinstyle}>
-            <h3 className={classes.numOfCoins}>{streak * 100} </h3>
+            <h3 className={classes.numOfCoins}>{coins}</h3>
             <img className={classes.coin} src='https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png' alt='meowcoin' />
           </CardContent>
         </Card>

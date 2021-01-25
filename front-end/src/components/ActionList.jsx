@@ -107,54 +107,52 @@ export default function ActionList(props) {
 
   return (
     <List className={classes.root}>
-      {items
-        .sort(function (a, b) {
-          return a.id - b.id;
-        })
-        .map((obj) => {
-          const labelId = `checkbox-list-label-${obj.id}`;
-          return (
-            <ListItem
-              key={obj.id}
-              role={undefined}
-              dense
-              button
-              onClick={(evt) => handleToggle(obj.id, evt)}
-            >
-              <ListItemIcon>
-                <Checkbox
-                  edge="start"
-                  checked={obj.is_completed}
-                  tabIndex={-1}
-                  disableRipple
-                  inputProps={{ "aria-labelledby": labelId }}
-                />
-              </ListItemIcon>
-              <ListItemText id={labelId} primary={obj.action_name} />
-              {isEditable && (
-                <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="drag">
-                    <UnfoldMoreRoundedIcon />
-                  </IconButton>
-                  <IconButton edge="end" aria-label="delete">
-                    <DeleteRoundedIcon
-                      onClick={() =>
-                        handleClickOpen("Delete", obj.id, obj.action_name)
-                      }
-                    />
-                  </IconButton>
-                  <IconButton edge="end" aria-label="edit">
-                    <EditRoundedIcon
-                      onClick={() =>
-                        handleClickOpen("Edit", obj.id, obj.action_name)
-                      }
-                    />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              )}
-            </ListItem>
-          );
-        })}
+      {items.sort(function(a, b) {
+  return a.id - b.id;
+}).map((obj) => {
+        const labelId = `checkbox-list-label-${obj.id}`;
+        return (
+          <ListItem
+            key={obj.id}
+            role={undefined}
+            dense
+            button
+            onClick={(evt) => handleToggle(obj.id, evt)}
+          >
+            <ListItemIcon>
+              <Checkbox
+                edge="start"
+                checked={obj.is_completed}
+                tabIndex={-1}
+                disableRipple
+                inputProps={{ "aria-labelledby": labelId }}
+              />
+            </ListItemIcon>
+            <ListItemText id={labelId} primary={obj.action_name} />
+            {isEditable && (
+              <ListItemSecondaryAction>
+                {/* <IconButton edge="end" aria-label="drag">
+                  <UnfoldMoreRoundedIcon />
+                </IconButton> */}
+                <IconButton edge="end" aria-label="delete">
+                  <DeleteRoundedIcon
+                    onClick={() =>
+                      handleClickOpen("Delete", obj.id, obj.action_name)
+                    }
+                  />
+                </IconButton>
+                <IconButton edge="end" aria-label="edit">
+                  <EditRoundedIcon
+                    onClick={() =>
+                      handleClickOpen("Edit", obj.id, obj.action_name)
+                    }
+                  />
+                </IconButton>
+              </ListItemSecondaryAction>
+            )}
+          </ListItem>
+        );
+      })}
 
       {isEditable ? (
         <>

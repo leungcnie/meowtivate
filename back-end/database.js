@@ -383,27 +383,111 @@ const addUnlockedCat = (cat_id, user_id) => {
 exports.addUnlockedCat = addUnlockedCat;
 
 /* ----------- SHOP INVENTORY ------------ */
-const getUserInventory = () => {
+const getAllPots = () => {
   return db
-    .query(`SELECT * FROM pots WHERE is_purchased = true`)
-    .then((res) => res.rows)
-    .catch((err) => console.error("query getUserInventory error", err.stack));
-};
-exports.getUserInventory = getUserInventory;
+  .query(
+    `SELECT * FROM pots;`
+  )
+  .then(res => res.rows)
+  .catch((err) => console.error("query getAllPots error", err.stack));
+}
+exports.getAllPots = getAllPots;
 
-const getShopItems = () => {
-  return db
-    .query(`SELECT * FROM pots WHERE is_purchased = false`)
-    .then((res) => res.rows)
-    .catch((err) => console.error("query getShopItems error", err.stack));
-};
-exports.getShopItems = getShopItems;
+// const getAvailablePots = (user_id) => {
+//   return db
+//     .query(
+//       `select user_id, pot_name, description, price
+//       from user_pots
+//       full outer join pots on pots.id = pot_id
+//       where user_id is null;`,
+//       [user_id]
+//     )
+//     .then(res => res.rows)
+//     .catch((err) => console.error("query getAvailablePots error", err.stack));
+// }
+// exports.getAvailablePots = getAvailablePots;
 
 /* ----------- USER INVENTORY ------------ */
-const getDefaultPot = () => {
+
+// Get all user's pots
+const getUserInventory = (user_id) => {
   return db
-    .query(`SELECT * FROM user_unlocked_pots WHERE default_pot = true`)
-    .then((res) => res.rows[0])
-    .catch((err) => console.error("query getDefaultPot error", err.stack));
+  .query(
+    `SELECT pot_name, description, image_url, user_id, pot_id, is_default  
+    FROM user_pots
+    FULL OUTER JOIN pots on pots.id = pot_id
+    WHERE user_id = $1;`,
+    [user_id]
+  )
+  .then(res => res.rows)
+  .catch((err) => console.error("query getUserInventory error", err.stack));
+}
+exports.getUserInventory = getUserInventory;
+
+// Return user's default pot's data
+const getUserDefault = (user_id) => {
+  return db
+  .query(
+    `SELECT pot_name, description, image_url, user_id, pot_id, is_default 
+    FROM user_pots
+    FULL OUTER JOIN pots on pots.id = pot_id
+    WHERE user_id = $1
+    AND is_default = true;`,
+    [user_id]
+  )
+  .then(res => res.rows[0])
+  .catch((err) => console.error("query getUserDefault error", err.stack));
+}
+exports.getUserDefault = getUserDefault;
+
+// Add a row to bridge table
+const addInventory = (user_id, pot_id) => {
+  return db
+    .query(
+      `INSERT INTO user_pots (user_id, pot_id, is_default)
+      VALUES ($1, $2, false)
+      RETURNING *;`,
+      [user_id, pot_id]
+    )
+    .then(res => res.rows[0])
+    .catch((err) => console.error("query addInventory error", err.stack));
+}
+exports.addInventory = addInventory;
+
+// Update inventory pot's is_default boolean
+const setDefault = (user_id, pot_id) => {
+  console.log("pot_id", pot_id);
+  return db
+    .query(
+      `UPDATE user_pots
+      SET is_default = true
+      WHERE user_id = $1
+      AND pot_id = $2
+      RETURNING *;`,
+      [user_id, pot_id]
+    )
+    .then(() => {
+      db
+        .query(`
+        UPDATE user_pots
+        SET is_default = false
+        WHERE user_id = $1
+        AND pot_id != $2;`,
+        [user_id, pot_id]
+        )
+        .then(res => res.rows)
+        .catch((err) => console.error("query setDefault .then() error", err.stack));
+    })
+    .catch((err) => console.error("query setDefault error", err.stack));
 };
-exports.getDefaultPot = getDefaultPot;
+exports.setDefault = setDefault;
+
+// const getDefaultPot = () => {
+//   return db
+//   .query(
+//     `SELECT * FROM user_pots WHERE is_default = true`
+//   )
+//   .then(res => res.rows[0])
+//   .catch((err) => console.error("query getDefaultPot error", err.stack));
+// }
+// exports.getDefaultPot = getDefaultPot;
