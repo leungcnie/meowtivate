@@ -24,7 +24,7 @@ export default function notificationDev() {
       scope: "/",
     })
     .then((res) => {
-      console.log("here in notification");
+      // console.log("here in notification");
       return res.pushManager.getSubscription().then(function (subscription) {
         return res.pushManager.subscribe({
           userVisibleOnly: true,

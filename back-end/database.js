@@ -12,7 +12,7 @@ db.connect();
 // EXAMPLES QUERIES
 const getExampleWithID = (id) => {
   return db.query("SELECT * FROM examples WHERE id = $1;", [id]).then((res) => {
-    console.log("whats res.rows[0]", res.rows[0]);
+    // console.log("whats res.rows[0]", res.rows[0]);
     return res.rows[0];
   });
 };
@@ -28,7 +28,7 @@ const getExample = (text) => {
       [text]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows[0]);
+      // console.log("whats res.rows[0]", res.rows[0]);
       return res.rows[0];
     });
 };
@@ -45,7 +45,7 @@ const updateExample = (id, text) => {
       [id, text]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows);
+      // console.log("whats res.rows[0]", res.rows);
       return res.rows;
     });
 };
@@ -54,7 +54,7 @@ exports.updateExample = updateExample;
 //delete example
 const deleteExample = (id) => {
   return db.query(`DELETE FROM examples WHERE id = $1;`, [id]).then((res) => {
-    console.log("whats res.rows[0]", res.rows);
+    // console.log("whats res.rows[0]", res.rows);
     return res.rows;
   });
 };
@@ -103,7 +103,7 @@ const createTodo = (action_name) => {
       [action_name]
     )
     .then((res) => {
-      console.log("createTodo", res.rows[0]);
+      // console.log("createTodo", res.rows[0]);
       return res.rows[0];
     })
     .catch((error) => console.log(error));
@@ -137,7 +137,7 @@ const createHabit = (action_name) => {
       [action_name]
     )
     .then((res) => {
-      console.log("createHabit", res.rows[0]);
+      // console.log("createHabit", res.rows[0]);
       return res.rows[0];
     })
     .catch((error) => console.log(error));
@@ -173,7 +173,7 @@ const updateAction = (id, action_name, is_completed) => {
       [id, action_name, is_completed]
     )
     .then((res) => {
-      console.log("updateAction res.rows[0]", res.rows[0]);
+      // console.log("updateAction res.rows[0]", res.rows[0]);
       return res.rows[0];
     });
 };
@@ -190,7 +190,7 @@ const updateCompletion = (id, is_completed) => {
       [id, is_completed]
     )
     .then((res) => {
-      console.log("updateCompletion res.rows[0]", res.rows[0]);
+      // console.log("updateCompletion res.rows[0]", res.rows[0]);
       return res.rows[0];
     });
 };
@@ -202,7 +202,7 @@ const deleteAction = (id) => {
   return db
     .query(`DELETE FROM actions WHERE id = $1 RETURNING *;`, [id])
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows[0]);
+      // console.log("whats res.rows[0]", res.rows[0]);
       return res.rows[0];
     });
 };
@@ -220,7 +220,7 @@ const getActions = (id) => {
       [id]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows);
+      // console.log("whats res.rows[0]", res.rows);
       return res.rows;
     });
 };
@@ -283,7 +283,7 @@ const updateAccount = (id, email, username, password) => {
       [id, email, username, password]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows);
+      // console.log("whats res.rows[0]", res.rows);
       return res.rows;
     });
 };
@@ -361,7 +361,7 @@ const updateStreak = (id, streak, current_streak) => {
       [id, streak, current_streak]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows);
+      // console.log("whats res.rows[0]", res.rows);
       return res.rows;
     });
 };

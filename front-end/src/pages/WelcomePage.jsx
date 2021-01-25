@@ -27,7 +27,7 @@ export default function WelcomePage(props) {
 
   const login = () => {
     axios.get("/api/login/1").then((res) => {
-      console.log(res);
+      // console.log(res);
       history.push("/dashboard");
     });
   };

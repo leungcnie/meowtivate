@@ -48,7 +48,47 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-  }
+  },
+  listButton: {
+    backgroundColor: '#fee2b1',
+    fontFamily: 'Itim',
+    margin: '0.5vh',
+    fontSize: '1.5em',
+    paddingLeft: '0.5em',
+    paddingRight: '0.5em',
+    transition: '0.3s',
+    '&:hover': {
+      color: 'white',
+      backgroundColor: '#dbc6a1',
+    }
+  },
+  collectionButton: {
+    backgroundColor: '#fcd0c5',
+    fontFamily: 'Itim',
+    margin: '0.5vh',
+    fontSize: '1.5em',
+    paddingLeft: '0.5em',
+    paddingRight: '0.5em',
+    transition: '0.3s',
+    '&:hover': {
+      color: 'white',
+      backgroundColor: '#e6c3bb',
+    }
+  },
+  accountButton: {
+    backgroundColor: '#aedaa5',
+    fontFamily: 'Itim',
+    margin: '0.5vh',
+    fontSize: '1.5em',
+    paddingLeft: '0.5em',
+    paddingRight: '0.5em',
+    transition: '0.3s',
+    '&:hover': {
+      color: 'white',
+      backgroundColor: '#a2bb9d',
+    }
+  },
+
 }));
 
 export default function DashboardPage(props) {
@@ -71,7 +111,7 @@ export default function DashboardPage(props) {
     <div>
       <header>
       <NavBar />
-      <h1>Welcome {props.state.account[0].name}!</h1>
+      {/* <h1>Welcome {props.state.account[0].name}!</h1> */}
       </header>
       <Grid container spacing={3} className={classes.root}>
         <Grid item xs={4}>
@@ -89,17 +129,17 @@ export default function DashboardPage(props) {
           <Card>
             <CardContent>
               <Grid item>
-                <Button component={Link} to="/lists">
+                <Button className={classes.listButton} component={Link} to="/lists">
                   My Lists
                 </Button>
               </Grid>
               <Grid item>
-                <Button component={Link} to="/cats">
+                <Button className={classes.collectionButton} component={Link} to="/cats">
                   My Collection
                 </Button>
               </Grid>
               <Grid item>
-                <Button component={Link} to="/account">
+                <Button className={classes.accountButton} component={Link} to="/account">
                   My Account
                 </Button>
               </Grid>

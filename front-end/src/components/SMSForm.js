@@ -5,7 +5,7 @@ import "./SMSForm.css";
 
 class SMSForm extends Component {
   constructor(props) {
-    console.log("props", props);
+    // console.log("props", props);
     super(props);
 
     this.state = {
@@ -25,7 +25,7 @@ class SMSForm extends Component {
   }
   componentDidMount() {
     axios.get(`/api/actions/1`).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       const tasks = [...res.data];
       const undone = tasks.filter((item) => item.is_completed !== true);
       const undoneList = undone.map((item) => "\n 🐈 " + item.action_name);
@@ -95,7 +95,7 @@ class SMSForm extends Component {
           });
         alert(this.state.message.body);
       } else {
-        console.log("Still have some time");
+        // console.log("Still have some time");
       }
     }
   }
@@ -103,7 +103,7 @@ class SMSForm extends Component {
   render() {
     const { tasks } = this.state;
     const undone = tasks.filter((item) => item.is_completed !== true);
-    // // console.log("undone", undone);
+    // console.log("undone", undone);
     // console.log("this.setState", this.state.message);
     // console.log(JSON.stringify(this.state.message));
     const undoneList = undone.length ? (

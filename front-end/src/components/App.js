@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import "@fontsource/itim";
 import "@fontsource/varela-round";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import getCurrentDate from "../helpers/getCurrentDate";
 
 // Hooks

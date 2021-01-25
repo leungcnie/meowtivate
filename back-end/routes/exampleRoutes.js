@@ -11,7 +11,7 @@ module.exports = (router, db) => {
   router.post("/", (req, res) => {
     // const exampleID = req.params.id;
     const { text } = req.body;
-    console.log("text-con", text);
+    // console.log("text-con", text);
     db.getExample(text).then((example) => {
       res.send("Check the console for data!");
     });

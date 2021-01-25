@@ -16,7 +16,7 @@ export default function InventoryPage(props) {
   const classes = useStyles();
   const { state } = props;
   const userInventory = state.userInventory;
-  console.log('userinven', userInventory)
+  // console.log('userinven', userInventory)
 
   return (
     <>

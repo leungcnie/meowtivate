@@ -12,10 +12,10 @@ export const CalendarApp = (props) => {
   //   day: 1,
   // };
   // const [selectedDay, setSelectedDay] = useState(defaultValue);
-  // // console.log("calender", props.items);
+  // console.log("calender", props.items);
 
-  // // const logDatas = { props };
-  // // console.log("logDatas", logDatas);
+  // const logDatas = { props };
+  // console.log("logDatas", logDatas);
   // const date = props.items.filter((item) => item.is_completed === true);
   // let dayDates = date.map((item) => item.date_created.substring(8, 10));
   // const parseIntDayArray = dayDates.map((item) => parseInt(item));
@@ -44,7 +44,7 @@ export const CalendarApp = (props) => {
 
   // Show different streak length depending on user id
   const { state, day } = props;
-  console.log("state in calendar", state);
+  // console.log("state in calendar", state);
   const { account, unlocked } = state;
   // console.log("account", account)
   const id = day ? day : 0;
@@ -100,7 +100,7 @@ export const CalendarApp = (props) => {
   useEffect(() => {
     setSelectedDayRange(streaksArray[id - 1]);
     setToday(todayArray[id - 1]);
-    console.log("id in useEffect", id);
+    // console.log("id in useEffect", id);
   }, [account]);
 
   const [selectedDayRange, setSelectedDayRange] = useState(initialStreak);
@@ -113,8 +113,8 @@ export const CalendarApp = (props) => {
     );
     const todayUnlockExists = currentUnlocked.includes(today);
 
-    console.log("calendar id", id === 1);
-    console.log("calendar todayUnlockExists", todayUnlockExists);
+    // console.log("calendar id", id === 1);
+    // console.log("calendar todayUnlockExists", todayUnlockExists);
     if (id === 1 && todayUnlockExists) {
       setSelectedDayRange(streak1Add);
     }
