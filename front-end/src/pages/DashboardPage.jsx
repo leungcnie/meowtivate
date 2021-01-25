@@ -35,13 +35,15 @@ const useStyles = makeStyles((theme) => ({
     height: '4rem',
   },
   streakNum: {
-    backgroundColor: 'white',
-    width: '4rem',
-    height: '4rem',
+    backgroundColor: '#a0cdca',
+    width: '5rem',
+    height: '8rem',
     display: 'flex',
     justifyContent: 'center',
     borderRadius: '2rem',
     alignItems: 'center',
+    fontSize: '2em',
+    color: 'white',
   },
   streakContainer: {
     display: 'flex',
@@ -88,7 +90,6 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: '#a2bb9d',
     }
   },
-
 }));
 
 export default function DashboardPage(props) {

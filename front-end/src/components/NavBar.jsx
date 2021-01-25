@@ -8,12 +8,17 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "8px",
     textAlign: "center",
     fontSize: "3rem",
-    paddingBottom: '3vh',
+    paddingBottom: '3.5vh',
     marginTop: '0px',
+    color: 'white',
   },
-  menu: {
+  navStyle: {
     textAlign: "start",
-    backgroundColor: "lightblue"
+    backgroundColor: "#a0cdca",
+  },
+  menuStyle: {
+    fontSize: '3em',
+    color: '#fcd0c5',
   }
 }));
 
@@ -21,7 +26,7 @@ export default function SimpleMenu() {
   const classes = useStyles();
 
   return (
-    <header className={classes.menu}>
+    <header className={classes.navStyle}>
       <Menu />
       <h1 className={classes.logo}>Meowtivate</h1>
     </header>
