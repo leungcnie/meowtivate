@@ -195,12 +195,12 @@ export default function useApplicationDate() {
   };
 
   // Set a pot as default
-  const setDefaultPot = (user_id, pot_id, is_default) => {
+  const setDefaultPot = (user_id, pot_id) => {
     return axios
-      .put(`/api/inventory/${user_id}`, {pot_id, is_default})
+      .put(`/api/inventory/${user_id}`, {pot_id})
       .then(() => {
         // Create updated inventory array
-        const inventory = setAsDefault(user_id, pot_id, is_default, state);
+        const inventory = setAsDefault(user_id, pot_id, state);
 
         setState({
           ...state,

@@ -44,8 +44,8 @@ module.exports = (router, db) => {
   // Update pot is_default value
   router.put("/:id", (req, res) => {
     const user_id = req.params.id;
-    const { pot_id, is_default } = req.body;
-    db.updateInventory(user_id, pot_id, is_default)
+    const { pot_id } = req.body;
+    db.setDefault(user_id, pot_id)
       .then((data) => {
         res.status(200).json(data);
       })

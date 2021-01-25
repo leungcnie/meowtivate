@@ -378,21 +378,32 @@ const addInventory = (user_id, pot_id) => {
 exports.addInventory = addInventory;
 
 // Update inventory pot's is_default boolean
-const updateInventory = (user_id, pot_id, is_default) => {
+const setDefault = (user_id, pot_id) => {
   console.log("pot_id", pot_id);
   return db
     .query(
       `UPDATE user_pots
-      SET is_default = $3
+      SET is_default = true
       WHERE user_id = $1
       AND pot_id = $2
       RETURNING *;`,
-      [user_id, pot_id, is_default]
+      [user_id, pot_id]
     )
-    .then(res => res.rows[0])
-    .catch((err) => console.error("query updateInventory error", err.stack));
+    .then(() => {
+      db
+        .query(`
+        UPDATE user_pots
+        SET is_default = false
+        WHERE user_id = $1
+        AND pot_id != $2;`,
+        [user_id, pot_id]
+        )
+        .then(res => res.rows)
+        .catch((err) => console.error("query setDefault .then() error", err.stack));
+    })
+    .catch((err) => console.error("query setDefault error", err.stack));
 };
-exports.updateInventory = updateInventory;
+exports.setDefault = setDefault;
 
 // const getDefaultPot = () => {
 //   return db
