@@ -25,7 +25,6 @@ import InventoryPage from "../pages/InventoryPage";
 import ShopPage from "../pages/ShopPage";
 
 import NotFoundPage from "./404";
-import SMSForm from "./SMSForm";
 
 function App() {
   const {
@@ -78,7 +77,6 @@ function App() {
           </Route>
           <Route exact path="/dashboard" component={DashboardPage}>
             {/* <DashboardPage state={state} /> */}
-            <SMSForm />
             <DashboardPage
               state={state}
               streak={streak}
