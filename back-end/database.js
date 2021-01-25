@@ -309,7 +309,8 @@ exports.addUnlockedCat = addUnlockedCat;
 const getUserInventory = (user_id) => {
   return db
   .query(
-    `SELECT * FROM user_unlocked_pots
+    `SELECT pot_name, description, image_url, user_id, pot_id, is_default  
+    FROM user_pots
     FULL OUTER JOIN pots on pots.id = pot_id
     WHERE user_id = $1;`,
     [user_id]
@@ -329,27 +330,40 @@ const getAllPots = () => {
 }
 exports.getAllPots = getAllPots;
 
-const getAvailablePots = (user_id) => {
+// const getAvailablePots = (user_id) => {
+//   return db
+//     .query(
+//       `select user_id, pot_name, description, price
+//       from user_pots
+//       full outer join pots on pots.id = pot_id
+//       where user_id is null;`,
+//       [user_id]
+//     )
+//     .then(res => res.rows)
+//     .catch((err) => console.error("query getAvailablePots error", err.stack));
+// }
+// exports.getAvailablePots = getAvailablePots;
+
+const addInventory = (user_id, pot_id) => {
   return db
     .query(
-      `select user_id, pot_name, description, price
-      from user_unlocked_pots
-      full outer join pots on pots.id = pot_id
-      where user_id is null;`,
-      [user_id]
+      `INSERT INTO user_pots (user_id, pot_id, is_default)
+      VALUES ($1, $2, false)
+      RETURNING *;`,
+      [user_id, pot_id]
     )
-    .then(res => res.rows)
-    .catch((err) => console.error("query getAvailablePots error", err.stack));
+    .then(res => res.rows[0])
+    .catch((err) => console.error("query addInventory error", err.stack));
 }
-exports.getAvailablePots = getAvailablePots;
+exports.addInventory = addInventory;
 
 /* ----------- USER INVENTORY ------------ */
-const getDefaultPot = () => {
-  return db
-  .query(
-    `SELECT * FROM user_unlocked_pots WHERE is_default = true`
-  )
-  .then(res => res.rows[0])
-  .catch((err) => console.error("query getDefaultPot error", err.stack));
-}
-exports.getDefaultPot = getDefaultPot;
+// const getDefaultPot = () => {
+//   return db
+//   .query(
+//     `SELECT * FROM user_pots WHERE is_default = true`
+//   )
+//   .then(res => res.rows[0])
+//   .catch((err) => console.error("query getDefaultPot error", err.stack));
+// }
+// exports.getDefaultPot = getDefaultPot;

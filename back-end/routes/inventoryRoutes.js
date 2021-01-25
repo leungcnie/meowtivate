@@ -12,6 +12,21 @@ module.exports = (router, db) => {
       });
   });
 
+  // Add new row in user_pots
+  // User buys a new pot
+  router.post("/:id", (req, res) => {
+    const user_id = req.params.id;
+    const { pot_id } = req.body;
+    db.addInventory(user_id, pot_id)
+      .then((data) => {
+        console.log("new add inventory", data);
+        res.status(200).json(data);
+      })
+      .catch(err => {
+        res.status(500).json({ error: err.message });
+      });
+  })
+
   // router.get("/:id", (req, res) => {
   //   const user_id = req.params.id;
   //   db.getDefaultPot(user_id)
