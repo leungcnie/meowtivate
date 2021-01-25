@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ListContainer(props) {
-  const { state, actionFunctions, catFunctions, potFunctions } = props;
+  const { state, actionFunctions, catFunctions } = props;
   const { actions, todos, habits, unlocked } = state;
   const classes = useStyles();
 
@@ -92,7 +92,6 @@ export default function ListContainer(props) {
                 <h3>Today's Progress</h3>
                 <CatPlant 
                   actions={actions}
-                  potFunctions={potFunctions}
                   state={state} />
               </div>
             </CardContent>

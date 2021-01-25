@@ -14,8 +14,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function InventoryPage(props) {
   const classes = useStyles();
-  const { state } = props;
-  const inventory = state.inventory;
+  const { state, potFunctions } = props;
+  const { setDefaultPot } = potFunctions;
+  const { inventory } = state;
   console.log('userinven', inventory)
 
   return (
@@ -26,18 +27,24 @@ export default function InventoryPage(props) {
       </header>
       <body className={classes.root}>
         <Grid container spacing={3}>
-          {inventory.map((items) => {
-            return (
-              <InventoryItem 
-              key={items.id}
-              name={items.pot_name}
-              image={items.image_url}
-              description={items.description}
-              isDefault={items.is_default}
-              // style={props.style}
-              />
-            );
-          })}
+          {inventory
+            .sort(function(a, b) {
+              return a.id - b.id;
+            })
+            .map((item) => {
+              return (
+                <InventoryItem 
+                key={item.pot_idid}
+                pot_id={item.pot_id}
+                name={item.pot_name}
+                image={item.image_url}
+                description={item.description}
+                isDefault={item.is_default}
+                setDefaultPot={setDefaultPot}
+                // style={props.style}
+                />
+              );
+            })}
         </Grid>
       </body>
     </>

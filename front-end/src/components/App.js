@@ -95,8 +95,7 @@ function App() {
             <ListsPage 
               state={state} 
               actionFunctions={actionFunctions}
-              catFunctions={catFunctions}
-              potFunctions={potFunctions} />
+              catFunctions={catFunctions} />
           </Route>
           <Route exact path="/cats" component={CatsPage}>
             <CatsPage state={state} />
@@ -105,7 +104,9 @@ function App() {
             <AccountPage state={state} />
           </Route>
           <Route exact path="/inventory" component={InventoryPage}>
-            <InventoryPage state={state} />
+            <InventoryPage 
+              state={state}
+              potFunctions={potFunctions} />
           </Route>
           <Route exact path="/shop" component={ShopPage}>
             <ShopPage 

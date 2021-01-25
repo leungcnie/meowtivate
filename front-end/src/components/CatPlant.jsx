@@ -61,8 +61,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function CatPlant(props) {
   const classes = useStyles();
-  const { actions, potFunctions, state } = props;
-  const { setDefaultPot } = potFunctions;
+  const { actions, state } = props;
+  // const { setDefaultPot } = potFunctions;
   const { inventory } = state;
   const [start, setStart] = React.useState(false);
   const [pot, setPot] = useState("https://meowtivate.s3-us-west-2.amazonaws.com/pots/01pot.png");
@@ -75,6 +75,13 @@ export default function CatPlant(props) {
   const num = Math.floor(initial / 10) * 10;
 
   // const [percentage, setPercentage] = useState(initial);
+
+  // Find current default pot
+  useEffect(() => {
+    const defaultPot = inventory.filter(obj => obj.is_default === true)[0];
+    const { image_url } = defaultPot;
+    setPot(image_url);
+  }, [inventory])
   
   useEffect(() => {
     setStart(true);
