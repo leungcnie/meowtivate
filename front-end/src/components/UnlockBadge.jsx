@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import getCurrentDate from "../helpers/getCurrentDate";
+import { makeStyles } from '@material-ui/core/styles';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import getCurrentDate from '../helpers/getCurrentDate';
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
-  // display: {
-  //   display: 'block',
-  // },
   root: {
     flexGrow: 1,
     maxHeight: "20rem",
@@ -30,9 +28,21 @@ const useStyles = makeStyles((theme) => ({
     top: "calc(50% + 3rem)",
     left: "calc(50% - 4.25em)",
     zIndex: 102,
-    WebkitTextStroke: "darksalmon",
-    WebkitTextStrokeWidth: "thin",
+    WebkitTextStroke: 'darksalmon',
+    WebkitTextStrokeWidth: 'thin',
   },
+  animatedItem: {
+    animation: `$myEffect 10000ms infinite linear`,
+
+  },
+  "@keyframes myEffect": {
+    '0%': {
+      transform: 'rotate(0deg)',
+    },
+    '100%': {
+      transform: 'rotate(360deg)',
+    }, 
+  }
 }));
 
 export default function UnlockBadge(props) {
@@ -129,20 +139,16 @@ export default function UnlockBadge(props) {
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
       <div className={classes.display} style={display}>
-        {open ? (
-          <>
-            <img
-              className={classes.root}
-              src="https://meowtivate.s3-us-west-2.amazonaws.com/unlock_badge.png"
-              alt="unlock_badge"
-            />
-            <img
-              className={classes.cat}
-              src={`https://meowtivate.s3-us-west-2.amazonaws.com/${catID}cat.png`}
-            />
-            <h2 className={classes.text}> CONGRATULATIONS!</h2>
-          </>
-        ) : null}
+      {open ? (<>
+        <img 
+          className={clsx(classes.root,classes.animatedItem)} 
+          src='https://meowtivate.s3-us-west-2.amazonaws.com/unlock_badge.png' 
+          alt='unlock_badge'/>
+        <img 
+          className={classes.cat} 
+          src={`https://meowtivate.s3-us-west-2.amazonaws.com/${catID}cat.png`}/>
+        <h2 className={classes.text}> CONGRATULATIONS!</h2>
+        </>) : null}
       </div>
     </ClickAwayListener>
   );
