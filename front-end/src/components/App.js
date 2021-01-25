@@ -31,7 +31,9 @@ function App() {
     actionFunctions, 
     catFunctions,
     day,
-    setDay } = useApplicationData();
+    setDay,
+    addPot,
+   } = useApplicationData();
   const { unlocked, account } = state;
   const id = day ? day : 0;
   // const id = 1;
@@ -102,7 +104,8 @@ function App() {
             <ShopPage 
               state={state}
               coins={coins}
-              setCoins={setCoins} />
+              setCoins={setCoins}
+              addPot={addPot} />
           </Route>
           <Route exact path="*" component={NotFoundPage} />
         </Switch>

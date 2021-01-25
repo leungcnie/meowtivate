@@ -19,6 +19,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ShopItem(props) {
   const classes = useStyles();
+  const { addPot, id } = props;
+  console.log("id in shopItem", id);
 
   return (
     <Grid item xs={6} sm={3}>
@@ -42,7 +44,8 @@ export default function ShopItem(props) {
           </footer>
           <Button 
             variant="contained" 
-            color="secondary">
+            color="secondary"
+            onClick={() => addPot(1, id)}>
             BUY
           </Button>
         </CardContent>
