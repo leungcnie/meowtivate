@@ -306,20 +306,6 @@ const addUnlockedCat = (cat_id, user_id) => {
 exports.addUnlockedCat = addUnlockedCat;
 
 /* ----------- SHOP INVENTORY ------------ */
-const getUserInventory = (user_id) => {
-  return db
-  .query(
-    `SELECT pot_name, description, image_url, user_id, pot_id, is_default  
-    FROM user_pots
-    FULL OUTER JOIN pots on pots.id = pot_id
-    WHERE user_id = $1;`,
-    [user_id]
-  )
-  .then(res => res.rows)
-  .catch((err) => console.error("query getUserInventory error", err.stack));
-}
-exports.getUserInventory = getUserInventory;
-
 const getAllPots = () => {
   return db
   .query(
@@ -344,6 +330,40 @@ exports.getAllPots = getAllPots;
 // }
 // exports.getAvailablePots = getAvailablePots;
 
+/* ----------- USER INVENTORY ------------ */
+
+// Get all user's pots
+const getUserInventory = (user_id) => {
+  return db
+  .query(
+    `SELECT pot_name, description, image_url, user_id, pot_id, is_default  
+    FROM user_pots
+    FULL OUTER JOIN pots on pots.id = pot_id
+    WHERE user_id = $1;`,
+    [user_id]
+  )
+  .then(res => res.rows)
+  .catch((err) => console.error("query getUserInventory error", err.stack));
+}
+exports.getUserInventory = getUserInventory;
+
+// Return user's default pot's image URL
+const getUserDefault = (user_id) => {
+  return db
+  .query(
+    `SELECT image_url  
+    FROM user_pots
+    FULL OUTER JOIN pots on pots.id = pot_id
+    WHERE user_id = $1
+    AND is_default = true;`,
+    [user_id]
+  )
+  .then(res => res.rows[0])
+  .catch((err) => console.error("query getUserDefault error", err.stack));
+}
+exports.getUserDefault = getUserDefault;
+
+// Add a row to bridge table
 const addInventory = (user_id, pot_id) => {
   return db
     .query(
@@ -357,7 +377,23 @@ const addInventory = (user_id, pot_id) => {
 }
 exports.addInventory = addInventory;
 
-/* ----------- USER INVENTORY ------------ */
+// Update inventory pot's is_default boolean
+const updateInventory = (user_id, pot_id, is_default) => {
+  console.log("pot_id", pot_id);
+  return db
+    .query(
+      `UPDATE user_pots
+      SET is_default = $3
+      WHERE user_id = $1
+      AND pot_id = $2
+      RETURNING *;`,
+      [user_id, pot_id, is_default]
+    )
+    .then(res => res.rows[0])
+    .catch((err) => console.error("query updateInventory error", err.stack));
+};
+exports.updateInventory = updateInventory;
+
 // const getDefaultPot = () => {
 //   return db
 //   .query(
