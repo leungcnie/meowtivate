@@ -63,6 +63,7 @@ export default function CatPlant(props) {
   const classes = useStyles();
   const { actions } = props;
   const [start, setStart] = React.useState(false);
+  const [pot, setPot] = useState("https://meowtivate.s3-us-west-2.amazonaws.com/pots/01pot.png");
   let timer;
 
   // Calculate percentage
@@ -87,7 +88,7 @@ export default function CatPlant(props) {
         <img className={clsx(classes.plant,
           {[classes.animatedItem]: start}
         )} src={`https://meowtivate.s3-us-west-2.amazonaws.com/plants/${num}plant.png`} alt="plant" style={{opacity: 1}}/>
-        <img className={classes.pot} src="https://meowtivate.s3-us-west-2.amazonaws.com/pots/01pot.png" alt="pot"/>
+        <img className={classes.pot} src={pot} alt="pot"/>
       </div>
 );
 }
