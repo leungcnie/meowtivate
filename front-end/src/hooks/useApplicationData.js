@@ -6,6 +6,7 @@ import {
   getActionProperty,
   modifyActionWith,
   getNewUnlockedCat,
+  addToInventory
 } from "../helpers/stateHelpers";
 
 export default function useApplicationDate() {
@@ -16,8 +17,8 @@ export default function useApplicationDate() {
     actions: [],
     account: [],
     allCats: [],
-    shopInventory: [],
-    userInventory: [],
+    shop: [],
+    inventory: [],
   });
 
   // User/day picker state
@@ -173,6 +174,24 @@ export default function useApplicationDate() {
     addUnlocked,
   }
 
+  //---------------------------
+  // UNLOCKED POTS FUNCTIONS //
+  //---------------------------
+
+  const addPot = (user_id, pot_id) => {
+    return axios
+      .post(`/api/inventory/${user_id}`, {pot_id})
+      .then((res) => {
+        const newPurchase = res.data;
+        const inventory = addToInventory(user_id, pot_id, newPurchase, state);
+
+        setState({
+          ...state,
+          inventory
+        });
+      });
+  };
+
   useEffect(() => {
     Promise.all([
       axios.get(`/api/collections/${day}`),
@@ -201,8 +220,8 @@ export default function useApplicationDate() {
           actions: res[3].data,
           account: res[4].data,
           allCats: res[5].data,
-          shopInventory: res[6].data,
-          userInventory: res[7].data,
+          shop: res[6].data,
+          inventory: res[7].data,
         }));
       })
       .catch(err => {
@@ -210,5 +229,12 @@ export default function useApplicationDate() {
       });
   }, [day]);
 
-  return { state, actionFunctions, catFunctions, setDay, day };
+  return { 
+    state, 
+    actionFunctions, 
+    catFunctions, 
+    setDay, 
+    day,
+    addPot
+   };
 }

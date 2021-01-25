@@ -58,3 +58,31 @@ export function getNewUnlockedCat(cat_id, date, state) {
 
   return updatedUnlocked;
 }
+
+// Use pot_id to build new inventory state item
+export function addToInventory(user_id, pot_id, userPurchaseData, state) {
+  console.log("state.shop in stateHelpers", state.shop);
+  const updatedInventory = [...state.inventory];
+
+  // Find the new purchase from shop
+  const item = state.shop.filter(obj => obj.id === pot_id)[0];
+
+  // Extract properties we need to build new inventory item
+  const { pot_name, description, image_url } = item;
+  const { is_default } = userPurchaseData;
+  const purchase = {
+    pot_name,
+    description,
+    image_url,
+    user_id,
+    pot_id,
+    is_default
+  };
+
+  console.log("PURCHASE", purchase)
+
+  // Push new purchase to inventory
+  updatedInventory.push(purchase);
+
+  return updatedInventory;
+}
