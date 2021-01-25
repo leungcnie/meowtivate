@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles, Grid, Button, Card, CardContent, IconButton } from '@material-ui/core';
 import ForwardRoundedIcon from '@material-ui/icons/ForwardRounded';
+import DoubleArrowRoundedIcon from '@material-ui/icons/DoubleArrowRounded';
 import { Weather } from "../components/Weather";
 import { CalendarApp } from "../components/Calendar-import";
 import { Link } from 'react-router-dom';
@@ -63,10 +64,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.5em',
     paddingLeft: '0.5em',
     paddingRight: '0.5em',
-    transition: '0.3s',
+    boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)',
+    color: 'grey',
     '&:hover': {
-      color: 'white',
       backgroundColor: '#dbc6a1',
+      color: 'white',
     }
   },
   collectionButton: {
@@ -76,10 +78,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.5em',
     paddingLeft: '0.5em',
     paddingRight: '0.5em',
-    transition: '0.3s',
+    boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)',
+    color: 'grey',
     '&:hover': {
-      color: 'white',
       backgroundColor: '#e6c3bb',
+      color: 'white',
     }
   },
   accountButton: {
@@ -89,10 +92,25 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.5em',
     paddingLeft: '0.5em',
     paddingRight: '0.5em',
-    transition: '0.3s',
+    boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)',
+    color: 'grey',
     '&:hover': {
-      color: 'white',
       backgroundColor: '#a2bb9d',
+      color: 'white',
+    }
+  },
+  inventoryButton: {
+    backgroundColor: '#e0c8df',
+    fontFamily: 'Itim',
+    margin: '0.5vh',
+    fontSize: '1.5em',
+    paddingLeft: '0.5em',
+    paddingRight: '0.5em',
+    boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)',
+    color: 'grey',
+    '&:hover': {
+      backgroundColor: '#c9bcc8',
+      color: 'white',
     }
   },
 }));
@@ -122,14 +140,19 @@ export default function DashboardPage(props) {
       <Grid container spacing={3} className={classes.root}>
         <Grid item xs={4} className={classes.grid}>
           {/* // <CalendarApp items={state.logDatas} /> */}
+          <Card>
+              <CardContent>
+                <Weather />
+              </CardContent>
+            </Card>
           <CalendarApp state={state} day={day} />
           <Grid>
             <IconButton onClick={changeDay}>
-              <ForwardRoundedIcon className={classes.iconButton}/>
+              <DoubleArrowRoundedIcon className={classes.iconButton}/>
             </IconButton>
           </Grid>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} className={classes.grid}>
           <div className={classes.streakContainer}>
             <h3>CURRENT STREAK IS</h3>
             <div className={classes.streakNum}>
@@ -154,6 +177,11 @@ export default function DashboardPage(props) {
                   My Account
                 </Button>
               </Grid>
+              <Grid item>
+                <Button className={classes.inventoryButton} component={Link} to="/inventory">
+                  My Inventory
+                </Button>
+              </Grid>
             </CardContent>
           </Card>
         <Card className={classes.margin}>
@@ -163,7 +191,7 @@ export default function DashboardPage(props) {
           </CardContent>
         </Card>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} className={classes.grid}>
           <Grid>
             <Card>
               <CardContent>
