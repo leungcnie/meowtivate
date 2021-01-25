@@ -2,7 +2,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-import { grey } from '@material-ui/core/colors';
+import DoubleArrowRoundedIcon from '@material-ui/icons/DoubleArrowRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,13 +35,18 @@ const useStyles = makeStyles((theme) => ({
   },
   loginButton: {
     fontFamily: "Varela Round",
-    margin: '2rem',
-    fontSize: '1.5em',
+
     backgroundColor: '#a0cdca',
     '&:hover': {
       backgroundColor: '#78aca8',
     }
   },
+  icon: {
+    color: 'white',
+    fontSize: '2.7em',
+    paddingLeft: '1rem',
+    paddingRight: '1rem',
+  }
 }));
 
 export default function LoginPage(props) {
@@ -62,10 +67,9 @@ export default function LoginPage(props) {
       <Button
         className={classes.loginButton}
         variant="contained" 
-        color="secondary"
         component={Link}
         to='/lists'>
-      Login
+        <DoubleArrowRoundedIcon className={classes.icon}/>
       </Button>
     </form>
     </div>
