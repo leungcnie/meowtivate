@@ -140,11 +140,11 @@ export default function DashboardPage(props) {
       <Grid container spacing={3} className={classes.root}>
         <Grid item xs={4} className={classes.grid}>
           {/* // <CalendarApp items={state.logDatas} /> */}
-          <Card>
+          {/* <Card>
               <CardContent>
                 <Weather />
               </CardContent>
-            </Card>
+            </Card> */}
           <CalendarApp state={state} day={day} />
           <Grid>
             <IconButton onClick={changeDay}>
