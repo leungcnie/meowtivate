@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column',
+    alignItems: 'center',
   },
   margin: {
     marginTop: '2vh'
@@ -120,10 +121,8 @@ export default function DashboardPage(props) {
       </header>
       <Grid container spacing={3} className={classes.root}>
         <Grid item xs={4} className={classes.grid}>
-          <Grid>
           {/* // <CalendarApp items={state.logDatas} /> */}
           <CalendarApp state={state} day={day} />
-          </Grid>
           <Grid>
             <IconButton onClick={changeDay}>
               <ForwardRoundedIcon className={classes.iconButton}/>
