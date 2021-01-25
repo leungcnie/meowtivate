@@ -347,11 +347,11 @@ const getUserInventory = (user_id) => {
 }
 exports.getUserInventory = getUserInventory;
 
-// Return user's default pot's image URL
+// Return user's default pot's data
 const getUserDefault = (user_id) => {
   return db
   .query(
-    `SELECT image_url  
+    `SELECT pot_name, description, image_url, user_id, pot_id, is_default 
     FROM user_pots
     FULL OUTER JOIN pots on pots.id = pot_id
     WHERE user_id = $1

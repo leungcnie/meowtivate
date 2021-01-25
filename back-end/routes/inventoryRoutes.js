@@ -28,8 +28,8 @@ module.exports = (router, db) => {
       });
   })
 
-  // Get default pot image URL for user
-  router.get("/:id/default", (req, res) => {
+  // Get default pot image data for user
+  router.get("/default/:id", (req, res) => {
     const user_id = req.params.id;
     db.getUserDefault(user_id)
       .then((data) => {
