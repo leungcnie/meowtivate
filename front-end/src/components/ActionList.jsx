@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -30,7 +30,7 @@ export default function ActionList(props) {
   } = actionFunctions; // State changing funcs from useApplicationData
   const classes = useStyles();
 
-  console.log("checked in ActionList", initChecked);
+  // console.log("checked in ActionList", initChecked);
 
   // Toggle between VIEW and EDIT modes
   const [isEditable, setIsEditable] = useState(false);

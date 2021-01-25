@@ -30,7 +30,7 @@ module.exports = (router, db) => {
     db.addUnlockedCat(cat_id, user_id)
       .then((data) => {
         // Send the date
-        console.log("add new unlock date?", data.date_unlocked);
+        // console.log("add new unlock date?", data.date_unlocked);
         res.status(200).json(data.date_unlocked);
       })
       .catch(err => {

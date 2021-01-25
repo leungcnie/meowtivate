@@ -26,17 +26,17 @@ export default function useApplicationDate() {
 
   // User/day picker state
   const [day, setDay] = useState(1);
-  console.log("app, appliction", day);
+  // console.log("app, appliction", day);
   // Log current state for debugging
   useEffect(() => {
-    console.log("Current state:", state);
+    // console.log("Current state:", state);
   }, [state]);
 
   //--------------------
   // ACTION FUNCTIONS //
   //--------------------
   const addAction = (action_name, categoryID) => {
-    console.log("action_name in useApp", action_name);
+    // console.log("action_name in useApp", action_name);
 
     if (categoryID === 1) {
       // TODOS
@@ -44,9 +44,9 @@ export default function useApplicationDate() {
         const actions = addToActions(res.data, state); // res.data contains the action obj
         const todos = actions.filter((obj) => obj.category_id === 1);
 
-        console.log("updatedActions", actions);
+        // console.log("updatedActions", actions);
         // console.log("updatedHabits", habits);
-        console.log("updatedTodos", todos);
+        // console.log("updatedTodos", todos);
 
         setState({
           ...state,
@@ -60,8 +60,8 @@ export default function useApplicationDate() {
         const actions = addToActions(res.data, state);
         const habits = actions.filter((obj) => obj.category_id === 2);
 
-        console.log("updatedActions", actions);
-        console.log("updatedHabits", habits);
+        // console.log("updatedActions", actions);
+        // console.log("updatedHabits", habits);
         // console.log("updatedTodos", todos);
 
         setState({
@@ -99,9 +99,9 @@ export default function useApplicationDate() {
     const habits = actions.filter((obj) => obj.category_id === 2);
     const todos = actions.filter((obj) => obj.category_id === 1);
 
-    console.log("updatedActions", actions);
-    console.log("updatedHabits", habits);
-    console.log("updatedTodos", todos);
+    // console.log("updatedActions", actions);
+    // console.log("updatedHabits", habits);
+    // console.log("updatedTodos", todos);
 
     // Update action_name of action in db and update state
     return axios
@@ -129,9 +129,9 @@ export default function useApplicationDate() {
     const habits = actions.filter((obj) => obj.category_id === 2);
     const todos = actions.filter((obj) => obj.category_id === 1);
 
-    console.log("updatedActions", actions);
-    console.log("updatedHabits", habits);
-    console.log("updatedTodos", todos);
+    // console.log("updatedActions", actions);
+    // console.log("updatedHabits", habits);
+    // console.log("updatedTodos", todos);
 
     // Update is_completed of action in db and update state
     return axios

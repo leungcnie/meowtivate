@@ -60,14 +60,14 @@ export function modifyStreakActionWith(val, key1, key2, id, state) {
   // compare two keys for update
   // need to ask which one is the one that return
   // this is the one that update both streak and current_streak
-  console.log("val", val);
+  // console.log("val", val);
   newAction[key1] = val;
   if (val === 0 || newAction[key2] < val) {
     newAction[key2] = val;
-    console.log("val1", val);
+    // console.log("val1", val);
   }
 
-  console.log("newAction[key1]", newAction[key2]);
+  // console.log("newAction[key1]", newAction[key2]);
   // this is the one that update only current_streak
 
   // if (newAction[key2] < val) {
@@ -92,7 +92,7 @@ export function getActionProperty(id, key, state) {
 export function getNewUnlockedCat(cat_id, date, state) {
   // Get cat from 'allCats' state
   const newCat = [...state.allCats].filter((cat) => cat.id === cat_id)[0];
-  console.log("newCat", newCat);
+  // console.log("newCat", newCat);
   // Cat is missing date, so add
   newCat.date_unlocked = date;
   const updatedUnlocked = [...state.unlocked];

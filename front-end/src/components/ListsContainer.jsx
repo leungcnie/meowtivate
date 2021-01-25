@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import ActionList from "./ActionList";
@@ -40,10 +40,10 @@ export default function ListContainer(props) {
   const { actions, todos, habits, unlocked, streaks, logDatas } = state;
   const classes = useStyles();
 
-  const { postLogData, updateStreak } = actionFunctions;
-  console.log("actionFunctions in ListsContainer", actionFunctions);
-  console.log("streaks in ListsContainer", streaks);
-  console.log("streaks in logDatas", logDatas);
+  // const { postLogData, updateStreak } = actionFunctions;
+  // console.log("actionFunctions in ListsContainer", actionFunctions);
+  // console.log("streaks in ListsContainer", streaks);
+  // console.log("streaks in logDatas", logDatas);
 
   const completed = actions.filter((obj) => obj.is_completed === true);
   const checkedHabits = completed.filter((obj) => obj.category_id === 2);
@@ -62,7 +62,7 @@ export default function ListContainer(props) {
   const yyyy = today.getFullYear();
   today = `${yyyy}-${mm}-${dd}`;
 
-  console.log("rightnow", today);
+  // console.log("rightnow", today);
 
   // useEffect(() => {
   //   if (streaks) {
@@ -98,7 +98,7 @@ export default function ListContainer(props) {
   //   return "updating streak";
   // };
   // const currentUser = user.accounts[0].username;
-  // // console.log("user", currentUser);
+  // console.log("user", currentUser);
   return (
     <>
       <UnlockBadge state={state} catFunctions={catFunctions} />

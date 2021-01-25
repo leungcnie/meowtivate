@@ -13,7 +13,8 @@ body {
     "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fdf5bf;
+  background-color: antiquewhite;
+  background-image: url('https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/old-wall.png');
 }
 
 code {

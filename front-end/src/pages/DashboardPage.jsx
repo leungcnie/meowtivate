@@ -14,7 +14,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     paddingLeft: "5vw",
     paddingRight: "5vw",
-    margin: "auto",
+  },
+  grid: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   margin: {
     marginTop: '2vh'
@@ -35,20 +40,61 @@ const useStyles = makeStyles((theme) => ({
     height: '4rem',
   },
   streakNum: {
-    backgroundColor: 'white',
-    width: '4rem',
-    height: '4rem',
+    backgroundColor: '#a0cdca',
+    width: '5rem',
+    height: '8rem',
     display: 'flex',
     justifyContent: 'center',
     borderRadius: '2rem',
     alignItems: 'center',
+    fontSize: '2em',
+    color: 'white',
   },
   streakContainer: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-  }
+  },
+  listButton: {
+    backgroundColor: '#fee2b1',
+    fontFamily: 'Itim',
+    margin: '0.5vh',
+    fontSize: '1.5em',
+    paddingLeft: '0.5em',
+    paddingRight: '0.5em',
+    transition: '0.3s',
+    '&:hover': {
+      color: 'white',
+      backgroundColor: '#dbc6a1',
+    }
+  },
+  collectionButton: {
+    backgroundColor: '#fcd0c5',
+    fontFamily: 'Itim',
+    margin: '0.5vh',
+    fontSize: '1.5em',
+    paddingLeft: '0.5em',
+    paddingRight: '0.5em',
+    transition: '0.3s',
+    '&:hover': {
+      color: 'white',
+      backgroundColor: '#e6c3bb',
+    }
+  },
+  accountButton: {
+    backgroundColor: '#aedaa5',
+    fontFamily: 'Itim',
+    margin: '0.5vh',
+    fontSize: '1.5em',
+    paddingLeft: '0.5em',
+    paddingRight: '0.5em',
+    transition: '0.3s',
+    '&:hover': {
+      color: 'white',
+      backgroundColor: '#a2bb9d',
+    }
+  },
 }));
 
 export default function DashboardPage(props) {
@@ -71,16 +117,21 @@ export default function DashboardPage(props) {
     <div>
       <header>
       <NavBar />
-      <h1>Welcome {props.state.account[0].name}!</h1>
+      {/* <h1>Welcome {props.state.account[0].name}!</h1> */}
       </header>
       <Grid container spacing={3} className={classes.root}>
-        <Grid item xs={4}>
+        <Grid item xs={4} className={classes.grid}>
           {/* // <CalendarApp items={state.logDatas} /> */}
           <CalendarApp state={state} day={day} />
+          <Grid>
+            <IconButton onClick={changeDay}>
+              <ForwardRoundedIcon className={classes.iconButton}/>
+            </IconButton>
+          </Grid>
         </Grid>
         <Grid item xs={4}>
           <div className={classes.streakContainer}>
-            <h3>STREAK</h3>
+            <h3>CURRENT STREAK IS</h3>
             <div className={classes.streakNum}>
             <h1>{streak}</h1>
             </div>
@@ -89,17 +140,17 @@ export default function DashboardPage(props) {
           <Card>
             <CardContent>
               <Grid item>
-                <Button component={Link} to="/lists">
+                <Button className={classes.listButton} component={Link} to="/lists">
                   My Lists
                 </Button>
               </Grid>
               <Grid item>
-                <Button component={Link} to="/cats">
+                <Button className={classes.collectionButton} component={Link} to="/cats">
                   My Collection
                 </Button>
               </Grid>
               <Grid item>
-                <Button component={Link} to="/account">
+                <Button className={classes.accountButton} component={Link} to="/account">
                   My Account
                 </Button>
               </Grid>
@@ -111,9 +162,6 @@ export default function DashboardPage(props) {
             <img className={classes.coin} src='https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png' alt='meowcoin' />
           </CardContent>
         </Card>
-          <IconButton onClick={changeDay}>
-            <ForwardRoundedIcon className={classes.iconButton}/>
-          </IconButton>
         </Grid>
         <Grid item xs={4}>
           <Grid>
