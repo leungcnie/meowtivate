@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '5em',
     paddingBottom: '5em',
     marginTop: '15vh'   
-    
   },
   logo: {
     fontFamily: "itim",
@@ -52,7 +51,6 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: '#78aca8',
     }
-
   },
 }));
 
@@ -71,7 +69,7 @@ export default function WelcomePage(props) {
   return (
     <div className={classes.container}>
       <h2 className={classes.header}>Welcome to </h2>
-      <h1 className={classes.logo}>Meowtivate!</h1>
+      <h1 className={classes.logo}>MEOWIVATE!</h1>
       <div>
         <Button
           className={classes.signUpButton}
