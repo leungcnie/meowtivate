@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ShopPage(props) {
   const classes = useStyles();
   const { state, coins, setCoins, addPot } = props;
-  const { shop } = state;
+  const { shop, inventory } = state;
   // console.log('shopInven', shop)
   
   return (
@@ -39,6 +39,7 @@ export default function ShopPage(props) {
               addPot={addPot}
               coins={coins}
               setCoins={setCoins}
+              inventory={inventory}
               // style={props.style}
               />
             );

@@ -79,8 +79,8 @@ export default function CatPlant(props) {
   // Find current default pot
   useEffect(() => {
     const defaultPot = inventory.filter(obj => obj.is_default === true)[0];
-    const { image_url } = defaultPot;
-    setPot(image_url);
+    const pot_url = defaultPot ? defaultPot.image_url : "https://meowtivate.s3-us-west-2.amazonaws.com/pots/01pot.png";
+    setPot(pot_url);
   }, [inventory])
   
   useEffect(() => {

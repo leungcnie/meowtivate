@@ -129,9 +129,9 @@ export default function ActionList(props) {
             <ListItemText id={labelId} primary={obj.action_name} />
             {isEditable && (
               <ListItemSecondaryAction>
-                <IconButton edge="end" aria-label="drag">
+                {/* <IconButton edge="end" aria-label="drag">
                   <UnfoldMoreRoundedIcon />
-                </IconButton>
+                </IconButton> */}
                 <IconButton edge="end" aria-label="delete">
                   <DeleteRoundedIcon
                     onClick={() =>

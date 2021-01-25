@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ShopItem(props) {
   const classes = useStyles();
-  const { addPot, id, price, coins, setCoins } = props;
+  const { addPot, id, price, coins, setCoins, inventory } = props;
   const [isSold, setIsSold] = useState(false);
 
   const buyItem = (user_id, pot_id) => {
@@ -27,6 +27,9 @@ export default function ShopItem(props) {
     setIsSold(true);
     addPot(user_id, pot_id);
   }
+
+  // Build array of inventory pot_ids
+  const potIDs = inventory.map(obj => obj.pot_id);
 
   console.log(`Coin in pot ${id}:`, coins)
   // useEffect(() => {
@@ -70,9 +73,9 @@ export default function ShopItem(props) {
             </Button>
           )}
 
-          {isSold && (
-            <p>SOLD OUT</p>
-          )}
+          {potIDs.includes(id) ? (
+            <p>ALREADY IN INVENTORY</p>
+          ) : (isSold ? (<p>ALREADY IN INVENTORY</p>) : "")}
         </CardContent>
       </Card>
     </Grid>
