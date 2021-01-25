@@ -43,7 +43,7 @@ export default function LoginPage(props) {
         variant="contained" 
         color="secondary"
         component={Link}
-        to='/lists'>
+        to='/dashboard'>
       Login
       </Button>
     </form>
