@@ -1,2 +1,2 @@
-INSERT INTO streaks (user_id, start_date, end_date)
-VALUES (1, '2021-01-01', '2021-01-02');
+INSERT INTO streaks (user_id, streak, current_streak, date_update)
+VALUES (1, 2, 2, '2021-01-02');

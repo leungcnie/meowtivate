@@ -8,12 +8,13 @@ import NavBar from '../components/NavBar';
 import CatPlant from '../components/CatPlant';
 
 // import getCurrentDate from "../helpers/getCurrentDate";
+import SMSForm from "../components/SMSForm";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingLeft: '5vw',
-    paddingRight: '5vw',
-    margin: 'auto',
+    paddingLeft: "5vw",
+    paddingRight: "5vw",
+    margin: "auto",
   },
   margin: {
     marginTop: '2vh'
@@ -51,16 +52,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function DashboardPage(props) {
+  // const { state, user } = props;
   const { state, streak, day, setDay } = props;
   const { actions } = state;
 
   // const { unlocked } = state;
   const classes = useStyles();
+  // console.log("dashboard", state.logDatas);
 
   // Go to next day
   const changeDay = () => {
     if (day >= 1 && day < 3) {
-      setDay(prev => prev + 1)
+      setDay((prev) => prev + 1);
     }
   }
 
@@ -72,9 +75,8 @@ export default function DashboardPage(props) {
       </header>
       <Grid container spacing={3} className={classes.root}>
         <Grid item xs={4}>
-          <CalendarApp 
-            state={state}
-            day={day} />
+          {/* // <CalendarApp items={state.logDatas} /> */}
+          <CalendarApp state={state} day={day} />
         </Grid>
         <Grid item xs={4}>
           <div className={classes.streakContainer}>
@@ -131,5 +133,5 @@ export default function DashboardPage(props) {
         </Grid>
       </Grid>
     </div>
-  )
+  );
 }

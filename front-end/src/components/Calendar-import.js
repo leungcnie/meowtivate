@@ -6,13 +6,48 @@ import "./styles/calendar.css";
 import getCurrentDate from "../helpers/getCurrentDate";
 
 export const CalendarApp = (props) => {
+  // const defaultValue = {
+  //   year: 2021,
+  //   month: 1,
+  //   day: 1,
+  // };
+  // const [selectedDay, setSelectedDay] = useState(defaultValue);
+  // // console.log("calender", props.items);
+
+  // // const logDatas = { props };
+  // // console.log("logDatas", logDatas);
+  // const date = props.items.filter((item) => item.is_completed === true);
+  // let dayDates = date.map((item) => item.date_created.substring(8, 10));
+  // const parseIntDayArray = dayDates.map((item) => parseInt(item));
+
+  // // [
+  // // here we add some CSS classes
+  // //   { year: 2021, month: 1, day: 4, className: "purpleDay" },
+  // // ]
+
+  // let dayObject = parseIntDayArray.map((item) => ({
+  //   year: 2021,
+  //   month: 1,
+  //   day: item,
+  //   className: "purpleDay",
+  // }));
+
+  // return (
+  //   <>
+  //     <Calendar
+  //       value={selectedDay}
+  //       onChange={setSelectedDay}
+  //       shouldHighlightWeekends
+  //       customDaysClassName={dayObject}
+  //     />
+  //   </>
 
   // Show different streak length depending on user id
   const { state, day } = props;
   console.log("state in calendar", state);
   const { account, unlocked } = state;
   // console.log("account", account)
-  const id = day? day : 0;
+  const id = day ? day : 0;
   // const id = 4;
 
   const streak1 = {
@@ -24,9 +59,9 @@ export const CalendarApp = (props) => {
     to: {
       year: 2021,
       month: 1,
-      day: 26
-    }
-  }
+      day: 26,
+    },
+  };
   const streak1Add = {
     from: {
       year: 2021,
@@ -36,9 +71,9 @@ export const CalendarApp = (props) => {
     to: {
       year: 2021,
       month: 1,
-      day: 27
-    }
-  }
+      day: 27,
+    },
+  };
   const streak2 = {
     from: {
       year: 2021,
@@ -48,9 +83,9 @@ export const CalendarApp = (props) => {
     to: {
       year: 2021,
       month: 1,
-      day: 27
-    }
-  }
+      day: 27,
+    },
+  };
   const streak3 = [];
   const streaksArray = [streak1, streak2, streak3, streak1Add];
   const initialStreak = streaksArray[id - 1];
@@ -65,23 +100,25 @@ export const CalendarApp = (props) => {
   useEffect(() => {
     setSelectedDayRange(streaksArray[id - 1]);
     setToday(todayArray[id - 1]);
-    console.log("id in useEffect", id)
-  }, [account])
+    console.log("id in useEffect", id);
+  }, [account]);
 
   const [selectedDayRange, setSelectedDayRange] = useState(initialStreak);
-  const [today, setToday] = useState(initialToday)
+  const [today, setToday] = useState(initialToday);
 
   useEffect(() => {
     const today = getCurrentDate();
-    const currentUnlocked = unlocked.map(obj => obj.date_unlocked.slice(0, 10));
+    const currentUnlocked = unlocked.map((obj) =>
+      obj.date_unlocked.slice(0, 10)
+    );
     const todayUnlockExists = currentUnlocked.includes(today);
-    
-    console.log("calendar id", id === 1)
-    console.log("calendar todayUnlockExists", todayUnlockExists)
+
+    console.log("calendar id", id === 1);
+    console.log("calendar todayUnlockExists", todayUnlockExists);
     if (id === 1 && todayUnlockExists) {
       setSelectedDayRange(streak1Add);
     }
-  }, [unlocked])
+  }, [unlocked]);
 
   return (
     <Calendar
@@ -93,12 +130,17 @@ export const CalendarApp = (props) => {
       shouldHighlightWeekends
       customDaysClassName={[
         // here we add some CSS classes
-        today
+        today,
       ]}
       renderFooter={() => (
-        <div 
-          style={{ display: 'flex', justifyContent: 'center', padding: '1rem 2rem' }}
-          className="footer">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            padding: "1rem 2rem",
+          }}
+          className="footer"
+        >
           🌱 CURRENT STREAK
         </div>
       )}

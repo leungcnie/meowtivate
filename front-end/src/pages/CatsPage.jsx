@@ -14,19 +14,19 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "6px",
   },
   locked: {
-    filter: 'brightness(0)',
-  }
+    filter: "brightness(0)",
+  },
 }));
 
-function isLocked (allCats, unlockedCats) {
+function isLocked(allCats, unlockedCats) {
   const lockedCats = [];
-  
+
   for (let cat of allCats) {
     // console.log('cat', String(cat.id))
     // console.log('unloked keys', Object.keys(unlockedCats))
-      if (!Object.keys(unlockedCats).includes(String(cat.id - 1))) {
-        lockedCats.push(cat);
-      }
+    if (!Object.keys(unlockedCats).includes(String(cat.id - 1))) {
+      lockedCats.push(cat);
+    }
   }
   return lockedCats;
 }
@@ -46,9 +46,15 @@ export default function CatsPage(props) {
       <header>
         <h2 className={classes.header}>my Collection</h2>
       </header>
-      <section> 
-        <GalleryContainer items={state.unlocked} style={{filter: 'brightness(1)'}}/>
-        <GalleryContainer items={lockedCatsArray} style={{filter: 'brightness(0)'}}/>
+      <section>
+        <GalleryContainer
+          items={state.unlocked}
+          style={{ filter: "brightness(1)" }}
+        />
+        <GalleryContainer
+          items={lockedCatsArray}
+          style={{ filter: "brightness(0)" }}
+        />
       </section>
     </div>
   );

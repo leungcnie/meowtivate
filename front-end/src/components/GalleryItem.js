@@ -1,21 +1,20 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import { makeStyles } from '@material-ui/core/styles';
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    height: '10rem',
+    height: "10rem",
   },
   card: {
-    minHeight: '22rem',
-    minWidth: '12rem',
-    backgroundColor: 'darkkhaki',
-  }
+    minHeight: "22rem",
+    minWidth: "12rem",
+    backgroundColor: "darkkhaki",
+  },
 }));
-
 
 export default function GalleryItem(props) {
   const classes = useStyles();

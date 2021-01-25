@@ -1,7 +1,7 @@
 /*
 App.js is responsible for containing all the routes and passing state as props
 */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 import "./styles/App.css";
 import "@fontsource/itim";
@@ -11,6 +11,7 @@ import getCurrentDate from "../helpers/getCurrentDate";
 
 // Hooks
 import useApplicationData from "../hooks/useApplicationData";
+// import useAuth from "../hooks/useAuth";
 
 // Pages imported from src/pages dir
 import WelcomePage from "../pages/WelcomePage";
@@ -26,12 +27,13 @@ import ShopPage from "../pages/ShopPage";
 import NotFoundPage from "./404";
 
 function App() {
-  const { 
-    state, 
-    actionFunctions, 
+  const {
+    state,
+    actionFunctions,
     catFunctions,
     day,
-    setDay } = useApplicationData();
+    setDay,
+  } = useApplicationData();
   const { unlocked, account } = state;
   const id = day ? day : 0;
   // const id = 1;
@@ -42,11 +44,13 @@ function App() {
   useEffect(() => {
     const today = getCurrentDate();
     // Get array of unlocked dates in "yyyy-mm-dd"
-    const currentUnlocked = unlocked.map(obj => obj.date_unlocked.slice(0, 10));
+    const currentUnlocked = unlocked.map((obj) =>
+      obj.date_unlocked.slice(0, 10)
+    );
     if (currentUnlocked.includes(today)) {
-      setStreak(prev => prev + 1);
+      setStreak((prev) => prev + 1);
     }
-  }, [unlocked])
+  }, [unlocked]);
 
   // Change streak depending on user
   useEffect(() => {
@@ -55,7 +59,7 @@ function App() {
     } else if (id === 3) {
       setStreak(0);
     }
-  }, [state])
+  }, [state]);
 
   return (
     <div className="App">
@@ -72,17 +76,20 @@ function App() {
             <RegisterPage state={state} />
           </Route>
           <Route exact path="/dashboard" component={DashboardPage}>
-            <DashboardPage 
+            {/* <DashboardPage state={state} /> */}
+            <DashboardPage
               state={state}
               streak={streak}
               day={day}
-              setDay={setDay} />
+              setDay={setDay}
+            />
           </Route>
           <Route exact path="/lists" component={ListsPage}>
-            <ListsPage 
-              state={state} 
+            <ListsPage
+              state={state}
               actionFunctions={actionFunctions}
-              catFunctions={catFunctions} />
+              catFunctions={catFunctions}
+            />
           </Route>
           <Route exact path="/cats" component={CatsPage}>
             <CatsPage state={state} />
