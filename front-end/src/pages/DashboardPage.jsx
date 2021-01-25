@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import { makeStyles, Grid, Button, Card, CardContent, IconButton } from '@material-ui/core';
+import ForwardRoundedIcon from '@material-ui/icons/ForwardRounded';
 import { Weather } from "../components/Weather";
 import { CalendarApp } from "../components/Calendar-import";
-import NavBar from '../components/NavBar';
-import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+import NavBar from '../components/NavBar';
 import CatPlant from '../components/CatPlant';
+
 // import getCurrentDate from "../helpers/getCurrentDate";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,6 +28,25 @@ const useStyles = makeStyles((theme) => ({
   },
   numOfCoins: {
     paddingRight: '0.5rem'
+  },
+  iconButton: {
+    width: '4rem',
+    height: '4rem',
+  },
+  streakNum: {
+    backgroundColor: 'white',
+    width: '4rem',
+    height: '4rem',
+    display: 'flex',
+    justifyContent: 'center',
+    borderRadius: '2rem',
+    alignItems: 'center',
+  },
+  streakContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
   }
 }));
 
@@ -60,6 +77,13 @@ export default function DashboardPage(props) {
             day={day} />
         </Grid>
         <Grid item xs={4}>
+          <div className={classes.streakContainer}>
+            <h3>STREAK</h3>
+            <div className={classes.streakNum}>
+            <h1>{streak}</h1>
+            </div>
+            <h4>DAYS</h4>
+          </div>
           <Card>
             <CardContent>
               <Grid item>
@@ -79,25 +103,15 @@ export default function DashboardPage(props) {
               </Grid>
             </CardContent>
           </Card>
-
-
-        <Card className={classes.margin}>
-          <CardContent>
-            STREAK {streak} DAYS
-          </CardContent>
-        </Card>
         <Card className={classes.margin}>
           <CardContent className={classes.coinstyle}>
             <h3 className={classes.numOfCoins}>{streak * 100} </h3>
             <img className={classes.coin} src='https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png' alt='meowcoin' />
           </CardContent>
         </Card>
-
-        <Button variant="contained" onClick={changeDay}>
-          NEXT DAY
-        </Button>
-
-
+          <IconButton onClick={changeDay}>
+            <ForwardRoundedIcon className={classes.iconButton}/>
+          </IconButton>
         </Grid>
         <Grid item xs={4}>
           <Grid>
