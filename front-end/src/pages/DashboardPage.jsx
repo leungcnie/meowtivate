@@ -131,7 +131,7 @@ export default function DashboardPage(props) {
         </Grid>
         <Grid item xs={4}>
           <div className={classes.streakContainer}>
-            <h3>CURRENT STREAK</h3>
+            <h3>CURRENT STREAK IS</h3>
             <div className={classes.streakNum}>
             <h1>{streak}</h1>
             </div>
