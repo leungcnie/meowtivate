@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -19,8 +19,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ShopItem(props) {
   const classes = useStyles();
-  const { addPot, id } = props;
+  const { addPot, id, price, coins, setCoins } = props;
+  const [isSold, setIsSold] = useState(false);
   console.log("id in shopItem", id);
+
+  const buyItem = (user_id, pot_id) => {
+    setIsSold(true);
+    addPot(user_id, pot_id);
+  }
 
   return (
     <Grid item xs={6} sm={3}>
@@ -42,12 +48,24 @@ export default function ShopItem(props) {
           <footer className="meow-item-footer">
             <p>{props.price} Meowcoins</p>
           </footer>
-          <Button 
-            variant="contained" 
-            color="secondary"
-            onClick={() => addPot(1, id)}>
-            BUY
+          {price > coins ? (
+            <Button 
+              variant="contained" 
+              disabled>
+              BUY
           </Button>
+          ) : (
+            <Button 
+              variant="contained" 
+              color="secondary"
+              onClick={() => buyItem(1, id)}>
+              BUY
+            </Button>
+          )}
+
+          {isSold && (
+            <p>SOLD OUT</p>
+          )}
         </CardContent>
       </Card>
     </Grid>

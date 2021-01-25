@@ -36,6 +36,8 @@ export default function ShopPage(props) {
               description={item.description}
               price={item.price}
               addPot={addPot}
+              coins={coins}
+              setCoins={setCoins}
               // style={props.style}
               />
             );
