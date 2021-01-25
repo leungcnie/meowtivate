@@ -9,8 +9,8 @@ import CatPlant from '../components/CatPlant';
 
 // import getCurrentDate from "../helpers/getCurrentDate";
 import SMSForm from "../components/SMSForm";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+// import Card from "@material-ui/core/Card";
+// import CardContent from "@material-ui/core/CardContent";
 import getCurrentDate from "../helpers/getCurrentDate";
 
 const useStyles = makeStyles((theme) => ({

@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect, useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 
@@ -63,7 +63,7 @@ export default function CatPlant(props) {
   const classes = useStyles();
   const { actions, state } = props;
   // const { setDefaultPot } = potFunctions;
-  const { inventory } = state;
+  const inventory = state ? state.inventory : [];
   const [start, setStart] = React.useState(false);
   const [pot, setPot] = useState("https://meowtivate.s3-us-west-2.amazonaws.com/pots/01pot.png");
   let timer;
