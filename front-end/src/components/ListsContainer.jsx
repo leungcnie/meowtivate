@@ -136,18 +136,20 @@ export default function ListContainer(props) {
               <CardContent>
                 {/* <div>
               </div> */}
-                <div className={classes.plantbox}>
-                  <h3>Today's Progress</h3>
-                  <CatPlant actions={actions} />
-                </div>
-              </CardContent>
-            </Card>
-          </Grid>
+              <div className={classes.plantbox}>
+                <h3>Today's Progress</h3>
+                <CatPlant 
+                  actions={actions}
+                  state={state} />
+              </div>
+            </CardContent>
+          </Card>
+        </Grid>
           <Progress
-            completedPercentage={completedPercentage}
-            completedAmount={completedAmount}
-            totalAmount={totalAmount}
-          />
+          completedPercentage={completedPercentage}
+          completedAmount={completedAmount}
+          totalAmount={totalAmount}
+        />
         </Grid>
       </div>
     </>

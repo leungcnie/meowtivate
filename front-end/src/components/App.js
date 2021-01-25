@@ -33,12 +33,16 @@ function App() {
     catFunctions,
     day,
     setDay,
-  } = useApplicationData();
+    addPot,
+    potFunctions
+   } = useApplicationData();
   const { unlocked, account } = state;
   const id = day ? day : 0;
   // const id = 1;
 
   const [streak, setStreak] = useState(3); // Hardcode initial streak value
+  const [coins, setCoins] = useState(streak * 100);
+
 
   // Add 1 to current streak if a cat was unlocked today
   useEffect(() => {
@@ -61,6 +65,11 @@ function App() {
     }
   }, [state]);
 
+  // Update streak whenever reloading
+  useEffect(() => {
+    setCoins(streak * 100);
+  }, [streak])
+
   return (
     <div className="App">
       <Router>
@@ -82,7 +91,9 @@ function App() {
               streak={streak}
               day={day}
               setDay={setDay}
-            />
+              id={id}
+              coins={coins}
+              setCoins={setCoins} />
           </Route>
           <Route exact path="/lists" component={ListsPage}>
             <ListsPage
@@ -98,10 +109,16 @@ function App() {
             <AccountPage state={state} />
           </Route>
           <Route exact path="/inventory" component={InventoryPage}>
-            <InventoryPage state={state} />
+            <InventoryPage 
+              state={state}
+              potFunctions={potFunctions} />
           </Route>
           <Route exact path="/shop" component={ShopPage}>
-            <ShopPage state={state} />
+            <ShopPage 
+              state={state}
+              coins={coins}
+              setCoins={setCoins}
+              addPot={addPot} />
           </Route>
           <Route exact path="*" component={NotFoundPage} />
         </Switch>

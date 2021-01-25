@@ -1,5 +1,6 @@
 module.exports = (router, db) => {
 
+  // Get all pots user owns
   router.get("/:id", (req, res) => {
     const user_id = req.params.id;
     db.getUserInventory(user_id)
@@ -12,9 +13,25 @@ module.exports = (router, db) => {
       });
   });
 
-  router.get("/:id", (req, res) => {
+  // Add new row in user_pots
+  // User buys a new pot
+  router.post("/:id", (req, res) => {
     const user_id = req.params.id;
-    db.getDefaultPot(user_id)
+    const { pot_id } = req.body;
+    db.addInventory(user_id, pot_id)
+      .then((data) => {
+        console.log("new add inventory", data);
+        res.status(200).json(data);
+      })
+      .catch(err => {
+        res.status(500).json({ error: err.message });
+      });
+  })
+
+  // Get default pot image data for user
+  router.get("/default/:id", (req, res) => {
+    const user_id = req.params.id;
+    db.getUserDefault(user_id)
       .then((data) => {
         res.json(data);
         // console.log("cannot get the correct", data);
@@ -24,17 +41,42 @@ module.exports = (router, db) => {
       });
   });
 
-  router.post("/bought", (req, res) => {
-    const { user_id, pot_id } = req.body;
-    // console.log("req.body in POST /todos", req.body);
-
-    db.changeDefaultPot(user_id, pot_id)
+  // Update pot is_default value
+  router.put("/:id", (req, res) => {
+    const user_id = req.params.id;
+    const { pot_id } = req.body;
+    db.setDefault(user_id, pot_id)
       .then((data) => {
-        res.send(data);
+        res.status(200).json(data);
       })
-      .catch((err) => {
+      .catch(err => {
         res.status(500).json({ error: err.message });
       });
   });
+
+  // router.get("/:id", (req, res) => {
+  //   const user_id = req.params.id;
+  //   db.getDefaultPot(user_id)
+  //     .then((data) => {
+  //       res.json(data);
+  //       // console.log("cannot get the correct", data);
+  //     })
+  //     .catch((err) => {
+  //       res.status(500).json({ error: err.message });
+  //     });
+  // });
+
+  // router.post("/bought", (req, res) => {
+  //   const { user_id, pot_id } = req.body;
+  //   // console.log("req.body in POST /todos", req.body);
+
+  //   db.changeDefaultPot(user_id, pot_id)
+  //     .then((data) => {
+  //       res.send(data);
+  //     })
+  //     .catch((err) => {
+  //       res.status(500).json({ error: err.message });
+  //     });
+  // });
   return router;
 };

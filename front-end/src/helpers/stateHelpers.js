@@ -100,3 +100,58 @@ export function getNewUnlockedCat(cat_id, date, state) {
 
   return updatedUnlocked;
 }
+
+// Use pot_id to build new inventory state item
+export function addToInventory(user_id, pot_id, userPurchaseData, state) {
+  console.log("state.shop in stateHelpers", state.shop);
+  const updatedInventory = [...state.inventory];
+
+  // Find the new purchase from shop
+  const item = state.shop.filter(obj => obj.id === pot_id)[0];
+
+  // Extract properties we need to build new inventory item
+  const { pot_name, description, image_url } = item;
+  const { is_default } = userPurchaseData;
+  const purchase = {
+    pot_name,
+    description,
+    image_url,
+    user_id,
+    pot_id,
+    is_default
+  };
+
+  console.log("PURCHASE", purchase)
+
+  // Push new purchase to inventory
+  updatedInventory.push(purchase);
+
+  return updatedInventory;
+}
+
+export function setAsDefault(user_id, pot_id, state) {
+
+  // Find specific pot obj
+  const target = state.inventory.filter(obj => obj.user_id === user_id && obj.pot_id === pot_id)[0];
+  const targetIndex = state.inventory.indexOf(target);
+  // Copy pot
+  const newPot = {...target};
+
+  // Set new pot as default pot
+  newPot.is_default = true;
+
+  // Set all other pots is_default to false
+  const updatedInventory = state.inventory.map(obj => {
+    obj.is_default = false;
+    return obj;
+  })
+
+  updatedInventory.splice(targetIndex, 1); // Remove target obj
+  updatedInventory.splice(targetIndex, 0, newPot); // Insert updated pot
+
+  console.log("newPot", newPot);
+  console.log("updatedInventory", updatedInventory);
+  
+  return updatedInventory;
+
+}

@@ -8,6 +8,8 @@ import {
   modifyStreakActionWith,
   addToLogDatas,
   getNewUnlockedCat,
+  addToInventory,
+  setAsDefault,
 } from "../helpers/stateHelpers";
 
 export default function useApplicationDate() {
@@ -17,11 +19,8 @@ export default function useApplicationDate() {
     habits: [],
     actions: [],
     allCats: [],
-    // logDatas: [],
-    // streaks: [],
-
-    shopInventory: [],
-    userInventory: [],
+    shop: [],
+    inventory: [],
   });
 
   // User/day picker state
@@ -213,6 +212,45 @@ export default function useApplicationDate() {
     addUnlocked,
   };
 
+  //---------------------------
+  // POT FUNCTIONS //
+  //---------------------------
+
+  // Add a pot to user's inventory
+  const addPot = (user_id, pot_id) => {
+    return axios
+      .post(`/api/inventory/${user_id}`, {pot_id})
+      .then((res) => {
+        const newPurchase = res.data;
+        const inventory = addToInventory(user_id, pot_id, newPurchase, state);
+
+        setState({
+          ...state,
+          inventory
+        });
+      });
+  };
+
+  // Set a pot as default
+  const setDefaultPot = (user_id, pot_id) => {
+    return axios
+      .put(`/api/inventory/${user_id}`, {pot_id})
+      .then(() => {
+        // Create updated inventory array
+        const inventory = setAsDefault(user_id, pot_id, state);
+
+        setState({
+          ...state,
+          inventory
+        })
+      })
+  }
+
+  const potFunctions = {
+    addPot,
+    setDefaultPot
+  };
+
   useEffect(() => {
     Promise.all([
       //   axios.get("/api/collections/1"),
@@ -231,7 +269,7 @@ export default function useApplicationDate() {
       axios.get(`/api/actions/${day}`),
       axios.get(`/api/accounts/${day}`),
       axios.get(`/api/collections`),
-      axios.get(`/api/shop/${day}`),
+      axios.get(`/api/shop/`),
       axios.get(`/api/inventory/${day}`),
       // axios.get("/api/collections/1"),
       // axios.get("/api/todos/1"),
@@ -254,8 +292,8 @@ export default function useApplicationDate() {
           // streaks: res[6].data,
           account: res[4].data,
           allCats: res[5].data,
-          shopInventory: res[6].data,
-          userInventory: res[7].data,
+          shop: res[6].data,
+          inventory: res[7].data,
         }));
       })
       .catch((err) => {
@@ -263,5 +301,13 @@ export default function useApplicationDate() {
       });
   }, [day]);
 
-  return { state, actionFunctions, catFunctions, setDay, day };
+  return { 
+    state, 
+    actionFunctions, 
+    catFunctions, 
+    setDay, 
+    day,
+    addPot,
+    potFunctions
+   };
 }
