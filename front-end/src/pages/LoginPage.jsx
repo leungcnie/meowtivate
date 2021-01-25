@@ -68,7 +68,7 @@ export default function LoginPage(props) {
         className={classes.loginButton}
         variant="contained" 
         component={Link}
-        to='/lists'>
+        to='/dashboard'>
         <DoubleArrowRoundedIcon className={classes.icon}/>
       </Button>
     </form>
