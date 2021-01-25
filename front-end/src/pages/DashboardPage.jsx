@@ -19,6 +19,17 @@ const useStyles = makeStyles((theme) => ({
   },
   margin: {
     marginTop: '2vh'
+  },
+  coin: {
+    height: '2.5rem'
+  },
+  coinstyle: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  numOfCoins: {
+    paddingRight: '0.5rem'
   }
 }));
 
@@ -76,8 +87,9 @@ export default function DashboardPage(props) {
           </CardContent>
         </Card>
         <Card className={classes.margin}>
-          <CardContent>
-            {streak * 100} MEOWCOINS
+          <CardContent className={classes.coinstyle}>
+            <h3 className={classes.numOfCoins}>{streak * 100} </h3>
+            <img className={classes.coin} src='https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png' alt='meowcoin' />
           </CardContent>
         </Card>
 
