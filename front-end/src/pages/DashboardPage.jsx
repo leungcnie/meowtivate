@@ -39,10 +39,6 @@ export default function DashboardPage(props) {
   }
 
   useEffect(() => {
-    setCoins(streak * 100);
-  }, [streak])
-
-  useEffect(() => {
     if (id === 2) {
       setCoins(0);
     }

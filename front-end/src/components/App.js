@@ -61,6 +61,11 @@ function App() {
     }
   }, [state])
 
+  // Update streak whenever reloading
+  useEffect(() => {
+    setCoins(streak * 100);
+  }, [streak])
+
   return (
     <div className="App">
       <Router>

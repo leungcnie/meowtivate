@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ShopPage(props) {
   const classes = useStyles();
   const { state, coins, setCoins, addPot } = props;
-  const shop = state.shop;
+  const { shop } = state;
   // console.log('shopInven', shop)
   
   return (
@@ -24,6 +24,7 @@ export default function ShopPage(props) {
         <NavBar/>
         <h1>Welcome to the Shop!</h1>
       </header>
+      <p>{coins} MEOWCOINS</p>
       <body className={classes.root}>
         <Grid container spacing={3}>
           {shop.map((item) => {

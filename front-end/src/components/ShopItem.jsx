@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -21,12 +21,19 @@ export default function ShopItem(props) {
   const classes = useStyles();
   const { addPot, id, price, coins, setCoins } = props;
   const [isSold, setIsSold] = useState(false);
-  console.log("id in shopItem", id);
 
   const buyItem = (user_id, pot_id) => {
+    setCoins(prev => prev - price);
     setIsSold(true);
     addPot(user_id, pot_id);
   }
+
+  console.log(`Coin in pot ${id}:`, coins)
+  // useEffect(() => {
+  //   if (isSold) {
+  //     setCoins(prev => prev - price)
+  //   }
+  // }, [isSold])
 
   return (
     <Grid item xs={6} sm={3}>
