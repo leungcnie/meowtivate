@@ -14,7 +14,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     paddingLeft: "5vw",
     paddingRight: "5vw",
-    margin: "auto",
+  },
+  grid: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
   },
   margin: {
     marginTop: '2vh'
@@ -115,13 +119,20 @@ export default function DashboardPage(props) {
       {/* <h1>Welcome {props.state.account[0].name}!</h1> */}
       </header>
       <Grid container spacing={3} className={classes.root}>
-        <Grid item xs={4}>
+        <Grid item xs={4} className={classes.grid}>
+          <Grid>
           {/* // <CalendarApp items={state.logDatas} /> */}
           <CalendarApp state={state} day={day} />
+          </Grid>
+          <Grid>
+            <IconButton onClick={changeDay}>
+              <ForwardRoundedIcon className={classes.iconButton}/>
+            </IconButton>
+          </Grid>
         </Grid>
         <Grid item xs={4}>
           <div className={classes.streakContainer}>
-            <h3>STREAK</h3>
+            <h3>CURRENT STREAK</h3>
             <div className={classes.streakNum}>
             <h1>{streak}</h1>
             </div>
@@ -152,9 +163,6 @@ export default function DashboardPage(props) {
             <img className={classes.coin} src='https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png' alt='meowcoin' />
           </CardContent>
         </Card>
-          <IconButton onClick={changeDay}>
-            <ForwardRoundedIcon className={classes.iconButton}/>
-          </IconButton>
         </Grid>
         <Grid item xs={4}>
           <Grid>
