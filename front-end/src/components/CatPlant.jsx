@@ -61,7 +61,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function CatPlant(props) {
   const classes = useStyles();
-  const { actions } = props;
+  const { actions, potFunctions, state } = props;
+  const { setDefaultPot } = potFunctions;
+  const { inventory } = state;
   const [start, setStart] = React.useState(false);
   const [pot, setPot] = useState("https://meowtivate.s3-us-west-2.amazonaws.com/pots/01pot.png");
   let timer;

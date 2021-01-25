@@ -6,7 +6,8 @@ import {
   getActionProperty,
   modifyActionWith,
   getNewUnlockedCat,
-  addToInventory
+  addToInventory,
+  setAsDefault,
 } from "../helpers/stateHelpers";
 
 export default function useApplicationDate() {
@@ -175,9 +176,10 @@ export default function useApplicationDate() {
   }
 
   //---------------------------
-  // UNLOCKED POTS FUNCTIONS //
+  // POT FUNCTIONS //
   //---------------------------
 
+  // Add a pot to user's inventory
   const addPot = (user_id, pot_id) => {
     return axios
       .post(`/api/inventory/${user_id}`, {pot_id})
@@ -190,6 +192,26 @@ export default function useApplicationDate() {
           inventory
         });
       });
+  };
+
+  // Set a pot as default
+  const setDefaultPot = (user_id, pot_id, is_default) => {
+    return axios
+      .put(`/api/inventory/${user_id}`, {pot_id, is_default})
+      .then(() => {
+        // Create updated inventory array
+        const inventory = setAsDefault(user_id, pot_id, is_default, state);
+
+        setState({
+          ...state,
+          inventory
+        })
+      })
+  }
+
+  const potFunctions = {
+    addPot,
+    setDefaultPot
   };
 
   useEffect(() => {
@@ -235,6 +257,7 @@ export default function useApplicationDate() {
     catFunctions, 
     setDay, 
     day,
-    addPot
+    addPot,
+    potFunctions
    };
 }

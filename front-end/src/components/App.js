@@ -33,6 +33,7 @@ function App() {
     day,
     setDay,
     addPot,
+    potFunctions
    } = useApplicationData();
   const { unlocked, account } = state;
   const id = day ? day : 0;
@@ -94,7 +95,8 @@ function App() {
             <ListsPage 
               state={state} 
               actionFunctions={actionFunctions}
-              catFunctions={catFunctions} />
+              catFunctions={catFunctions}
+              potFunctions={potFunctions} />
           </Route>
           <Route exact path="/cats" component={CatsPage}>
             <CatsPage state={state} />

@@ -86,3 +86,30 @@ export function addToInventory(user_id, pot_id, userPurchaseData, state) {
 
   return updatedInventory;
 }
+
+export function setAsDefault(user_id, pot_id, is_default, state) {
+
+  // Find specific pot obj
+  const target = state.inventory.filter(obj => obj.user_id === user_id && obj.pot_id === pot_id)[0];
+  const targetIndex = state.inventory.indexOf(target);
+  // Copy pot
+  const newPot = {...target};
+
+  // Update new pot with updated is_default bool
+  newPot.is_default = is_default;
+
+  // Set all other pots is_default to false
+  const updatedInventory = state.inventory.map(obj => {
+    obj.is_default = false;
+    return obj;
+  })
+
+  updatedInventory.splice(targetIndex, 1); // Remove target obj
+  updatedInventory.splice(targetIndex, 0, newPot); // Insert updated pot
+
+  console.log("newPot", newPot);
+  console.log("updatedInventory", updatedInventory);
+  
+  return updatedInventory;
+
+}
