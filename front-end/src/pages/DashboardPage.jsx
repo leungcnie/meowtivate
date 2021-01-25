@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 // import getCurrentDate from "../helpers/getCurrentDate";
+import SMSForm from "../components/SMSForm";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,6 +42,7 @@ export default function DashboardPage(props) {
           <CalendarApp state={state} day={day} />
         </Grid>
         <Grid item xs={4}>
+          <SMSForm />
           <Card>
             <CardContent>
               <Grid item>
