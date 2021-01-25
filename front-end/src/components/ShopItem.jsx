@@ -12,6 +12,17 @@ const useStyles = makeStyles((theme) => ({
   card: {
     minHeight: '22rem',
     minWidth: '12rem',
+  },
+  coin: {
+    height: '2.5rem'
+  },
+  footer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  price: {
+    paddingRight: '0.5rem'
   }
 }));
 
@@ -36,8 +47,9 @@ export default function ShopItem(props) {
           <main className="meow-item-description">
             <p>{props.description}</p>
           </main>
-          <footer className="meow-item-footer">
-            <p>{props.price} Meowcoins</p>
+          <footer className={classes.footer}>
+            <p className={classes.price}>{props.price}</p>
+            <img className={classes.coin} src='https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png' alt='meowcoin' />
           </footer>
         </CardContent>
       </Card>

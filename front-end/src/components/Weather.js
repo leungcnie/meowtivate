@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect, className } from "react";
+import { useState, useEffect } from "react";
 import "./styles/weather.css";
 
 const api = {
@@ -31,7 +31,7 @@ export const Weather = () => {
       .then((res) => res.json())
       .then((result) => {
         setWeather(result);
-        console.log(result);
+        // console.log(result);
       });
     });
   }, [])

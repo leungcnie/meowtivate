@@ -5,7 +5,6 @@
   margin: auto;
 }
 
-/* class name may have to change if 'Raining' does not match the word on display */
 .Rain {
   display: none;
   background-color: transparent;
@@ -14,6 +13,20 @@
 }
 
 .Clouds {
+  display: none;
+  background-color: transparent;
+  height: 10rem;
+  margin: auto;
+}
+
+.Snow {
+  display: none;
+  background-color: transparent;
+  height: 10rem;
+  margin: auto;
+}
+
+.Mist {
   display: none;
   background-color: transparent;
   height: 10rem;
