@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#a0cdca',
     width: '5rem',
     height: '8rem',
-    display: 'flex',
+    display: 'inline-flex',
     justifyContent: 'center',
     borderRadius: '2rem',
     alignItems: 'center',
@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   listButton: {
+    width: '10em',
     backgroundColor: '#fee2b1',
     fontFamily: 'Itim',
     margin: '0.5vh',
@@ -78,6 +79,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   collectionButton: {
+    width: '10em',
     backgroundColor: '#fcd0c5',
     fontFamily: 'Itim',
     margin: '0.5vh',
@@ -92,6 +94,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   accountButton: {
+    width: '10em',
     backgroundColor: '#aedaa5',
     fontFamily: 'Itim',
     margin: '0.5vh',
@@ -106,6 +109,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   inventoryButton: {
+    width: '10em',
     backgroundColor: '#e0c8df',
     fontFamily: 'Itim',
     margin: '0.5vh',
@@ -152,9 +156,9 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     backgroundColor: 'rgb(255, 255, 255, 0.9)',
     borderRadius: '2rem',
-    width: '20vw',
-    padding: '2em',
-    // marginTop: '5vh'   
+    width: '19vw',
+    height: 'fit-content',
+    padding: '1.5em',
   },
 }));
 
@@ -212,15 +216,15 @@ export default function DashboardPage(props) {
             </IconButton>
           </div>
         </Grid>
-        <Grid item xs={4} className={classes.grid}>
-          <section className={classes.midContainer}>
-            <div className={classes.streakContainer}>
+        <Grid item xs={4}>
+          {/* <section> */}
+            {/* <article> */}
               <h2 style={{color: 'grey'}}>CURRENT STREAK IS</h2>
-              <div className={classes.streakNum}>
+              <div className={classes.midContainer, classes.streakNum}>
                 <h1>{streak}</h1>
               </div>
               <h3 style={{color: 'grey'}}>DAYS</h3>
-            </div>
+            {/* </article> */}
           <article className={classes.cardContainer}>
               <Grid>
                 <Button className={classes.listButton} component={Link} to="/lists">
@@ -249,7 +253,7 @@ export default function DashboardPage(props) {
               </div>
             </article>
             </article>
-            </section>
+            {/* </section> */}
         </Grid>
         <Grid item xs={4} className={classes.grid}>
           <Grid>
@@ -258,8 +262,8 @@ export default function DashboardPage(props) {
             </article>
           </Grid>
           <Grid className={classes.margin}>
-            <article className={classes.cardContainer}>
-                <h1 style={{color: 'grey'}}>Today's Progress</h1>
+            <article className={classes.cardContainer} style={{paddingBottom: '2em'}}>
+                {/* <h1 style={{color: 'grey', lineHeight: 0}}>Today's Progress</h1> */}
                 <CatPlant 
                 actions={actions}
                 state={state}/>
