@@ -3,10 +3,12 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import DoubleArrowRoundedIcon from "@material-ui/icons/DoubleArrowRounded";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     fontFamily: "Varela Round",
+
     "& > *": {
       margin: theme.spacing(3),
     },
@@ -17,11 +19,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     backgroundColor: "rgb(201,188,200, 0.4)",
     borderRadius: "2rem",
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "2em",
+    width: "80vw",
+    [theme.breakpoints.down("xs")]: {
       height: "60vh",
     },
-    width: "80vw",
     paddingTop: "5em",
     paddingBottom: "5em",
     marginTop: "15vh",
@@ -30,13 +31,18 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "itim",
     letterSpacing: "8px",
     fontSize: "4em",
-
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "2em",
+    },
     color: "antiquewhite",
     lineHeight: "0",
   },
   header: {
     fontFamily: "Varela Round",
     letterSpacing: "6px",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "2em",
+    },
     color: "grey",
   },
   loginButton: {
@@ -56,8 +62,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function RegisterPage(props) {
+  const isActive = useMediaQuery("(min-width: 480px)");
   const classes = useStyles();
-  const { state } = props;
+  // const { state } = props;
 
   return (
     <div className={classes.container}>
