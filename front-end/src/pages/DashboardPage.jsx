@@ -13,6 +13,7 @@ import { CalendarApp } from "../components/Calendar-import";
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import CatPlant from "../components/CatPlant";
+import Footer from "../components/Footer";
 
 // import getCurrentDate from "../helpers/getCurrentDate";
 import SMSForm from "../components/SMSForm";
@@ -47,7 +48,11 @@ const darkTheme = createMuiTheme({
 });
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    marginLeft: "10vw",
+    marginRight: "10vw",
+    marginBottom: "10vh",
+  },
   container: {
     display: "flex",
     justifyContent: "center",
@@ -80,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   coin: {
-    height: "3rem",
+    height: "4rem",
   },
   coinstyle: {
     display: "flex",
@@ -292,102 +297,104 @@ export default function DashboardPage(props) {
   // }, [streak])
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider>
       <header>
         <NavBar />
         {/* <h1>Welcome {props.state.account[0].name}!</h1> */}
       </header>
-      <Grid container spacing={3} className={classes.container}>
-        <Grid Grid item xs={12} sm={6} md={4} className={classes.grid1}>
-          <SMSForm />
-          <div className={classes.calendarContainer}>
-            <CalendarApp state={state} day={day} />
-          </div>
+      <section className={classes.root}>
+        <Grid container spacing={3} className={classes.container}>
+          <Grid Grid item xs={12} sm={6} md={4} className={classes.grid1}>
+            <SMSForm />
+            <div className={classes.calendarContainer}>
+              <CalendarApp state={state} day={day} />
+            </div>
 
-          <div>
-            <IconButton onClick={changeDay}>
-              <DoubleArrowRoundedIcon className={classes.iconButton} />
-            </IconButton>
-          </div>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} className={classes.grid2}>
-          {/* <section> */}
-          {/* <article> */}
-          <h2 style={{ color: "grey" }}>CURRENT STREAK IS</h2>
-          <div className={(classes.midContainer, classes.streakNum)}>
-            <h1>{streak}</h1>
-          </div>
-          <h3 style={{ color: "grey" }}>DAYS</h3>
-          {/* </article> */}
-          <article className={classes.listContainer}>
-            <Grid>
-              <Button
-                className={classes.listButton}
-                component={Link}
-                to="/lists"
-              >
-                My Lists
-              </Button>
-            </Grid>
-            <Grid>
-              <Button
-                className={classes.collectionButton}
-                component={Link}
-                to="/cats"
-              >
-                My Collection
-              </Button>
-            </Grid>
-            <Grid>
-              <Button
-                className={classes.accountButton}
-                component={Link}
-                to="/account"
-              >
-                My Account
-              </Button>
-            </Grid>
-            <Grid>
-              <Button
-                className={classes.inventoryButton}
-                component={Link}
-                to="/inventory"
-              >
-                My Inventory
-              </Button>
-            </Grid>
-            <article className={classes.walletContainer}>
-              <div className={classes.wallet}>
-                <h1>{coins}</h1>
-                <img
-                  className={classes.coin}
-                  src="https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png"
-                  alt="meowcoin"
-                />
-              </div>
-            </article>
-          </article>
-          {/* </section> */}
-        </Grid>
-        <Grid item xs={12} sm={12} md={4} className={classes.grid3}>
-          <Grid>
-            <article xs={12} sm={6} className={classes.weatherContainer}>
-              <Weather />
-            </article>
+            <div>
+              <IconButton onClick={changeDay}>
+                <DoubleArrowRoundedIcon className={classes.iconButton} />
+              </IconButton>
+            </div>
           </Grid>
-          <Grid className={classes.margin}>
-            <article
-              xs={12}
-              sm={6}
-              className={classes.potContainer}
-              style={{ paddingBottom: "2em" }}
-            >
-              {/* <h1 style={{color: 'grey', lineHeight: 0}}>Today's Progress</h1> */}
-              <CatPlant actions={actions} state={state} />
+          <Grid item xs={12} sm={6} md={4} className={classes.grid2}>
+            {/* <section> */}
+            {/* <article> */}
+            <h2 style={{ color: "grey" }}>CURRENT STREAK IS</h2>
+            <div className={(classes.midContainer, classes.streakNum)}>
+              <h1>{streak}</h1>
+            </div>
+            <h3 style={{ color: "grey" }}>DAYS</h3>
+            {/* </article> */}
+            <article className={classes.listContainer}>
+              <Grid>
+                <Button
+                  className={classes.listButton}
+                  component={Link}
+                  to="/lists"
+                >
+                  My Lists
+                </Button>
+              </Grid>
+              <Grid>
+                <Button
+                  className={classes.collectionButton}
+                  component={Link}
+                  to="/cats"
+                >
+                  My Collection
+                </Button>
+              </Grid>
+              <Grid>
+                <Button
+                  className={classes.accountButton}
+                  component={Link}
+                  to="/account"
+                >
+                  My Account
+                </Button>
+              </Grid>
+              <Grid>
+                <Button
+                  className={classes.inventoryButton}
+                  component={Link}
+                  to="/inventory"
+                >
+                  My Inventory
+                </Button>
+              </Grid>
+              <article className={classes.walletContainer}>
+                <div className={classes.wallet}>
+                  <h1>{coins}</h1>
+                  <img
+                    className={classes.coin}
+                    src="https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png"
+                    alt="meowcoin"
+                  />
+                </div>
+              </article>
             </article>
+            {/* </section> */}
+          </Grid>
+          <Grid item xs={12} sm={12} md={4} className={classes.grid3}>
+            <Grid>
+              <article xs={12} sm={6} className={classes.weatherContainer}>
+                <Weather />
+              </article>
+            </Grid>
+            <Grid className={classes.margin}>
+              <article
+                xs={12}
+                sm={6}
+                className={classes.potContainer}
+                style={{ paddingBottom: "2em" }}
+              >
+                {/* <h1 style={{color: 'grey', lineHeight: 0}}>Today's Progress</h1> */}
+                <CatPlant actions={actions} state={state} />
+              </article>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </section>
       <Switch
         checked={darkMode}
         onChange={() => setDarkMode(!darkMode)}

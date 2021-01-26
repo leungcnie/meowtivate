@@ -1,5 +1,5 @@
 import React from "react";
-import "./progress.css";
+import "./styles/progress.css";
 
 function Progress(props) {
   // console.log("currentStreaks", props);

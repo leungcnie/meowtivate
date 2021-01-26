@@ -5,15 +5,15 @@ import clsx from "clsx";
 const useStyles = makeStyles((theme) => ({
   pot: {
     display: "block",
-    width: "12vw",
+    width: "8vw",
     position: "absolute",
     bottom: "0px",
-    left: "calc(50% - 6vw)",
+    left: "calc(50% - 4vw)",
     zIndex: 2,
   },
   plant: {
     opacity: 0,
-    width: "13vw",
+    width: "8vw",
     position: "relative",
     zIndex: 1,
   },

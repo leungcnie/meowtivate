@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
 
-import "./SMSForm.css";
+import "./styles/SMSForm.css";
 
 class SMSForm extends Component {
   constructor(props) {

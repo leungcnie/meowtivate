@@ -26,6 +26,8 @@ import ShopPage from "../pages/ShopPage";
 
 import NotFoundPage from "./404";
 
+import Footer from '../components/Footer';
+
 function App() {
   const {
     state,
@@ -122,6 +124,9 @@ function App() {
           <Route exact path="*" component={NotFoundPage} />
         </Switch>
       </Router>
+      {/* <footer>
+        <Footer/>
+      </footer> */}
     </div>
   );
 }

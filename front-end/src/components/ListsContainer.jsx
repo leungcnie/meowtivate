@@ -12,6 +12,8 @@ import calculateChecked from "../helpers/calculateChecked";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    marginLeft: '10vw',
+    marginRight: '10vw',
   },
   header: {
     fontFamily: "Varela Round",
@@ -57,6 +59,8 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
     justifyContent: "center",
+    paddingLeft: '10vw',
+    paddingRight: '10vw',
   },
   potGrid: {
     paddingLeft: "3rem",

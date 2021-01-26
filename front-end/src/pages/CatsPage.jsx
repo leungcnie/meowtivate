@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import GalleryContainer from "../components/GalleryContainer";
 import NavBar from "../components/NavBar";
+import Footer from '../components/Footer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    marginLeft: '10vw',
+    marginRight: '10vw',
+    marginBottom: '10vh'
   },
   header: {
     fontFamily: "Varela Round",
@@ -24,15 +25,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function isLocked(allCats, unlockedCats) {
-  const lockedCats = [];
+  const unlockedIDs = unlockedCats.map(obj => obj.id);
+  const lockedCats = allCats.filter(obj => !unlockedIDs.includes(obj.id));
 
-  for (let cat of allCats) {
-    // console.log('cat', String(cat.id))
-    // console.log('unloked keys', Object.keys(unlockedCats))
-    if (!Object.keys(unlockedCats).includes(String(cat.id - 1))) {
-      lockedCats.push(cat);
-    }
-  }
+  // for (let cat of allCats) {
+  //   // console.log('cat', String(cat.id))
+  //   // console.log('unloked keys', Object.keys(unlockedCats))
+  //   if (!Object.keys(unlockedCats).includes(String(cat.id - 1))) {
+  //     lockedCats.push(cat);
+  //   }
+  // }
   return lockedCats;
 }
 
@@ -43,23 +45,29 @@ export default function CatsPage(props) {
   // console.log('ALLCATS', state.allCats);
   const allCatsArray = state.allCats;
   const unlockedCatsArray = state.unlocked;
-  const lockedCatsArray = isLocked(allCatsArray, unlockedCatsArray);
+  const locked = isLocked(allCatsArray, unlockedCatsArray);
+  // Change locked cats names to ??? and no description
+  const lockedCatsArray = locked.map(obj => {
+    obj.cat_name = "???";
+    obj.description = "";
+    return obj;
+  })
+
+  console.log("lockedCatsArray", lockedCatsArray)
+  console.log("unlockedCatsArray", unlockedCatsArray)
 
   return (
     <div className="Cats">
       <NavBar />
-      <header>
-        <h1 className={classes.header}>my Collection</h1>
-      </header>
-      <section>
+      <h1 className={classes.header}>my Collection</h1>
+      <section className={classes.root}>
         <GalleryContainer
           items={state.unlocked}
           style={{ filter: "brightness(1)" }}
         />
         <GalleryContainer
           items={lockedCatsArray}
-          style={{ filter: "brightness(0)" }}
-        />
+          style={{ filter: "brightness(0)", color: 'transparent'}}/>
       </section>
     </div>
   );
