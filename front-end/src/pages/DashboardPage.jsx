@@ -225,7 +225,9 @@ export default function DashboardPage(props) {
           <Grid className={classes.margin}>
             <Card>
               <CardContent>
-                <CatPlant actions={actions}/>
+                <CatPlant 
+                  actions={actions}
+                  state={state}/>
               </CardContent>
             </Card>
           </Grid>
