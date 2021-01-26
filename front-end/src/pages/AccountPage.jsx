@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "6px",
     color: 'grey',
     lineHeight: 0,
-    paddingBottom:'1rem',
     paddingTop: '2rem',
     fontSize: '2em'
   },
@@ -32,16 +31,21 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'rgb(201,188,200, 0.4)',
     borderRadius: '2rem',
     padding: '2em',
-    marginTop: '8vh',
     display: 'inline-flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    marginBottom: '3rem',
+    marginBottom: '2rem',
   },
   icon:{
     fontSize: '2em',
     padding: '0.25rem',
-  }
+  },
+  form: {
+    padding: '1rem',
+    display: 'inline-flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
 }));
 
 export default function AccountPage(props) {
@@ -78,31 +82,31 @@ export default function AccountPage(props) {
           </IconButton>
         </article>
         {isEditable && (
-          <div>
-            <form className={classes.root} noValidate autoComplete="off">
+          <section>
+            <form className={classes.form} noValidate autoComplete="off">
+              <TextField
+                id="outlined-basic"
+                label="Username"
+                variant="outlined"
+                style={{margin: '0.5rem'}}
+              />
+              <TextField 
+                id="outlined-basic" 
+                label="Email" 
+                variant="outlined" 
+                style={{margin: '0.5rem'}}/>
+              <TextField
+                id="outlined-basic"
+                label="Password"
+                variant="outlined"
+                style={{margin: '0.5rem'}}/>
               <div>
-                <TextField
-                  id="outlined-basic"
-                  label="Username"
-                  variant="outlined"
-                />
+                <IconButton>
+                  <SaveRoundedIcon className={classes.icon} onClick={modeToggle} />
+                </IconButton>
               </div>
-              <div>
-                <TextField id="outlined-basic" label="Email" variant="outlined" />
-              </div>
-
-              <div>
-                <TextField
-                  id="outlined-basic"
-                  label="Password"
-                  variant="outlined"
-                />
-              </div>
-              <IconButton>
-                <SaveRoundedIcon onClick={modeToggle} />
-              </IconButton>
             </form>
-          </div>
+          </section>
         )}
       </section>
     </>
