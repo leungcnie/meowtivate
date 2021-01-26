@@ -129,6 +129,7 @@ export const CalendarApp = (props) => {
       // colorPrimary="#0fbcf9" // Range start and end
       // colorPrimaryLight="rgba(75, 207, 250, 0.4)" // Range middle
       calendarTodayClassName="custom-today-day"
+      calendarClassName="responsive-calendar"
       shouldHighlightWeekends
       customDaysClassName={[
         // here we add some CSS classes

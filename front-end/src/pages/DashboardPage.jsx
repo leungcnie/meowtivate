@@ -260,7 +260,9 @@ export default function DashboardPage(props) {
           <Grid className={classes.margin}>
             <article className={classes.cardContainer}>
                 <h1 style={{color: 'grey'}}>Today's Progress</h1>
-                <CatPlant actions={actions}/>
+                <CatPlant 
+                actions={actions}
+                state={state}/>
             </article>
           </Grid>
         </Grid>
