@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '2vh'
   },
   coin: {
-    height: '3rem'
+    height: '4rem'
   },
   coinstyle: {
     display: 'flex',

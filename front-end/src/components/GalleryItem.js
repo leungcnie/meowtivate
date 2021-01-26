@@ -35,9 +35,9 @@ export default function GalleryItem(props) {
               alt={props.name}
               style={props.style}
             />
-            <h2 className={classes.description}>{props.name}</h2>
+            <h2 className={classes.description} style={props.style}>{props.name}</h2>
           </header>
-          <main className={classes.description}>
+          <main className={classes.description} style={props.style}>
             <p>{props.description}</p>
           </main>
           <footer className="meow-item-footer">
