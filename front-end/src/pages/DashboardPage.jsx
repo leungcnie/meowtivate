@@ -22,6 +22,30 @@ import getCurrentDate from "../helpers/getCurrentDate";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
 
+// Theme
+
+const darkTheme = createMuiTheme({
+  palette: {
+    primary: {
+      light: "#757ce8",
+      main: "#3f50b5",
+      dark: "#002884",
+      contrastText: "#fff",
+      blue: "#a0cdca",
+      listButton: "#fee2b1",
+      collectionButton: "",
+      accountButton: "",
+      container: "rgb(255, 255, 255, 0.9)",
+    },
+    secondary: {
+      light: "#ff7961",
+      main: "#f44336",
+      dark: "#ba000d",
+      contrastText: "#000",
+    },
+  },
+});
+
 const useStyles = makeStyles((theme) => ({
   root: {},
   container: {
@@ -34,27 +58,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
-    // alignItems: 'center',
   },
-  // grid1: {
-  //   display: "flex",
-  //   justifyContent: "center",
-  //   flexDirection: "column",
-  //   // alignItems: "center",
-  //   order: 1,
-  //   [theme.breakpoints.down("xs")]: {
-  //     order: 2,
-  //   },
-  // },
-  // grid2: {
-  //   display: "flex",
-  //   justifyContent: "center",
-  //   flexDirection: "column",
-  //   order: 2,
-  //   [theme.breakpoints.down("xs")]: {
-  //     order: 3,
-  //   },
-  // },
   grid3: {
     display: "flex",
     justifyContent: "center",
@@ -274,6 +278,7 @@ export default function DashboardPage(props) {
       setCoins(0);
     }
   }, [id]);
+  const [darkMode, setDarkMode] = useState(false);
 
   // useEffect(() => {
   //   const today = getCurrentDate();
@@ -286,17 +291,8 @@ export default function DashboardPage(props) {
   //   }
   // }, [streak])
 
-  // Theme
-  const [darkMode, setDarkMode] = useState(false);
-
-  const theme = createMuiTheme({
-    palette: {
-      type: darkMode ? "dark" : "light",
-    },
-  });
-
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={darkTheme}>
       <header>
         <NavBar />
         {/* <h1>Welcome {props.state.account[0].name}!</h1> */}
