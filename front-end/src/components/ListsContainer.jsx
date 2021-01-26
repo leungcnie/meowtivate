@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     justifyContent: 'center'
-  }
+  },
 }));
 
 export default function ListContainer(props) {

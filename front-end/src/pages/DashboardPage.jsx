@@ -15,6 +15,10 @@ import getCurrentDate from "../helpers/getCurrentDate";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+  },
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
     paddingLeft: "5vw",
     paddingRight: "5vw",
   },
@@ -22,13 +26,13 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column',
-    alignItems: 'center',
+    // alignItems: 'center',
   },
   margin: {
     marginTop: '2vh'
   },
   coin: {
-    height: '2.5rem'
+    height: '3rem'
   },
   coinstyle: {
     display: 'flex',
@@ -67,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '0.5em',
     paddingRight: '0.5em',
     boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)',
-    color: 'grey',
+    color: '#5c5c5c',
     '&:hover': {
       backgroundColor: '#dbc6a1',
       color: 'white',
@@ -81,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '0.5em',
     paddingRight: '0.5em',
     boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)',
-    color: 'grey',
+    color: '#5c5c5c',
     '&:hover': {
       backgroundColor: '#e6c3bb',
       color: 'white',
@@ -95,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '0.5em',
     paddingRight: '0.5em',
     boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)',
-    color: 'grey',
+    color: '#5c5c5c',
     '&:hover': {
       backgroundColor: '#a2bb9d',
       color: 'white',
@@ -109,11 +113,48 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '0.5em',
     paddingRight: '0.5em',
     boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)',
-    color: 'grey',
+    color: '#5c5c5c',
     '&:hover': {
       backgroundColor: '#c9bcc8',
       color: 'white',
     }
+  },
+  wallet: {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: 'antiquewhite',
+    width: '10rem',
+    justifyContent: 'space-around',
+    padding: '0.5em',
+    borderRadius: '1.75rem',
+    fontFamily: 'Itim',
+    color: 'grey',
+    fontSize: '2em',
+    lineHeight: 0,
+  },
+  walletContainer: {
+    display: 'flex', 
+    justifyContent: 'center',
+    margin: '3rem',
+  },
+  calendarContainer: {
+    display: 'flex', 
+    justifyContent: 'center',
+  },
+  midContainer:{
+    display: 'flex', 
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+  cardContainer: {
+    display: 'inline-flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    backgroundColor: 'rgb(255, 255, 255, 0.9)',
+    borderRadius: '2rem',
+    width: '20vw',
+    padding: '2em',
+    // marginTop: '5vh'   
   },
 }));
 
@@ -160,74 +201,65 @@ export default function DashboardPage(props) {
       <NavBar />
       {/* <h1>Welcome {props.state.account[0].name}!</h1> */}
       </header>
-      <Grid container spacing={3} className={classes.root}>
+      <Grid container spacing={3} className={classes.container}>
         <Grid item xs={4} className={classes.grid}>
-          {/* // <CalendarApp items={state.logDatas} /> */}
-          {/* <Card>
-              <CardContent>
-                <Weather />
-              </CardContent>
-            </Card> */}
+          <div className={classes.calendarContainer}>
           <CalendarApp state={state} day={day} />
-          <Grid>
+          </div>
             <IconButton onClick={changeDay}>
               <DoubleArrowRoundedIcon className={classes.iconButton}/>
             </IconButton>
-          </Grid>
         </Grid>
         <Grid item xs={4} className={classes.grid}>
-          <div className={classes.streakContainer}>
-            <h3>CURRENT STREAK IS</h3>
-            <div className={classes.streakNum}>
-            <h1>{streak}</h1>
+          <section className={classes.midContainer}>
+            <div className={classes.streakContainer}>
+              <h2 style={{color: 'grey'}}>CURRENT STREAK IS</h2>
+              <div className={classes.streakNum}>
+                <h1>{streak}</h1>
+              </div>
+              <h3 style={{color: 'grey'}}>DAYS</h3>
             </div>
-            <h4>DAYS</h4>
-          </div>
-          <Card>
-            <CardContent>
-              <Grid item>
+          <article className={classes.cardContainer}>
+              <Grid>
                 <Button className={classes.listButton} component={Link} to="/lists">
                   My Lists
                 </Button>
               </Grid>
-              <Grid item>
+              <Grid>
                 <Button className={classes.collectionButton} component={Link} to="/cats">
                   My Collection
                 </Button>
               </Grid>
-              <Grid item>
+              <Grid>
                 <Button className={classes.accountButton} component={Link} to="/account">
                   My Account
                 </Button>
               </Grid>
-              <Grid item>
+              <Grid>
                 <Button className={classes.inventoryButton} component={Link} to="/inventory">
                   My Inventory
                 </Button>
               </Grid>
-            </CardContent>
-          </Card>
-        <Card className={classes.margin}>
-          <CardContent className={classes.coinstyle}>
-            <h3 className={classes.numOfCoins}>{coins}</h3>
-            <img className={classes.coin} src='https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png' alt='meowcoin' />
-          </CardContent>
-        </Card>
+            <article className={classes.walletContainer}>
+              <div className={classes.wallet}>
+                <h1>{coins}</h1>
+                <img className={classes.coin} src='https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png' alt='meowcoin' />
+              </div>
+            </article>
+            </article>
+            </section>
         </Grid>
         <Grid item xs={4} className={classes.grid}>
           <Grid>
-            <Card>
-              <CardContent>
-                <Weather />
-              </CardContent>
-            </Card>
+            <article className={classes.cardContainer}>
+              <Weather/>
+            </article>
           </Grid>
           <Grid className={classes.margin}>
-            <Card>
-              <CardContent>
+            <article className={classes.cardContainer}>
+                <h1 style={{color: 'grey'}}>Today's Progress</h1>
                 <CatPlant actions={actions}/>
-              </CardContent>
-            </Card>
+            </article>
           </Grid>
         </Grid>
       </Grid>

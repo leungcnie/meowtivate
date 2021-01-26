@@ -1,41 +1,53 @@
 .Clear {
   display: none;
   background-color: transparent;
-  height: 10rem;
+  height: 12rem;
   margin: auto;
+  padding-top: 2rem;
+  padding-bottom: 7rem;
 }
 
 .Rain {
   display: none;
   background-color: transparent;
-  height: 10rem;
+  height: 12rem;
   margin: auto;
+  padding-top: 2rem;
+  padding-bottom: 7rem;
 }
 
 .Clouds {
   display: none;
   background-color: transparent;
-  height: 10rem;
+  height: 12rem;
   margin: auto;
+  padding-top: 2rem;
+  padding-bottom: 7rem;
 }
 
 .Snow {
   display: none;
   background-color: transparent;
-  height: 10rem;
+  height: 12rem;
   margin: auto;
+  padding-top: 2rem;
+  padding-bottom: 7rem;
 }
 
 .Mist {
   display: none;
   background-color: transparent;
-  height: 10rem;
+  height: 12rem;
   margin: auto;
+  padding-top: 2rem;
+  padding-bottom: 7rem;
 }
 
 .weather {
   font-family: 'Varela Round' ;
+  font-size: 1.2em;
   display: block;
+  color: #5c5c5c;
 }
 
 .weather-search-box {
