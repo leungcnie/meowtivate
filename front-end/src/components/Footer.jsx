@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Menu from "./Menu";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -25,9 +24,9 @@ export default function SimpleMenu() {
   const classes = useStyles();
 
   return (
-    <header className={classes.navStyle}>
-      <Menu />
-      <h1 className={classes.logo}>Meowtivate</h1>
-    </header>
+    <footer>
+      <h1>Meowtivate</h1>
+      <span>dark Mode</span>
+    </footer>
   );
 }

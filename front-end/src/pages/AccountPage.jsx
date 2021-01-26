@@ -11,42 +11,57 @@ import TextField from "@material-ui/core/TextField";
 import { Widgets } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    minWidth: 275,
+    [theme.breakpoints.down("sm")]: {
+      Width: "80vw",
+    },
+  },
   container: {
-    display: 'inline-flex',
-    flexDirection: 'column',
-    width: '40vw',
-    justifyContent: 'center',
+    display: "inline-flex",
+    flexDirection: "column",
+    width: "40vw",
+    [theme.breakpoints.down("sm")]: {
+      width: "60vw",
+    },
+    justifyContent: "center",
   },
   header: {
     fontFamily: "Varela Round",
     letterSpacing: "6px",
-    color: 'grey',
+    color: "grey",
     lineHeight: 0,
-    paddingTop: '2rem',
-    paddingBottom: '2rem',
-    fontSize: '2em'
+    paddingTop: "2rem",
+    paddingBottom: "2rem",
+    fontSize: "2em",
   },
   infoCard: {
-    color: '#5c5c5c',
-    fontSize: '1.5em',
-    backgroundColor: 'rgb(201,188,200, 0.4)',
-    borderRadius: '2rem',
-    padding: '2em',
-    display: 'inline-flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    marginBottom: '2rem',
+    color: "#5c5c5c",
+    fontSize: "1.5em",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1em",
+    },
+    backgroundColor: "rgb(201,188,200, 0.4)",
+    borderRadius: "2rem",
+    padding: "2em",
+    display: "inline-flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    marginBottom: "2rem",
   },
-  icon:{
-    fontSize: '2em',
-    padding: '0.25rem',
+  icon: {
+    fontSize: "2em",
+    padding: "0.25rem",
   },
   form: {
-    padding: '1rem',
-    display: 'inline-flex',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    width: '30vw',
+    padding: "1rem",
+    display: "inline-flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    width: "30vw",
+    [theme.breakpoints.down("sm")]: {
+      width: "60vw",
+    },
   },
 }));
 
@@ -80,7 +95,7 @@ export default function AccountPage(props) {
         </article>
         <article>
           <IconButton onClick={modeToggle}>
-            <EditRoundedIcon className={classes.icon}/>
+            <EditRoundedIcon className={classes.icon} />
           </IconButton>
         </article>
         {isEditable && (
@@ -90,21 +105,26 @@ export default function AccountPage(props) {
                 id="outlined-basic"
                 label="Username"
                 variant="outlined"
-                style={{margin: '0.5rem'}}
+                style={{ margin: "0.5rem" }}
               />
-              <TextField 
-                id="outlined-basic" 
-                label="Email" 
-                variant="outlined" 
-                style={{margin: '0.5rem'}}/>
+              <TextField
+                id="outlined-basic"
+                label="Email"
+                variant="outlined"
+                style={{ margin: "0.5rem" }}
+              />
               <TextField
                 id="outlined-basic"
                 label="Password"
                 variant="outlined"
-                style={{margin: '0.5rem'}}/>
+                style={{ margin: "0.5rem" }}
+              />
               <div>
                 <IconButton>
-                  <SaveRoundedIcon className={classes.icon} onClick={modeToggle} />
+                  <SaveRoundedIcon
+                    className={classes.icon}
+                    onClick={modeToggle}
+                  />
                 </IconButton>
               </div>
             </form>
