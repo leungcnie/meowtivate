@@ -284,7 +284,6 @@ export default function DashboardPage(props) {
       <Grid container spacing={3} className={classes.container}>
         <Grid Grid item xs={12} sm={6} md={4} className={classes.grid1}>
           <SMSForm />
-
           <div className={classes.calendarContainer}>
             <CalendarApp state={state} day={day} />
           </div>

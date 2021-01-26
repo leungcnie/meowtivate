@@ -12,20 +12,33 @@ const useStyles = makeStyles((theme) => ({
     height: "25rem",
     minWidth: "17rem",
     backgroundColor: "#dfd2cd",
+    [theme.breakpoints.down("md")]: {
+      height: "20rem",
+      minWidth: "9rem",
+    },
   },
   catImg: {
-    height: '14rem',
+    height: "14rem",
+    [theme.breakpoints.down("md")]: {
+      height: "10rem",
+    },
   },
   description: {
-    color: '#5c5c5c',
-  }
+    color: "#5c5c5c",
+    [theme.breakpoints.down("md")]: {
+      height: "1rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.8rem",
+    },
+  },
 }));
 
 export default function GalleryItem(props) {
   const classes = useStyles();
 
   return (
-    <Grid item xs={3}>
+    <Grid item xs={6} sm={4} md={3}>
       <Card className={classes.card}>
         <CardContent>
           <header className="meow-item-header">
