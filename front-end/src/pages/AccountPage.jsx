@@ -8,10 +8,14 @@ import CardContent from "@material-ui/core/CardContent";
 import SaveRoundedIcon from "@material-ui/icons/SaveRounded";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import TextField from "@material-ui/core/TextField";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
+    [theme.breakpoints.down("sm")]: {
+      Width: "80vw",
+    },
   },
   header: {
     fontFamily: "Varela Round",

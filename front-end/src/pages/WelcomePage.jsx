@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import LocalFloristIcon from "@material-ui/icons/LocalFlorist";
 import EcoIcon from "@material-ui/icons/Eco";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -68,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
 export default function WelcomePage(props) {
   // const { state } = props;
   const classes = useStyles();
+  // const theme = useTheme();
 
   return (
     <div className={classes.container}>

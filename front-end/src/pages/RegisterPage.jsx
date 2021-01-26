@@ -62,9 +62,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function RegisterPage(props) {
-  const isActive = useMediaQuery("(min-width: 480px)");
+  // const isActive = useMediaQuery("(min-width: 480px)");
   const classes = useStyles();
   // const { state } = props;
+
+  // const theme = useTheme();
+  // const matches = useMediaQuery(theme.breakpoints.down("xs"));
 
   return (
     <div className={classes.container}>
