@@ -7,12 +7,27 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    height: '10rem',
+
+  },
+  pot: {
+    height: '8rem',
+    position: "relative",
+    bottom: 0,
+    left: 0,
   },
   card: {
-    height: '23rem',
-    minWidth: '14rem',
-    // backgroundColor: 'darkkhaki',
+    height: '18rem',
+    minwidth: '8rem',
+    paddingBottom: '1rem',
+    paddingTop: '3rem',
+  },
+  isDefault: {
+    position: 'relative',
+    bottom: '13rem',
+    transform: 'rotate(-15deg)',
+    color: 'indianred',
+    fontFamily: 'Itim',
+    fontSize: '3em',
   }
 }));
 
@@ -28,10 +43,9 @@ export default function InventoryItem(props) {
         <CardContent className={classes.card}>
           <header className="meow-item-header">
             <img
-              className={classes.root}
+              className={classes.pot}
               src={props.image}
               alt={props.name}
-              style={{paddingTop: '2rem'}}
             />
             <h2 className="meow-item-header-name">{props.name}</h2>
           </header>
@@ -39,8 +53,7 @@ export default function InventoryItem(props) {
             <p>{props.description}</p>
           </main>
           <footer className="meow-item-footer">
-            {/* {props.date.substring(0, 10)} */}
-            {props.isDefault && <p>⭐ SELECTED</p>}
+            {props.isDefault && <h1 className={classes.isDefault}>SELECTED</h1>}
           </footer>
         </CardContent>
       </Card>
