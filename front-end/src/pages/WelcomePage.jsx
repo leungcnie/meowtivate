@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "15vh",
   },
   logo: {
-    fontFamily: "itim",
+    fontFamily: "Itim",
     letterSpacing: "8px",
     fontSize: "5em",
     [theme.breakpoints.down("sm")]: {

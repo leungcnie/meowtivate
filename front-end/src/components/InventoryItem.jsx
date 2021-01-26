@@ -8,23 +8,47 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    width: "7rem",
-    alignItems: "center",
+    //   width: "7rem",
+    //   alignItems: "center",
+    // },
+    // card: {
+    //   height: "24rem",
+    //   minWidth: "15rem",
+    //   paddingBottom: "1rem",
+    //   paddingTop: "1rem",
+    //   paddingLeft: "1rem",
+    //   paddingRight: "1rem",
+
+    //   // backgroundColor: 'darkkhaki',
+    // },
+    // footer: {
+    //   display: "flex",
+    //   justifyContent: "center",
+    //   alignItems: "center",
+    // },
+  },
+  pot: {
+    height: "8rem",
+    position: "relative",
+    bottom: 0,
+    left: 0,
   },
   card: {
-    height: "24rem",
-    minWidth: "15rem",
+    height: "18rem",
+    minwidth: "8rem",
     paddingBottom: "1rem",
-    paddingTop: "1rem",
-    paddingLeft: "1rem",
-    paddingRight: "1rem",
-
-    // backgroundColor: 'darkkhaki',
+    paddingTop: "3rem",
+    [theme.breakpoints.down("sm")]: {
+      height: "20rem",
+    },
   },
-  footer: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+  isDefault: {
+    position: "relative",
+    bottom: "14rem",
+    transform: "rotate(-15deg)",
+    color: "indianred",
+    fontFamily: "Itim",
+    fontSize: "3vw",
   },
 }));
 
@@ -36,10 +60,10 @@ export default function InventoryItem(props) {
   return (
     <Grid item xs={6} sm={4}>
       <Card onClick={() => setDefaultPot(1, pot_id)}>
-        <CardContent className={classes.card} style={{ paddingRight: "2rem" }}>
+        <CardContent className={classes.card}>
           <header className="meow-item-header">
             <img
-              className={classes.root}
+              className={classes.pot}
               src={props.image}
               alt={props.name}
               style={{ paddingTop: "2rem" }}
@@ -53,8 +77,7 @@ export default function InventoryItem(props) {
             <p className={classes.footer}>{props.description}</p>
           </main>
           <footer className="meow-item-footer">
-            {/* {props.date.substring(0, 10)} */}
-            {props.isDefault && <p>⭐ SELECTED</p>}
+            {props.isDefault && <h1 className={classes.isDefault}>SELECTED</h1>}
           </footer>
         </CardContent>
       </Card>
