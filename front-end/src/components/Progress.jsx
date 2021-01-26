@@ -17,10 +17,10 @@ function Progress(props) {
         className="todos-completed"
         style={{ width: `${completedPercentage * 100}%` }}
       ></div>
-      <p>
+      <p style={{ paddingBottom: "2rem" }}>
         Completed {completedAmount} / {totalAmount}
       </p>
-      <p>Here is your current streak: {currentStreaks}</p>
+      {/* <p>Here is your current streak: {currentStreaks}</p> */}
     </div>
   );
 }

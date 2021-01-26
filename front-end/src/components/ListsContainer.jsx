@@ -40,11 +40,6 @@ export default function ListContainer(props) {
   const { actions, todos, habits, unlocked, streaks, logDatas } = state;
   const classes = useStyles();
 
-  // const { postLogData, updateStreak } = actionFunctions;
-  // console.log("actionFunctions in ListsContainer", actionFunctions);
-  // console.log("streaks in ListsContainer", streaks);
-  // console.log("streaks in logDatas", logDatas);
-
   const completed = actions.filter((obj) => obj.is_completed === true);
   const checkedHabits = completed.filter((obj) => obj.category_id === 2);
   const checkedTodos = completed.filter((obj) => obj.category_id === 1);
@@ -62,51 +57,14 @@ export default function ListContainer(props) {
   const yyyy = today.getFullYear();
   today = `${yyyy}-${mm}-${dd}`;
 
-  // console.log("rightnow", today);
-
-  // useEffect(() => {
-  //   if (streaks) {
-  //     return () => {
-  //       const currentStreaksE = streaks.map((obj) =>
-  //         obj.date_update.slice(0, 10)
-  //       );
-  //       const todayStreakExists = currentStreaksE.includes(today);
-  //       const currentLog = logDatas.map((obj) => obj.date_created.slice(0, 10));
-  //       const todayLogExists = currentLog.includes(today);
-
-  //       if (completedPercentage >= 1 && !todayStreakExists) {
-  //         let val = streaks[0].current_streak + 1;
-  //         updateStreak(1, val);
-  //       }
-  //       if (completedPercentage >= 1 && !todayLogExists) {
-  //         postLogData(1, today);
-  //       }
-  //     };
-  //   }
-  // }, [streaks, logDatas]);
-
-  // console.log("Does the streaks changes?", streaks);
-  // console.log("Does the logDatas changes?", logDatas);
-
-  // console.log("Does toady", todayStreakExists);
-  // const getStreak = (streaks) => {
-  //   if (!streaks) {
-  //     return streaks[0].current_streak;
-  //   }
-  //   const current_streak = getStreak(streaks);
-  //   console.log("curren_streak", current_streak);
-  //   return "updating streak";
-  // };
-  // const currentUser = user.accounts[0].username;
-  // console.log("user", currentUser);
   return (
     <>
       <UnlockBadge state={state} catFunctions={catFunctions} />
       <div className={classes.root}>
         <h2 className={classes.header}>LET'S GET LOTS DONE TODAY</h2>
         <Grid container spacing={4}>
-          <Grid item xs={4}>
-            <Card className={classes.lists}>
+          <Grid item xs={12} md={4} sm={6}>
+            <Card className={classes.lists} width={300}>
               <CardContent>
                 <h3>Daily Habits</h3>
                 <ActionList
@@ -118,7 +76,7 @@ export default function ListContainer(props) {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12} md={4} sm={6}>
             <Card className={classes.lists}>
               <CardContent>
                 <h3>To-Do Today</h3>
@@ -131,25 +89,22 @@ export default function ListContainer(props) {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={12} md={4}>
             <Card>
               <CardContent>
-                {/* <div>
-              </div> */}
-              <div className={classes.plantbox}>
-                <h3>Today's Progress</h3>
-                <CatPlant 
-                  actions={actions}
-                  state={state} />
-              </div>
-            </CardContent>
-          </Card>
-        </Grid>
+                <div className={classes.plantbox}>
+                  <h3>Today's Progress</h3>
+                  <CatPlant actions={actions} state={state} />
+                </div>
+              </CardContent>
+            </Card>
+          </Grid>
           <Progress
-          completedPercentage={completedPercentage}
-          completedAmount={completedAmount}
-          totalAmount={totalAmount}
-        />
+            xs={12}
+            completedPercentage={completedPercentage}
+            completedAmount={completedAmount}
+            totalAmount={totalAmount}
+          />
         </Grid>
       </div>
     </>
