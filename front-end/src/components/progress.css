@@ -1,30 +1,30 @@
 .progress {
   position: relative;
-  width: 100%;
-  height: 15px;
-  margin: 0 0 20px;
-  background: rgb(155, 155, 155);
-  border-radius: 3px;
+  width: 30px;
+  height: 40vh;
+  margin: 0 0 0px;
+  background: floralwhite;
+  border-radius: 10px;
 }
 
 .habits-completed {
   position: absolute;
-  top: 0;
+  bottom: 0;
   width: 100%;
   height: 100%;
-  border-radius: 3px;
-  transition: width 500ms;
-  background: rgb(181, 246, 236);
+  border-radius: 10px;
+  transition: height 500ms;
+  background: #FFC64C;
 }
 
 .todos-completed {
   position: absolute;
-  top: 0;
+  bottom: 0;
   width: 100%;
   height: 100%;
-  border-radius: 3px;
-  transition: width 500ms;
-  background: rgb(228, 164, 175);
+  border-radius: 10px;
+  transition: height 500ms;
+  background: #FFC64C;
 }
 /* .progressbar .completed {
   background: green;

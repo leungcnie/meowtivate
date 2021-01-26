@@ -12,27 +12,44 @@ import calculateChecked from "../helpers/calculateChecked";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    minWidth: "10vw",
-    minHeight: "25vh",
-    paddingLeft: "5vw",
-    paddingRight: "5vw",
   },
   header: {
     fontFamily: "Varela Round",
-    letterSpacing: "8px",
+    letterSpacing: "6px",
+    color: 'grey',
+    lineHeight: 0,
+    paddingTop: '2rem',
+    paddingBottom: '2rem',
+    fontSize: '2em'
   },
   plantbox: {
     position: "static",
     zIndex: 1,
     minWidth: "10vw",
-    minHeight: "40vh",
-    paddingLeft: "5vw",
-    paddingRight: "5vw",
+    minHeight: "28vh",
   },
-  lists: {
-    minWidth: "10vw",
-    minHeight: "50vh",
+  article: {
+    backgroundColor: 'rgb(201,188,200, 0.4)',
+    padding: '3rem',
+    borderRadius: '2rem',
+    minHeight: '35vh',
   },
+  progress: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  subtitle: {
+    color: 'grey',
+    lineHeight: 1,
+    fontSize: '1.5em',
+  },
+  list: {
+    height: '20vh'
+  }, 
+  container: {
+    display: 'flex',
+    justifyContent: 'center'
+  }
 }));
 
 export default function ListContainer(props) {
@@ -62,7 +79,59 @@ export default function ListContainer(props) {
   const yyyy = today.getFullYear();
   today = `${yyyy}-${mm}-${dd}`;
 
-  // console.log("rightnow", today);
+  return (
+    <>
+      <UnlockBadge state={state} catFunctions={catFunctions} />
+      <h2 className={classes.header}>LET'S GET LOTS DONE TODAY!</h2>
+        <Grid className={classes.container} container spacing={4}>
+          <Grid item xs={3}>
+            <article className={classes.article}>
+              <h3 className={classes.subtitle}>DAILY HABITS</h3>
+              <ActionList
+                className={classes.lists}
+                items={habits}
+                category={2}
+                actionFunctions={actionFunctions}
+                initChecked={habitIDs}/>
+            </article>
+          </Grid>
+          <Grid item xs={3}>
+            <article className={classes.article}>
+              <h3 className={classes.subtitle}>TO-DO LIST</h3>
+              <ActionList
+                items={todos}
+                category={1}
+                actionFunctions={actionFunctions}
+                initChecked={todoIDs}/>
+            </article>
+          </Grid>
+          <Grid item xs={3}>
+              <article className={classes.article}>
+                <div className={classes.plantbox}>
+                  <h3 className={classes.subtitle}>TODAY'S PROGRESS</h3>
+                  <CatPlant 
+                    actions={actions}
+                    state={state} />
+                </div>
+            </article>
+          </Grid>
+          <Grid item xs={1}>
+            <article>
+                <h3 className={classes.subtitle} style={{lineHeight: 0}}>100%</h3>
+              <div className={classes.progress}>
+                <Progress
+                  completedPercentage={completedPercentage}
+                  completedAmount={completedAmount}
+                  totalAmount={totalAmount}/>
+              </div>
+            </article>
+          </Grid>
+        </Grid>
+    </>
+  );
+}
+
+// console.log("rightnow", today);
 
   // useEffect(() => {
   //   if (streaks) {
@@ -99,59 +168,3 @@ export default function ListContainer(props) {
   // };
   // const currentUser = user.accounts[0].username;
   // console.log("user", currentUser);
-  return (
-    <>
-      <UnlockBadge state={state} catFunctions={catFunctions} />
-      <div className={classes.root}>
-        <h2 className={classes.header}>LET'S GET LOTS DONE TODAY</h2>
-        <Grid container spacing={4}>
-          <Grid item xs={4}>
-            <Card className={classes.lists}>
-              <CardContent>
-                <h3>Daily Habits</h3>
-                <ActionList
-                  items={habits}
-                  category={2}
-                  actionFunctions={actionFunctions}
-                  initChecked={habitIDs}
-                />
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={4}>
-            <Card className={classes.lists}>
-              <CardContent>
-                <h3>To-Do Today</h3>
-                <ActionList
-                  items={todos}
-                  category={1}
-                  actionFunctions={actionFunctions}
-                  initChecked={todoIDs}
-                />
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={4}>
-            <Card>
-              <CardContent>
-                {/* <div>
-              </div> */}
-              <div className={classes.plantbox}>
-                <h3>Today's Progress</h3>
-                <CatPlant 
-                  actions={actions}
-                  state={state} />
-              </div>
-            </CardContent>
-          </Card>
-        </Grid>
-          <Progress
-          completedPercentage={completedPercentage}
-          completedAmount={completedAmount}
-          totalAmount={totalAmount}
-        />
-        </Grid>
-      </div>
-    </>
-  );
-}
