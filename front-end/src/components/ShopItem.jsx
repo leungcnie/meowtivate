@@ -8,14 +8,13 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    height: '10rem',
+    width: '7rem',
   },
   card: {
-    minHeight: '22rem',
-    minWidth: '12rem',
-  },
-  coin: {
-    height: '2.5rem'
+    height: '24rem',
+    minWidth: '14rem',
+    paddingBottom: '1rem',
+    paddingTop: '1rem',
   },
   footer: {
     display: 'flex',
@@ -24,7 +23,20 @@ const useStyles = makeStyles((theme) => ({
   },
   price: {
     paddingRight: '0.5rem'
-  }
+  },
+  buyButton: {
+    backgroundColor: '#e2568e',
+    fontFamily: 'Varela Round',
+    margin: '0.5vh',
+    paddingLeft: '0.5em',
+    paddingRight: '0.5em',
+    boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: '#aa5879',
+      color: 'white',
+    }
+  },
 }));
 
 
@@ -59,7 +71,7 @@ export default function ShopItem(props) {
               src={props.image}
               alt={props.name}
               price={props.price}
-              style={props.style}
+              // style={props.style}
             />
             <h2 className="meow-item-header-name">{props.name}</h2>
           </header>
@@ -68,16 +80,18 @@ export default function ShopItem(props) {
           </main>
           <footer className={classes.footer}>
             <p className={classes.price}>{props.price}</p>
-            <img className={classes.coin} src='https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png' alt='meowcoin' />
+            <img className={classes.coin} src='https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png' alt='meowcoin' style={{height: '2.5rem'}}/>
           </footer>
           {price > coins ? (
-            <Button 
+            <Button
+              className={classes.buyButton} 
               variant="contained" 
               disabled>
               BUY
           </Button>
           ) : (
             <Button 
+              className={classes.buyButton} 
               variant="contained" 
               color="secondary"
               onClick={() => buyItem(1, id)}>

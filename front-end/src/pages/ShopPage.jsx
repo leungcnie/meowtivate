@@ -19,8 +19,27 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Varela Round",
     letterSpacing: "6px",
     color: 'grey',
-    paddingBottom: '2em'
-
+    lineHeight: 0,
+    paddingBottom:'1rem',
+  },
+  wallet: {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: 'antiquewhite',
+    width: '5rem',
+    justifyContent: 'space-between',
+    padding: '0.75em',
+    borderRadius: '1.5rem',
+    /* height: 5rem; */
+  },
+  walletContainer: {
+    display: 'flex', 
+    justifyContent: 'flex-end',
+    marginRight: '3rem',
+  },
+  headerContainer: {
+    display: 'flex',
+    justifyContent: 'center',
   },
 }));
 
@@ -34,10 +53,15 @@ export default function ShopPage(props) {
     <>
       <header>
         <NavBar/>
+        <section className={classes.walletContainer}>
+          <div className={classes.wallet}>
+            {coins}
+            <img src='https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png' alt='meowcoin' style={{height: '2.5rem'}}/>
+          </div>
+        </section>
         <StorefrontRoundedIcon className={classes.icon}/>
         <h1 className={classes.header}>WELCOME TO THE SHOP!</h1>
       </header>
-      <p>you have {coins} meowcoins</p>
       <body className={classes.root}>
         <Grid container spacing={3}>
           {shop.map((item) => {
