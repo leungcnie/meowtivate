@@ -19,6 +19,8 @@ import SMSForm from "../components/SMSForm";
 // import Card from "@material-ui/core/Card";
 // import CardContent from "@material-ui/core/CardContent";
 import getCurrentDate from "../helpers/getCurrentDate";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import Switch from "@material-ui/core/Switch";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -174,8 +176,17 @@ export default function DashboardPage(props) {
   //   }
   // }, [streak])
 
+  // Theme
+  const [darkMode, setDarkMode] = useState(false);
+
+  const theme = createMuiTheme({
+    palette: {
+      type: darkMode ? "dark" : "light",
+    },
+  });
+
   return (
-    <div>
+    <ThemeProvider>
       <header>
         <NavBar />
         {/* <h1>Welcome {props.state.account[0].name}!</h1> */}
@@ -267,6 +278,10 @@ export default function DashboardPage(props) {
           </Grid>
         </Grid>
       </Grid>
-    </div>
+      <Switch
+        checked={darkMode}
+        onChange={() => setDarkMode(!darkMode)}
+      ></Switch>
+    </ThemeProvider>
   );
 }
