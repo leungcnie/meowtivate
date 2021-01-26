@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles, Grid, Button, Card, CardContent, IconButton } from '@material-ui/core';
-import ForwardRoundedIcon from '@material-ui/icons/ForwardRounded';
 import DoubleArrowRoundedIcon from '@material-ui/icons/DoubleArrowRounded';
 import { Weather } from "../components/Weather";
 import { CalendarApp } from "../components/Calendar-import";
@@ -154,7 +153,7 @@ export default function DashboardPage(props) {
   //     setCoins(streak * 100)
   //   }
   // }, [streak])
- 
+
   return (
     <div>
       <header>

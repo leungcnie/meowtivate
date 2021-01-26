@@ -3,12 +3,24 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import NavBar from '../components/NavBar';
 import ShopItem from '../components/ShopItem';
+import StorefrontRoundedIcon from '@material-ui/icons/StorefrontRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     paddingLeft: '5vw',
     paddingRight: '5vw',
+  },
+  icon: {
+    fontSize: '8em',
+    color: 'grey',
+  },
+  header: {
+    fontFamily: "Varela Round",
+    letterSpacing: "6px",
+    color: 'grey',
+    paddingBottom: '2em'
+
   },
 }));
 
@@ -22,9 +34,10 @@ export default function ShopPage(props) {
     <>
       <header>
         <NavBar/>
-        <h1>Welcome to the Shop!</h1>
+        <StorefrontRoundedIcon className={classes.icon}/>
+        <h1 className={classes.header}>WELCOME TO THE SHOP!</h1>
       </header>
-      <p>{coins} MEOWCOINS</p>
+      <p>you have {coins} meowcoins</p>
       <body className={classes.root}>
         <Grid container spacing={3}>
           {shop.map((item) => {
@@ -40,7 +53,6 @@ export default function ShopPage(props) {
               coins={coins}
               setCoins={setCoins}
               inventory={inventory}
-              // style={props.style}
               />
             );
           })}

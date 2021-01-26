@@ -10,6 +10,12 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '5vw',
     paddingRight: '5vw',
   },
+  header: {
+    fontFamily: "Varela Round",
+    letterSpacing: "6px",
+    color: 'grey',
+    paddingBottom: '2em'
+  },
 }));
 
 export default function InventoryPage(props) {
@@ -23,7 +29,7 @@ export default function InventoryPage(props) {
     <>
       <header>
         <NavBar/>
-        <h1>my INVENTORY</h1>
+        <h1 className={classes.header}>my INVENTORY</h1>
       </header>
       <body className={classes.root}>
         <Grid container spacing={3}>
@@ -41,7 +47,6 @@ export default function InventoryPage(props) {
                 description={item.description}
                 isDefault={item.is_default}
                 setDefaultPot={setDefaultPot}
-                // style={props.style}
                 />
               );
             })}

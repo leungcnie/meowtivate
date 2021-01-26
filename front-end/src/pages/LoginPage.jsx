@@ -25,8 +25,9 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     fontFamily: "itim",
     letterSpacing: "8px",
-    fontSize: '3em',
+    fontSize: '4em',
     color: 'antiquewhite',
+    lineHeight: '0',
   },
   header: {
     fontFamily: "Varela Round",
