@@ -26,10 +26,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     backgroundColor: 'antiquewhite',
-    width: '5rem',
-    justifyContent: 'space-between',
+    width: '7rem',
+    justifyContent: 'space-around',
     padding: '0.75em',
     borderRadius: '1.5rem',
+    fontFamily: 'Itim',
+    color: 'grey',
     /* height: 5rem; */
   },
   walletContainer: {
@@ -47,18 +49,17 @@ export default function ShopPage(props) {
   const classes = useStyles();
   const { state, coins, setCoins, addPot } = props;
   const { shop, inventory } = state;
-  // console.log('shopInven', shop)
   
   return (
     <>
       <header>
         <NavBar/>
-        <section className={classes.walletContainer}>
+        <div className={classes.walletContainer}> 
           <div className={classes.wallet}>
-            {coins}
-            <img src='https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png' alt='meowcoin' style={{height: '2.5rem'}}/>
+            <h2>{coins}</h2>
+            <img src='https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png' alt='meowcoin' style={{height: '3rem'}}/>
           </div>
-        </section>
+        </div>
         <StorefrontRoundedIcon className={classes.icon}/>
         <h1 className={classes.header}>WELCOME TO THE SHOP!</h1>
       </header>
