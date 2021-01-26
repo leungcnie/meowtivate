@@ -25,11 +25,27 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "5vw",
     paddingRight: "5vw",
   },
-  grid: {
+  grid1: {
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
     alignItems: "center",
+    order: 1,
+    [theme.breakpoints.down("xs")]: {
+      order: 2,
+    },
+  },
+  grid2: {
+    order: 2,
+    [theme.breakpoints.down("xs")]: {
+      order: 3,
+    },
+  },
+  grid3: {
+    order: 3,
+    [theme.breakpoints.down("xs")]: {
+      order: 1,
+    },
   },
   margin: {
     marginTop: "2vh",
@@ -165,21 +181,16 @@ export default function DashboardPage(props) {
         {/* <h1>Welcome {props.state.account[0].name}!</h1> */}
       </header>
       <Grid container spacing={3} className={classes.root}>
-        <Grid item xs={4} className={classes.grid}>
-          {/* // <CalendarApp items={state.logDatas} /> */}
-          {/* <Card>
-              <CardContent>
-                <Weather />
-              </CardContent>
-            </Card> */}
+        <Grid item xs={12} sm={6} md={4} className={classes.grid1}>
           <CalendarApp state={state} day={day} />
+          <SMSForm />
           <Grid>
             <IconButton onClick={changeDay}>
               <DoubleArrowRoundedIcon className={classes.iconButton} />
             </IconButton>
           </Grid>
         </Grid>
-        <Grid item xs={4} className={classes.grid}>
+        <Grid item xs={12} sm={6} md={4} className={classes.grid2}>
           <div className={classes.streakContainer}>
             <h3>CURRENT STREAK IS</h3>
             <div className={classes.streakNum}>
@@ -187,8 +198,8 @@ export default function DashboardPage(props) {
             </div>
             <h4>DAYS</h4>
           </div>
-          <SMSForm />
-          <Card>
+
+          <Card xs={12} sm={6} md={4}>
             <CardContent>
               <Grid item>
                 <Button
@@ -239,18 +250,18 @@ export default function DashboardPage(props) {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={4} className={classes.grid}>
+        <Grid item xs={12} sm={12} md={4} className={classes.grid3}>
           <Grid>
             <Card>
               <CardContent>
-                <Weather />
+                <Weather xs={12} />
               </CardContent>
             </Card>
           </Grid>
           <Grid className={classes.margin}>
             <Card>
               <CardContent>
-                <CatPlant actions={actions} />
+                <CatPlant actions={actions} xs={12} />
               </CardContent>
             </Card>
           </Grid>
