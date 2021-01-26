@@ -6,25 +6,27 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "itim",
     letterSpacing: "8px",
     textAlign: "center",
-    fontSize: "1em",
-    padding: '1em',
-    color: '#a0cdca',
+    fontSize: "4rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "3em",
+    },
+    paddingBottom: "1em",
+    color: "antiquewhite",
+    lineHeight: 0,
   },
-  footerStyle: {
-    display: 'flex',
-    backgroundColor: "antiquewhite",
-    alignItems: 'baseline',
-    height: '50px',
-    paddingTop: '10vh',
+  navStyle: {
+    textAlign: "start",
+    backgroundColor: "#a0cdca",
   },
 }));
 
-export default function Footer() {
+export default function SimpleMenu() {
   const classes = useStyles();
 
   return (
-    <footer className={classes.footerStyle}>
-      <h1 className={classes.logo}>meowtivateINC@2021</h1>
+    <footer>
+      <h1>Meowtivate</h1>
+      <span>dark Mode</span>
     </footer>
-  )
+  );
 }
