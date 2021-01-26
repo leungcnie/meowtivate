@@ -84,7 +84,7 @@ export default function ListContainer(props) {
       <UnlockBadge state={state} catFunctions={catFunctions} />
       <h2 className={classes.header}>LET'S GET LOTS DONE TODAY!</h2>
       <Grid className={classes.container} container spacing={4}>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={11} sm={5.5} md={4}>
           <article className={classes.article}>
             <h3 className={classes.subtitle}>DAILY HABITS</h3>
             <ActionList
@@ -96,7 +96,7 @@ export default function ListContainer(props) {
             />
           </article>
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={11} sm={5.5} md={4}>
           <article className={classes.article}>
             <h3 className={classes.subtitle}>TO-DO LIST</h3>
             <ActionList
@@ -107,15 +107,19 @@ export default function ListContainer(props) {
             />
           </article>
         </Grid>
-        <Grid item xs={10} sm={9} md={3}>
+        <Grid item xs={8} sm={9} md={3}>
           <article className={classes.article}>
             <div className={classes.plantbox}>
               <h3 className={classes.subtitle}>TODAY'S PROGRESS</h3>
-              <CatPlant actions={actions} state={state} />
+              <CatPlant
+                className={classes.pot}
+                actions={actions}
+                state={state}
+              />
             </div>
           </article>
         </Grid>
-        <Grid item xs={2} sm={3} md={1}>
+        <Grid item xs={3} sm={3} md={1}>
           <article>
             <h3 className={classes.subtitle} style={{ lineHeight: 0 }}>
               100%
