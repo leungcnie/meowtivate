@@ -4,6 +4,8 @@ import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Calendar } from "react-modern-calendar-datepicker";
 import "./styles/calendar.css";
 import getCurrentDate from "../helpers/getCurrentDate";
+import EcoRoundedIcon from '@material-ui/icons/EcoRounded';
+import { responsiveFontSizes } from "@material-ui/core";
 
 export const CalendarApp = (props) => {
   // const defaultValue = {
@@ -142,7 +144,7 @@ export const CalendarApp = (props) => {
           }}
           className="footer"
         >
-          🌱 CURRENT STREAK
+          <EcoRoundedIcon/> CURRENT STREAK
         </div>
       )}
     />
