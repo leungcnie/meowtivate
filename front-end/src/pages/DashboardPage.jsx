@@ -55,18 +55,25 @@ const useStyles = makeStyles((theme) => ({
   //     order: 3,
   //   },
   // },
-  // grid3: {
-  //   display: "flex",
-  //   justifyContent: "center",
-  //   flexDirection: "column",
-  //   order: 3,
-  //   [theme.breakpoints.down("xs")]: {
-  //     order: 1,
-  //   },
-  // },
+  grid3: {
+    display: "flex",
+    justifyContent: "center",
+    // order: 3,
+    [theme.breakpoints.up("md")]: {
+      flexDirection: "column",
+    },
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+    },
+  },
 
   margin: {
     marginTop: "2vh",
+    [theme.breakpoints.down("sm")]: {
+      paddingLeft: "2em",
+      paddingLeft: "2em",
+    },
   },
   coin: {
     height: "3rem",
@@ -210,7 +217,13 @@ const useStyles = makeStyles((theme) => ({
     width: "19vw",
     height: "fit-content",
     padding: "1.5em",
-    width: "20rem",
+    width: "15rem",
+    [theme.breakpoints.up("md")]: {
+      width: "20rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "20rem",
+    },
   },
   potContainer: {
     display: "inline-flex",
@@ -221,7 +234,14 @@ const useStyles = makeStyles((theme) => ({
     width: "19vw",
     height: "fit-content",
     padding: "1.5em",
-    width: "20rem",
+    width: "15rem",
+    [theme.breakpoints.up("md")]: {
+      width: "20rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "20rem",
+      paddingLeft: "2em",
+    },
   },
   listContainer: {
     display: "inline-flex",
@@ -355,12 +375,14 @@ export default function DashboardPage(props) {
         </Grid>
         <Grid item xs={12} sm={12} md={4} className={classes.grid3}>
           <Grid>
-            <article className={classes.weatherContainer}>
+            <article xs={12} sm={6} className={classes.weatherContainer}>
               <Weather />
             </article>
           </Grid>
           <Grid className={classes.margin}>
             <article
+              xs={12}
+              sm={6}
               className={classes.potContainer}
               style={{ paddingBottom: "2em" }}
             >
