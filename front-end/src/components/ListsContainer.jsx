@@ -47,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
     color: "grey",
     lineHeight: 1,
     fontSize: "1.5em",
+    [theme.breakpoints.down("xs")]: {
+      paddingTop: "0",
+    },
   },
   list: {
     height: "20vh",

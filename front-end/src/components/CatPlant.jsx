@@ -10,20 +10,12 @@ const useStyles = makeStyles((theme) => ({
     bottom: "0px",
     left: "calc(50% - 6vw)",
     zIndex: 2,
-    [theme.breakpoints.down("xs")]: {
-      width: "30vw",
-      left: "calc(50% - 15vw)",
-      top: "calc(50% + 10vw)",
-    },
   },
   plant: {
     opacity: 0,
     width: "13vw",
     position: "relative",
     zIndex: 1,
-    [theme.breakpoints.down("xs")]: {
-      width: "30vw",
-    },
   },
   plantContainer: {
     position: "relative",
