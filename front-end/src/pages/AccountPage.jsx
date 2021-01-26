@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'inline-flex',
     justifyContent: 'center',
     flexDirection: 'column',
+    width: '40vw',
   },
 }));
 
