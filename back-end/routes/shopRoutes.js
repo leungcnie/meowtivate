@@ -1,7 +1,10 @@
+// Routes for 'pots' table
+
 module.exports = (router, db) => {
-  router.get("/:id", (req, res) => {
-    const user_id = req.params.id;
-    db.getShopItems(user_id)
+  // Get all pots
+  router.get("/", (req, res) => {
+    // const user_id = req.params.id;
+    db.getAllPots()
       .then((data) => {
         res.json(data);
         // console.log("cannot get the correct", data);
@@ -12,17 +15,29 @@ module.exports = (router, db) => {
   });
 
   // purchase pot
-  router.post("/", (req, res) => {
-    const { user_id, pot_id } = req.body;
-    // console.log("req.body in POST /todos", req.body);
+  // router.post("/", (req, res) => {
+  //   const { user_id, pot_id } = req.body;
+  //   // console.log("req.body in POST /todos", req.body);
 
-    db.purchasePot(user_id, pot_id)
-      .then((data) => {
-        res.send(data);
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
-  });
+  //   db.purchasePot(user_id, pot_id)
+  //     .then((data) => {
+  //       res.send(data);
+  //     })
+  //     .catch((err) => {
+  //       res.status(500).json({ error: err.message });
+  //     });
+  // });
+
+  // Get all pots user HASN'T bought
+  // router.get('/available', (req, res) => {
+  //   db.getAvailablePots(1)
+  //     .then((data) => {
+  //       res.json(data);
+  //     })
+  //     .catch((err) => {
+  //       res.status(500).json({ error: err.message });
+  //     });
+  // })
+
   return router;
 };

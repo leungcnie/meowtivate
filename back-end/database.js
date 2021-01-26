@@ -12,7 +12,7 @@ db.connect();
 // EXAMPLES QUERIES
 const getExampleWithID = (id) => {
   return db.query("SELECT * FROM examples WHERE id = $1;", [id]).then((res) => {
-    console.log("whats res.rows[0]", res.rows[0]);
+    // console.log("whats res.rows[0]", res.rows[0]);
     return res.rows[0];
   });
 };
@@ -28,7 +28,7 @@ const getExample = (text) => {
       [text]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows[0]);
+      // console.log("whats res.rows[0]", res.rows[0]);
       return res.rows[0];
     });
 };
@@ -45,7 +45,7 @@ const updateExample = (id, text) => {
       [id, text]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows);
+      // console.log("whats res.rows[0]", res.rows);
       return res.rows;
     });
 };
@@ -54,7 +54,7 @@ exports.updateExample = updateExample;
 //delete example
 const deleteExample = (id) => {
   return db.query(`DELETE FROM examples WHERE id = $1;`, [id]).then((res) => {
-    console.log("whats res.rows[0]", res.rows);
+    // console.log("whats res.rows[0]", res.rows);
     return res.rows;
   });
 };
@@ -103,7 +103,7 @@ const createTodo = (action_name) => {
       [action_name]
     )
     .then((res) => {
-      console.log("createTodo", res.rows[0]);
+      // console.log("createTodo", res.rows[0]);
       return res.rows[0];
     })
     .catch((error) => console.log(error));
@@ -137,7 +137,7 @@ const createHabit = (action_name) => {
       [action_name]
     )
     .then((res) => {
-      console.log("createHabit", res.rows[0]);
+      // console.log("createHabit", res.rows[0]);
       return res.rows[0];
     })
     .catch((error) => console.log(error));
@@ -173,7 +173,7 @@ const updateAction = (id, action_name, is_completed) => {
       [id, action_name, is_completed]
     )
     .then((res) => {
-      console.log("updateAction res.rows[0]", res.rows[0]);
+      // console.log("updateAction res.rows[0]", res.rows[0]);
       return res.rows[0];
     });
 };
@@ -190,7 +190,7 @@ const updateCompletion = (id, is_completed) => {
       [id, is_completed]
     )
     .then((res) => {
-      console.log("updateCompletion res.rows[0]", res.rows[0]);
+      // console.log("updateCompletion res.rows[0]", res.rows[0]);
       return res.rows[0];
     });
 };
@@ -202,7 +202,7 @@ const deleteAction = (id) => {
   return db
     .query(`DELETE FROM actions WHERE id = $1 RETURNING *;`, [id])
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows[0]);
+      // console.log("whats res.rows[0]", res.rows[0]);
       return res.rows[0];
     });
 };
@@ -220,7 +220,7 @@ const getActions = (id) => {
       [id]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows);
+      // console.log("whats res.rows[0]", res.rows);
       return res.rows;
     });
 };
@@ -283,13 +283,90 @@ const updateAccount = (id, email, username, password) => {
       [id, email, username, password]
     )
     .then((res) => {
-      console.log("whats res.rows[0]", res.rows);
+      // console.log("whats res.rows[0]", res.rows);
       return res.rows;
     });
 };
 
 exports.updateAccount = updateAccount;
 
+/*--------- Streaks -----------*/
+const getStreaks = (id) => {
+  return db
+    .query(
+      ` SELECT *
+        FROM streaks
+        WHERE user_id = $1;
+        `,
+      [id]
+    )
+    .then((res) => res.rows)
+    .catch((err) => console.error("query getAllCats error", err.stack));
+};
+exports.getStreaks = getStreaks;
+
+/*--------- Get data log -----------*/
+const getLogData = (id) => {
+  return db
+    .query(
+      `
+        SELECT *
+        FROM logDatas
+        WHERE user_id = $1;
+        `,
+      [id]
+    )
+    .then((res) => res.rows)
+    .catch((err) => console.error("query getAllCats error", err.stack));
+};
+exports.getLogData = getLogData;
+
+/*--------- Post data log -----------*/
+const postLogData = (user_id, date_created) => {
+  return db
+    .query(
+      `INSERT INTO logDatas (user_id, date_created, is_completed)
+      VALUES ($1, $2, true);
+        `,
+      [user_id, date_created]
+    )
+    .then((res) => res.rows)
+    .catch((err) => console.error("query getAllCats error", err.stack));
+};
+exports.postLogData = postLogData;
+
+// /*--------- update data log -----------*/
+const updateLogData = (id, is_completed, date_created) => {
+  return db
+    .query(
+      `UPDATE logDatas
+      SET is_completed = $2 
+      WHERE id = $1 AND date_created = $3; 
+        `,
+      [id, is_completed, date_created]
+    )
+    .then((res) => res.rows)
+    .catch((err) => console.error("query getAllCats error", err.stack));
+};
+exports.updateLogData = updateLogData;
+
+/*--------- update streak -----------*/
+const updateStreak = (id, streak, current_streak) => {
+  return db
+    .query(
+      `UPDATE streaks
+      SET streak = $2, current_streak = $3, date_update = CURRENT_DATE
+      WHERE user_id = $1
+      ;`,
+      [id, streak, current_streak]
+    )
+    .then((res) => {
+      // console.log("whats res.rows[0]", res.rows);
+      return res.rows;
+    });
+};
+
+exports.updateStreak = updateStreak;
 /* ----------- UNLOCKED CATS ------------ */
 const addUnlockedCat = (cat_id, user_id) => {
   return db
@@ -299,40 +376,118 @@ const addUnlockedCat = (cat_id, user_id) => {
       RETURNING *;`,
       [cat_id, user_id]
     )
-    .then(res => res.rows[0])
+    .then((res) => res.rows[0])
     .catch((err) => console.error("query addUnlockedCat error", err.stack));
-}
+};
 
 exports.addUnlockedCat = addUnlockedCat;
 
 /* ----------- SHOP INVENTORY ------------ */
-const getUserInventory = () => {
+const getAllPots = () => {
   return db
   .query(
-    `SELECT * FROM pots WHERE is_purchased = true`
+    `SELECT * FROM pots;`
+  )
+  .then(res => res.rows)
+  .catch((err) => console.error("query getAllPots error", err.stack));
+}
+exports.getAllPots = getAllPots;
+
+// const getAvailablePots = (user_id) => {
+//   return db
+//     .query(
+//       `select user_id, pot_name, description, price
+//       from user_pots
+//       full outer join pots on pots.id = pot_id
+//       where user_id is null;`,
+//       [user_id]
+//     )
+//     .then(res => res.rows)
+//     .catch((err) => console.error("query getAvailablePots error", err.stack));
+// }
+// exports.getAvailablePots = getAvailablePots;
+
+/* ----------- USER INVENTORY ------------ */
+
+// Get all user's pots
+const getUserInventory = (user_id) => {
+  return db
+  .query(
+    `SELECT pot_name, description, image_url, user_id, pot_id, is_default  
+    FROM user_pots
+    FULL OUTER JOIN pots on pots.id = pot_id
+    WHERE user_id = $1;`,
+    [user_id]
   )
   .then(res => res.rows)
   .catch((err) => console.error("query getUserInventory error", err.stack));
 }
 exports.getUserInventory = getUserInventory;
 
-const getShopItems = () => {
+// Return user's default pot's data
+const getUserDefault = (user_id) => {
   return db
   .query(
-    `SELECT * FROM pots WHERE is_purchased = false`
-  )
-  .then(res => res.rows)
-  .catch((err) => console.error("query getShopItems error", err.stack));
-}
-exports.getShopItems = getShopItems;
-
-/* ----------- USER INVENTORY ------------ */
-const getDefaultPot = () => {
-  return db
-  .query(
-    `SELECT * FROM user_unlocked_pots WHERE default_pot = true`
+    `SELECT pot_name, description, image_url, user_id, pot_id, is_default 
+    FROM user_pots
+    FULL OUTER JOIN pots on pots.id = pot_id
+    WHERE user_id = $1
+    AND is_default = true;`,
+    [user_id]
   )
   .then(res => res.rows[0])
-  .catch((err) => console.error("query getDefaultPot error", err.stack));
+  .catch((err) => console.error("query getUserDefault error", err.stack));
 }
-exports.getDefaultPot = getDefaultPot;
+exports.getUserDefault = getUserDefault;
+
+// Add a row to bridge table
+const addInventory = (user_id, pot_id) => {
+  return db
+    .query(
+      `INSERT INTO user_pots (user_id, pot_id, is_default)
+      VALUES ($1, $2, false)
+      RETURNING *;`,
+      [user_id, pot_id]
+    )
+    .then(res => res.rows[0])
+    .catch((err) => console.error("query addInventory error", err.stack));
+}
+exports.addInventory = addInventory;
+
+// Update inventory pot's is_default boolean
+const setDefault = (user_id, pot_id) => {
+  console.log("pot_id", pot_id);
+  return db
+    .query(
+      `UPDATE user_pots
+      SET is_default = true
+      WHERE user_id = $1
+      AND pot_id = $2
+      RETURNING *;`,
+      [user_id, pot_id]
+    )
+    .then(() => {
+      db
+        .query(`
+        UPDATE user_pots
+        SET is_default = false
+        WHERE user_id = $1
+        AND pot_id != $2;`,
+        [user_id, pot_id]
+        )
+        .then(res => res.rows)
+        .catch((err) => console.error("query setDefault .then() error", err.stack));
+    })
+    .catch((err) => console.error("query setDefault error", err.stack));
+};
+exports.setDefault = setDefault;
+
+// const getDefaultPot = () => {
+//   return db
+//   .query(
+//     `SELECT * FROM user_pots WHERE is_default = true`
+//   )
+//   .then(res => res.rows[0])
+//   .catch((err) => console.error("query getDefaultPot error", err.stack));
+// }
+// exports.getDefaultPot = getDefaultPot;

@@ -5,6 +5,6 @@ CREATE TABLE pots (
   pot_name VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL,
   image_url VARCHAR(255) NOT NULL,
-  price INTEGER NOT NULL,
-  is_purchased BOOLEAN DEFAULT FALSE
+  price INTEGER NOT NULL
+  -- is_purchased BOOLEAN DEFAULT FALSE
 );

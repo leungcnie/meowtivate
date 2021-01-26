@@ -5,7 +5,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContentText from '@material-ui/core/DialogContentText';
 
 export default function Popup(props) {
   const { 
@@ -36,7 +35,7 @@ export default function Popup(props) {
     confirmAdd(name, category);
   }
 
-  console.log("actionName", actionName);
+  // console.log("actionName", actionName);
 
   return (
     <div>
@@ -49,9 +48,6 @@ export default function Popup(props) {
       >
         <DialogTitle id="alert-dialog-title">{type} {listType}?</DialogTitle>
         <DialogContent>
-          {/* <DialogContentText>
-          {actionID}
-          </DialogContentText> */}
         </DialogContent>
         <DialogActions>
           <Button onClick={() => confirmDelete(actionID)} color="primary">

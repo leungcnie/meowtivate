@@ -1,16 +1,17 @@
 /*
 App.js is responsible for containing all the routes and passing state as props
 */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 import "./styles/App.css";
 import "@fontsource/itim";
 import "@fontsource/varela-round";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import getCurrentDate from "../helpers/getCurrentDate";
 
 // Hooks
 import useApplicationData from "../hooks/useApplicationData";
+// import useAuth from "../hooks/useAuth";
 
 // Pages imported from src/pages dir
 import WelcomePage from "../pages/WelcomePage";
@@ -26,27 +27,34 @@ import ShopPage from "../pages/ShopPage";
 import NotFoundPage from "./404";
 
 function App() {
-  const { 
-    state, 
-    actionFunctions, 
+  const {
+    state,
+    actionFunctions,
     catFunctions,
     day,
-    setDay } = useApplicationData();
+    setDay,
+    addPot,
+    potFunctions
+   } = useApplicationData();
   const { unlocked, account } = state;
   const id = day ? day : 0;
   // const id = 1;
 
   const [streak, setStreak] = useState(3); // Hardcode initial streak value
+  const [coins, setCoins] = useState(streak * 100);
+
 
   // Add 1 to current streak if a cat was unlocked today
   useEffect(() => {
     const today = getCurrentDate();
     // Get array of unlocked dates in "yyyy-mm-dd"
-    const currentUnlocked = unlocked.map(obj => obj.date_unlocked.slice(0, 10));
+    const currentUnlocked = unlocked.map((obj) =>
+      obj.date_unlocked.slice(0, 10)
+    );
     if (currentUnlocked.includes(today)) {
-      setStreak(prev => prev + 1);
+      setStreak((prev) => prev + 1);
     }
-  }, [unlocked])
+  }, [unlocked]);
 
   // Change streak depending on user
   useEffect(() => {
@@ -55,7 +63,12 @@ function App() {
     } else if (id === 3) {
       setStreak(0);
     }
-  }, [state])
+  }, [state]);
+
+  // Update streak whenever reloading
+  useEffect(() => {
+    setCoins(streak * 100);
+  }, [streak])
 
   return (
     <div className="App">
@@ -72,17 +85,22 @@ function App() {
             <RegisterPage state={state} />
           </Route>
           <Route exact path="/dashboard" component={DashboardPage}>
-            <DashboardPage 
+            {/* <DashboardPage state={state} /> */}
+            <DashboardPage
               state={state}
               streak={streak}
               day={day}
-              setDay={setDay} />
+              setDay={setDay}
+              id={id}
+              coins={coins}
+              setCoins={setCoins} />
           </Route>
           <Route exact path="/lists" component={ListsPage}>
-            <ListsPage 
-              state={state} 
+            <ListsPage
+              state={state}
               actionFunctions={actionFunctions}
-              catFunctions={catFunctions} />
+              catFunctions={catFunctions}
+            />
           </Route>
           <Route exact path="/cats" component={CatsPage}>
             <CatsPage state={state} />
@@ -91,10 +109,16 @@ function App() {
             <AccountPage state={state} />
           </Route>
           <Route exact path="/inventory" component={InventoryPage}>
-            <InventoryPage state={state} />
+            <InventoryPage 
+              state={state}
+              potFunctions={potFunctions} />
           </Route>
           <Route exact path="/shop" component={ShopPage}>
-            <ShopPage state={state} />
+            <ShopPage 
+              state={state}
+              coins={coins}
+              setCoins={setCoins}
+              addPot={addPot} />
           </Route>
           <Route exact path="*" component={NotFoundPage} />
         </Switch>

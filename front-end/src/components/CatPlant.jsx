@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useEffect, useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 
@@ -61,8 +61,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function CatPlant(props) {
   const classes = useStyles();
-  const { actions } = props;
+  const { actions, state } = props;
+  // const { setDefaultPot } = potFunctions;
+  const inventory = state ? state.inventory : [];
   const [start, setStart] = React.useState(false);
+  const [pot, setPot] = useState("https://meowtivate.s3-us-west-2.amazonaws.com/pots/01pot.png");
   let timer;
 
   // Calculate percentage
@@ -72,6 +75,13 @@ export default function CatPlant(props) {
   const num = Math.floor(initial / 10) * 10;
 
   // const [percentage, setPercentage] = useState(initial);
+
+  // Find current default pot
+  useEffect(() => {
+    const defaultPot = inventory.filter(obj => obj.is_default === true)[0];
+    const pot_url = defaultPot ? defaultPot.image_url : "https://meowtivate.s3-us-west-2.amazonaws.com/pots/01pot.png";
+    setPot(pot_url);
+  }, [inventory])
   
   useEffect(() => {
     setStart(true);
@@ -87,7 +97,7 @@ export default function CatPlant(props) {
         <img className={clsx(classes.plant,
           {[classes.animatedItem]: start}
         )} src={`https://meowtivate.s3-us-west-2.amazonaws.com/plants/${num}plant.png`} alt="plant" style={{opacity: 1}}/>
-        <img className={classes.pot} src="https://meowtivate.s3-us-west-2.amazonaws.com/pots/01pot.png" alt="pot"/>
+        <img className={classes.pot} src={pot} alt="pot"/>
       </div>
 );
 }

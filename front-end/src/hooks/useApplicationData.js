@@ -5,7 +5,11 @@ import {
   addToActions,
   getActionProperty,
   modifyActionWith,
+  modifyStreakActionWith,
+  addToLogDatas,
   getNewUnlockedCat,
+  addToInventory,
+  setAsDefault,
 } from "../helpers/stateHelpers";
 
 export default function useApplicationDate() {
@@ -14,35 +18,34 @@ export default function useApplicationDate() {
     todos: [],
     habits: [],
     actions: [],
-    account: [],
     allCats: [],
-    shopInventory: [],
-    userInventory: [],
+    shop: [],
+    inventory: [],
   });
 
   // User/day picker state
   const [day, setDay] = useState(1);
-  
+  // console.log("app, appliction", day);
   // Log current state for debugging
   useEffect(() => {
-    console.log("Current state:", state)
-  }, [state])
+    // console.log("Current state:", state);
+  }, [state]);
 
   //--------------------
   // ACTION FUNCTIONS //
   //--------------------
   const addAction = (action_name, categoryID) => {
-    console.log("action_name in useApp", action_name);
+    // console.log("action_name in useApp", action_name);
 
     if (categoryID === 1) {
       // TODOS
-      return axios.post("/api/todos/", { action_name }).then(res => {
+      return axios.post("/api/todos/", { action_name }).then((res) => {
         const actions = addToActions(res.data, state); // res.data contains the action obj
-        const todos = actions.filter(obj => obj.category_id === 1);
+        const todos = actions.filter((obj) => obj.category_id === 1);
 
-        console.log("updatedActions", actions);
+        // console.log("updatedActions", actions);
         // console.log("updatedHabits", habits);
-        console.log("updatedTodos", todos);
+        // console.log("updatedTodos", todos);
 
         setState({
           ...state,
@@ -52,12 +55,12 @@ export default function useApplicationDate() {
       });
     } else if (categoryID === 2) {
       // HABITS
-      return axios.post("/api/habits/", { action_name }).then(res => {
+      return axios.post("/api/habits/", { action_name }).then((res) => {
         const actions = addToActions(res.data, state);
-        const habits = actions.filter(obj => obj.category_id === 2);
+        const habits = actions.filter((obj) => obj.category_id === 2);
 
-        console.log("updatedActions", actions);
-        console.log("updatedHabits", habits);
+        // console.log("updatedActions", actions);
+        // console.log("updatedHabits", habits);
         // console.log("updatedTodos", todos);
 
         setState({
@@ -69,11 +72,11 @@ export default function useApplicationDate() {
     }
   };
 
-  const deleteAction = actionID => {
+  const deleteAction = (actionID) => {
     // Get updated actions
     const actions = removeFromActions(actionID, state);
-    const habits = actions.filter(obj => obj.category_id === 2);
-    const todos = actions.filter(obj => obj.category_id === 1);
+    const habits = actions.filter((obj) => obj.category_id === 2);
+    const todos = actions.filter((obj) => obj.category_id === 1);
 
     // Delete action in db and update state
     return axios.delete(`/api/actions/${actionID}`).then(() => {
@@ -92,12 +95,12 @@ export default function useApplicationDate() {
 
     // Pass to modifyActionWith function
     const actions = modifyActionWith(action_name, "action_name", id, state);
-    const habits = actions.filter(obj => obj.category_id === 2);
-    const todos = actions.filter(obj => obj.category_id === 1);
+    const habits = actions.filter((obj) => obj.category_id === 2);
+    const todos = actions.filter((obj) => obj.category_id === 1);
 
-    console.log("updatedActions", actions);
-    console.log("updatedHabits", habits);
-    console.log("updatedTodos", todos);
+    // console.log("updatedActions", actions);
+    // console.log("updatedHabits", habits);
+    // console.log("updatedTodos", todos);
 
     // Update action_name of action in db and update state
     return axios
@@ -110,7 +113,7 @@ export default function useApplicationDate() {
           todos,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -122,12 +125,12 @@ export default function useApplicationDate() {
 
     // Pass to modifyActionWith function
     const actions = modifyActionWith(is_completed, "is_completed", id, state);
-    const habits = actions.filter(obj => obj.category_id === 2);
-    const todos = actions.filter(obj => obj.category_id === 1);
+    const habits = actions.filter((obj) => obj.category_id === 2);
+    const todos = actions.filter((obj) => obj.category_id === 1);
 
-    console.log("updatedActions", actions);
-    console.log("updatedHabits", habits);
-    console.log("updatedTodos", todos);
+    // console.log("updatedActions", actions);
+    // console.log("updatedHabits", habits);
+    // console.log("updatedTodos", todos);
 
     // Update is_completed of action in db and update state
     return axios
@@ -142,12 +145,48 @@ export default function useApplicationDate() {
       });
   };
 
-  // Store all action-altering functions in obj to easily pass down as props
+  //post a completed into logdate
+  const postLogData = (id, date_created) => {
+    return axios
+      .post(`/api/streaks/logdata/${id}`, { date_created })
+      .then((res) => {
+        const logDatas = addToLogDatas(res.data, state);
+        setState({
+          ...state,
+          logDatas,
+        });
+      });
+  };
+
+  // update the streak
+  const updateStreak = (id, val) => {
+    const streaks = modifyStreakActionWith(
+      val,
+      "current_streak",
+      "streak",
+      id,
+      state
+    );
+    const updatedStreak = streaks[0].streak;
+    const updatedCurrent = streaks[0].current_streak;
+
+    return axios
+      .put(`/api/streaks/${id}`, { id, updatedStreak, updatedCurrent })
+      .then((res) => {
+        setState({
+          ...state,
+          streaks,
+        });
+      });
+  };
+
   const actionFunctions = {
     addAction,
     deleteAction,
     editActionName,
-    editCompletedState
+    editCompletedState,
+    postLogData,
+    updateStreak,
   };
 
   //---------------------------
@@ -156,14 +195,14 @@ export default function useApplicationDate() {
 
   const addUnlocked = (cat_id, user_id) => {
     return axios
-      .post('/api/collections/unlocked', {cat_id, user_id})
+      .post("/api/collections/unlocked", { cat_id, user_id })
       .then((res) => {
         // Get newly unlocked cat and add to 'unlocked'
         const unlocked = getNewUnlockedCat(cat_id, res.data, state);
 
         setState({
           ...state,
-          unlocked
+          unlocked,
         });
       });
   };
@@ -171,17 +210,66 @@ export default function useApplicationDate() {
   // Store all cat functions
   const catFunctions = {
     addUnlocked,
+  };
+
+  //---------------------------
+  // POT FUNCTIONS //
+  //---------------------------
+
+  // Add a pot to user's inventory
+  const addPot = (user_id, pot_id) => {
+    return axios
+      .post(`/api/inventory/${user_id}`, {pot_id})
+      .then((res) => {
+        const newPurchase = res.data;
+        const inventory = addToInventory(user_id, pot_id, newPurchase, state);
+
+        setState({
+          ...state,
+          inventory
+        });
+      });
+  };
+
+  // Set a pot as default
+  const setDefaultPot = (user_id, pot_id) => {
+    return axios
+      .put(`/api/inventory/${user_id}`, {pot_id})
+      .then(() => {
+        // Create updated inventory array
+        const inventory = setAsDefault(user_id, pot_id, state);
+
+        setState({
+          ...state,
+          inventory
+        })
+      })
   }
+
+  const potFunctions = {
+    addPot,
+    setDefaultPot
+  };
 
   useEffect(() => {
     Promise.all([
+      //   axios.get("/api/collections/1"),
+      //   axios.get("/api/todos/1"),
+      //   axios.get("/api/habits/1"),
+      //   axios.get("/api/actions/1"),
+      //   axios.get("/api/collections"),
+      //   axios.get("/api/streaks/logdata/1"),
+      //   axios.get("/api/streaks/1"),
+      // ])
+      //   .then((res) => {
+      // console.log("res.data in useAppDate promise.all:", res.data);
       axios.get(`/api/collections/${day}`),
       axios.get(`/api/todos/${day}`),
       axios.get(`/api/habits/${day}`),
       axios.get(`/api/actions/${day}`),
       axios.get(`/api/accounts/${day}`),
       axios.get(`/api/collections`),
-      axios.get(`/api/shop/${day}`),
+      axios.get(`/api/shop/`),
       axios.get(`/api/inventory/${day}`),
       // axios.get("/api/collections/1"),
       // axios.get("/api/todos/1"),
@@ -190,25 +278,36 @@ export default function useApplicationDate() {
       // axios.get("/api/accounts/1"),
       // axios.get("/api/collections"),
     ])
-      .then(res => {
+      .then((res) => {
         // console.log("shop", res[6].data);
 
-        setState(prev => ({
+        setState((prev) => ({
           ...prev,
           unlocked: res[0].data,
           todos: res[1].data,
           habits: res[2].data,
           actions: res[3].data,
+          // allCats: res[4].data,
+          // logDatas: res[5].data,
+          // streaks: res[6].data,
           account: res[4].data,
           allCats: res[5].data,
-          shopInventory: res[6].data,
-          userInventory: res[7].data,
+          shop: res[6].data,
+          inventory: res[7].data,
         }));
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, [day]);
 
-  return { state, actionFunctions, catFunctions, setDay, day };
+  return { 
+    state, 
+    actionFunctions, 
+    catFunctions, 
+    setDay, 
+    day,
+    addPot,
+    potFunctions
+   };
 }

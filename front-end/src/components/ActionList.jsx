@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -22,14 +22,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ActionList(props) {
   const { items, category, actionFunctions, initChecked } = props;
-  const { 
-    deleteAction, 
-    addAction, 
-    editActionName, 
-    editCompletedState } = actionFunctions; // State changing funcs from useApplicationData
+  const {
+    deleteAction,
+    addAction,
+    editActionName,
+    editCompletedState,
+  } = actionFunctions; // State changing funcs from useApplicationData
   const classes = useStyles();
 
-  console.log("checked in ActionList", initChecked);
+  // console.log("checked in ActionList", initChecked);
 
   // Toggle between VIEW and EDIT modes
   const [isEditable, setIsEditable] = useState(false);
@@ -38,12 +39,13 @@ export default function ActionList(props) {
   // Toggle checkbox
   // checked is an array of numbers that represent checked actionIDs
   const [checked, setChecked] = useState(initChecked);
-  
+
   const handleToggle = (value, evt) => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
-    if (currentIndex === -1) { // if value isn't in checked, add it
+    if (currentIndex === -1) {
+      // if value isn't in checked, add it
       newChecked.push(value);
     } else {
       newChecked.splice(currentIndex, 1); // else remove from checked
@@ -101,7 +103,7 @@ export default function ActionList(props) {
       ...prev,
       open: false,
     }));
-  }
+  };
 
   return (
     <List className={classes.root}>
@@ -129,9 +131,9 @@ export default function ActionList(props) {
             <ListItemText id={labelId} primary={obj.action_name} />
             {isEditable && (
               <ListItemSecondaryAction>
-                <IconButton edge="end" aria-label="drag">
+                {/* <IconButton edge="end" aria-label="drag">
                   <UnfoldMoreRoundedIcon />
-                </IconButton>
+                </IconButton> */}
                 <IconButton edge="end" aria-label="delete">
                   <DeleteRoundedIcon
                     onClick={() =>

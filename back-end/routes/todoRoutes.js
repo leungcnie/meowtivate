@@ -15,7 +15,7 @@ module.exports = (router, db) => {
   // post new todo
   router.post("/", (req, res) => {
     const { action_name } = req.body;
-    console.log("req.body in POST /todos", req.body);
+    // console.log("req.body in POST /todos", req.body);
 
     db.createTodo(action_name)
       .then((data) => {

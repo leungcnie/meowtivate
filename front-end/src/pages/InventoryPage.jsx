@@ -10,32 +10,46 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '5vw',
     paddingRight: '5vw',
   },
+  header: {
+    fontFamily: "Varela Round",
+    letterSpacing: "6px",
+    color: 'grey',
+    paddingBottom: '2em'
+  },
 }));
 
 export default function InventoryPage(props) {
   const classes = useStyles();
-  const { state } = props;
-  const userInventory = state.userInventory;
-  console.log('userinven', userInventory)
+  const { state, potFunctions } = props;
+  const { setDefaultPot } = potFunctions;
+  const { inventory } = state;
+  console.log('userinven', inventory)
 
   return (
     <>
       <header>
         <NavBar/>
-        <h1>my INVENTORY</h1>
+        <h1 className={classes.header}>my INVENTORY</h1>
       </header>
       <body className={classes.root}>
         <Grid container spacing={3}>
-          {userInventory.map((items) => {
-            return (
-              <InventoryItem 
-              key={items.id}
-              name={items.pot_name}
-              image={items.image_url}
-              // style={props.style}
-              />
-            );
-          })}
+          {inventory
+            .sort(function(a, b) {
+              return a.id - b.id;
+            })
+            .map((item) => {
+              return (
+                <InventoryItem 
+                key={item.pot_idid}
+                pot_id={item.pot_id}
+                name={item.pot_name}
+                image={item.image_url}
+                description={item.description}
+                isDefault={item.is_default}
+                setDefaultPot={setDefaultPot}
+                />
+              );
+            })}
         </Grid>
       </body>
     </>
