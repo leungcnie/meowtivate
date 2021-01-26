@@ -8,15 +8,40 @@ import CardContent from "@material-ui/core/CardContent";
 import SaveRoundedIcon from "@material-ui/icons/SaveRounded";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import TextField from "@material-ui/core/TextField";
+import { Widgets } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    minWidth: 275,
+  container: {
+    display: 'inline-flex',
+    flexDirection: 'column',
+    width: '40vw',
+    justifyContent: 'center',
   },
   header: {
     fontFamily: "Varela Round",
     letterSpacing: "6px",
+    color: 'grey',
+    lineHeight: 0,
+    paddingBottom:'1rem',
+    paddingTop: '2rem',
+    fontSize: '2em'
   },
+  infoCard: {
+    color: '#5c5c5c',
+    fontSize: '1.5em',
+    backgroundColor: 'rgb(201,188,200, 0.4)',
+    borderRadius: '2rem',
+    padding: '2em',
+    marginTop: '8vh',
+    display: 'inline-flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginBottom: '3rem',
+  },
+  icon:{
+    fontSize: '2em',
+    padding: '0.25rem',
+  }
 }));
 
 export default function AccountPage(props) {
@@ -31,51 +56,55 @@ export default function AccountPage(props) {
   const modeToggle = () => setIsEditable(!isEditable);
 
   return (
-    <div className={classes.root}>
-      <NavBar />
+    <>
       <header>
-        <h2 className={classes.header}>my Account</h2>
+        <NavBar />
+        <h1 className={classes.header}>my Account</h1>
       </header>
-      <Card>
-        {props && (
-          <CardContent>
-            <h5>Username: Pawthos</h5>
-            <h5>Email: pawthos@gmail.com</h5>
-            <h5>Password: ********* </h5>{" "}
-          </CardContent>
-        )}
-      </Card>
-      <IconButton onClick={modeToggle}>
-        <EditRoundedIcon />
-      </IconButton>
-      {isEditable && (
-        <div>
-          Hello
-          <form className={classes.root} noValidate autoComplete="off">
-            <div>
-              <TextField
-                id="outlined-basic"
-                label="Username"
-                variant="outlined"
-              />
-            </div>
-            <div>
-              <TextField id="outlined-basic" label="Email" variant="outlined" />
-            </div>
 
-            <div>
-              <TextField
-                id="outlined-basic"
-                label="Password"
-                variant="outlined"
-              />
+      <section>
+        <article className={classes.container}>
+          {props && (
+            <div className={classes.infoCard}>
+              <p>Username: Pawthos</p>
+              <p>Email: pawthos@gmail.com</p>
+              <p>Password: ********* </p>{" "}
             </div>
-            <IconButton>
-              <SaveRoundedIcon onClick={modeToggle} />
-            </IconButton>
-          </form>
-        </div>
-      )}
-    </div>
+          )}
+        </article>
+        <article>
+          <IconButton onClick={modeToggle}>
+            <EditRoundedIcon className={classes.icon}/>
+          </IconButton>
+        </article>
+        {isEditable && (
+          <div>
+            <form className={classes.root} noValidate autoComplete="off">
+              <div>
+                <TextField
+                  id="outlined-basic"
+                  label="Username"
+                  variant="outlined"
+                />
+              </div>
+              <div>
+                <TextField id="outlined-basic" label="Email" variant="outlined" />
+              </div>
+
+              <div>
+                <TextField
+                  id="outlined-basic"
+                  label="Password"
+                  variant="outlined"
+                />
+              </div>
+              <IconButton>
+                <SaveRoundedIcon onClick={modeToggle} />
+              </IconButton>
+            </form>
+          </div>
+        )}
+      </section>
+    </>
   );
 }
