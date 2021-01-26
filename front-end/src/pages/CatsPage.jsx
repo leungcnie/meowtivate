@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import GalleryContainer from "../components/GalleryContainer";
 import NavBar from "../components/NavBar";
@@ -25,15 +25,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function isLocked(allCats, unlockedCats) {
-  const lockedCats = [];
+  const unlockedIDs = unlockedCats.map(obj => obj.id);
+  const lockedCats = allCats.filter(obj => !unlockedIDs.includes(obj.id));
 
-  for (let cat of allCats) {
-    // console.log('cat', String(cat.id))
-    // console.log('unloked keys', Object.keys(unlockedCats))
-    if (!Object.keys(unlockedCats).includes(String(cat.id - 1))) {
-      lockedCats.push(cat);
-    }
-  }
+  // for (let cat of allCats) {
+  //   // console.log('cat', String(cat.id))
+  //   // console.log('unloked keys', Object.keys(unlockedCats))
+  //   if (!Object.keys(unlockedCats).includes(String(cat.id - 1))) {
+  //     lockedCats.push(cat);
+  //   }
+  // }
   return lockedCats;
 }
 
@@ -44,7 +45,16 @@ export default function CatsPage(props) {
   // console.log('ALLCATS', state.allCats);
   const allCatsArray = state.allCats;
   const unlockedCatsArray = state.unlocked;
-  const lockedCatsArray = isLocked(allCatsArray, unlockedCatsArray);
+  const locked = isLocked(allCatsArray, unlockedCatsArray);
+  // Change locked cats names to ??? and no description
+  const lockedCatsArray = locked.map(obj => {
+    obj.cat_name = "???";
+    obj.description = "";
+    return obj;
+  })
+
+  console.log("lockedCatsArray", lockedCatsArray)
+  console.log("unlockedCatsArray", unlockedCatsArray)
 
   return (
     <div className="Cats">
