@@ -48,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
     bottom: '18rem',
     transform: 'rotate(-15deg)',
     fontSize: '3vw',
-    // maxWidth: '10rem'
   },
   pot: {
     width: '8rem',
