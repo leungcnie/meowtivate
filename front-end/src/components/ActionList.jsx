@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -13,11 +13,13 @@ import UnfoldMoreRoundedIcon from "@material-ui/icons/UnfoldMoreRounded";
 import SaveRoundedIcon from "@material-ui/icons/SaveRounded";
 import Popup from "./Popup";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
   item: {
     fontFamily: "Varela Round",
   },
+  root: {},
 }));
 
 export default function ActionList(props) {
@@ -30,6 +32,8 @@ export default function ActionList(props) {
   } = actionFunctions; // State changing funcs from useApplicationData
   const classes = useStyles();
 
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("xs"));
   // console.log("checked in ActionList", initChecked);
 
   // Toggle between VIEW and EDIT modes
@@ -107,52 +111,54 @@ export default function ActionList(props) {
 
   return (
     <List className={classes.root}>
-      {items.sort(function(a, b) {
-  return a.id - b.id;
-}).map((obj) => {
-        const labelId = `checkbox-list-label-${obj.id}`;
-        return (
-          <ListItem
-            key={obj.id}
-            role={undefined}
-            dense
-            button
-            onClick={(evt) => handleToggle(obj.id, evt)}
-          >
-            <ListItemIcon>
-              <Checkbox
-                edge="start"
-                checked={obj.is_completed}
-                tabIndex={-1}
-                disableRipple
-                inputProps={{ "aria-labelledby": labelId }}
-              />
-            </ListItemIcon>
-            <ListItemText id={labelId} primary={obj.action_name} />
-            {isEditable && (
-              <ListItemSecondaryAction>
-                {/* <IconButton edge="end" aria-label="drag">
+      {items
+        .sort(function (a, b) {
+          return a.id - b.id;
+        })
+        .map((obj) => {
+          const labelId = `checkbox-list-label-${obj.id}`;
+          return (
+            <ListItem
+              key={obj.id}
+              role={undefined}
+              dense
+              button
+              onClick={(evt) => handleToggle(obj.id, evt)}
+            >
+              <ListItemIcon>
+                <Checkbox
+                  edge="start"
+                  checked={obj.is_completed}
+                  tabIndex={-1}
+                  disableRipple
+                  inputProps={{ "aria-labelledby": labelId }}
+                />
+              </ListItemIcon>
+              <ListItemText id={labelId} primary={obj.action_name} />
+              {isEditable && (
+                <ListItemSecondaryAction>
+                  {/* <IconButton edge="end" aria-label="drag">
                   <UnfoldMoreRoundedIcon />
                 </IconButton> */}
-                <IconButton edge="end" aria-label="delete">
-                  <DeleteRoundedIcon
-                    onClick={() =>
-                      handleClickOpen("Delete", obj.id, obj.action_name)
-                    }
-                  />
-                </IconButton>
-                <IconButton edge="end" aria-label="edit">
-                  <EditRoundedIcon
-                    onClick={() =>
-                      handleClickOpen("Edit", obj.id, obj.action_name)
-                    }
-                  />
-                </IconButton>
-              </ListItemSecondaryAction>
-            )}
-          </ListItem>
-        );
-      })}
+                  <IconButton edge="end" aria-label="delete">
+                    <DeleteRoundedIcon
+                      onClick={() =>
+                        handleClickOpen("Delete", obj.id, obj.action_name)
+                      }
+                    />
+                  </IconButton>
+                  <IconButton edge="end" aria-label="edit">
+                    <EditRoundedIcon
+                      onClick={() =>
+                        handleClickOpen("Edit", obj.id, obj.action_name)
+                      }
+                    />
+                  </IconButton>
+                </ListItemSecondaryAction>
+              )}
+            </ListItem>
+          );
+        })}
 
       {isEditable ? (
         <>

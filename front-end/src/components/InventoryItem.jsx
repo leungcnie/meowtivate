@@ -8,14 +8,15 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    height: "10rem",
+    width: "7rem",
+    alignItems: "center",
   },
   card: {
-    height: "23rem",
+    height: "24rem",
     minWidth: "14rem",
-    [theme.breakpoints.down("sm")]: {
-      height: "20em",
-    },
+    paddingBottom: "1rem",
+    paddingTop: "1rem",
+
     // backgroundColor: 'darkkhaki',
   },
 }));

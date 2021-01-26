@@ -8,7 +8,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  img: {
     flexGrow: 1,
     width: "7rem",
   },
@@ -80,7 +80,7 @@ export default function ShopItem(props) {
         <CardContent>
           <header className="meow-item-header">
             <img
-              className={classes.root}
+              className={classes.img}
               src={props.image}
               alt={props.name}
               price={props.price}
