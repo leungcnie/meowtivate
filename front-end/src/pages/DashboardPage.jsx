@@ -206,9 +206,11 @@ export default function DashboardPage(props) {
           <div className={classes.calendarContainer}>
           <CalendarApp state={state} day={day} />
           </div>
+          <div>
             <IconButton onClick={changeDay}>
               <DoubleArrowRoundedIcon className={classes.iconButton}/>
             </IconButton>
+          </div>
         </Grid>
         <Grid item xs={4} className={classes.grid}>
           <section className={classes.midContainer}>
