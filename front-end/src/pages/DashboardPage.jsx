@@ -6,6 +6,7 @@ import { CalendarApp } from "../components/Calendar-import";
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import CatPlant from '../components/CatPlant';
+import Footer from '../components/Footer';
 
 // import getCurrentDate from "../helpers/getCurrentDate";
 import SMSForm from "../components/SMSForm";
@@ -15,12 +16,15 @@ import getCurrentDate from "../helpers/getCurrentDate";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    marginLeft: '10vw',
+    marginRight: '10vw',
+    marginBottom: '10vh'
   },
   container: {
     display: 'flex',
     justifyContent: 'center',
-    paddingLeft: "5vw",
-    paddingRight: "5vw",
+    paddingLeft: '5vw',
+    paddingRight: '5vw'
   },
   grid: {
     display: 'flex',
@@ -200,11 +204,12 @@ export default function DashboardPage(props) {
   // }, [streak])
 
   return (
-    <div>
-      <header>
+    <>
+    <header>
       <NavBar />
       {/* <h1>Welcome {props.state.account[0].name}!</h1> */}
-      </header>
+    </header>
+    <section className={classes.root}>
       <Grid container spacing={3} className={classes.container}>
         <Grid item xs={4} className={classes.grid}>
           <div className={classes.calendarContainer}>
@@ -271,6 +276,10 @@ export default function DashboardPage(props) {
           </Grid>
         </Grid>
       </Grid>
-    </div>
+      {/* <footer>
+      <Footer/>
+      </footer> */}
+    </section>
+    </>
   );
 }

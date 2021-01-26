@@ -26,6 +26,8 @@ import ShopPage from "../pages/ShopPage";
 
 import NotFoundPage from "./404";
 
+import Footer from '../components/Footer';
+
 function App() {
   const {
     state,
@@ -35,7 +37,7 @@ function App() {
     setDay,
     addPot,
     potFunctions
-   } = useApplicationData();
+  } = useApplicationData();
   const { unlocked, account } = state;
   const id = day ? day : 0;
   // const id = 1;
@@ -123,6 +125,9 @@ function App() {
           <Route exact path="*" component={NotFoundPage} />
         </Switch>
       </Router>
+      {/* <footer>
+        <Footer/>
+      </footer> */}
     </div>
   );
 }
