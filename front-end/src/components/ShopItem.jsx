@@ -44,7 +44,20 @@ const useStyles = makeStyles((theme) => ({
   warning: {
     color: 'indianred', 
     fontFamily: 'Itim', 
-    fontSize: '1em'
+    position: 'relative',
+    bottom: '18rem',
+    transform: 'rotate(-15deg)',
+    fontSize: '3vw',
+    // maxWidth: '10rem'
+  },
+  pot: {
+    width: '8rem',
+    position: "relative",
+    bottom: 0,
+    left: 0,
+  },
+  isPurchased: {
+
   }
 }));
 
@@ -76,7 +89,7 @@ export default function ShopItem(props) {
         <CardContent>
           <header className="meow-item-header">
             <img
-              className={classes.root}
+              className={classes.pot}
               src={props.image}
               alt={props.name}
               price={props.price}

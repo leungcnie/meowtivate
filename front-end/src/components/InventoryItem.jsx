@@ -23,11 +23,11 @@ const useStyles = makeStyles((theme) => ({
   },
   isDefault: {
     position: 'relative',
-    bottom: '13rem',
+    bottom: '14rem',
     transform: 'rotate(-15deg)',
     color: 'indianred',
     fontFamily: 'Itim',
-    fontSize: '3em',
+    fontSize: '3vw',
   }
 }));
 
