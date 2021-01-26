@@ -13,11 +13,18 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     height: "24rem",
-    minWidth: "14rem",
+    minWidth: "15rem",
     paddingBottom: "1rem",
     paddingTop: "1rem",
+    paddingLeft: "1rem",
+    paddingRight: "1rem",
 
     // backgroundColor: 'darkkhaki',
+  },
+  footer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 }));
 
@@ -27,9 +34,9 @@ export default function InventoryItem(props) {
   console.log("id in InventoryItem", pot_id);
 
   return (
-    <Grid item xs={6} sm={3}>
+    <Grid item xs={6} sm={4}>
       <Card onClick={() => setDefaultPot(1, pot_id)}>
-        <CardContent className={classes.card}>
+        <CardContent className={classes.card} style={{ paddingRight: "2rem" }}>
           <header className="meow-item-header">
             <img
               className={classes.root}
@@ -39,8 +46,11 @@ export default function InventoryItem(props) {
             />
             <h2 className="meow-item-header-name">{props.name}</h2>
           </header>
-          <main className="meow-item-description">
-            <p>{props.description}</p>
+          <main
+            className="meow-item-description"
+            style={{ paddingRight: "2rem" }}
+          >
+            <p className={classes.footer}>{props.description}</p>
           </main>
           <footer className="meow-item-footer">
             {/* {props.date.substring(0, 10)} */}
