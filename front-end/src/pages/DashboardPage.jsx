@@ -23,37 +23,53 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  root: {},
+  container: {
+    display: "flex",
+    justifyContent: "center",
     paddingLeft: "5vw",
     paddingRight: "5vw",
   },
-  grid1: {
+  grid: {
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
-    alignItems: "center",
-    order: 1,
-    [theme.breakpoints.down("xs")]: {
-      order: 2,
-    },
+    // alignItems: 'center',
   },
-  grid2: {
-    order: 2,
-    [theme.breakpoints.down("xs")]: {
-      order: 3,
-    },
-  },
-  grid3: {
-    order: 3,
-    [theme.breakpoints.down("xs")]: {
-      order: 1,
-    },
-  },
+  // grid1: {
+  //   display: "flex",
+  //   justifyContent: "center",
+  //   flexDirection: "column",
+  //   // alignItems: "center",
+  //   order: 1,
+  //   [theme.breakpoints.down("xs")]: {
+  //     order: 2,
+  //   },
+  // },
+  // grid2: {
+  //   display: "flex",
+  //   justifyContent: "center",
+  //   flexDirection: "column",
+  //   order: 2,
+  //   [theme.breakpoints.down("xs")]: {
+  //     order: 3,
+  //   },
+  // },
+  // grid3: {
+  //   display: "flex",
+  //   justifyContent: "center",
+  //   flexDirection: "column",
+  //   order: 3,
+  //   [theme.breakpoints.down("xs")]: {
+  //     order: 1,
+  //   },
+  // },
+
   margin: {
     marginTop: "2vh",
   },
   coin: {
-    height: "2.5rem",
+    height: "3rem",
   },
   coinstyle: {
     display: "flex",
@@ -71,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#a0cdca",
     width: "5rem",
     height: "8rem",
-    display: "flex",
+    display: "inline-flex",
     justifyContent: "center",
     borderRadius: "2rem",
     alignItems: "center",
@@ -85,6 +101,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   listButton: {
+    width: "10em",
     backgroundColor: "#fee2b1",
     fontFamily: "Itim",
     margin: "0.5vh",
@@ -93,13 +110,14 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: "0.5em",
     boxShadow:
       "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
-    color: "grey",
+    color: "#5c5c5c",
     "&:hover": {
       backgroundColor: "#dbc6a1",
       color: "white",
     },
   },
   collectionButton: {
+    width: "10em",
     backgroundColor: "#fcd0c5",
     fontFamily: "Itim",
     margin: "0.5vh",
@@ -108,13 +126,14 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: "0.5em",
     boxShadow:
       "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
-    color: "grey",
+    color: "#5c5c5c",
     "&:hover": {
       backgroundColor: "#e6c3bb",
       color: "white",
     },
   },
   accountButton: {
+    width: "10em",
     backgroundColor: "#aedaa5",
     fontFamily: "Itim",
     margin: "0.5vh",
@@ -123,13 +142,14 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: "0.5em",
     boxShadow:
       "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
-    color: "grey",
+    color: "#5c5c5c",
     "&:hover": {
       backgroundColor: "#a2bb9d",
       color: "white",
     },
   },
   inventoryButton: {
+    width: "10em",
     backgroundColor: "#e0c8df",
     fontFamily: "Itim",
     margin: "0.5vh",
@@ -138,11 +158,81 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: "0.5em",
     boxShadow:
       "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
-    color: "grey",
+    color: "#5c5c5c",
     "&:hover": {
       backgroundColor: "#c9bcc8",
       color: "white",
     },
+  },
+  wallet: {
+    display: "flex",
+    alignItems: "center",
+    backgroundColor: "antiquewhite",
+    width: "10rem",
+    justifyContent: "space-around",
+    padding: "0.5em",
+    borderRadius: "1.75rem",
+    fontFamily: "Itim",
+    color: "grey",
+    fontSize: "2em",
+    lineHeight: 0,
+  },
+  walletContainer: {
+    display: "flex",
+    justifyContent: "center",
+    margin: "3rem",
+  },
+  calendarContainer: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  midContainer: {
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+  },
+  cardContainer: {
+    display: "inline-flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    backgroundColor: "rgb(255, 255, 255, 0.9)",
+    borderRadius: "2rem",
+    width: "19vw",
+    height: "fit-content",
+    padding: "1.5em",
+  },
+  weatherContainer: {
+    display: "inline-flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    backgroundColor: "rgb(255, 255, 255, 0.9)",
+    borderRadius: "2rem",
+    width: "19vw",
+    height: "fit-content",
+    padding: "1.5em",
+    width: "20rem",
+  },
+  potContainer: {
+    display: "inline-flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    backgroundColor: "rgb(255, 255, 255, 0.9)",
+    borderRadius: "2rem",
+    width: "19vw",
+    height: "fit-content",
+    padding: "1.5em",
+    width: "20rem",
+  },
+  listContainer: {
+    display: "inline-flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    backgroundColor: "rgb(255, 255, 255, 0.9)",
+    borderRadius: "2rem",
+    width: "19vw",
+    height: "fit-content",
+    padding: "1.5em",
+    width: "20rem",
   },
 }));
 
@@ -191,90 +281,93 @@ export default function DashboardPage(props) {
         <NavBar />
         {/* <h1>Welcome {props.state.account[0].name}!</h1> */}
       </header>
-      <Grid container spacing={3} className={classes.root}>
-        <Grid item xs={12} sm={6} md={4} className={classes.grid1}>
-          <CalendarApp state={state} day={day} />
+      <Grid container spacing={3} className={classes.container}>
+        <Grid Grid item xs={12} sm={6} md={4} className={classes.grid1}>
           <SMSForm />
-          <Grid>
+
+          <div className={classes.calendarContainer}>
+            <CalendarApp state={state} day={day} />
+          </div>
+
+          <div>
             <IconButton onClick={changeDay}>
               <DoubleArrowRoundedIcon className={classes.iconButton} />
             </IconButton>
-          </Grid>
+          </div>
         </Grid>
         <Grid item xs={12} sm={6} md={4} className={classes.grid2}>
-          <div className={classes.streakContainer}>
-            <h3>CURRENT STREAK IS</h3>
-            <div className={classes.streakNum}>
-              <h1>{streak}</h1>
-            </div>
-            <h4>DAYS</h4>
+          {/* <section> */}
+          {/* <article> */}
+          <h2 style={{ color: "grey" }}>CURRENT STREAK IS</h2>
+          <div className={(classes.midContainer, classes.streakNum)}>
+            <h1>{streak}</h1>
           </div>
-
-          <Card xs={12} sm={6} md={4}>
-            <CardContent>
-              <Grid item>
-                <Button
-                  className={classes.listButton}
-                  component={Link}
-                  to="/lists"
-                >
-                  My Lists
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button
-                  className={classes.collectionButton}
-                  component={Link}
-                  to="/cats"
-                >
-                  My Collection
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button
-                  className={classes.accountButton}
-                  component={Link}
-                  to="/account"
-                >
-                  My Account
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button
-                  className={classes.inventoryButton}
-                  component={Link}
-                  to="/inventory"
-                >
-                  My Inventory
-                </Button>
-              </Grid>
-            </CardContent>
-          </Card>
-          <Card className={classes.margin}>
-            <CardContent className={classes.coinstyle}>
-              <h3 className={classes.numOfCoins}>{coins}</h3>
-              <img
-                className={classes.coin}
-                src="https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png"
-                alt="meowcoin"
-              />
-            </CardContent>
-          </Card>
+          <h3 style={{ color: "grey" }}>DAYS</h3>
+          {/* </article> */}
+          <article className={classes.listContainer}>
+            <Grid>
+              <Button
+                className={classes.listButton}
+                component={Link}
+                to="/lists"
+              >
+                My Lists
+              </Button>
+            </Grid>
+            <Grid>
+              <Button
+                className={classes.collectionButton}
+                component={Link}
+                to="/cats"
+              >
+                My Collection
+              </Button>
+            </Grid>
+            <Grid>
+              <Button
+                className={classes.accountButton}
+                component={Link}
+                to="/account"
+              >
+                My Account
+              </Button>
+            </Grid>
+            <Grid>
+              <Button
+                className={classes.inventoryButton}
+                component={Link}
+                to="/inventory"
+              >
+                My Inventory
+              </Button>
+            </Grid>
+            <article className={classes.walletContainer}>
+              <div className={classes.wallet}>
+                <h1>{coins}</h1>
+                <img
+                  className={classes.coin}
+                  src="https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png"
+                  alt="meowcoin"
+                />
+              </div>
+            </article>
+          </article>
+          {/* </section> */}
         </Grid>
         <Grid item xs={12} sm={12} md={4} className={classes.grid3}>
           <Grid>
-            <Card>
-              <CardContent>
-                <Weather xs={12} />
-              </CardContent>
-            </Card>
+            <article className={classes.weatherContainer}>
+              <Weather />
+            </article>
           </Grid>
           <Grid className={classes.margin}>
-            <Card>
-              <CardContent>
-                <CatPlant actions={actions} xs={12} />
-              </CardContent>
-            </Card>
+            <article
+              className={classes.potContainer}
+              style={{ paddingBottom: "2em" }}
+            >
+              {/* <h1 style={{color: 'grey', lineHeight: 0}}>Today's Progress</h1> */}
+              <CatPlant actions={actions} state={state} />
+            </article>
           </Grid>
         </Grid>
       </Grid>
