@@ -10,11 +10,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     height: "10rem",
   },
-  img: {
-    [theme.breakpoints.down("sm")]: {
-      width: "20%",
-    },
-  },
   card: {
     height: "23rem",
     minWidth: "14rem",
@@ -22,11 +17,6 @@ const useStyles = makeStyles((theme) => ({
       height: "20em",
     },
     // backgroundColor: 'darkkhaki',
-  },
-  header: {
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "1em",
-    },
   },
 }));
 
