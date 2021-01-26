@@ -12,6 +12,11 @@ const useStyles = makeStyles((theme) => ({
   header: {
     fontFamily: "Varela Round",
     letterSpacing: "6px",
+    color: 'grey',
+    lineHeight: 0,
+    paddingTop: '2rem',
+    paddingBottom: '2rem',
+    fontSize: '2em'
   },
   locked: {
     filter: "brightness(0)",
@@ -44,7 +49,7 @@ export default function CatsPage(props) {
     <div className="Cats">
       <NavBar />
       <header>
-        <h2 className={classes.header}>my Collection</h2>
+        <h1 className={classes.header}>my Collection</h1>
       </header>
       <section>
         <GalleryContainer
