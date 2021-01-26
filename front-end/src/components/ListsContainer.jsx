@@ -26,12 +26,13 @@ const useStyles = makeStyles((theme) => ({
     position: "static",
     zIndex: 1,
     minWidth: "10vw",
-    minHeight: "30vh",
+    minHeight: "28vh",
   },
   article: {
     backgroundColor: 'rgb(201,188,200, 0.4)',
     padding: '3rem',
     borderRadius: '2rem',
+    minHeight: '35vh',
   },
   progress: {
     display: 'flex',
@@ -44,6 +45,10 @@ const useStyles = makeStyles((theme) => ({
   },
   list: {
     height: '20vh'
+  }, 
+  container: {
+    display: 'flex',
+    justifyContent: 'center'
   }
 }));
 
@@ -77,8 +82,8 @@ export default function ListContainer(props) {
   return (
     <>
       <UnlockBadge state={state} catFunctions={catFunctions} />
-        <h2 className={classes.header}>LET'S GET LOTS DONE TODAY</h2>
-        <Grid container spacing={4}>
+      <h2 className={classes.header}>LET'S GET LOTS DONE TODAY!</h2>
+        <Grid className={classes.container} container spacing={4}>
           <Grid item xs={3}>
             <article className={classes.article}>
               <h3 className={classes.subtitle}>DAILY HABITS</h3>
@@ -92,7 +97,7 @@ export default function ListContainer(props) {
           </Grid>
           <Grid item xs={3}>
             <article className={classes.article}>
-              <h3 className={classes.subtitle}>TO-DO TODAY</h3>
+              <h3 className={classes.subtitle}>TO-DO LIST</h3>
               <ActionList
                 items={todos}
                 category={1}
@@ -110,7 +115,7 @@ export default function ListContainer(props) {
                 </div>
             </article>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={1}>
             <article>
                 <h3 className={classes.subtitle} style={{lineHeight: 0}}>100%</h3>
               <div className={classes.progress}>

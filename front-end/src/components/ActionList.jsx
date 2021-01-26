@@ -9,7 +9,6 @@ import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
-import UnfoldMoreRoundedIcon from "@material-ui/icons/UnfoldMoreRounded";
 import SaveRoundedIcon from "@material-ui/icons/SaveRounded";
 import Popup from "./Popup";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
@@ -23,11 +22,6 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Varela Round',
   }
 }));
-const styles = theme => ({
-  listItemText:{
-    fontSize:'2em',//Insert your required size
-  }
-});
 
 export default function ActionList(props) {
   const { items, category, actionFunctions, initChecked } = props;
@@ -140,17 +134,15 @@ export default function ActionList(props) {
             </ListItemIcon>
             <ListItemText 
             disableTypography 
-            primary={<Typography type="body2" style={{ fontSize: '1.5em', fontFamily: "Varela Round", color: '#5c5c5c' }}>{obj.action_name}</Typography>} 
+            primary={<Typography type="body2" style={{ fontSize: '1.3em', fontFamily: "Varela Round", color: '#5c5c5c' }}>{obj.action_name}</Typography>} 
             id={labelId} 
-            // primary={obj.action_name}
             />
             {isEditable && (
               <ListItemSecondaryAction>
                 <IconButton edge="end" aria-label="delete">
                   <DeleteRoundedIcon
                     onClick={() =>
-                      handleClickOpen("Delete", obj.id, obj.action_name)
-                    }
+                      handleClickOpen("Delete", obj.id, obj.action_name)}
                   />
                 </IconButton>
                 <IconButton edge="end" aria-label="edit">
