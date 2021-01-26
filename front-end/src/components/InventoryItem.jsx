@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme) => ({
     height: '10rem',
   },
   card: {
-    minHeight: '22rem',
-    minWidth: '12rem',
+    height: '23rem',
+    minWidth: '14rem',
     // backgroundColor: 'darkkhaki',
   }
 }));
@@ -24,14 +24,14 @@ export default function InventoryItem(props) {
 
   return (
     <Grid item xs={6} sm={3}>
-      <Card className={classes.card} onClick={() => setDefaultPot(1, pot_id)}>
-        <CardContent>
+      <Card onClick={() => setDefaultPot(1, pot_id)}>
+        <CardContent className={classes.card}>
           <header className="meow-item-header">
             <img
               className={classes.root}
               src={props.image}
               alt={props.name}
-              // style={props.style}
+              style={{paddingTop: '2rem'}}
             />
             <h2 className="meow-item-header-name">{props.name}</h2>
           </header>
