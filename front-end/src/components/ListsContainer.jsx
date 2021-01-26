@@ -58,6 +58,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
   },
+  potGrid: {
+    paddingLeft: "3rem",
+  },
 }));
 
 export default function ListContainer(props) {
@@ -110,7 +113,7 @@ export default function ListContainer(props) {
             />
           </article>
         </Grid>
-        <Grid item xs={8} sm={9} md={3}>
+        <Grid item xs={8} sm={8} md={3} className={classes.potGrid}>
           <article className={classes.article}>
             <div className={classes.plantbox}>
               <h3 className={classes.subtitle}>TODAY'S PROGRESS</h3>
