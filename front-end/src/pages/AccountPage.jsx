@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'grey',
     lineHeight: 0,
     paddingTop: '2rem',
+    paddingBottom: '2rem',
     fontSize: '2em'
   },
   infoCard: {

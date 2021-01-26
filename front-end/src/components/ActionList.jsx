@@ -13,12 +13,21 @@ import UnfoldMoreRoundedIcon from "@material-ui/icons/UnfoldMoreRounded";
 import SaveRoundedIcon from "@material-ui/icons/SaveRounded";
 import Popup from "./Popup";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
+import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles((theme) => ({
   item: {
     fontFamily: "Varela Round",
   },
+  root: {
+    fontFamily: 'Varela Round',
+  }
 }));
+const styles = theme => ({
+  listItemText:{
+    fontSize:'2em',//Insert your required size
+  }
+});
 
 export default function ActionList(props) {
   const { items, category, actionFunctions, initChecked } = props;
@@ -121,6 +130,7 @@ export default function ActionList(props) {
           >
             <ListItemIcon>
               <Checkbox
+                style={{color: '#947e92'}}
                 edge="start"
                 checked={obj.is_completed}
                 tabIndex={-1}
@@ -128,12 +138,14 @@ export default function ActionList(props) {
                 inputProps={{ "aria-labelledby": labelId }}
               />
             </ListItemIcon>
-            <ListItemText id={labelId} primary={obj.action_name} />
+            <ListItemText 
+            disableTypography 
+            primary={<Typography type="body2" style={{ fontSize: '1.5em', fontFamily: "Varela Round", color: '#5c5c5c' }}>{obj.action_name}</Typography>} 
+            id={labelId} 
+            // primary={obj.action_name}
+            />
             {isEditable && (
               <ListItemSecondaryAction>
-                {/* <IconButton edge="end" aria-label="drag">
-                  <UnfoldMoreRoundedIcon />
-                </IconButton> */}
                 <IconButton edge="end" aria-label="delete">
                   <DeleteRoundedIcon
                     onClick={() =>
