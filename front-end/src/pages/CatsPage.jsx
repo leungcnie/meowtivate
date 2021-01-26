@@ -2,12 +2,13 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import GalleryContainer from "../components/GalleryContainer";
 import NavBar from "../components/NavBar";
+import Footer from '../components/Footer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    marginLeft: '10vw',
+    marginRight: '10vw',
+    marginBottom: '10vh'
   },
   header: {
     fontFamily: "Varela Round",
@@ -48,18 +49,15 @@ export default function CatsPage(props) {
   return (
     <div className="Cats">
       <NavBar />
-      <header>
-        <h1 className={classes.header}>my Collection</h1>
-      </header>
-      <section>
+      <h1 className={classes.header}>my Collection</h1>
+      <section className={classes.root}>
         <GalleryContainer
           items={state.unlocked}
           style={{ filter: "brightness(1)" }}
         />
         <GalleryContainer
           items={lockedCatsArray}
-          style={{ filter: "brightness(0)" }}
-        />
+          style={{ filter: "brightness(0)", color: 'transparent'}}/>
       </section>
     </div>
   );

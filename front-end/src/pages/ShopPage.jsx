@@ -8,8 +8,8 @@ import StorefrontRoundedIcon from "@material-ui/icons/StorefrontRounded";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    paddingLeft: "5vw",
-    paddingRight: "5vw",
+    marginLeft: '10vw',
+    marginRight: '10vw',
   },
   icon: {
     fontSize: "8em",
