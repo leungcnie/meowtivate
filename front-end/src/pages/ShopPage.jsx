@@ -5,49 +5,95 @@ import NavBar from "../components/NavBar";
 import ShopItem from "../components/ShopItem";
 import StorefrontRoundedIcon from "@material-ui/icons/StorefrontRounded";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    marginLeft: '10vw',
-    marginRight: '10vw',
-  },
-  icon: {
-    fontSize: "8em",
-    color: "grey",
-  },
-  header: {
-    fontFamily: "Varela Round",
-    letterSpacing: "6px",
-    [theme.breakpoints.down("xs")]: {
-      fontSize: "1em",
-      letterSpacing: "2px",
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+
+const lightTheme = createMuiTheme({
+  palette: {
+    type: "light",
+    common: {
+      primary: "#f0e1d0",
+      secondary: "#a0cdca",
+      light: "rgb(255, 255, 255, 0.9)",
+      dark: "#fff",
     },
-    color: "grey",
-    lineHeight: 0,
-    paddingBottom: "3rem",
+    primary: {
+      light: "#fff",
+      main: "#fff",
+    },
+    // main: "#f0e1d0",
+    // nav: "#a0cdca",
+    // background: "rgb(255, 255, 255, 0.9)",
+    // list: "#fee2b1",
+    // collection: "#fcd0c5",
+    // account: "#aedaa5",
+    // inventory: "#e0c8df",
+    // listOnHover: "#dbc6a1",
+    // collectionOnHover: "#e6c3bb",
+    // accountOnHover: "#a2bb9d",
+    // inventoryOnHover: "#c9bcc8",
+    // wallet: "antiquewhite",
+    // cardContainer: "rgb(255, 255, 255, 0.9)",
   },
-  wallet: {
-    display: "flex",
-    alignItems: "center",
-    backgroundColor: "antiquewhite",
-    width: "7rem",
-    justifyContent: "space-around",
-    padding: "0.75em",
-    borderRadius: "1.5rem",
-    fontFamily: "Itim",
-    color: "grey",
-    /* height: 5rem; */
+  text: {
+    light: "#000",
+
+    // primary: "Black",
+    // secondary: "#5c5c5c",
+    // onHover: "white",
+    // gray: "grey",
+    // green: "green",
   },
-  walletContainer: {
-    display: "flex",
-    justifyContent: "flex-end",
-    marginRight: "3rem",
-  },
-  headerContainer: {
-    display: "flex",
-    justifyContent: "center",
-  },
-}));
+});
+
+console.log("what's prop of lightTheme", lightTheme);
+const useStyles = makeStyles(
+  (theme) => (
+    console.log("theme objects", theme),
+    {
+      root: {
+        flexGrow: 1,
+        marginLeft: "10vw",
+        marginRight: "10vw",
+      },
+      icon: {
+        fontSize: "8em",
+        color: "grey",
+      },
+      header: {
+        fontFamily: "Varela Round",
+        letterSpacing: "6px",
+        [theme.breakpoints.down("xs")]: {
+          fontSize: "1em",
+          letterSpacing: "2px",
+        },
+        color: "grey",
+        lineHeight: 0,
+        paddingBottom: "3rem",
+      },
+      wallet: {
+        display: "flex",
+        alignItems: "center",
+        backgroundColor: "antiquewhite",
+        width: "7rem",
+        justifyContent: "space-around",
+        padding: "0.75em",
+        borderRadius: "1.5rem",
+        fontFamily: "Itim",
+        color: "grey",
+        /* height: 5rem; */
+      },
+      walletContainer: {
+        display: "flex",
+        justifyContent: "flex-end",
+        marginRight: "3rem",
+      },
+      headerContainer: {
+        display: "flex",
+        justifyContent: "center",
+      },
+    }
+  )
+);
 
 export default function ShopPage(props) {
   const classes = useStyles();
@@ -55,7 +101,7 @@ export default function ShopPage(props) {
   const { shop, inventory } = state;
 
   return (
-    <>
+    <ThemeProvider>
       <header>
         <NavBar />
         <div className={classes.walletContainer}>
@@ -91,6 +137,6 @@ export default function ShopPage(props) {
           })}
         </Grid>
       </body>
-    </>
+    </ThemeProvider>
   );
 }

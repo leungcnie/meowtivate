@@ -23,244 +23,230 @@ import getCurrentDate from "../helpers/getCurrentDate";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginLeft: "10vw",
-    marginRight: "10vw",
-    marginBottom: "10vh",
-  },
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    paddingLeft: "5vw",
-    paddingRight: "5vw",
-  },
-  grid: {
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "column",
-    // alignItems: 'center',
-  },
-  // grid1: {
-  //   display: "flex",
-  //   justifyContent: "center",
-  //   flexDirection: "column",
-  //   // alignItems: "center",
-  //   order: 1,
-  //   [theme.breakpoints.down("xs")]: {
-  //     order: 2,
-  //   },
-  // },
-  // grid2: {
-  //   display: "flex",
-  //   justifyContent: "center",
-  //   flexDirection: "column",
-  //   order: 2,
-  //   [theme.breakpoints.down("xs")]: {
-  //     order: 3,
-  //   },
-  // },
-  grid3: {
-    display: "flex",
-    justifyContent: "center",
-    // order: 3,
-    [theme.breakpoints.up("md")]: {
-      flexDirection: "column",
-    },
-    [theme.breakpoints.down("xs")]: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-    },
-  },
+const useStyles = makeStyles(
+  (theme) => (
+    console.log("the theme element use in useStyles", theme),
+    {
+      root: {
+        marginLeft: "10vw",
+        marginRight: "10vw",
+        marginBottom: "10vh",
+      },
+      container: {
+        display: "flex",
+        justifyContent: "center",
+        paddingLeft: "5vw",
+        paddingRight: "5vw",
+      },
+      grid: {
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        // alignItems: 'center',
+      },
+      grid3: {
+        display: "flex",
+        justifyContent: "center",
+        // order: 3,
+        [theme.breakpoints.up("md")]: {
+          flexDirection: "column",
+        },
+        [theme.breakpoints.down("xs")]: {
+          flexDirection: "row",
+          justifyContent: "space-between",
+        },
+      },
 
-  margin: {
-    marginTop: "2vh",
-    [theme.breakpoints.down("sm")]: {
-      paddingLeft: "2em",
-      paddingLeft: "2em",
-    },
-  },
-  coin: {
-    height: "4rem",
-  },
-  coinstyle: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  numOfCoins: {
-    paddingRight: "0.5rem",
-  },
-  iconButton: {
-    width: "4rem",
-    height: "4rem",
-  },
-  streakNum: {
-    backgroundColor: "#a0cdca",
-    width: "5rem",
-    height: "8rem",
-    display: "inline-flex",
-    justifyContent: "center",
-    borderRadius: "2rem",
-    alignItems: "center",
-    fontSize: "2em",
-    color: "white",
-  },
-  streakContainer: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-  },
-  listButton: {
-    width: "10em",
-    backgroundColor: "#fee2b1",
-    fontFamily: "Itim",
-    margin: "0.5vh",
-    fontSize: "1.5em",
-    paddingLeft: "0.5em",
-    paddingRight: "0.5em",
-    boxShadow:
-      "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
-    color: "#5c5c5c",
-    "&:hover": {
-      backgroundColor: "#dbc6a1",
-      color: "white",
-    },
-  },
-  collectionButton: {
-    width: "10em",
-    backgroundColor: "#fcd0c5",
-    fontFamily: "Itim",
-    margin: "0.5vh",
-    fontSize: "1.5em",
-    paddingLeft: "0.5em",
-    paddingRight: "0.5em",
-    boxShadow:
-      "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
-    color: "#5c5c5c",
-    "&:hover": {
-      backgroundColor: "#e6c3bb",
-      color: "white",
-    },
-  },
-  accountButton: {
-    width: "10em",
-    backgroundColor: "#aedaa5",
-    fontFamily: "Itim",
-    margin: "0.5vh",
-    fontSize: "1.5em",
-    paddingLeft: "0.5em",
-    paddingRight: "0.5em",
-    boxShadow:
-      "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
-    color: "#5c5c5c",
-    "&:hover": {
-      backgroundColor: "#a2bb9d",
-      color: "white",
-    },
-  },
-  inventoryButton: {
-    width: "10em",
-    backgroundColor: "#e0c8df",
-    fontFamily: "Itim",
-    margin: "0.5vh",
-    fontSize: "1.5em",
-    paddingLeft: "0.5em",
-    paddingRight: "0.5em",
-    boxShadow:
-      "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
-    color: "#5c5c5c",
-    "&:hover": {
-      backgroundColor: "#c9bcc8",
-      color: "white",
-    },
-  },
-  wallet: {
-    display: "flex",
-    alignItems: "center",
-    backgroundColor: "antiquewhite",
-    width: "10rem",
-    justifyContent: "space-around",
-    padding: "0.5em",
-    borderRadius: "1.75rem",
-    fontFamily: "Itim",
-    color: "grey",
-    fontSize: "2em",
-    lineHeight: 0,
-  },
-  walletContainer: {
-    display: "flex",
-    justifyContent: "center",
-    margin: "3rem",
-  },
-  calendarContainer: {
-    display: "flex",
-    justifyContent: "center",
-    marginTop: "1.5rem",
-  },
-  midContainer: {
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "column",
-  },
-  cardContainer: {
-    display: "inline-flex",
-    justifyContent: "center",
-    flexDirection: "column",
-    backgroundColor: "rgb(255, 255, 255, 0.9)",
-    borderRadius: "2rem",
-    width: "19vw",
-    height: "fit-content",
-    padding: "1.2em",
-  },
-  weatherContainer: {
-    display: "inline-flex",
-    justifyContent: "center",
-    flexDirection: "column",
-    backgroundColor: "rgb(255, 255, 255, 0.9)",
-    borderRadius: "2rem",
-    width: "19vw",
-    height: "fit-content",
-    padding: "1.5em",
-    width: "15rem",
-    [theme.breakpoints.up("md")]: {
-      width: "20rem",
-    },
-    [theme.breakpoints.down("sm")]: {
-      width: "20rem",
-    },
-  },
-  potContainer: {
-    display: "inline-flex",
-    justifyContent: "center",
-    flexDirection: "column",
-    backgroundColor: "rgb(255, 255, 255, 0.9)",
-    borderRadius: "2rem",
-    width: "19vw",
-    height: "fit-content",
-    padding: "1.5em",
-    width: "15rem",
-    [theme.breakpoints.up("md")]: {
-      width: "20rem",
-    },
-    [theme.breakpoints.down("sm")]: {
-      width: "20rem",
-      paddingLeft: "2em",
-    },
-  },
-  listContainer: {
-    display: "inline-flex",
-    justifyContent: "center",
-    flexDirection: "column",
-    backgroundColor: "rgb(255, 255, 255, 0.9)",
-    borderRadius: "2rem",
-    width: "19vw",
-    height: "fit-content",
-    padding: "1.5em",
-    width: "20rem",
-  },
-}));
+      margin: {
+        marginTop: "2vh",
+        [theme.breakpoints.down("sm")]: {
+          paddingLeft: "2em",
+          paddingLeft: "2em",
+        },
+      },
+      coin: {
+        height: "4rem",
+      },
+      coinstyle: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      },
+      numOfCoins: {
+        paddingRight: "0.5rem",
+      },
+      iconButton: {
+        width: "4rem",
+        height: "4rem",
+      },
+      streakNum: {
+        backgroundColor: "#a0cdca",
+        width: "5rem",
+        height: "8rem",
+        display: "inline-flex",
+        justifyContent: "center",
+        borderRadius: "2rem",
+        alignItems: "center",
+        fontSize: "2em",
+        color: "white",
+      },
+      streakContainer: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+      },
+      listButton: {
+        width: "10em",
+        backgroundColor: "#fee2b1",
+        fontFamily: "Itim",
+        margin: "0.5vh",
+        fontSize: "1.5em",
+        paddingLeft: "0.5em",
+        paddingRight: "0.5em",
+        boxShadow:
+          "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
+        color: "#5c5c5c",
+        "&:hover": {
+          backgroundColor: "#dbc6a1",
+          color: "white",
+        },
+      },
+      collectionButton: {
+        width: "10em",
+        backgroundColor: "#fcd0c5",
+        fontFamily: "Itim",
+        margin: "0.5vh",
+        fontSize: "1.5em",
+        paddingLeft: "0.5em",
+        paddingRight: "0.5em",
+        boxShadow:
+          "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
+        color: "#5c5c5c",
+        "&:hover": {
+          backgroundColor: "#e6c3bb",
+          color: "white",
+        },
+      },
+      accountButton: {
+        width: "10em",
+        backgroundColor: "#aedaa5",
+        fontFamily: "Itim",
+        margin: "0.5vh",
+        fontSize: "1.5em",
+        paddingLeft: "0.5em",
+        paddingRight: "0.5em",
+        boxShadow:
+          "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
+        color: "#5c5c5c",
+        "&:hover": {
+          backgroundColor: "#a2bb9d",
+          color: "white",
+        },
+      },
+      inventoryButton: {
+        width: "10em",
+        backgroundColor: "#e0c8df",
+        fontFamily: "Itim",
+        margin: "0.5vh",
+        fontSize: "1.5em",
+        paddingLeft: "0.5em",
+        paddingRight: "0.5em",
+        boxShadow:
+          "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
+        color: "#5c5c5c",
+        "&:hover": {
+          backgroundColor: "#c9bcc8",
+          color: "white",
+        },
+      },
+      wallet: {
+        display: "flex",
+        alignItems: "center",
+        backgroundColor: "antiquewhite",
+        width: "10rem",
+        justifyContent: "space-around",
+        padding: "0.5em",
+        borderRadius: "1.75rem",
+        fontFamily: "Itim",
+        color: "grey",
+        fontSize: "2em",
+        lineHeight: 0,
+      },
+      walletContainer: {
+        display: "flex",
+        justifyContent: "center",
+        margin: "3rem",
+      },
+      calendarContainer: {
+        display: "flex",
+        justifyContent: "center",
+        marginTop: "1.5rem",
+      },
+      midContainer: {
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+      },
+      cardContainer: {
+        display: "inline-flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        backgroundColor: "rgb(255, 255, 255, 0.9)",
+        borderRadius: "2rem",
+        width: "19vw",
+        height: "fit-content",
+        padding: "1.2em",
+      },
+      weatherContainer: {
+        display: "inline-flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        backgroundColor: "rgb(255, 255, 255, 0.9)",
+        borderRadius: "2rem",
+        width: "19vw",
+        height: "fit-content",
+        padding: "1.5em",
+        width: "15rem",
+        [theme.breakpoints.up("md")]: {
+          width: "20rem",
+        },
+        [theme.breakpoints.down("sm")]: {
+          width: "20rem",
+        },
+      },
+      potContainer: {
+        display: "inline-flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        backgroundColor: "rgb(255, 255, 255, 0.9)",
+        borderRadius: "2rem",
+        width: "19vw",
+        height: "fit-content",
+        padding: "1.5em",
+        width: "15rem",
+        [theme.breakpoints.up("md")]: {
+          width: "20rem",
+        },
+        [theme.breakpoints.down("sm")]: {
+          width: "20rem",
+          paddingLeft: "2em",
+        },
+      },
+      listContainer: {
+        display: "inline-flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        backgroundColor: "rgb(255, 255, 255, 0.9)",
+        borderRadius: "2rem",
+        width: "19vw",
+        height: "fit-content",
+        padding: "1.5em",
+        width: "20rem",
+      },
+    }
+  )
+);
 
 export default function DashboardPage(props) {
   const { state, streak, day, setDay, id, coins, setCoins } = props;

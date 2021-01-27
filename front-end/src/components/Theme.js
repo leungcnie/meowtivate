@@ -4,30 +4,79 @@ import { createMuiTheme } from "@material-ui/core/styles";
 const lightTheme = createMuiTheme({
   palette: {
     type: "light",
-    main: "#f0e1d0",
-    nav: "#a0cdca",
-    background: "rgb(255, 255, 255, 0.9)",
-    list: "#fee2b1",
-    collection: "#fcd0c5",
-    account: "#aedaa5",
-    inventory: "#e0c8df",
-    listOnHover: "#dbc6a1",
-    collectionOnHover: "#e6c3bb",
-    accountOnHover: "#a2bb9d",
-    inventoryOnHover: "#c9bcc8",
-    wallet: "antiquewhite",
-    cardContainer: "rgb(255, 255, 255, 0.9)",
+    common: {
+      primary: "#f0e1d0",
+      secondary: "#a0cdca",
+      light: "rgb(255, 255, 255, 0.9)",
+      dark: "#fff",
+    },
+    primary: {
+      light: "#fff",
+      main: "#fff",
+    },
+    // main: "#f0e1d0",
+    // nav: "#a0cdca",
+    // background: "rgb(255, 255, 255, 0.9)",
+    // list: "#fee2b1",
+    // collection: "#fcd0c5",
+    // account: "#aedaa5",
+    // inventory: "#e0c8df",
+    // listOnHover: "#dbc6a1",
+    // collectionOnHover: "#e6c3bb",
+    // accountOnHover: "#a2bb9d",
+    // inventoryOnHover: "#c9bcc8",
+    // wallet: "antiquewhite",
+    // cardContainer: "rgb(255, 255, 255, 0.9)",
   },
   text: {
-    primary: "Black",
-    secondary: "#5c5c5c",
-    onHover: "white",
-    gray: "grey",
-    green: "green",
+    light: "#000",
+
+    // primary: "Black",
+    // secondary: "#5c5c5c",
+    // onHover: "white",
+    // gray: "grey",
+    // green: "green",
   },
 });
 
-export default lightTheme;
+const darkTheme = createMuiTheme({
+  palette: {
+    type: "dark",
+    common: {
+      primary: "#fff",
+      secondary: "#fff",
+      light: "#000",
+      dark: "#000",
+    },
+    primary: {
+      light: "#fff",
+      main: "#000",
+    },
+    // main: "#f0e1d0",
+    // nav: "#a0cdca",
+    // background: "rgb(255, 255, 255, 0.9)",
+    // list: "#fee2b1",
+    // collection: "#fcd0c5",
+    // account: "#aedaa5",
+    // inventory: "#e0c8df",
+    // listOnHover: "#dbc6a1",
+    // collectionOnHover: "#e6c3bb",
+    // accountOnHover: "#a2bb9d",
+    // inventoryOnHover: "#c9bcc8",
+    // wallet: "antiquewhite",
+    // cardContainer: "rgb(255, 255, 255, 0.9)",
+  },
+  text: {
+    light: "#000",
+    // primary: "Black",
+    // secondary: "#5c5c5c",
+    // onHover: "white",
+    // gray: "grey",
+    // green: "green",
+  },
+});
+
+export default { lightTheme, darkTheme };
 // const darkTheme = createMuiTheme({
 //   palette: {
 //     primary: {
@@ -59,5 +108,6 @@ export default lightTheme;
 //     type: darkMode ? "dark" : "light",
 //   },
 // });
+
 // // lightTheme
 // console.log(lightTheme.palette.background);

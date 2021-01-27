@@ -103,9 +103,7 @@ class SMSForm extends Component {
   render() {
     const { tasks } = this.state;
     const undone = tasks.filter((item) => item.is_completed !== true);
-    // console.log("undone", undone);
-    // console.log("this.setState", this.state.message);
-    // console.log(JSON.stringify(this.state.message));
+
     const undoneList = undone.length ? (
       undone.map((item) => {
         return (
