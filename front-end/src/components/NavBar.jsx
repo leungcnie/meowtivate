@@ -29,7 +29,7 @@ export default function SimpleMenu() {
     <header className={classes.navStyle}>
       <Menu />
       <h1 className={classes.logo}>Meowtivate</h1>
-      <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
+      {/* <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} /> */}
     </header>
   );
 }
