@@ -7,6 +7,8 @@ import NavBar from '../components/NavBar';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+  },
+  container: {
     marginLeft: '10vw',
     marginRight: '10vw',
   },
@@ -31,7 +33,8 @@ export default function InventoryPage(props) {
         <NavBar/>
         <h1 className={classes.header}>my INVENTORY</h1>
       </header>
-        <Grid container spacing={3} className={classes.root}>
+      <body className={classes.container}>
+        <Grid container spacing={4}>
           {inventory
             .sort(function(a, b) {
               return a.id - b.id;
@@ -50,6 +53,7 @@ export default function InventoryPage(props) {
               );
             })}
         </Grid>
+      </body>
     </>
   );
 }

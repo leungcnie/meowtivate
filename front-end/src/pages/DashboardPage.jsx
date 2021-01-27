@@ -212,7 +212,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "2rem",
     width: "19vw",
     height: "fit-content",
-    padding: "1.5em",
+    padding: "1.2em",
   },
   weatherContainer: {
     display: "inline-flex",
@@ -389,12 +389,7 @@ export default function DashboardPage(props) {
             </article>
           </Grid>
           <Grid className={classes.margin}>
-            <article
-              xs={12}
-              sm={6}
-              className={classes.potContainer}
-              style={{ paddingBottom: "2em" }}
-            >
+            <article xs={12} sm={6} className={classes.potContainer} style={{ paddingBottom: "2em" }}>
               {/* <h1 style={{color: 'grey', lineHeight: 0}}>Today's Progress</h1> */}
               <CatPlant actions={actions} state={state} />
             </article>

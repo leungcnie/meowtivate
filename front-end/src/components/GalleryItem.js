@@ -17,6 +17,12 @@ const useStyles = makeStyles((theme) => ({
       minWidth: "9rem",
     },
   },
+  article: {
+    backgroundColor: "rgb(201,188,200, 0.4)",
+    padding: "3rem",
+    borderRadius: "2rem",
+    minHeight: "3vh",
+  },
   catImg: {
     height: "14rem",
     [theme.breakpoints.down("md")]: {
@@ -39,8 +45,7 @@ export default function GalleryItem(props) {
 
   return (
     <Grid item xs={6} sm={4} md={3}>
-      <Card className={classes.card}>
-        <CardContent>
+      <article className={classes.article}>
           <header className="meow-item-header">
             <img
               className={classes.catImg}
@@ -56,8 +61,7 @@ export default function GalleryItem(props) {
           <footer className="meow-item-footer">
             {/* {props.date.substring(0, 10)} */}
           </footer>
-        </CardContent>
-      </Card>
+      </article>
     </Grid>
   );
 }
