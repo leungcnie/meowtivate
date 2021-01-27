@@ -131,9 +131,9 @@ export default function ListContainer(props) {
         </Grid>
         <Grid item xs={3} sm={3} md={1}>
           <article>
-            <h3 className={classes.subtitle} style={{ lineHeight: 0 }}>
+            {/* <h3 className={classes.subtitle} style={{ lineHeight: 0 }}>
               100%
-            </h3>
+            </h3> */}
             <div className={classes.progress}>
               <Progress
                 completedPercentage={completedPercentage}

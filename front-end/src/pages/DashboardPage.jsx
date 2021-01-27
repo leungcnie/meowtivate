@@ -197,6 +197,7 @@ const useStyles = makeStyles((theme) => ({
   calendarContainer: {
     display: "flex",
     justifyContent: "center",
+    marginTop: '1.5rem'
   },
   midContainer: {
     display: "flex",
@@ -309,7 +310,9 @@ export default function DashboardPage(props) {
     <section className={classes.root}>
       <Grid container spacing={3} className={classes.container}>
         <Grid Grid item xs={12} sm={6} md={4} className={classes.grid1}>
-          <SMSForm />
+          <div className={classes.cardContainer}>
+            <SMSForm/>
+          </div>
           <div className={classes.calendarContainer}>
             <CalendarApp state={state} day={day} />
           </div>

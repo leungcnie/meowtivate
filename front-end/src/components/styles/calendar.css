@@ -32,19 +32,19 @@
 /* Large screens */
 @media (min-width: 2500px) {
   .responsive-calendar {
-    font-size: 17px !important;
+    font-size: 15px !important;
   }
 }
 
 @media (max-width: 1500px) {
   .responsive-calendar {
-    font-size: 17px !important;
+    font-size: 15px !important;
   }
 }
 
 @media (max-width: 1200px) {
   .responsive-calendar {
-    font-size: 15px !important;
+    font-size: 13px !important;
   }
 }
 

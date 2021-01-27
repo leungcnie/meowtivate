@@ -50,7 +50,7 @@ class SMSForm extends Component {
 
   setCurrentTime() {
     this.setState({
-      currentTime: new Date().toLocaleTimeString("en-US", { hour12: false }),
+      currentTime: new Date().toLocaleTimeString("en-US", { hour12: true }),
     });
   }
 
@@ -64,7 +64,7 @@ class SMSForm extends Component {
 
   checkAlarmClock() {
     if (this.state.alarmTime == "undefined" || !this.state.alarmTime) {
-      this.alarmMessage = "Set up a reminder time here:";
+      this.alarmMessage = "Set up a reminder:";
     } else {
       this.alarmMessage = "Your alarm is set for " + this.state.alarmTime + ".";
       if (this.state.currentTime === this.state.alarmTime) {
@@ -115,7 +115,7 @@ class SMSForm extends Component {
         );
       })
     ) : (
-      <div>All done for today</div>
+      <div>All done for today!</div>
     );
     return (
       <form
@@ -123,7 +123,7 @@ class SMSForm extends Component {
         className={this.state.error ? "error sms-form" : "sms-form"}
       >
         <div>
-          <h2> Current Time {this.state.currentTime}</h2>
+          <h2>{this.state.currentTime}</h2>
           <p>{this.alarmMessage}</p>
           <form>
             <input type="time" onChange={this.setAlarmTime}></input>
