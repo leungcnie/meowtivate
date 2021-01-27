@@ -3,8 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import ActionList from "./ActionList";
 import CatPlant from "./CatPlant";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import Progress from "./Progress";
 import UnlockBadge from "./UnlockBadge";
 import calculateChecked from "../helpers/calculateChecked";
@@ -131,9 +129,9 @@ export default function ListContainer(props) {
         </Grid>
         <Grid item xs={3} sm={3} md={1}>
           <article>
-            <h3 className={classes.subtitle} style={{ lineHeight: 0 }}>
+            {/* <h3 className={classes.subtitle} style={{ lineHeight: 0 }}>
               100%
-            </h3>
+            </h3> */}
             <div className={classes.progress}>
               <Progress
                 completedPercentage={completedPercentage}

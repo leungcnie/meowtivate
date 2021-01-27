@@ -197,6 +197,7 @@ const useStyles = makeStyles((theme) => ({
   calendarContainer: {
     display: "flex",
     justifyContent: "center",
+    marginTop: '1.5rem'
   },
   midContainer: {
     display: "flex",
@@ -211,7 +212,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "2rem",
     width: "19vw",
     height: "fit-content",
-    padding: "1.5em",
+    padding: "1.2em",
   },
   weatherContainer: {
     display: "inline-flex",
@@ -309,7 +310,9 @@ export default function DashboardPage(props) {
     <section className={classes.root}>
       <Grid container spacing={3} className={classes.container}>
         <Grid Grid item xs={12} sm={6} md={4} className={classes.grid1}>
-          <SMSForm />
+          <div className={classes.cardContainer}>
+            <SMSForm/>
+          </div>
           <div className={classes.calendarContainer}>
             <CalendarApp state={state} day={day} />
           </div>
@@ -386,12 +389,7 @@ export default function DashboardPage(props) {
             </article>
           </Grid>
           <Grid className={classes.margin}>
-            <article
-              xs={12}
-              sm={6}
-              className={classes.potContainer}
-              style={{ paddingBottom: "2em" }}
-            >
+            <article xs={12} sm={6} className={classes.potContainer} style={{ paddingBottom: "2em" }}>
               {/* <h1 style={{color: 'grey', lineHeight: 0}}>Today's Progress</h1> */}
               <CatPlant actions={actions} state={state} />
             </article>

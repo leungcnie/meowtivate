@@ -4,15 +4,35 @@
 }
 .sms-form label {
   display: block;
+  outline: none;
+  font-weight: bold;
+  color: #a0cdca;
+
 }
 .sms-form input,
 .sms-form textarea {
   font-size: 1em;
-  width: 100%;
+  width: 58%;
   box-sizing: border-box;
+  border-radius: 10px;
+  outline: none;
+  font-size: 1.5em;
 }
 .sms-form div {
   margin-bottom: 0.5em;
+  outline: none;
+}
+.sms-form p {
+  margin-bottom: 0.5em;
+  font-size: 1.2em;
+  outline: none;
+  color: grey;
+}
+.sms-form h2 {
+  margin-bottom: 0.5em;
+  outline: none;
+  font-size: 3em;
+  color: #a0cdca;
 }
 .sms-form button {
   font-size: 1em;

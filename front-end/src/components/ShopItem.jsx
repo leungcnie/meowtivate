@@ -12,11 +12,18 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     width: "7rem",
   },
+  // card: {
+  //   height: "24rem",
+  //   minWidth: "12rem",
+  //   paddingBottom: "1rem",
+  //   paddingTop: "2rem",
+  // },
   card: {
+    backgroundColor: "rgb(255,255,255, 0.7)",
+    padding: "3rem",
+    borderRadius: "2rem",
     height: "24rem",
-    minWidth: "12rem",
-    paddingBottom: "1rem",
-    paddingTop: "1rem",
+    width: "12rem",
   },
   footer: {
     display: "flex",
@@ -47,9 +54,7 @@ const useStyles = makeStyles((theme) => ({
     color: "indianred",
     fontFamily: "Itim",
     position: "relative",
-    bottom: "18rem",
-    transform: "rotate(-15deg)",
-    fontSize: "3vw",
+    fontSize: "1.5em",
   },
   pot: {
     width: "8rem",
@@ -57,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
     bottom: 0,
     left: 0,
   },
-  isPurchased: {},
 }));
 
 export default function ShopItem(props) {
@@ -85,9 +89,8 @@ export default function ShopItem(props) {
   // }, [isSold])
 
   return (
-    <Grid item xs={6} sm={3} alignItems={matches ? "flex-start" : "center"}>
-      <Card className={classes.card}>
-        <CardContent>
+    <Grid item xs={6} sm={4} md={2} alignItems={matches ? "flex-start" : "center"}>
+      <article className={classes.card}>
           <header className="meow-item-header">
             <img
               className={classes.pot}
@@ -140,8 +143,7 @@ export default function ShopItem(props) {
           ) : (
             ""
           )}
-        </CardContent>
-      </Card>
+      </article>
     </Grid>
   );
 }

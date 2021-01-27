@@ -3,29 +3,10 @@ import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    //   width: "7rem",
-    //   alignItems: "center",
-    // },
-    // card: {
-    //   height: "24rem",
-    //   minWidth: "15rem",
-    //   paddingBottom: "1rem",
-    //   paddingTop: "1rem",
-    //   paddingLeft: "1rem",
-    //   paddingRight: "1rem",
-
-    //   // backgroundColor: 'darkkhaki',
-    // },
-    // footer: {
-    //   display: "flex",
-    //   justifyContent: "center",
-    //   alignItems: "center",
-    // },
   },
   pot: {
     height: "8rem",
@@ -48,7 +29,15 @@ const useStyles = makeStyles((theme) => ({
     transform: "rotate(-15deg)",
     color: "indianred",
     fontFamily: "Itim",
-    fontSize: "3vw",
+    fontSize: "3em",
+  },
+  article: {
+    backgroundColor: "rgb(255,255,255, 0.7)",
+    padding: "3rem",
+    borderRadius: "2rem",
+    minHeight: "3vh",
+    height: "18rem",
+    width: '14rem',
   },
 }));
 
@@ -58,9 +47,9 @@ export default function InventoryItem(props) {
   console.log("id in InventoryItem", pot_id);
 
   return (
-    <Grid item xs={6} sm={4}>
-      <Card onClick={() => setDefaultPot(1, pot_id)}>
-        <CardContent className={classes.card}>
+    <Grid item xs={6} sm={4} md={2} >
+      <article className={classes.article} onClick={() => setDefaultPot(1, pot_id)}>
+        {/* <CardContent className={classes.card}> */}
           <header className="meow-item-header">
             <img
               className={classes.pot}
@@ -70,17 +59,14 @@ export default function InventoryItem(props) {
             />
             <h2 className="meow-item-header-name">{props.name}</h2>
           </header>
-          <main
-            className="meow-item-description"
-            style={{ paddingRight: "2rem" }}
-          >
+          <main className="meow-item-description">
             <p className={classes.footer}>{props.description}</p>
           </main>
           <footer className="meow-item-footer">
             {props.isDefault && <h1 className={classes.isDefault}>SELECTED</h1>}
           </footer>
-        </CardContent>
-      </Card>
+        {/* </CardContent> */}
+      </article>
     </Grid>
   );
 }
