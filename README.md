@@ -14,7 +14,7 @@ Enjoy!!!
 !["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/Welcome.png)
 !["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/dashboard.png)
 !["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/Lists.png)
-!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/collections.png)
+!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/collection.png)
 !["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/shop.png)
 !["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/textmsg.png)
 
