@@ -89,60 +89,62 @@ export default function ShopItem(props) {
   // }, [isSold])
 
   return (
-    <Grid item xs={6} sm={4} md={2} alignItems={matches ? "flex-start" : "center"}>
+    <Grid
+      item
+      xs={6}
+      sm={4}
+      md={3}
+      alignItems={matches ? "flex-start" : "center"}
+    >
       <article className={classes.card}>
-          <header className="meow-item-header">
-            <img
-              className={classes.pot}
-              src={props.image}
-              alt={props.name}
-              price={props.price}
-              // style={props.style}
-            />
-            <h2 className="meow-item-header-name" style={{ color: "#5c5c5c" }}>
-              {props.name}
-            </h2>
-          </header>
-          <main className="meow-item-description">
-            <p>{props.description}</p>
-          </main>
-          <footer className={classes.footer} style={{ lineHeight: "0.25em" }}>
-            <h2 className={classes.price}>{props.price}</h2>
-            <img
-              className={classes.coin}
-              src="https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png"
-              alt="meowcoin"
-              style={{ height: "2.5rem" }}
-            />
-            {price > coins ? (
-              <Button
-                className={classes.buyButton}
-                variant="contained"
-                disabled
-              >
-                <MonetizationOnRoundedIcon style={{ paddingRight: "0.25em" }} />
-                BUY
-              </Button>
-            ) : (
-              <Button
-                className={classes.buyButton}
-                variant="contained"
-                color="secondary"
-                onClick={() => buyItem(1, id)}
-              >
-                <MonetizationOnRoundedIcon style={{ paddingRight: "0.25em" }} />
-                BUY
-              </Button>
-            )}
-          </footer>
-
-          {potIDs.includes(id) ? (
-            <h2 className={classes.warning}>ALREADY IN INVENTORY</h2>
-          ) : isSold ? (
-            <h2 className={classes.warning}>ALREADY IN INVENTORY</h2>
+        <header className="meow-item-header">
+          <img
+            className={classes.pot}
+            src={props.image}
+            alt={props.name}
+            price={props.price}
+            // style={props.style}
+          />
+          <h2 className="meow-item-header-name" style={{ color: "#5c5c5c" }}>
+            {props.name}
+          </h2>
+        </header>
+        <main className="meow-item-description">
+          <p>{props.description}</p>
+        </main>
+        <footer className={classes.footer} style={{ lineHeight: "0.25em" }}>
+          <h2 className={classes.price}>{props.price}</h2>
+          <img
+            className={classes.coin}
+            src="https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/meowcoin.png"
+            alt="meowcoin"
+            style={{ height: "2.5rem" }}
+          />
+          {price > coins ? (
+            <Button className={classes.buyButton} variant="contained" disabled>
+              <MonetizationOnRoundedIcon style={{ paddingRight: "0.25em" }} />
+              BUY
+            </Button>
           ) : (
-            ""
+            <Button
+              className={classes.buyButton}
+              variant="contained"
+              color="secondary"
+              onClick={() => buyItem(1, id)}
+            >
+              <MonetizationOnRoundedIcon style={{ paddingRight: "0.25em" }} />
+              BUY
+            </Button>
           )}
+        </footer>
+
+        {potIDs.includes(id) ? (
+          <h2 className={classes.warning}>ALREADY IN INVENTORY</h2>
+        ) : isSold ? (
+          <h2 className={classes.warning}>ALREADY IN INVENTORY</h2>
+        ) : (
+          ""
+        )}
       </article>
     </Grid>
   );
