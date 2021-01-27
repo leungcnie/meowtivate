@@ -5,17 +5,17 @@ A lovely habits & tasks tracking app. By completing all your lists daily, you wi
 By finishing your daily tasks in a streak, big rewards of coins are waiting for you.
 
 If you like to have reminder of your tasks, you can set a timer. Meowtivate will send you a text message to your phone with a lits of things await for your completion.
+!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/textmsg.png)
 
 Enjoy!!!
 
 ## Peekaboo
 
-!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/master/doc/Welcome.png)
-!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/master/doc/dashboard.png)
-!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/master/doc/Lists.png)
-!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/master/doc/collections.png)
-!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/master/doc/shop.png)
-!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/master/doc/textmsg.png)
+!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/Welcome.png)
+!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/dashboard.png)
+!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/Lists.png)
+!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/collections.png)
+!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/shop.png)
 
 ## Special Thank you!
 
