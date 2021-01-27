@@ -23,10 +23,13 @@ import CatsPage from "../pages/CatsPage";
 import AccountPage from "../pages/AccountPage";
 import InventoryPage from "../pages/InventoryPage";
 import ShopPage from "../pages/ShopPage";
+import lightTheme from "./Theme";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
 
 import NotFoundPage from "./404";
 
-import Footer from '../components/Footer';
+import Footer from "../components/Footer";
 
 function App() {
   const {
@@ -77,7 +80,9 @@ function App() {
         <Switch>
           {/* Define route paths and nest page components inside */}
           <Route exact path="/" component={WelcomePage}>
-            <WelcomePage state={state} />
+            <ThemeProvider theme={lightTheme}>
+              <WelcomePage state={state} />
+            </ThemeProvider>
           </Route>
           <Route exact path="/login" component={LoginPage}>
             <LoginPage state={state} />
