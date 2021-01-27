@@ -67,7 +67,7 @@ export default function CatsPage(props) {
         />
         <GalleryContainer
           items={lockedCatsArray}
-          style={{ filter: "brightness(0)", color: 'transparent'}}/>
+          style={{ filter: "brightness(0)" }}/>
       </section>
     </div>
   );

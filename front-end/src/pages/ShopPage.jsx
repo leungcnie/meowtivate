@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     },
     color: "grey",
     lineHeight: 0,
-    paddingBottom: "1rem",
+    paddingBottom: "3rem",
   },
   wallet: {
     display: "flex",
