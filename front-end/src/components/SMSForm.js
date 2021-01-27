@@ -50,7 +50,7 @@ class SMSForm extends Component {
 
   setCurrentTime() {
     this.setState({
-      currentTime: new Date().toLocaleTimeString("en-US", { hour12: false }),
+      currentTime: new Date().toLocaleTimeString("en-US", { hour12: true }),
     });
   }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Menu from "./Menu";
+import Switch from "@material-ui/core/Switch";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -28,6 +29,7 @@ export default function SimpleMenu() {
     <header className={classes.navStyle}>
       <Menu />
       <h1 className={classes.logo}>Meowtivate</h1>
+      <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
     </header>
   );
 }
