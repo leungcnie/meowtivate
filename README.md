@@ -5,7 +5,7 @@ A lovely habits & tasks tracking app. By completing all your lists daily, you wi
 By finishing your daily tasks in a streak, big rewards of coins are waiting for you.
 
 If you like to have reminder of your tasks, you can set a timer. Meowtivate will send you a text message to your phone with a lits of things await for your completion.
-!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/textmsg.png)
+
 
 Enjoy!!!
 
@@ -16,6 +16,7 @@ Enjoy!!!
 !["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/Lists.png)
 !["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/collections.png)
 !["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/shop.png)
+!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/textmsg.png)
 
 ## Special Thank you!
 
@@ -78,6 +79,30 @@ back-end start at
 
 4. in case you want to start front-end separately
    your command is : `npm start`
+
+
+## dependencies
+
+    "@fontsource/itim": "^4.1.0",
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/icons": "^4.11.2",
+    "axios": "^0.21.1",
+    "concurrently": "^5.3.0",
+    "fontsource-itim": "^4.0.0",
+    "nodemon": "^2.0.7"
+    "twilio": "^3.55.0"
+    "body-parser": "^1.19.0",
+    "cookie-session": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-pino-logger": "^5.0.0",
+    "node-schedule": "^1.3.2",
+    "nodemon": "^2.0.7",
+    "pg": "^8.5.1",
+    "pg-native": "^3.0.0",
+    "web-push": "^3.4.4"
+   
 
 ## Group Member
 
