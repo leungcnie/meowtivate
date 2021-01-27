@@ -15,9 +15,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     backgroundColor: "rgb(201,188,200, 0.4)",
     borderRadius: "2rem",
-    width: "80vw",
-    paddingTop: "5em",
-    paddingBottom: "5em",
+    width: "40vw",
+    padding: "5em",
     marginTop: "15vh",
   },
   logo: {
@@ -64,6 +63,16 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#78aca8",
     },
   },
+  blurb: {
+    paddingTop: '2em',
+    color: 'grey',
+    width: '30vw',
+    letterSpacing: '4px',
+  },
+  blurbContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+  }
 }));
 
 export default function WelcomePage(props) {
@@ -75,6 +84,9 @@ export default function WelcomePage(props) {
     <div className={classes.container}>
       <h2 className={classes.header}>Welcome to </h2>
       <h1 className={classes.logo}>MEOWIVATE!</h1>
+      <div>
+      <h2 className={classes.blurb}>Stay meowtivated to finish your work with this whimsical to-do and habit tracker app, and collect herbaceous feline friends along the way</h2>
+      </div>
       <div>
         <Button
           className={classes.signUpButton}
