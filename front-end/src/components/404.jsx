@@ -4,7 +4,7 @@ import notfound from "../img/notfound.jpg";
 export default function NotFoundPage(props) {
   return (
     <main className="">
-      <img src='https://github.com/agxcd/meowtivate/blob/main/doc/Thank%20you%20(3).png?raw=true' alt="" />
+      <img src='https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/Thank+you.png' alt="" />
     </main>
   );
 }
