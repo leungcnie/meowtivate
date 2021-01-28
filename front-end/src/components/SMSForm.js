@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
 
 import "./styles/SMSForm.css";
+import swal from "sweetalert";
 
 class SMSForm extends Component {
   constructor(props) {
@@ -34,7 +35,8 @@ class SMSForm extends Component {
         "\n ⏰  Reminder from Meowtivate. 🐈  \nHere are your " +
         undoneList.length +
         " unfinished tasks for today: " +
-        undoneList;
+        undoneList +
+        "\n_________________";
       this.setState({
         message: { ...this.state.message, body: msg },
       });
@@ -93,7 +95,12 @@ class SMSForm extends Component {
               });
             }
           });
-        alert(this.state.message.body);
+        swal({
+          title: "Hey! Time off!",
+          text: this.state.message.body,
+          icon: "warning",
+          dangerMode: true,
+        });
       } else {
         // console.log("Still have some time");
       }
