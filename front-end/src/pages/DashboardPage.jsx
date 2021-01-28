@@ -388,10 +388,10 @@ export default function DashboardPage(props) {
           </Grid>
         </Grid>
       </section>
-      <Switch
+      {/* <Switch
         checked={darkMode}
         onChange={() => setDarkMode(!darkMode)}
-      ></Switch>
+      ></Switch> */}
     </ThemeProvider>
   );
 }

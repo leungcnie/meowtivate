@@ -31,8 +31,7 @@ class SMSForm extends Component {
       const undone = tasks.filter((item) => item.is_completed !== true);
       const undoneList = undone.map((item) => "\n 🐈 " + item.action_name);
       const msg =
-        "_________________" +
-        "\n ⏰  Reminder from Meowtivate. 🐈  \nHere are your " +
+        "_________________\n Here are your " +
         undoneList.length +
         " unfinished tasks for today: " +
         undoneList +
@@ -96,7 +95,7 @@ class SMSForm extends Component {
             }
           });
         swal({
-          title: "Hey! Time off!",
+          title: " ⏰  Reminder from Meowtivate. 🐈  ",
           text: this.state.message.body,
           icon: "warning",
           dangerMode: true,
