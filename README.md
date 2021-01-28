@@ -1,10 +1,16 @@
 # Meowtivate
 
-A lovely habits & tasks tracking app. By completing all your lists daily, you will unlock a special Meow Plant. We provide a trading shop, where you can purchase and customize your catPlant.
+Stay meowtivated to finish your work with this whimsical to-do and habit tracker app, and collect herbaceous feline friends along the way
+
+How to get cats?
+
+By completing all your tasks (todo & daily tasks together), you will unlock a special Meow.
+
+We also provide a shop, where you spend your Meow coins, purchase customize pots.
 
 By finishing your daily tasks in a streak, big rewards of coins are waiting for you.
 
-If you like to have reminder of your tasks, you can set a timer. Meowtivate will send you a text message to your phone with a lits of things await for your completion.
+Want to have a reminder of your tasks, you can set a timer,  Meowtivate will send you a SMS twith a lits of things await for your completion.
 
 Enjoy!!!
 

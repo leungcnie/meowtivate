@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     backgroundColor: "rgb(201,188,200, 0.4)",
     borderRadius: "2rem",
-    width: "80vw",
+    width: "40vw",
     [theme.breakpoints.down("xs")]: {
       height: "50vh",
     },
