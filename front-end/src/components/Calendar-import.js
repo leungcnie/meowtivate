@@ -56,36 +56,36 @@ export const CalendarApp = (props) => {
     from: {
       year: 2021,
       month: 1,
-      day: 24,
+      day: 25,
     },
     to: {
       year: 2021,
       month: 1,
-      day: 26,
+      day: 27,
     },
   };
   const streak1Add = {
     from: {
       year: 2021,
       month: 1,
-      day: 24,
+      day: 25,
     },
     to: {
       year: 2021,
       month: 1,
-      day: 27,
+      day: 28,
     },
   };
   const streak2 = {
     from: {
       year: 2021,
       month: 1,
-      day: 24,
+      day: 25,
     },
     to: {
       year: 2021,
       month: 1,
-      day: 27,
+      day: 28,
     },
   };
   const streak3 = [];
@@ -93,9 +93,9 @@ export const CalendarApp = (props) => {
   const initialStreak = streaksArray[id - 1];
 
   // Show different today selection depending on user id
-  const today1 = { year: 2021, month: 1, day: 27, className: "todaySelect" };
-  const today2 = { year: 2021, month: 1, day: 28, className: "todaySelect" };
-  const today3 = { year: 2021, month: 1, day: 29, className: "todaySelect" };
+  const today1 = { year: 2021, month: 1, day: 28, className: "todaySelect" };
+  const today2 = { year: 2021, month: 1, day: 29, className: "todaySelect" };
+  const today3 = { year: 2021, month: 1, day: 30, className: "todaySelect" };
   const todayArray = [today1, today2, today3];
   const initialToday = todayArray[id - 1];
 
