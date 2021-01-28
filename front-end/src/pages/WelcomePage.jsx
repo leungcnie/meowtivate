@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "rgb(201,188,200, 0.4)",
     borderRadius: "2rem",
     width: "40vw",
-    padding: "5em",
-    marginTop: "15vh",
+    padding: "4em",
+    marginTop: "8vh",
   },
   logo: {
     fontFamily: "Itim",

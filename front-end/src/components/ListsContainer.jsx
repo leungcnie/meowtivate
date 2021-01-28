@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
   article: {
     backgroundColor: "rgb(201,188,200, 0.4)",
-    padding: "3rem",
+    padding: "2rem",
     borderRadius: "2rem",
     minHeight: "35vh",
   },

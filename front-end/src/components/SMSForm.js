@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
+import swal from "sweetalert";
 
 import "./styles/SMSForm.css";
 
@@ -31,7 +32,7 @@ class SMSForm extends Component {
       const undoneList = undone.map((item) => "\n 🐈 " + item.action_name);
       const msg =
         "_________________" +
-        "\n ⏰  Reminder from Meowtivate. 🐈  \nHere are your " +
+        "\n⏰ Reminder from Meowtivate!  \n🐈 Here are your " +
         undoneList.length +
         " unfinished tasks for today: " +
         undoneList;
@@ -93,7 +94,12 @@ class SMSForm extends Component {
               });
             }
           });
-        alert(this.state.message.body);
+        swal({
+          title: "Reminder from Meowtivate!!",
+          text: this.state.message.body,
+          icon: "warning",
+          dangerMode: true,
+        });
       } else {
         // console.log("Still have some time");
       }
