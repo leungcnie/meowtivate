@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from "@material-ui/core/styles";
 import { Drawer, List, Divider, ListItem, IconButton } from '@material-ui/core';
-import { MenuRounded, HomeRounded, AppsRounded, FormatListBulletedRounded, StorefrontRounded, AccountBoxRounded, SubdirectoryArrowLeftRounded, SpaRounded } from '@material-ui/icons';
+import { PetsRounded, MenuRounded, HomeRounded, AppsRounded, FormatListBulletedRounded, StorefrontRounded, AccountBoxRounded, SubdirectoryArrowLeftRounded, SpaRounded } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -10,14 +10,14 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Varela Round',
     color: 'dimgrey',
     paddingTop: '0.5em',
-    fontSize: '1.2em'
+    fontSize: '1.7em'
   },
   menuIcon: {
     fontSize: "2em",
     color: '#fcd0c5',
   },
   list: {
-    width: 250,
+    width: 320,
   },
   fullList: {
     width: 'auto',
@@ -57,13 +57,13 @@ export default function SimpleMenu() {
           <AccountBoxRounded style={{paddingRight: '0.25em'}}/>
             My Account
         </ListItem>
-        <ListItem className={classes.menuItem} component={Link} to="/cats" >
-          <AppsRounded style={{paddingRight: '0.25em'}}/>
-            My Collection
-        </ListItem>
         <ListItem className={classes.menuItem} component={Link} to="/lists">
           <FormatListBulletedRounded style={{paddingRight: '0.25em'}}/>
             My Lists
+        </ListItem>
+        <ListItem className={classes.menuItem} component={Link} to="/cats" >
+          <AppsRounded style={{paddingRight: '0.25em'}}/>
+            My Collection
         </ListItem>
         <ListItem className={classes.menuItem} component={Link} to="/inventory">
           <SpaRounded style={{paddingRight: '0.25em'}}/>
@@ -74,9 +74,14 @@ export default function SimpleMenu() {
           <StorefrontRounded style={{paddingRight: '0.25em'}}/>
             Shop
         </ListItem>
+        <Divider style={{margin: '0.5em'}}/>
         <ListItem className={classes.menuItem} component={Link} to="/">
           <SubdirectoryArrowLeftRounded style={{paddingRight: '0.25em'}}/>
             Logout
+        </ListItem>
+        <Divider style={{margin: '0.5em'}}/>
+        <ListItem className={classes.menuItem} style={{display: 'flex', justifyContent: 'center'}} component={Link} to="/">
+          <PetsRounded style={{paddingRight: '0.25em', fontSize: '1.2em'}}/>
         </ListItem>
       </List>
     </div>
