@@ -125,6 +125,11 @@ export default function ShopItem(props) {
               <MonetizationOnRoundedIcon style={{ paddingRight: "0.25em" }} />
               BUY
             </Button>
+          ) : potIDs.includes(id) ? (
+            <Button className={classes.buyButton} variant="contained" disabled>
+              <MonetizationOnRoundedIcon style={{ paddingRight: "0.25em" }} />
+              BUY
+            </Button>
           ) : (
             <Button
               className={classes.buyButton}
