@@ -5,6 +5,9 @@ import getCurrentDate from '../helpers/getCurrentDate';
 import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
+  displaY: {
+    display: 'block'
+  },
   root: {
     flexGrow: 1,
     maxHeight: "20rem",
@@ -16,20 +19,20 @@ const useStyles = makeStyles((theme) => ({
   cat: {
     height: "15rem",
     position: "absolute",
-    top: "calc(50% - 7rem)",
-    left: "calc(50% - 5rem)",
+    top: "calc(50% - 6.5rem)",
+    left: "calc(50% - 6.5rem)",
     zIndex: 101,
   },
   text: {
-    color: "#a0cdca",
+    color: "#429690",
     fontFamily: "Itim",
     fontSize: "3.5em",
     position: "absolute",
     top: "calc(50% + 3rem)",
     left: "calc(50% - 4.25em)",
     zIndex: 102,
-    WebkitTextStroke: 'darksalmon',
-    WebkitTextStrokeWidth: 'thin',
+    // WebkitTextStroke: 'darksalmon',
+    // WebkitTextStrokeWidth: 'thin',
   },
   animatedItem: {
     animation: `$myEffect 10000ms infinite linear`,
