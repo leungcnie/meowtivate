@@ -84,7 +84,7 @@ export default function WelcomePage(props) {
     <div className={classes.container}>
       <h2 className={classes.header}>Welcome to </h2>
       <h1 className={classes.logo}>MEOWIVATE!</h1>
-      <div>
+      <div className={classes.blurbContainer}>
       <h2 className={classes.blurb}>Stay meowtivated to finish your work with this whimsical to-do and habit tracker app, and collect herbaceous feline friends along the way</h2>
       </div>
       <div>
