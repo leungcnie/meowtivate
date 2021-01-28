@@ -93,7 +93,7 @@ export default function ShopItem(props) {
       item
       xs={6}
       sm={4}
-      md={3}
+      md={2}
       alignItems={matches ? "flex-start" : "center"}
     >
       <article className={classes.card}>

@@ -34,7 +34,7 @@ export default function InventoryPage(props) {
         <h1 className={classes.header}>my INVENTORY</h1>
       </header>
       <body className={classes.container}>
-        <Grid container spacing={4}>
+        <Grid container spacing={3}>
           {inventory
             .sort(function(a, b) {
               return a.id - b.id;
