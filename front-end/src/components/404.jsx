@@ -4,8 +4,7 @@ import notfound from "../img/notfound.jpg";
 export default function NotFoundPage(props) {
   return (
     <main className="">
-      <img src={notfound} alt="" />
-      404 Not Found
+      <img src='https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/Thank+you.png' alt="" />
     </main>
   );
 }

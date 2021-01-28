@@ -47,7 +47,7 @@ export default function InventoryItem(props) {
   console.log("id in InventoryItem", pot_id);
 
   return (
-    <Grid item xs={6} sm={4} md={2} >
+    <Grid item xs={6} sm={4} md={3} >
       <article className={classes.article} onClick={() => setDefaultPot(1, pot_id)}>
         {/* <CardContent className={classes.card}> */}
           <header className="meow-item-header">

@@ -80,7 +80,7 @@ export default function SimpleMenu() {
             Logout
         </ListItem>
         <Divider style={{margin: '0.5em'}}/>
-        <ListItem className={classes.menuItem} style={{display: 'flex', justifyContent: 'center'}} component={Link} to="/">
+        <ListItem className={classes.menuItem} style={{display: 'flex', justifyContent: 'center'}} component={Link} to="Thank-You">
           <PetsRounded style={{paddingRight: '0.25em', fontSize: '1.2em'}}/>
         </ListItem>
       </List>
