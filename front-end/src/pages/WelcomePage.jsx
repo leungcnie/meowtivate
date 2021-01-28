@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     fontFamily: "Itim",
     letterSpacing: "8px",
-    fontSize: "5em",
+    fontSize: "3em",
     [theme.breakpoints.down("sm")]: {
       fontSize: "2em",
     },
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   header: {
     fontFamily: "Varela Round",
     letterSpacing: "6px",
-    fontSize: "3em",
+    fontSize: "2em",
     [theme.breakpoints.down("sm")]: {
       fontSize: "2em",
     },
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       fontSize: "1em",
     },
-    fontSize: "2em",
+    fontSize: "1.5em",
     "&:hover": {
       backgroundColor: "#ceba93",
     },
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   loginButton: {
     fontFamily: "Varela Round",
     margin: "2rem",
-    fontSize: "2em",
+    fontSize: "1.5em",
     [theme.breakpoints.down("sm")]: {
       fontSize: "1em",
     },
@@ -72,6 +72,9 @@ const useStyles = makeStyles((theme) => ({
   blurbContainer: {
     display: 'flex',
     justifyContent: 'center',
+  },
+  catgif: {
+    height: '14rem',
   }
 }));
 
@@ -84,8 +87,11 @@ export default function WelcomePage(props) {
     <div className={classes.container}>
       <h2 className={classes.header}>Welcome to </h2>
       <h1 className={classes.logo}>MEOWIVATE!</h1>
+      <div>
+        <img className={classes.catgif} src="https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/animated_catplant.gif" alt="animated-catplant"/>
+      </div>
       <div className={classes.blurbContainer}>
-      <h2 className={classes.blurb}>Stay meowtivated to finish your work with this whimsical to-do and habit tracker app, and collect herbaceous feline friends along the way</h2>
+      <p className={classes.blurb}>Stay meowtivated to finish your work with this whimsical to-do and habit tracker app, while collect herbaceous feline friends along the way</p>
       </div>
       <div>
         <Button
@@ -109,6 +115,7 @@ export default function WelcomePage(props) {
           Login
         </Button>
       </div>
+
     </div>
   );
 }
