@@ -1,19 +1,13 @@
 # Meowtivate
 
-Stay meowtivated to finish your work with this whimsical to-do and habit tracker app, and collect herbaceous feline friends along the way
+Stay meowtivated to finish your work with this whimsical to-do and habit tracker app, and collect herbaceous feline friends along the way!
 
-How to get cats?
+* Unlock cats by completing all your tasks (to-do & daily tasks combined)
+* Finish your daily tasks and maintain your streak to obtain big meowcoin rewards
+* Shop for new pots to customize your plant
+* **_Want a reminder?_** Set a timer to have your unfinished tasks sent to you through SMS 
 
-By completing all your tasks (todo & daily tasks together), you will unlock a special Meow.
-
-We also provide a shop, where you spend your Meow coins, purchase customize pots.
-
-By finishing your daily tasks in a streak, big rewards of coins are waiting for you.
-
-Want to have a reminder of your tasks, you can set a timer,  Meowtivate will send you a SMS twith a lits of things await for your completion.
-
-
-Enjoy!!!
+Enjoy!
 
 ## Peekaboo
 
@@ -26,34 +20,34 @@ Enjoy!!!
 
 ## Special Thank you!
 
-All our plants and images display in the app are drawing by Monica and Connie.
+All our plants and images displayed in the app are drawn by Monica and Connie.
 
-Thanks to Kshun, Peepo and all the other cats for letting us using your portraits as reference!!!
+Thanks to Kshun, Peepo and all the other cats for letting us use your portraits as reference!
 
-## Instruction of installation
+## Instructions for installation
 
 - You will need vagrant / psql in your machine for the back-end
 
-- go to back-end and front-end and follow the instruction below.
+- Go to back-end and front-end and follow the instructions below.
 
-- for the weather api & twilio text message to work:
+- For the weather api & twilio text message to work:
   after you create your version of .env referencing the .env.example
-  in back-end folder, you need to enter your own api keys
+  in back-end folder, you will need to enter your own api keys
   (Sorry, it's not provided)
 
 ## Main folder
 
-- if you want to concurrently start both of the front-end and back-end
+- If you want to concurrently start both of the front-end and back-end
   after you npm install front-end and back-end individually, come back to your main folder
   and do the following
 
 1. `npm i`
 2. `npm start`
 
-front-end start at
+front-end starts at
 `http://localhost:3006/`
 
-back-end start at
+back-end starts at
 `http://localhost:5001/`
 
 ## Back-end
@@ -70,9 +64,13 @@ back-end start at
 
 6. On host machine: cd into meowtivate/back-end
 
-7. run `npm run db:reset`
+7. Run `npm run db:reset`
 
-8. in case you want to start back-end separately
+8. If entering `pg_config` in terminal doesn't yield a path, follow the instructions [here](https://www.npmjs.com/package/pg-native) to install.
+
+9. `npm i`
+
+9. In case you want to start back-end separately
    your command is : `npm run dev`
 
 ## Front-end
@@ -83,11 +81,10 @@ back-end start at
 
 3. `npm i`
 
-4. in case you want to start front-end separately
+4. In case you want to start front-end separately
    your command is : `npm start`
 
-
-## dependencies
+## Dependencies
 
     "@fontsource/itim": "^4.1.0",
     "@material-ui/core": "^4.11.2",
@@ -110,10 +107,11 @@ back-end start at
     "web-push": "^3.4.4"
    
 
-## Group Member
+## Group Members
 
 - Connie Leung
 
 - Monica Li
 
 - Angie Xu
+
