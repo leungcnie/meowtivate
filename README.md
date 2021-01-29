@@ -11,12 +11,12 @@ Enjoy!
 
 ## Peekaboo
 
-!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/Welcome.png)
-!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/dashboard.png)
-!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/Lists.png)
-!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/collection.png)
-!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/shop.png)
-!["ScreenShot"](https://github.com/agxcd/meowtivate/blob/main/doc/textmsg.png)
+!["Welcome"](https://github.com/agxcd/meowtivate/blob/main/docs/Welcome.png?raw=true)
+!["Dashboard"](https://github.com/agxcd/meowtivate/blob/main/docs/Dashboard.png?raw=true)
+!["Lists"](https://github.com/agxcd/meowtivate/blob/main/docs/Lists.png?raw=true)
+!["Collections"](https://github.com/agxcd/meowtivate/blob/main/docs/Collections.png?raw=true)
+!["Shop"](https://github.com/agxcd/meowtivate/blob/main/docs/Shop.png?raw=true)
+!["Inventory"](https://github.com/agxcd/meowtivate/blob/main/docs/Inventory.png?raw=true)
 
 ## Special Thank you!
 
