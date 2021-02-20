@@ -3,39 +3,72 @@
 Stay meowtivated to finish your work with this whimsical to-do and habit tracker app, and collect herbaceous feline friends along the way!
 
 * Unlock cats by completing all your tasks (to-do & daily tasks combined)
-* Finish your daily tasks and maintain your streak to obtain big meowcoin rewards
+* Finish your daily tasks and maintain your streak to obtain big meowcoin rewards (100 coins per 100% completion awarded daily)
 * Shop for new pots to customize your plant
 * **_Want a reminder?_** Set a timer to have your unfinished tasks sent to you through SMS 
 
 Enjoy!
 
-## Peekaboo
+## Final Product
 
 !["Welcome"](https://github.com/agxcd/meowtivate/blob/main/docs/Welcome.png?raw=true)
 !["Dashboard"](https://github.com/agxcd/meowtivate/blob/main/docs/Dashboard.png?raw=true)
-!["Lists"](https://github.com/agxcd/meowtivate/blob/main/docs/Lists.png?raw=true)
+!["Lists"](https://github.com/agxcd/meowtivate/blob/main/docs/Lists.gif?raw=true)
 !["Collections"](https://github.com/agxcd/meowtivate/blob/main/docs/Collections.png?raw=true)
 !["Shop"](https://github.com/agxcd/meowtivate/blob/main/docs/Shop.png?raw=true)
 !["Inventory"](https://github.com/agxcd/meowtivate/blob/main/docs/Inventory.png?raw=true)
 
-## Special Thank you!
-
-All our plants and images displayed in the app are drawn by Monica and Connie.
-
-Thanks to Kshun, Peepo and all the other cats for letting us use your portraits as reference!
-
 ## Instructions for installation
 
-- You will need vagrant / psql in your machine for the back-end
+- You will need `psql` installed on your machine (or on a vagrant guest machine) for the back-end
 
-- Go to back-end and front-end and follow the instructions below.
+- `cd` into `meowtivate/back-end` and `meovtivate/front-end` and follow the instructions below before running `cd ..` -> `npm i` in the `meowtivate` folder.
 
-- For the weather api & twilio text message to work:
-  after you create your version of .env referencing the .env.example
-  in back-end folder, you will need to enter your own api keys
-  (Sorry, it's not provided)
+## Back-end Folder
 
-## Main folder
+1. Create the .env by using .env.example as a reference: `cp .env.example .env`
+
+2. Create a psql database called *final* owner by a user *labber* with password *labber*. Follow steps **3-5** for vagrant, or **6-8** for host machine.
+
+#### ON VAGRANT
+
+3. `vagrant up` -> `vagrant ssh`
+
+4. `psql -U vagrant -d template1`
+
+5. `CREATE DATABASE final OWNER labber;`
+
+
+#### ON HOST MACHINE
+
+6. `psql` -> `CREATE USER labber WITH PASSWORD 'labber';`
+
+7. `CREATE DATABASE labber OWNER labber;`
+
+8. `ALTER USER labber WITH Superuser createrole createdb replication;`
+
+9. `npm i`
+
+10. If entering `pg_config` in terminal doesn't yield a path, follow the instructions [here](https://www.npmjs.com/package/pg-native) to install.
+
+11. Run `npm run db:reset` to run db schema and seeds
+
+In case you want to start back-end separately
+   your command is : `npm run dev`
+
+## Front-end Folder
+
+1. Create the .env by using .env.example as a reference: cp .env.example .env
+
+2. Update the .env file with your correct local information. You will need API keys from [OpenWeather](https://openweathermap.org/appid) and [Twilio](https://www.twilio.com/)
+
+
+3. `npm i`
+
+In case you want to start front-end separately
+   your command is : `npm start`
+
+## Meowtivate Root Folder
 
 - If you want to concurrently start both of the front-end and back-end
   after you npm install front-end and back-end individually, come back to your main folder
@@ -44,45 +77,11 @@ Thanks to Kshun, Peepo and all the other cats for letting us use your portraits 
 1. `npm i`
 2. `npm start`
 
-front-end starts at
+Front-end starts at
 `http://localhost:3006/`
 
-back-end starts at
+Back-end starts at
 `http://localhost:5001/`
-
-## Back-end
-
-1. Create the .env by using .env.example as a reference: cp .env.example .env
-
-2. Update the .env file with your correct local information
-
-3. `vagrant up` -> `vagrant ssh`
-
-4. `psql -U vagrant -d template1`
-
-5. `CREATE DATABASE final OWNER labber;`
-
-6. On host machine: cd into meowtivate/back-end
-
-7. Run `npm run db:reset`
-
-8. If entering `pg_config` in terminal doesn't yield a path, follow the instructions [here](https://www.npmjs.com/package/pg-native) to install.
-
-9. `npm i`
-
-9. In case you want to start back-end separately
-   your command is : `npm run dev`
-
-## Front-end
-
-1. Create the .env by using .env.example as a reference: cp .env.example .env
-
-2. Update the .env file with your correct local information
-
-3. `npm i`
-
-4. In case you want to start front-end separately
-   your command is : `npm start`
 
 ## Dependencies
 
@@ -107,11 +106,11 @@ back-end starts at
     "web-push": "^3.4.4"
    
 
-## Group Members
+## Group Members & Responsibilities
 
-- Connie Leung
+- **Connie Leung:** App functionality with React, back-end routing, cat/pot assets
 
-- Monica Li
+- **Monica Li:** UI design and implementation, animations, all assets
 
-- Angie Xu
+- **Angie Xu:** External API, back-end routing
 
