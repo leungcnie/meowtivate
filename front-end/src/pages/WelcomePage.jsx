@@ -91,7 +91,7 @@ export default function WelcomePage(props) {
         <img className={classes.catgif} src="https://meowtivate.s3-us-west-2.amazonaws.com/miscellaneous/animated_catplant.gif" alt="animated-catplant"/>
       </div>
       <div className={classes.blurbContainer}>
-      <p className={classes.blurb}>Stay meowtivated to finish your work with this whimsical to-do and habit tracker app, while collect herbaceous feline friends along the way</p>
+      <p className={classes.blurb}>Stay meowtivated to finish your work with this whimsical to-do and habit tracker app, and collect herbaceous feline friends along the way</p>
       </div>
       <div>
         <Button
