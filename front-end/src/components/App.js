@@ -11,9 +11,8 @@ import getCurrentDate from "../helpers/getCurrentDate";
 
 // Hooks
 import useApplicationData from "../hooks/useApplicationData";
-// import useAuth from "../hooks/useAuth";
 
-// Pages imported from src/pages dir
+// Pages imported from src/pages
 import WelcomePage from "../pages/WelcomePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
@@ -23,13 +22,9 @@ import CatsPage from "../pages/CatsPage";
 import AccountPage from "../pages/AccountPage";
 import InventoryPage from "../pages/InventoryPage";
 import ShopPage from "../pages/ShopPage";
+import ThankYouPage from "../pages/ThankYouPage";
 import lightTheme from "./Theme";
-import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-
-import NotFoundPage from "./404";
-
-import Footer from "../components/Footer";
 
 function App() {
   const {
@@ -41,18 +36,18 @@ function App() {
     addPot,
     potFunctions,
   } = useApplicationData();
-  const { unlocked, account } = state;
+  const { unlocked } = state;
   const id = day ? day : 0;
-  // const id = 1;
 
-  const [streak, setStreak] = useState(3); // Hardcode initial streak value
+  const [streak, setStreak] = useState(3); // Hardcode initial streak value for demo
   const [coins, setCoins] = useState(streak * 100);
 
   // Add 1 to current streak if a cat was unlocked today
   useEffect(() => {
     const today = getCurrentDate();
-    // Get array of unlocked dates in "yyyy-mm-dd"
+    // Get array of unlocked dates from state
     const currentUnlocked = unlocked.map((obj) =>
+      // Change dates to "yyyy-mm-dd" format
       obj.date_unlocked.slice(0, 10)
     );
     if (currentUnlocked.includes(today)) {
@@ -60,7 +55,7 @@ function App() {
     }
   }, [unlocked]);
 
-  // Change streak depending on user
+  // Change streak depending on user/day
   useEffect(() => {
     if (id === 2) {
       setStreak(4);
@@ -69,7 +64,7 @@ function App() {
     }
   }, [state]);
 
-  // Update streak whenever reloading
+  // Update coins depending on user/day
   useEffect(() => {
     setCoins(streak * 100);
   }, [streak]);
@@ -91,7 +86,6 @@ function App() {
             <RegisterPage state={state} />
           </Route>
           <Route exact path="/dashboard" component={DashboardPage}>
-            {/* <DashboardPage state={state} /> */}
             <DashboardPage
               state={state}
               streak={streak}
@@ -126,12 +120,9 @@ function App() {
               addPot={addPot}
             />
           </Route>
-          <Route exact path="*" component={NotFoundPage} />
+          <Route exact path="*" component={ThankYouPage} />
         </Switch>
       </Router>
-      {/* <footer>
-        <Footer/>
-      </footer> */}
     </div>
   );
 }
