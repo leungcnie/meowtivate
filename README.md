@@ -13,7 +13,7 @@ Enjoy!
 
 !["Welcome"](https://github.com/agxcd/meowtivate/blob/main/docs/Welcome.png?raw=true)
 !["Dashboard"](https://github.com/agxcd/meowtivate/blob/main/docs/Dashboard.png?raw=true)
-!["Lists"](https://github.com/leungcnie/meowtivate/blob/main/docs/Lists-140.gif?raw=true)
+!["Lists"](https://github.com/leungcnie/meowtivate/blob/main/docs/Lists-fast.gif?raw=true)
 !["Collections"](https://github.com/agxcd/meowtivate/blob/main/docs/Collections.png?raw=true)
 !["Shop"](https://github.com/agxcd/meowtivate/blob/main/docs/Shop.png?raw=true)
 !["Inventory"](https://github.com/agxcd/meowtivate/blob/main/docs/Inventory.png?raw=true)
