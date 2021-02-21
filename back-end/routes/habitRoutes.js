@@ -5,14 +5,13 @@ module.exports = (router, db) => {
     db.getHabits(user_id)
       .then((data) => {
         res.json(data);
-        // console.log(request.body.habits);
-        // console.log("cannot get the correct", data);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
   });
 
+  // Create new habit
   router.post("/", (req, res) => {
     const { action_name } = req.body;
 
@@ -24,14 +23,6 @@ module.exports = (router, db) => {
         res.status(500).json({ error: err.message });
       });
   });
-
-  // update todo & habit states
-  // router.put("/:id", (req, res) => {
-  //   const { id, is_completed } = req.body;
-  //   db.updateState(id, is_completed).then((example) => {
-  //     res.status(204).send("Successfully updateState!");
-  //   });
-  // });
 
   return router;
 };

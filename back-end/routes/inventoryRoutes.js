@@ -6,15 +6,13 @@ module.exports = (router, db) => {
     db.getUserInventory(user_id)
       .then((data) => {
         res.json(data);
-        // console.log("cannot get the correct", data);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
   });
 
-  // Add new row in user_pots
-  // User buys a new pot
+  // Add new row in user_pots bridge table when user buys pot
   router.post("/:id", (req, res) => {
     const user_id = req.params.id;
     const { pot_id } = req.body;
@@ -34,7 +32,6 @@ module.exports = (router, db) => {
     db.getUserDefault(user_id)
       .then((data) => {
         res.json(data);
-        // console.log("cannot get the correct", data);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -54,29 +51,5 @@ module.exports = (router, db) => {
       });
   });
 
-  // router.get("/:id", (req, res) => {
-  //   const user_id = req.params.id;
-  //   db.getDefaultPot(user_id)
-  //     .then((data) => {
-  //       res.json(data);
-  //       // console.log("cannot get the correct", data);
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).json({ error: err.message });
-  //     });
-  // });
-
-  // router.post("/bought", (req, res) => {
-  //   const { user_id, pot_id } = req.body;
-  //   // console.log("req.body in POST /todos", req.body);
-
-  //   db.changeDefaultPot(user_id, pot_id)
-  //     .then((data) => {
-  //       res.send(data);
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).json({ error: err.message });
-  //     });
-  // });
   return router;
 };

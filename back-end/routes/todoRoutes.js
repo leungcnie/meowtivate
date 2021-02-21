@@ -5,17 +5,15 @@ module.exports = (router, db) => {
     db.getTodos(user_id)
       .then((data) => {
         res.json(data);
-        // console.log("cannot get the correct", data);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
   });
 
-  // post new todo
+  // Create new todo
   router.post("/", (req, res) => {
     const { action_name } = req.body;
-    // console.log("req.body in POST /todos", req.body);
 
     db.createTodo(action_name)
       .then((data) => {
