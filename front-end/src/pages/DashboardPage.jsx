@@ -3,8 +3,6 @@ import {
   makeStyles,
   Grid,
   Button,
-  Card,
-  CardContent,
   IconButton,
 } from "@material-ui/core";
 import DoubleArrowRoundedIcon from "@material-ui/icons/DoubleArrowRounded";
@@ -13,15 +11,9 @@ import { CalendarApp } from "../components/Calendar-import";
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import CatPlant from "../components/CatPlant";
-import Footer from "../components/Footer";
 
-// import getCurrentDate from "../helpers/getCurrentDate";
 import SMSForm from "../components/SMSForm";
-// import Card from "@material-ui/core/Card";
-// import CardContent from "@material-ui/core/CardContent";
-import getCurrentDate from "../helpers/getCurrentDate";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import Switch from "@material-ui/core/Switch";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,31 +30,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
-    // alignItems: 'center',
   },
-  // grid1: {
-  //   display: "flex",
-  //   justifyContent: "center",
-  //   flexDirection: "column",
-  //   // alignItems: "center",
-  //   order: 1,
-  //   [theme.breakpoints.down("xs")]: {
-  //     order: 2,
-  //   },
-  // },
-  // grid2: {
-  //   display: "flex",
-  //   justifyContent: "center",
-  //   flexDirection: "column",
-  //   order: 2,
-  //   [theme.breakpoints.down("xs")]: {
-  //     order: 3,
-  //   },
-  // },
   grid3: {
     display: "flex",
     justifyContent: "center",
-    // order: 3,
     [theme.breakpoints.up("md")]: {
       flexDirection: "column",
     },
@@ -268,7 +239,7 @@ export default function DashboardPage(props) {
 
   // Go to next day
   const changeDay = () => {
-    if (day >= 1 && day < 3) {
+    if (day < 3) {
       setDay((prev) => prev + 1);
     }
   };
@@ -278,15 +249,6 @@ export default function DashboardPage(props) {
       setCoins(0);
     }
   }, [id]);
-
-  // Theme
-  const [darkMode, setDarkMode] = useState(false);
-
-  const theme = createMuiTheme({
-    palette: {
-      type: darkMode ? "dark" : "light",
-    },
-  });
 
   return (
     <ThemeProvider>
@@ -383,10 +345,6 @@ export default function DashboardPage(props) {
           </Grid>
         </Grid>
       </section>
-      {/* <Switch
-        checked={darkMode}
-        onChange={() => setDarkMode(!darkMode)}
-      ></Switch> */}
     </ThemeProvider>
   );
 }
