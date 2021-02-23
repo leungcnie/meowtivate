@@ -5,7 +5,6 @@ import ActionList from "./ActionList";
 import CatPlant from "./CatPlant";
 import Progress from "./Progress";
 import UnlockBadge from "./UnlockBadge";
-import calculateChecked from "../helpers/calculateChecked";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,6 +63,14 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "3rem",
   },
 }));
+
+// Return array of IDs of checked items
+const calculateChecked = (items) => {
+  const completedArr = items.filter(obj => obj.is_completed === true);
+  const checked = completedArr.map(obj => obj.id);
+
+  return checked;
+}
 
 export default function ListContainer(props) {
   const { state, actionFunctions, catFunctions } = props;
