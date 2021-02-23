@@ -31,8 +31,6 @@ const useStyles = makeStyles((theme) => ({
     top: "calc(50% + 3rem)",
     left: "calc(50% - 4.25em)",
     zIndex: 102,
-    // WebkitTextStroke: 'darksalmon',
-    // WebkitTextStrokeWidth: 'thin',
   },
   animatedItem: {
     animation: `$myEffect 10000ms infinite linear`,
@@ -66,21 +64,7 @@ export default function UnlockBadge(props) {
   const initial = (totalCompleted / totalAmount) * 100;
   const percentage = Math.floor(initial / 10) * 10;
 
-  // Get current date
-  // let today = new Date();
-  // const dd = String(today.getDate()).padStart(2, "0");
-  // const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0
-  // const yyyy = today.getFullYear();
-  // today = `${yyyy}-${mm}-${dd}`;
-  // let today = new Date();
-  // const dd = String(today.getDate()).padStart(2, '0');
-  // const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0
-  // const yyyy = today.getFullYear();
-  // today = `${yyyy}-${mm}-${dd}`;
   const today = getCurrentDate();
-
-  // console.log("date (unlocked)", today)
-  // console.log("unlocked", unlocked);
 
   const currentUnlocked = unlocked.map((obj) => obj.date_unlocked.slice(0, 10));
   const todayUnlockExists = currentUnlocked.includes(today);
@@ -111,15 +95,11 @@ export default function UnlockBadge(props) {
 
       setDisplay({ display: "block" });
       setOpen(true);
-
-      // console.log("catID", catID);
-      // console.log("display", display);
     }
   };
 
   // Run function to decide display
   useEffect(() => {
-    // console.log("CURRENT PERCENTAGE IN USEEFFECT", percentage);
     if (percentage < 100) {
       setDisplay({ display: "none" });
     }
@@ -129,7 +109,6 @@ export default function UnlockBadge(props) {
   useEffect(() => {
     // Call function to send POST req + change 'unlocked' state
     // Takes in a cat_id and user_id
-    // console.log("display in useEffect", display);
     if (display.display === "block") {
       addUnlocked(Number(catID), 1);
     }

@@ -263,9 +263,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DashboardPage(props) {
   const { state, streak, day, setDay, id, coins, setCoins } = props;
-  const { unlocked, actions } = state;
+  const { actions } = state;
   const classes = useStyles();
-  // const [coins, setCoins] = useState(streak * 100);
 
   // Go to next day
   const changeDay = () => {
@@ -280,17 +279,6 @@ export default function DashboardPage(props) {
     }
   }, [id]);
 
-  // useEffect(() => {
-  //   const today = getCurrentDate();
-  //   // Get array of unlocked dates in "yyyy-mm-dd"
-  //   const currentUnlocked = unlocked.map(obj => obj.date_unlocked.slice(0, 10));
-  //   if (currentUnlocked.includes(today)) {
-  //     setCoins(prev => prev + 100);
-  //   } else {
-  //     setCoins(streak * 100)
-  //   }
-  // }, [streak])
-
   // Theme
   const [darkMode, setDarkMode] = useState(false);
 
@@ -304,7 +292,6 @@ export default function DashboardPage(props) {
     <ThemeProvider>
       <header>
         <NavBar />
-        {/* <h1>Welcome {props.state.account[0].name}!</h1> */}
       </header>
       <section className={classes.root}>
         <Grid container spacing={3} className={classes.container}>
@@ -323,14 +310,11 @@ export default function DashboardPage(props) {
             </div>
           </Grid>
           <Grid item xs={12} sm={6} md={4} className={classes.grid2}>
-            {/* <section> */}
-            {/* <article> */}
             <h2 style={{ color: "grey" }}>CURRENT STREAK IS</h2>
             <div className={(classes.midContainer, classes.streakNum)}>
               <h1>{streak}</h1>
             </div>
             <h3 style={{ color: "grey" }}>DAYS</h3>
-            {/* </article> */}
             <article className={classes.listContainer}>
               <Grid>
                 <Button
@@ -379,7 +363,6 @@ export default function DashboardPage(props) {
                 </div>
               </article>
             </article>
-            {/* </section> */}
           </Grid>
           <Grid item xs={12} sm={12} md={4} className={classes.grid3}>
             <Grid>
@@ -394,7 +377,6 @@ export default function DashboardPage(props) {
                 className={classes.potContainer}
                 style={{ paddingBottom: "2em" }}
               >
-                {/* <h1 style={{color: 'grey', lineHeight: 0}}>Today's Progress</h1> */}
                 <CatPlant actions={actions} state={state} />
               </article>
             </Grid>

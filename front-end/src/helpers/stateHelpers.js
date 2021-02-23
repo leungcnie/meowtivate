@@ -19,13 +19,6 @@ export function addToActions(action, state) {
   return updatedActions;
 }
 
-// Add log to state.logDatas with a date and is_completed
-export function addToLogDatas(action, state) {
-  const updatedLogDatas = [...state.logDatas];
-  updatedLogDatas.push(action);
-  return updatedLogDatas;
-}
-
 // Modify action in state.actions with new property
 export function modifyActionWith(val, key, id, state) {
   // Make a copy of the state.actions
@@ -45,41 +38,6 @@ export function modifyActionWith(val, key, id, state) {
   return updatedActions;
 }
 
-// Modify action in state.streaks with new property
-export function modifyStreakActionWith(val, key1, key2, id, state) {
-  // Make a copy of the state.streaks
-  const updatedActions = [...state.streaks];
-
-  // Find specific action obj and its index, and make copy of target
-  const target = updatedActions.filter((obj) => obj.user_id === id)[0];
-  const targetIndex = updatedActions.indexOf(target);
-
-  const newAction = { ...target };
-
-  // Update new action with new property val
-  // compare two keys for update
-  // need to ask which one is the one that return
-  // this is the one that update both streak and current_streak
-  // console.log("val", val);
-  newAction[key1] = val;
-  if (val === 0 || newAction[key2] < val) {
-    newAction[key2] = val;
-    // console.log("val1", val);
-  }
-
-  // console.log("newAction[key1]", newAction[key2]);
-  // this is the one that update only current_streak
-
-  // if (newAction[key2] < val) {
-  //   newAction[key2] = val;
-  // }
-
-  updatedActions.splice(targetIndex, 1); // Remove target obj
-  updatedActions.splice(targetIndex, 0, newAction); // Insert new action at right index with updated property
-
-  return updatedActions;
-}
-
 // Return a property of a specific action in current state
 //    e.g. return action's current is_completed or action_name
 export function getActionProperty(id, key, state) {
@@ -92,7 +50,6 @@ export function getActionProperty(id, key, state) {
 export function getNewUnlockedCat(cat_id, date, state) {
   // Get cat from 'allCats' state
   const newCat = [...state.allCats].filter((cat) => cat.id === cat_id)[0];
-  // console.log("newCat", newCat);
   // Cat is missing date, so add
   newCat.date_unlocked = date;
   const updatedUnlocked = [...state.unlocked];
@@ -103,7 +60,6 @@ export function getNewUnlockedCat(cat_id, date, state) {
 
 // Use pot_id to build new inventory state item
 export function addToInventory(user_id, pot_id, userPurchaseData, state) {
-  console.log("state.shop in stateHelpers", state.shop);
   const updatedInventory = [...state.inventory];
 
   // Find the new purchase from shop
@@ -120,8 +76,6 @@ export function addToInventory(user_id, pot_id, userPurchaseData, state) {
     pot_id,
     is_default
   };
-
-  console.log("PURCHASE", purchase)
 
   // Push new purchase to inventory
   updatedInventory.push(purchase);
@@ -148,9 +102,6 @@ export function setAsDefault(user_id, pot_id, state) {
 
   updatedInventory.splice(targetIndex, 1); // Remove target obj
   updatedInventory.splice(targetIndex, 0, newPot); // Insert updated pot
-
-  console.log("newPot", newPot);
-  console.log("updatedInventory", updatedInventory);
   
   return updatedInventory;
 

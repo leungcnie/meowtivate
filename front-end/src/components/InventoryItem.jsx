@@ -1,7 +1,5 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -44,12 +42,10 @@ const useStyles = makeStyles((theme) => ({
 export default function InventoryItem(props) {
   const classes = useStyles();
   const { setDefaultPot, pot_id } = props;
-  console.log("id in InventoryItem", pot_id);
 
   return (
     <Grid item xs={6} sm={4} md={3} >
       <article className={classes.article} onClick={() => setDefaultPot(1, pot_id)}>
-        {/* <CardContent className={classes.card}> */}
           <header className="meow-item-header">
             <img
               className={classes.pot}
@@ -65,7 +61,6 @@ export default function InventoryItem(props) {
           <footer className="meow-item-footer">
             {props.isDefault && <h1 className={classes.isDefault}>SELECTED</h1>}
           </footer>
-        {/* </CardContent> */}
       </article>
     </Grid>
   );

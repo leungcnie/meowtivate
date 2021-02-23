@@ -35,8 +35,6 @@ export default function Popup(props) {
     confirmAdd(name, category);
   }
 
-  // console.log("actionName", actionName);
-
   return (
     <div>
       { type === "Delete" && (
@@ -64,9 +62,6 @@ export default function Popup(props) {
         <Dialog open={open} onClose={cancel} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">{type} a {listType}</DialogTitle>
         <DialogContent>
-          {/* <DialogContentText>
-            {actionID}
-          </DialogContentText> */}
           <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
             <TextField
               autoFocus
@@ -94,9 +89,6 @@ export default function Popup(props) {
         <Dialog open={open} onClose={cancel} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">{type} a {listType}</DialogTitle>
         <DialogContent>
-          {/* <DialogContentText>
-            {actionID}
-          </DialogContentText> */}
           <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
             <TextField
               autoFocus

@@ -12,7 +12,6 @@ import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import SaveRoundedIcon from "@material-ui/icons/SaveRounded";
 import Popup from "./Popup";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
@@ -35,8 +34,6 @@ export default function ActionList(props) {
   const classes = useStyles();
 
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down("xs"));
-  // console.log("checked in ActionList", initChecked);
 
   // Toggle between VIEW and EDIT modes
   const [isEditable, setIsEditable] = useState(false);

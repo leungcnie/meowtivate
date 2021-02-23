@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import MonetizationOnRoundedIcon from "@material-ui/icons/MonetizationOnRounded";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -12,12 +10,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     width: "7rem",
   },
-  // card: {
-  //   height: "24rem",
-  //   minWidth: "12rem",
-  //   paddingBottom: "1rem",
-  //   paddingTop: "2rem",
-  // },
   card: {
     backgroundColor: "rgb(255,255,255, 0.7)",
     padding: "3rem",
@@ -81,13 +73,6 @@ export default function ShopItem(props) {
   // Build array of inventory pot_ids
   const potIDs = inventory.map((obj) => obj.pot_id);
 
-  console.log(`Coin in pot ${id}:`, coins);
-  // useEffect(() => {
-  //   if (isSold) {
-  //     setCoins(prev => prev - price)
-  //   }
-  // }, [isSold])
-
   return (
     <Grid
       item
@@ -103,7 +88,6 @@ export default function ShopItem(props) {
             src={props.image}
             alt={props.name}
             price={props.price}
-            // style={props.style}
           />
           <h2 className="meow-item-header-name" style={{ color: "#5c5c5c" }}>
             {props.name}

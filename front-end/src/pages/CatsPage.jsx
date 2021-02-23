@@ -27,34 +27,23 @@ const useStyles = makeStyles((theme) => ({
 function isLocked(allCats, unlockedCats) {
   const unlockedIDs = unlockedCats.map(obj => obj.id);
   const lockedCats = allCats.filter(obj => !unlockedIDs.includes(obj.id));
-
-  // for (let cat of allCats) {
-  //   // console.log('cat', String(cat.id))
-  //   // console.log('unloked keys', Object.keys(unlockedCats))
-  //   if (!Object.keys(unlockedCats).includes(String(cat.id - 1))) {
-  //     lockedCats.push(cat);
-  //   }
-  // }
   return lockedCats;
 }
 
 export default function CatsPage(props) {
   const { state } = props;
   const classes = useStyles();
-  // console.log('UNLOCKED', state.unlocked);
-  // console.log('ALLCATS', state.allCats);
+
   const allCatsArray = state.allCats;
   const unlockedCatsArray = state.unlocked;
   const locked = isLocked(allCatsArray, unlockedCatsArray);
+
   // Change locked cats names to ??? and no description
   const lockedCatsArray = locked.map(obj => {
     obj.cat_name = "???";
     obj.description = "";
     return obj;
   })
-
-  console.log("lockedCatsArray", lockedCatsArray)
-  console.log("unlockedCatsArray", unlockedCatsArray)
 
   return (
     <div className="Cats">

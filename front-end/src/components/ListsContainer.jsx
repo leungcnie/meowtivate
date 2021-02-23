@@ -66,8 +66,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ListContainer(props) {
-  const { state, actionFunctions, catFunctions, user } = props;
-  const { actions, todos, habits, unlocked, streaks, logDatas } = state;
+  const { state, actionFunctions, catFunctions } = props;
+  const { actions, todos, habits } = state;
   const classes = useStyles();
 
   const completed = actions.filter((obj) => obj.is_completed === true);
@@ -79,13 +79,6 @@ export default function ListContainer(props) {
   const totalAmount = actions.length;
   const completedAmount = completed.length;
   const completedPercentage = completedAmount / totalAmount;
-  const undoneAmount = totalAmount - completedAmount;
-
-  let today = new Date();
-  const dd = String(today.getDate()).padStart(2, "0");
-  const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0
-  const yyyy = today.getFullYear();
-  today = `${yyyy}-${mm}-${dd}`;
 
   return (
     <>
@@ -129,9 +122,6 @@ export default function ListContainer(props) {
         </Grid>
         <Grid item xs={3} sm={3} md={1}>
           <article>
-            {/* <h3 className={classes.subtitle} style={{ lineHeight: 0 }}>
-              100%
-            </h3> */}
             <div className={classes.progress}>
               <Progress
                 completedPercentage={completedPercentage}
@@ -145,41 +135,3 @@ export default function ListContainer(props) {
     </>
   );
 }
-
-// console.log("rightnow", today);
-
-// useEffect(() => {
-//   if (streaks) {
-//     return () => {
-//       const currentStreaksE = streaks.map((obj) =>
-//         obj.date_update.slice(0, 10)
-//       );
-//       const todayStreakExists = currentStreaksE.includes(today);
-//       const currentLog = logDatas.map((obj) => obj.date_created.slice(0, 10));
-//       const todayLogExists = currentLog.includes(today);
-
-//       if (completedPercentage >= 1 && !todayStreakExists) {
-//         let val = streaks[0].current_streak + 1;
-//         updateStreak(1, val);
-//       }
-//       if (completedPercentage >= 1 && !todayLogExists) {
-//         postLogData(1, today);
-//       }
-//     };
-//   }
-// }, [streaks, logDatas]);
-
-// console.log("Does the streaks changes?", streaks);
-// console.log("Does the logDatas changes?", logDatas);
-
-// console.log("Does toady", todayStreakExists);
-// const getStreak = (streaks) => {
-//   if (!streaks) {
-//     return streaks[0].current_streak;
-//   }
-//   const current_streak = getStreak(streaks);
-//   console.log("curren_streak", current_streak);
-//   return "updating streak";
-// };
-// const currentUser = user.accounts[0].username;
-// console.log("user", currentUser);

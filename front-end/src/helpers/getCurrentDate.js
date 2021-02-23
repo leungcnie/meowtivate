@@ -6,7 +6,7 @@ export default function getCurrentDate() {
   const yyyy = today.getFullYear();
   today = `${yyyy}-${mm}-${dd}`;
 
-  // TESTING CODE vagrant timezone faster after 10pm
+  // Uncomment if vagrant timezone faster than host timezone
   // const nextDay = Number(today.slice(-1)) + 1;
   // const result = today.slice(0,-1).concat(nextDay);
   // return result;

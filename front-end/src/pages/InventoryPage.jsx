@@ -25,7 +25,6 @@ export default function InventoryPage(props) {
   const { state, potFunctions } = props;
   const { setDefaultPot } = potFunctions;
   const { inventory } = state;
-  console.log('userinven', inventory)
 
   return (
     <>
